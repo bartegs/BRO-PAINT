@@ -1,12 +1,10 @@
-import '../index.scss';
+import "../index.scss";
 
-import * as React from 'react';
-import * as ReactDOM from 'react-dom';
+import * as React from "react";
+import * as ReactDOM from "react-dom";
 
 function Temp(): JSX.Element {
-  return (
-    <div>Temp</div>
-  );
+  return <div className="black-text">Temp</div>;
 }
 
-ReactDOM.render(<Temp />, document.querySelector('#root'));
+ReactDOM.render(<Temp />, document.querySelector("#root"));
