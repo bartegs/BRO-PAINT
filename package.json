@@ -13,7 +13,9 @@
     "lint:scss": "stylelint  client/src/**/*.scss",
     "lint:scss:fix": "stylelint client/src/**/*.scss --fix",
     "lint": "run-p lint:ts lint:scss",
-    "lint:fix": "run-p lint:ts:fix lint:scss:fix"
+    "lint:fix": "run-p lint:ts:fix lint:scss:fix",
+    "check-types": "tsc -p tsconfig.json --noEmit",
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
@@ -29,6 +31,7 @@
     "@babel/core": "^7.14.3",
     "@babel/preset-env": "^7.14.2",
     "@babel/preset-react": "^7.13.13",
+    "@types/classnames": "^2.3.1",
     "@types/react": "^17.0.6",
     "@types/react-dom": "^17.0.5",
     "@typescript-eslint/eslint-plugin": "^4.24.0",
@@ -37,7 +40,7 @@
     "clean-webpack-plugin": "^4.0.0-alpha.0",
     "css-loader": "^5.2.5",
     "eslint": "^7.27.0",
-    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-airbnb-typescript": "^12.3.1",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.23.3",
     "eslint-plugin-jsx-a11y": "^6.4.1",
@@ -59,9 +62,11 @@
     "webpack": "^5.37.1",
     "webpack-cli": "^4.7.0",
     "webpack-dev-server": "^3.11.2",
-    "webpack-merge": "^5.7.3"
+    "webpack-merge": "^5.7.3",
+    "husky": "^6.0.0"
   },
   "dependencies": {
+    "classnames": "^2.3.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   }
