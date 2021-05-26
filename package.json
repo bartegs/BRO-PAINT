@@ -16,7 +16,7 @@
     "lint:fix": "run-p lint:ts:fix lint:scss:fix",
     "check-types": "tsc -p tsconfig.json --noEmit",
     "prepare": "husky install",
-    "ts-compile": "tsc server/server.ts",
+    "ts-compile": "tsc server/server.ts --outDir ./dist/server",
     "nodemon": "nodemon"
   },
   "repository": {
