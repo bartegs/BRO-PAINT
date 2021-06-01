@@ -1,8 +1,6 @@
 import * as mongoose from "mongoose";
 
-// schemat dokumentu jobs
 const positionSchema = new mongoose.Schema({
-  _id: mongoose.Types.ObjectId,
   name: {
     type: String,
     required: true,

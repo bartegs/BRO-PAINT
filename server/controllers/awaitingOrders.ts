@@ -1,5 +1,4 @@
 import { Request, Response } from "express";
-import * as mongoose from "mongoose";
 import AwaitingOrder from "../models/AwaitingOrder";
 
 const AwaitingOrdersController = {
@@ -12,26 +11,31 @@ const AwaitingOrdersController = {
         res.status(404).json({ message: "No employees found" });
       });
   },
+
   add_awaiting_orders: (req: Request, res: Response) => {
+    const { customerInfo, carInfo, orderInfo } = req.body;
+
     const awaitingOrder = new AwaitingOrder({
-      _id: new mongoose.Types.ObjectId(),
       customerInfo: {
-        firstName: req.body.customerInfo.firstName,
-        lastName: req.body.customerInfo.lastName,
-        email: req.body.customerInfo.email,
-        telephone: req.body.customerInfo.telephone,
+        firstName: customerInfo.firstName,
+        lastName: customerInfo.lastName,
+        email: customerInfo.email,
+        telephone: customerInfo.telephone,
       },
+
       carInfo: {
-        productionYear: req.body.carInfo.productionYear,
-        model: req.body.carInfo.model,
-        licensePlate: req.body.carInfo.licensePlate,
-        paintCode: req.body.carInfo.paintCode,
+        productionYear: carInfo.productionYear,
+        model: carInfo.model,
+        licensePlate: carInfo.licensePlate,
+        paintCode: carInfo.paintCode,
       },
+
       orderInfo: {
-        serviceType: req.body.orderInfo.serviceType,
-        comments: req.body.orderInfo.comments,
+        serviceType: orderInfo.serviceType,
+        comments: orderInfo.comments,
       },
     });
+
     awaitingOrder
       .save()
       .then((result) => {

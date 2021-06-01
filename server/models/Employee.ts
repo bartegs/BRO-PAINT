@@ -1,7 +1,6 @@
 import * as mongoose from "mongoose";
 
 const employeeSchema = new mongoose.Schema({
-  _id: mongoose.Types.ObjectId,
   login: {
     nickName: {
       type: String,

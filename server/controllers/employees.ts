@@ -1,5 +1,4 @@
 import { Request, Response } from "express";
-import * as mongoose from "mongoose";
 import Employee from "../models/Employee";
 
 const EmployeesController = {
@@ -13,29 +12,33 @@ const EmployeesController = {
       });
   },
   add_employees: (req: Request, res: Response) => {
+    const { login, employeeInfo } = req.body;
+
     const employee = new Employee({
-      _id: new mongoose.Types.ObjectId(),
       login: {
-        nickName: req.body.login.nickName,
-        password: req.body.login.password,
+        nickName: login.nickName,
+        password: login.password,
       },
+
       employeeInfo: {
-        firstName: req.body.employeeInfo.firstName,
-        lastName: req.body.employeeInfo.lastName,
-        position: req.body.employeeInfo.position,
-        telephone: req.body.employeeInfo.telephone,
-        email: req.body.employeeInfo.email,
-        pesel: req.body.employeeInfo.pesel,
-        birthDate: req.body.employeeInfo.birthDate,
-        accountNumber: req.body.employeeInfo.accountNumber,
+        firstName: employeeInfo.firstName,
+        lastName: employeeInfo.lastName,
+        position: employeeInfo.position,
+        telephone: employeeInfo.telephone,
+        email: employeeInfo.email,
+        pesel: employeeInfo.pesel,
+        birthDate: employeeInfo.birthDate,
+        accountNumber: employeeInfo.accountNumber,
+
         address: {
-          street: req.body.employeeInfo.address.street,
-          apartment: req.body.employeeInfo.address.apartment,
-          city: req.body.employeeInfo.address.city,
-          postalCode: req.body.employeeInfo.address.postalCode,
+          street: employeeInfo.address.street,
+          apartment: employeeInfo.address.apartment,
+          city: employeeInfo.address.city,
+          postalCode: employeeInfo.address.postalCode,
         },
       },
     });
+
     employee
       .save()
       .then((result) => {

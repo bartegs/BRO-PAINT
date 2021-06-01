@@ -1,7 +1,6 @@
 import * as mongoose from "mongoose";
 
 const awaitingOrderSchema = new mongoose.Schema({
-  _id: mongoose.Types.ObjectId,
   customerInfo: {
     firstName: {
       type: String,

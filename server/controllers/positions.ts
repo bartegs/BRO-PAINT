@@ -1,5 +1,4 @@
 import { Request, Response } from "express";
-import * as mongoose from "mongoose";
 import Position from "../models/Position";
 
 const PositionsController = {
@@ -12,11 +11,14 @@ const PositionsController = {
         res.status(404).json({ message: "No positions found" });
       });
   },
+
   add_positions: (req: Request, res: Response) => {
+    const { name } = req.body;
+
     const position = new Position({
-      _id: new mongoose.Types.ObjectId(),
-      name: req.body.name,
+      name,
     });
+
     position
       .save()
       .then((result) => {
@@ -25,8 +27,8 @@ const PositionsController = {
           info: result,
         });
       })
-      .catch(() =>
-        res.status(500).json({ message: "Position not added - error" })
+      .catch((err) =>
+        res.status(500).json({ message: "Position not added - error", err })
       );
   },
 };

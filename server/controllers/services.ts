@@ -1,5 +1,4 @@
 import { Request, Response } from "express";
-import * as mongoose from "mongoose";
 import Service from "../models/service";
 
 const ServicesController = {
@@ -12,11 +11,14 @@ const ServicesController = {
         res.status(404).json({ message: "No services found" });
       });
   },
+
   add_services: (req: Request, res: Response) => {
+    const { name } = req.body;
+
     const service = new Service({
-      _id: new mongoose.Types.ObjectId(),
-      name: req.body.name,
+      name,
     });
+
     service
       .save()
       .then((result) => {
@@ -25,8 +27,8 @@ const ServicesController = {
           info: result,
         });
       })
-      .catch(() =>
-        res.status(500).json({ message: "Service not added - error" })
+      .catch((err) =>
+        res.status(500).json({ message: "Service not added - error", err })
       );
   },
 };
