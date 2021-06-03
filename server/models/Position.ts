@@ -4,7 +4,8 @@ const positionSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
-    minLength: 2,
+    min: 4,
+    max: 40,
   },
 });
 

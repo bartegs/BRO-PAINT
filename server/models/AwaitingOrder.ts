@@ -6,43 +6,49 @@ const awaitingOrderSchema = new mongoose.Schema({
       type: String,
       required: true,
       min: 2,
+      max: 50,
     },
     lastName: {
       type: String,
       required: true,
       min: 2,
+      max: 50,
     },
     email: {
       type: String,
       required: true,
-      min: 5,
+      min: 3,
+      max: 254,
     },
     telephone: {
       type: String,
       required: true,
       min: 9,
+      max: 15,
     },
   },
   carInfo: {
     productionYear: {
-      type: Number,
+      type: Date,
       required: true,
-      min: 4,
     },
     model: {
       type: String,
       required: true,
       min: 1,
+      max: 100,
     },
     licensePlate: {
       type: String,
       required: true,
-      min: 5,
+      min: 4,
+      max: 20,
     },
     paintCode: {
       type: String,
       required: false,
       min: 1,
+      max: 50,
     },
   },
   orderInfo: {
@@ -55,6 +61,7 @@ const awaitingOrderSchema = new mongoose.Schema({
       type: String,
       required: false,
       min: 1,
+      max: 1000,
     },
   },
 });
