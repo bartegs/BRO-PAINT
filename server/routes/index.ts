@@ -6,9 +6,9 @@ import { router as awaitingOrdersRouter } from "./awaitingOrders";
 
 const router = Router();
 
-router.use(positionsRouter);
-router.use(employeesRouter);
-router.use(servicesRouter);
-router.use(awaitingOrdersRouter);
+router.use("/positions", positionsRouter);
+router.use("/employees", employeesRouter);
+router.use("/services", servicesRouter);
+router.use("/awaiting-orders", awaitingOrdersRouter);
 
 export default router;

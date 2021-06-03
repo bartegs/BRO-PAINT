@@ -3,7 +3,14 @@ import PositionsController from "../controllers/positions";
 
 const router = Router();
 
-router.get("/positions", PositionsController.get_positions);
-router.post("/positions", PositionsController.add_positions);
+router.post("/", PositionsController.add_single);
+
+router.get("/", PositionsController.get_all);
+
+router.get("/:positionId", PositionsController.get_single);
+
+router.put("/:positionId", PositionsController.modify_single);
+
+router.delete("/:positionId", PositionsController.delete_single);
 
 export { router };
