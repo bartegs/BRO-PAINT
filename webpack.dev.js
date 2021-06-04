@@ -7,7 +7,7 @@ module.exports = merge(common, {
   devtool: "source-map",
 
   devServer: {
-    contentBase: path.join(__dirname, "dist"),
+    contentBase: path.join(__dirname, "./apps/client/src/"),
     compress: true,
     port: 9000,
   },
