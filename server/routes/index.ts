@@ -8,9 +8,13 @@ import { router as commonsRouter } from "./commons";
 const router = Router();
 
 router.use("/positions", positionsRouter);
+
 router.use("/employees", employeesRouter);
+
 router.use("/services", servicesRouter);
+
 router.use("/awaiting-orders", awaitingOrdersRouter);
+
 router.use("/*", commonsRouter);
 
 export default router;
