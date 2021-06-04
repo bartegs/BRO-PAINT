@@ -6,11 +6,6 @@ module.exports = merge(common, {
   mode: "development",
   devtool: "source-map",
 
-  output: {
-    filename: "[name].js",
-    path: path.resolve(__dirname, "dist/client"),
-  },
-
   devServer: {
     contentBase: path.join(__dirname, "dist"),
     compress: true,
