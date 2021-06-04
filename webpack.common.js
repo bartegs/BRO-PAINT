@@ -3,10 +3,26 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 module.exports = {
-  entry: "./client/src/index.tsx",
+  entry: {
+    client: "./apps/client/src/index.tsx",
+    worker: "./apps/worker/src/index.tsx",
+  },
+  output: {
+    filename: "[name]/[name].[hash:5].js",
+    path: path.resolve(__dirname, "dist/apps"),
+  },
+
   plugins: [
     new HtmlWebpackPlugin({
-      template: "./client/src/template.html",
+      template: "./apps/client/src/index.html",
+      filename: "client/index.html",
+      chunks: ["client"],
+    }),
+
+    new HtmlWebpackPlugin({
+      template: "./apps/worker/src/index.html",
+      filename: "worker/index.html",
+      chunks: ["worker"],
     }),
     new CleanWebpackPlugin(),
   ],

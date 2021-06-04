@@ -4,20 +4,20 @@
   "description": "BSc Thesis - Tanski/Sadecki",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "webpack --config webpack.dev.js",
     "dev:watch": "webpack serve --open --config webpack.dev.js ",
-    "prod": "webpack --config webpack.prod.js",
+    "dev:server": "nodemon",
+    "qc": "run-p lint:fix check-types",
     "lint:ts": "eslint --ext tsx --ext ts .",
     "lint:ts:fix": "eslint --fix --ext tsx --ext ts .",
-    "lint:scss": "stylelint  client/src/**/*.scss",
-    "lint:scss:fix": "stylelint client/src/**/*.scss --fix",
+    "lint:scss": "stylelint  apps/**/*.scss",
+    "lint:scss:fix": "stylelint apps/**/*.scss --fix",
     "lint": "run-p lint:ts lint:scss",
     "lint:fix": "run-p lint:ts:fix lint:scss:fix",
     "check-types": "tsc -p tsconfig.json --noEmit",
     "prepare": "husky install",
-    "ts-compile": "tsc server/server.ts --outDir ./dist/server",
-    "nodemon": "nodemon"
+    "build:dev": "webpack --config webpack.dev.js",
+    "build:prod": "webpack --config webpack.prod.js",
+    "build:server": "tsc server/server.ts --outDir ./dist/server"
   },
   "repository": {
     "type": "git",
