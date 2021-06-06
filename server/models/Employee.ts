@@ -1,5 +1,12 @@
 import * as mongoose from "mongoose";
 
+export interface IEmployee extends mongoose.Document {
+  login: {
+    nickName: string;
+    password: string;
+  };
+}
+
 const employeeSchema = new mongoose.Schema({
   login: {
     nickName: {
@@ -91,4 +98,4 @@ const employeeSchema = new mongoose.Schema({
   },
 });
 
-export default mongoose.model("Employee", employeeSchema);
+export default mongoose.model<IEmployee>("Employee", employeeSchema);

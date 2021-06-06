@@ -1,14 +1,17 @@
 import { Request, Response } from "express";
+import * as bcrypt from "bcrypt";
+import * as jwt from "jsonwebtoken";
 import Employee from "../models/Employee";
 
 const EmployeesController = {
-  add_single: (req: Request, res: Response) => {
+  add_single: async (req: Request, res: Response) => {
     const { login, employeeInfo } = req.body;
 
+    const hashed = await bcrypt.hash(login.password, 10);
     const employee = new Employee({
       login: {
         nickName: login.nickName,
-        password: login.password,
+        password: hashed,
       },
 
       employeeInfo: {
@@ -121,6 +124,38 @@ const EmployeesController = {
       .catch(() => {
         res.status(500).json({ message: "Nie usunięto - błąd serwera" });
       });
+  },
+
+  login: (req: Request, res: Response) => {
+    const { nickName, password } = req.body.login;
+
+    // searching for matching employee
+    Employee.findOne({ "login.nickName": nickName })
+      .then((employee) => {
+        if (!employee) {
+          res.status(401).json({ message: "Brak autoryzacji" });
+        }
+
+        // password check
+        bcrypt.compare(password, employee.login.password).then((result) => {
+          if (!result) {
+            res.status(401).json({ message: "Brak autoryzacji" });
+          }
+
+          // generate JWT
+          const token = jwt.sign(
+            { nickName: employee.login.nickName },
+            process.env.SECRET,
+            { expiresIn: "8h" }
+          );
+
+          return res.status(200).json({
+            message: "Zalogowano pomyślnie",
+            token,
+          });
+        });
+      })
+      .catch(() => res.status(500).json({ message: "Błąd serwera" }));
   },
 };
 
