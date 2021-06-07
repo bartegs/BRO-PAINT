@@ -3,7 +3,7 @@ import AwaitingOrdersController from "../controllers/awaitingOrders";
 
 const router = Router();
 
-router.post("/awaiting-orders", AwaitingOrdersController.add_single);
+router.post("/", AwaitingOrdersController.add_single);
 
 router.get("/", AwaitingOrdersController.get_all);
 
