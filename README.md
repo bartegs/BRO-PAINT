@@ -55,7 +55,7 @@
 ##### Wyszukiwanie wszystkich usług
 - GET /services
 ##### Wyszukiwanie usługi o podanym ID
-- GET /services/serviceId :no_entry:
+- GET /services/serviceId
 ##### Aktualizacja usługi o podanym ID
 - PUT /services/serviceId :no_entry:
 ##### Usuwanie usługi o podanym ID
