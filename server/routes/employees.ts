@@ -4,15 +4,23 @@ import checkAuthorization from "../middlewares/checkAuthorization";
 
 const router = Router();
 
-router.post("/", EmployeesController.add_single);
+router.post("/", checkAuthorization, EmployeesController.add_single);
 
-router.get("/", EmployeesController.get_all);
+router.get("/", checkAuthorization, EmployeesController.get_all);
 
 router.get("/:employeeId", checkAuthorization, EmployeesController.get_single);
 
-router.put("/:employeeId", EmployeesController.modify_single);
+router.put(
+  "/:employeeId",
+  checkAuthorization,
+  EmployeesController.modify_single
+);
 
-router.delete("/:employeeId", EmployeesController.delete_single);
+router.delete(
+  "/:employeeId",
+  checkAuthorization,
+  EmployeesController.delete_single
+);
 
 router.post("/login", EmployeesController.login);
 
