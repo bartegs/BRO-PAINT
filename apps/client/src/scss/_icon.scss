@@ -1,0 +1,30 @@
+.icon {
+  background: no-repeat;
+  background-size: contain;
+  display: inline-block;
+
+  &--sm {
+    height: 24px;
+    width: 24px;
+  }
+
+  &--phone {
+    background: url('../../../assets/icons/footer-phone.svg');
+  }
+
+  &--email {
+    background: url('../../../assets/icons/footer-email.svg');
+  }
+
+  &--fb {
+    background: url('../../../assets/icons/facebook.svg');
+  }
+
+  &--ig {
+    background: url('../../../assets/icons/instagram.svg');
+  }
+
+  &--tw {
+    background: url('../../../assets/icons/twitter.svg');
+  }
+}

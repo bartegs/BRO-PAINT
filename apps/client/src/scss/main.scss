@@ -1,0 +1,30 @@
+@import './variables';
+@import './text';
+@import './icon';
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Roboto;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  margin: auto;
+  width: $content-width-sm;
+
+  @media (min-width: 768px) {
+    width: $content-width-md;
+  }
+
+  @media (min-width: 1366px) {
+    width: $content-width-lg;
+  }
+}
+
+
+
+
