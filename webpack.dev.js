@@ -10,6 +10,7 @@ module.exports = merge(common, {
     contentBase: path.join(__dirname, "dist/apps/client/"),
     writeToDisk: true,
     compress: true,
+    open: true,
     port: 9000,
   },
 });
