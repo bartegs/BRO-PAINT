@@ -4,27 +4,75 @@
   display: inline-block;
 
   &--sm {
-    height: 24px;
-    width: 24px;
+    height: $icon-sm;
+    width: $icon-sm;
   }
 
-  &--phone {
-    background: url('../../../assets/icons/footer-phone.svg');
+  &--arrow {
+    background: url('../../../assets/icons/arrow.svg');
+  }
+
+  &--car-big {
+    background: url('../../../assets/icons/car-big.svg');
+  }
+
+  &--car-medium {
+    background: url('../../../assets/icons/car-medium.svg');
+  }
+
+  &--car-small {
+    background: url('../../../assets/icons/car-small.svg');
+  }
+
+  &--car {
+    background: url('../../../assets/icons/car.svg');
+  }
+
+  &--dropdown-arrow {
+    background: url('../../../assets/icons/dropdown-arrow.svg');
   }
 
   &--email {
-    background: url('../../../assets/icons/footer-email.svg');
+    background: url('../../../assets/icons/email.svg');
   }
 
   &--fb {
-    background: url('../../../assets/icons/facebook.svg');
+    background: url('../../../assets/icons/fb.svg');
+  }
+
+  &--flag {
+    background: url('../../../assets/icons/flag.svg');
+  }
+
+  &--footer-email {
+    background: url('../../../assets/icons/footer-email.svg');
+  }
+
+  &--footer-phone {
+    background: url('../../../assets/icons/footer-phone.svg');
   }
 
   &--ig {
-    background: url('../../../assets/icons/instagram.svg');
+    background: url('../../../assets/icons/ig.svg');
   }
 
-  &--tw {
-    background: url('../../../assets/icons/twitter.svg');
+  &--location {
+    background: url('../../../assets/icons/location.svg');
+  }
+
+  &--person {
+    background: url('../../../assets/icons/person.svg');
+  }
+
+  &--phone {
+    background: url('../../../assets/icons/phone.svg');
+  }
+
+  &--tooltip {
+    background: url('../../../assets/icons/tooltip.svg');
+  }
+
+  &--tt {
+    background: url('../../../assets/icons/tt.svg');
   }
 }
