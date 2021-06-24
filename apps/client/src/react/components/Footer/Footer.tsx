@@ -13,11 +13,19 @@ export function Footer({ variant = "dark" }: FooterProps): JSX.Element {
     >
       <div className="footer__item contact">
         <div className="contact__item mr-2">
-          <span className="icon icon--sm icon--footer-phone" />
+          <span
+            className={classnames("icon icon--sm icon--footer-phone", {
+              "icon--white": variant === "light",
+            })}
+          />
           +48 240 420 210
         </div>
         <div className="contact__item">
-          <span className="icon icon--sm icon--footer-email mr-1" />
+          <span
+            className={classnames("icon icon--sm icon--footer-email mr-1", {
+              "icon--white": variant === "light",
+            })}
+          />
           bropaint@brocorp.com
         </div>
       </div>
@@ -27,13 +35,25 @@ export function Footer({ variant = "dark" }: FooterProps): JSX.Element {
           href="https://www.facebook.com/BRO-PAINT-109770757973964"
           role="button"
         >
-          <span className="icon icon--sm icon--fb" />
+          <span
+            className={classnames("icon icon--sm icon--fb", {
+              "icon--white": variant === "light",
+            })}
+          />
         </a>
         <a href="https://www.instagram.com/bropaint_cars/" role="button">
-          <span className="icon icon--sm icon--ig mx-2" />
+          <span
+            className={classnames("icon icon--sm icon--ig mx-2", {
+              "icon--white": variant === "light",
+            })}
+          />
         </a>
         <a href="https://twitter.com/bropaint1" role="button">
-          <span className="icon icon--sm icon--tt" />
+          <span
+            className={classnames("icon icon--sm icon--tt", {
+              "icon--white": variant === "light",
+            })}
+          />
         </a>
       </div>
 

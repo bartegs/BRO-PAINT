@@ -1,5 +1,6 @@
 .footer {
   border-top: 1px solid $black-light;
+  color: $black-light;
   display: flex;
   flex-wrap: wrap;
   font-size: $text-12;
@@ -11,11 +12,11 @@
     color: $white-dark;
   }
 
-  @media (min-width: 768px) {
+  @media (min-width: $screen-md) {
     justify-content: space-between;
   }
 
-  @media (min-width: 1366px) {
+  @media (min-width: $screen-lg) {
     justify-content: unset;
   }
 
@@ -29,12 +30,12 @@
   flex: 100%;
   justify-content: center;
 
-  @media (min-width: 768px) {
+  @media (min-width: $screen-md) {
     flex: unset;
     justify-content: flex-start;
   }
 
-  @media (min-width: 1366px) {
+  @media (min-width: $screen-lg) {
     flex: 1;
   }
 
@@ -53,13 +54,13 @@
   justify-content: center;
   margin: $spacing-x2 0;
 
-  @media (min-width: 768px) {
+  @media (min-width: $screen-md) {
     flex: unset;
     margin: 0;
     order: 2;
   }
 
-  @media (min-width: 1366px) {
+  @media (min-width: $screen-lg) {
     flex: 1;
     justify-content: flex-end;
   }
@@ -69,12 +70,12 @@
   flex: 100%;
   justify-content: center;
 
-  @media (min-width: 768px) {
+  @media (min-width: $screen-md) {
     flex: unset;
     order: 1;
   }
 
-  @media (min-width: 1366px) {
+  @media (min-width: $screen-lg) {
     flex: 1;
   }
 }

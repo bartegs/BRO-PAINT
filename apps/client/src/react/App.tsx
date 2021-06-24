@@ -4,7 +4,7 @@ import { Footer } from "./components/Footer";
 export default function App(): JSX.Element {
   return (
     <>
-      <Footer variant="light" />
+      <Footer />
     </>
   );
 }
