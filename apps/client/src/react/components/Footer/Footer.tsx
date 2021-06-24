@@ -1,11 +1,16 @@
 import * as React from "react";
+import classnames from "classnames";
 
 export interface FooterProps {
   variant?: "light" | "dark";
 }
-export function Footer(): JSX.Element {
+export function Footer({ variant = "dark" }: FooterProps): JSX.Element {
   return (
-    <footer className="container footer">
+    <footer
+      className={classnames("container footer", {
+        "footer--light": variant === "light",
+      })}
+    >
       <div className="footer__item contact">
         <div className="contact__item mr-2">
           <span className="icon icon--sm icon--footer-phone" />

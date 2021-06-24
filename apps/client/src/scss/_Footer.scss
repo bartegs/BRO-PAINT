@@ -6,17 +6,22 @@
   padding-bottom: $spacing-x3;
   padding-top: $spacing-x2;
 
+  &--light {
+    border-color: $white-dark;
+    color: $white-dark;
+  }
+
   @media (min-width: 768px) {
     justify-content: space-between;
+  }
+
+  @media (min-width: 1366px) {
+    justify-content: unset;
   }
 
   &__item {
     align-items: center;
     display: flex;
-
-    @media (min-width: 1366px) {
-      flex: 1;
-    }
   }
 }
 
@@ -27,6 +32,10 @@
   @media (min-width: 768px) {
     flex: unset;
     justify-content: flex-start;
+  }
+
+  @media (min-width: 1366px) {
+    flex: 1;
   }
 
   &__item {
@@ -51,6 +60,7 @@
   }
 
   @media (min-width: 1366px) {
+    flex: 1;
     justify-content: flex-end;
   }
 }
@@ -62,5 +72,9 @@
   @media (min-width: 768px) {
     flex: unset;
     order: 1;
+  }
+
+  @media (min-width: 1366px) {
+    flex: 1;
   }
 }
