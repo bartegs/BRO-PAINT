@@ -8,25 +8,25 @@ export function Navbar(): JSX.Element {
         <Logo />
       </div>
       <ul className="navbar__menu">
-        <li className="navbar__menu__item mr-3">
+        <li className="navbar__item">
           <a href="/">Strona główna</a>
         </li>
-        <li className="navbar__menu__item mr-3">
+        <li className="navbar__item">
           <a href="/">Zleć naprawę</a>
         </li>
-        <li className="navbar__menu__item mr-3">
+        <li className="navbar__item">
           <a href="/">Stan naprawy</a>
         </li>
-        <li className="navbar__menu__item mr-3">
+        <li className="navbar__item">
           <a href="/">O nas</a>
         </li>
-        <li className="navbar__menu__item mr-3">
+        <li className="navbar__item">
           <a href="/">Galeria</a>
         </li>
-        <li className="navbar__menu__item mr-3">
+        <li className="navbar__item">
           <a href="/">Kontakt</a>
         </li>
-        <li className="navbar__menu__item">
+        <li className="navbar__item">
           <a href="/">Pracownik</a>
         </li>
       </ul>
