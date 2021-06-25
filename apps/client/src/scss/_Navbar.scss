@@ -1,0 +1,54 @@
+.navbar {
+  align-items: center;
+  color: $black-light;
+  display: flex;
+  font-size: $text-16;
+  justify-content: space-between;
+
+  &__logo {
+    height: 30px;
+    width: 72px;
+
+    @media (min-width: 768px) {
+      height: 40px;
+      width: 96px;
+    }
+
+    @media (min-width: 1366px) {
+      height: 60px;
+      width: 144px;
+    }
+  }
+
+  @media (min-width: $screen-md) {
+    margin-bottom: 500px;
+  }
+
+  @media (min-width: $screen-lg) {
+    margin: $spacing-x4 0;
+
+    &__logo {
+      margin: $spacing-x4 0;
+    }
+
+    &__menu {
+      display: flex;
+
+      &__item {
+        border-bottom: 4px solid transparent;
+        padding-bottom: $spacing-x1;
+        transition: text-shadow 0.3s;
+      }
+
+      &__item:hover {
+        border-bottom: 4px solid $pink-light;
+        // font-weight: bold;
+        text-shadow: 0 0 0.9px $black-light, 0 0 0.9px $black-light;
+      }
+
+      // &__item:current {
+      //text-shadow: 0 0 .9px $black-light, 0 0 .9px $black-light;
+      // }
+    }
+  }
+}
