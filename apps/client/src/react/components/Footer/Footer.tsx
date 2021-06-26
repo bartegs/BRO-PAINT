@@ -1,0 +1,58 @@
+import * as React from "react";
+import classnames from "classnames";
+
+import { Icon } from "../Icon";
+
+export interface FooterProps {
+  variant?: "light" | "dark";
+}
+export function Footer({ variant = "dark" }: FooterProps): JSX.Element {
+  const iconColor = variant === "dark" ? "black-light" : "white-dark";
+
+  return (
+    <footer
+      className={classnames("container footer", {
+        "footer--light": variant === "light",
+      })}
+    >
+      <div className="footer__item contact">
+        <div className="contact__item mr-2">
+          <Icon icon="footer-phone" color={iconColor} />
+          +48 240 420 210
+        </div>
+        <div className="contact__item">
+          <Icon
+            icon="footer-email"
+            color={iconColor}
+            additionalClasses="mr-1"
+          />
+          bropaint@brocorp.com
+        </div>
+      </div>
+
+      <div className="footer__item socials">
+        <a
+          href="https://www.facebook.com/BRO-PAINT-109770757973964"
+          role="button"
+        >
+          <Icon icon="fb" color={iconColor} />
+        </a>
+        <a href="https://www.instagram.com/bropaint_cars/" role="button">
+          <Icon icon="ig" color={iconColor} additionalClasses="mx-2" />
+        </a>
+        <a href="https://twitter.com/bropaint1" role="button">
+          <Icon icon="tt" color={iconColor} />
+        </a>
+      </div>
+
+      <div className="footer__item informations">
+        <a href="/" className="informations__item mr-2">
+          BRO PAINT © 2021
+        </a>
+        <a href="/privacy" className="informations__item">
+          Polityka prywatności
+        </a>
+      </div>
+    </footer>
+  );
+}
