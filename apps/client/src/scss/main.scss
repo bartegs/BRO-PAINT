@@ -2,7 +2,7 @@
 @import './variables';
 @import './utils';
 @import './text';
-@import './icon';
+@import './Icon';
 @import './Footer';
 
 * {
@@ -17,11 +17,11 @@ body {
   margin: auto;
   width: $content-width-sm;
 
-  @media (min-width: 768px) {
+  @media (min-width: $screen-md) {
     width: $content-width-md;
   }
 
-  @media (min-width: 1366px) {
+  @media (min-width: $screen-lg) {
     width: $content-width-lg;
   }
 }

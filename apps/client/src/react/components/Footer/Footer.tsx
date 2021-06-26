@@ -1,10 +1,14 @@
 import * as React from "react";
 import classnames from "classnames";
 
+import { Icon } from "../Icon";
+
 export interface FooterProps {
   variant?: "light" | "dark";
 }
 export function Footer({ variant = "dark" }: FooterProps): JSX.Element {
+  const iconColor = variant === "dark" ? "black-light" : "white-dark";
+
   return (
     <footer
       className={classnames("container footer", {
@@ -13,18 +17,14 @@ export function Footer({ variant = "dark" }: FooterProps): JSX.Element {
     >
       <div className="footer__item contact">
         <div className="contact__item mr-2">
-          <span
-            className={classnames("icon icon--sm icon--footer-phone", {
-              "icon--white": variant === "light",
-            })}
-          />
+          <Icon icon="footer-phone" color={iconColor} />
           +48 240 420 210
         </div>
         <div className="contact__item">
-          <span
-            className={classnames("icon icon--sm icon--footer-email mr-1", {
-              "icon--white": variant === "light",
-            })}
+          <Icon
+            icon="footer-email"
+            color={iconColor}
+            additionalClasses="mr-1"
           />
           bropaint@brocorp.com
         </div>
@@ -35,25 +35,13 @@ export function Footer({ variant = "dark" }: FooterProps): JSX.Element {
           href="https://www.facebook.com/BRO-PAINT-109770757973964"
           role="button"
         >
-          <span
-            className={classnames("icon icon--sm icon--fb", {
-              "icon--white": variant === "light",
-            })}
-          />
+          <Icon icon="fb" color={iconColor} />
         </a>
         <a href="https://www.instagram.com/bropaint_cars/" role="button">
-          <span
-            className={classnames("icon icon--sm icon--ig mx-2", {
-              "icon--white": variant === "light",
-            })}
-          />
+          <Icon icon="ig" color={iconColor} additionalClasses="mx-2" />
         </a>
         <a href="https://twitter.com/bropaint1" role="button">
-          <span
-            className={classnames("icon icon--sm icon--tt", {
-              "icon--white": variant === "light",
-            })}
-          />
+          <Icon icon="tt" color={iconColor} />
         </a>
       </div>
 
