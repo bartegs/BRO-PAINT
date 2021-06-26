@@ -1,0 +1,22 @@
+.homepage-form {
+  align-items: flex-start;
+  background-color: $grey-dark-a-80;
+  border-radius: 5px;
+  box-shadow: $shadow2;
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  height: 152px;
+  justify-content: center;
+  margin-bottom: $spacing-x10;
+  padding: $spacing-x2 $spacing-x8;
+  text-align: center;
+  width: 342px;
+
+  &__heading {
+    color: $white-a-80;
+    font-size: 24px;
+    font-weight: bold;
+  }
+}

@@ -6,6 +6,10 @@
 @import './logo';
 @import './Footer';
 @import './Navbar';
+@import './HomepageForm';
+@import './Homepage';
+@import './Button';
+
 
 * {
   box-sizing: border-box;
@@ -26,4 +30,12 @@ body {
   @media (min-width: 1366px) {
     width: $content-width-lg;
   }
+}
+
+.content {
+  align-items: center;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: flex-end;
 }
