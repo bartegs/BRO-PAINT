@@ -17,7 +17,6 @@ export interface IconProps {
     | "dropdown-arrow"
     | "car"
     | "car-small"
-    | "car-small"
     | "car-medium"
     | "car-big"
     | "arrow";

@@ -1,7 +1,6 @@
 $spacing: 5px;
-$number-of-variables: 10;
 
-@for $i from 1 through $number-of-variables {
+@for $i from 1 through 10 {
   .m-#{$i} {
     margin: $spacing * $i;
   }
