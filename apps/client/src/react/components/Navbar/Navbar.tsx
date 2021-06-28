@@ -1,35 +1,21 @@
 import * as React from "react";
 import { Logo } from "../Logo/Logo";
+import { NavbarMenu, NavbarToggler } from "./components";
 
 export function Navbar(): JSX.Element {
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen((prevState) => !prevState);
+  };
+
   return (
     <nav className="container navbar">
-      <div className="navbar__logo">
+      <a className="navbar__logo" href="/">
         <Logo />
-      </div>
-      <ul className="navbar__menu">
-        <li className="navbar__item">
-          <a href="/">Strona główna</a>
-        </li>
-        <li className="navbar__item">
-          <a href="/">Zleć naprawę</a>
-        </li>
-        <li className="navbar__item">
-          <a href="/">Stan naprawy</a>
-        </li>
-        <li className="navbar__item">
-          <a href="/">O nas</a>
-        </li>
-        <li className="navbar__item">
-          <a href="/">Galeria</a>
-        </li>
-        <li className="navbar__item">
-          <a href="/">Kontakt</a>
-        </li>
-        <li className="navbar__item">
-          <a href="/">Pracownik</a>
-        </li>
-      </ul>
+      </a>
+      <NavbarToggler onClick={toggleMenu} />
+      <NavbarMenu isMenuOpen={isMenuOpen} />
     </nav>
   );
 }

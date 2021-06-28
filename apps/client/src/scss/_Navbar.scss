@@ -1,12 +1,13 @@
 .navbar {
   color: $black-light;
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   font-size: $text-16;
   justify-content: space-between;
   padding: $spacing-x3 0;
 
   &__logo {
+    display: inline-block;
     height: $logo-sm-y;
     width: $logo-sm-x;
 
@@ -21,25 +22,6 @@
     }
   }
 
-  &__menu {
-    display: flex;
-    flex-direction: column;
-    margin-top: $spacing-x6;
-  }
-
-  &__item {
-    border-bottom: 4px solid transparent;
-    margin-bottom: $spacing-x2;
-    padding-bottom: $spacing-x1;
-    text-align: center;
-    transition: text-shadow 0.3s;
-  }
-
-  &__item:hover {
-    border-bottom: 4px solid $pink-light;
-    text-shadow: 0 0 0.9px $black-light, 0 0 0.9px $black-light;
-  }
-
   // &__item:current {
   //   text-shadow: 0 0 .9px $black-light, 0 0 .9px $black-light;
   // }
@@ -48,14 +30,5 @@
     align-items: center;
     flex-direction: row;
     padding: $spacing-x4 0;
-
-    &__menu {
-      flex-direction: row;
-      margin-top: 0;
-    }
-
-    &__item {
-      margin: 0 0 0 $spacing-x3;
-    }
   }
 }

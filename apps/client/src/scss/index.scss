@@ -6,13 +6,11 @@
 @import './logo';
 @import './Footer';
 @import './Navbar';
-
-* {
-  box-sizing: border-box;
-}
+@import './NavbarMenu';
+@import './NavarToggler';
 
 body {
-  font-family: Roboto;
+  font-family: Roboto, Arial, Helvetica, sans-serif;
 }
 
 .container {
