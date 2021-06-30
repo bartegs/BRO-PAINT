@@ -11,7 +11,8 @@
   }
 
   &__bar {
-    background: $black;
-    height: 3px;
+    background: $black-light;
+    height: 4px;
+    border-radius: 1px;
   }
 }

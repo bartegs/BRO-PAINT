@@ -20,7 +20,8 @@ export function NavbarMenu({ isMenuOpen }: OwnProps): JSX.Element {
   return (
     <ul
       className={classnames("navbar-menu", {
-        "navbar-menu--open": isMenuOpen,
+        "navbar-menu--open": isMenuOpen === true,
+        "navbar-menu--close": isMenuOpen === false,
       })}
     >
       {menuItems.map(({ text, href, id }) => (
