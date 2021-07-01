@@ -9,25 +9,22 @@
 @import './HomepageForm';
 @import './Homepage';
 @import './Button';
-
-
-* {
-  box-sizing: border-box;
-}
+@import './NavbarMenu';
+@import './NavbarToggler';
 
 body {
-  font-family: Roboto;
+  font-family: Roboto, Arial, Helvetica, sans-serif;
 }
 
 .container {
   margin: auto;
   width: $content-width-sm;
 
-  @media (min-width: 768px) {
+  @media (min-width: $screen-md) {
     width: $content-width-md;
   }
 
-  @media (min-width: 1366px) {
+  @media (min-width: $screen-lg) {
     width: $content-width-lg;
   }
 }

@@ -1,9 +1,23 @@
 .homepage {
-  background: url('../../../assets//images/baner-lg.png');
+  background: url('../../../assets//images/baner-sm.png');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   display: flex;
   flex-direction: column;
   height: 100vh;
+
+  @media (min-width: $screen-md) {
+    background: url('../../../assets//images/baner-md.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  @media (min-width: $screen-lg) {
+    background: url('../../../assets//images/baner-lg.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
 }
