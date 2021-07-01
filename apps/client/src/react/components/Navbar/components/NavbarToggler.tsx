@@ -2,9 +2,10 @@ import * as React from "react";
 
 interface OwnProps {
   onClick: () => void;
+  isMenuOpen: boolean;
 }
 
-export function NavbarToggler({ onClick }: OwnProps): JSX.Element {
+export function NavbarToggler({ onClick, isMenuOpen }: OwnProps): JSX.Element {
   return (
     <div
       tabIndex={0}
@@ -13,9 +14,18 @@ export function NavbarToggler({ onClick }: OwnProps): JSX.Element {
       onClick={onClick}
       onKeyDown={onClick}
     >
-      <div className="navbar-toggler__bar" />
-      <div className="navbar-toggler__bar" />
-      <div className="navbar-toggler__bar" />
+      {isMenuOpen === false ? (
+        <>
+          <div className="navbar-toggler__bar" />
+          <div className="navbar-toggler__bar" />
+          <div className="navbar-toggler__bar" />
+        </>
+      ) : (
+        <>
+          <div className="navbar-toggler__cross navbar-toggler__cross--a" />
+          <div className="navbar-toggler__cross navbar-toggler__cross--b" />
+        </>
+      )}
     </div>
   );
 }
