@@ -1,0 +1,58 @@
+.navbar-menu {
+  display: flex;
+  flex-direction: column;
+  height: 0;
+  margin-top: $spacing-x3;
+  overflow: hidden;
+  width: 100vw;
+
+  @media (min-width: $screen-lg) {
+    flex-direction: row;
+    height: auto;
+    margin-top: 0;
+    width: auto;
+  }
+
+  &--close {
+    margin-top: 0;
+  }
+
+  &--open {
+    height: auto;
+    transition: 1s;
+    border-top: 1px solid $black-light;
+    padding-top: $spacing-x2;
+
+    @media (min-width: $screen-lg) {
+      border-top: unset;
+      transition: none;
+    }
+  }
+
+  &__item {
+    margin-bottom: $spacing-x2;
+    padding-bottom: $spacing-x1;
+    transition: text-shadow 0.3s;
+
+    @media (min-width: $screen-lg) {
+      margin: 0 0 0 $spacing-x3;
+    }
+
+    &::after {
+      border-radius: 5px;
+      content: "";
+      display: block;
+      height: 4px;
+      margin-top: $spacing-x1;
+      transition: background-color 0.3s ease-in-out;
+    }
+
+    &:hover {
+      text-shadow: 0 0 0.9px $black-light, 0 0 0.9px $black-light;
+
+      &::after {
+        background: $pink-light;
+      }
+    }
+  }
+}

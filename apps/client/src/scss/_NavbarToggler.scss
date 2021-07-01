@@ -1,0 +1,49 @@
+.navbar-toggler {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  height: 20px;
+  justify-content: space-between;
+  width: 30px;
+
+  @media (min-width: $screen-lg) {
+    display: none;
+  }
+
+  &:hover * {
+    background: $pink-light;
+    transition: background-color 0.3s ease-in-out;
+  }
+
+  &__bar {
+    background: $black-light;
+    height: 4px;
+    border-radius: 1px;
+  }
+
+  &__cross {
+    position: relative;
+    margin: auto;
+    width: 30px;
+    cursor: pointer;
+    background: $black-light;
+
+    &--a {
+      position: absolute;
+      height: 4px;
+      width: 30px;
+      border-radius: 1px;
+      transform: rotate(40deg);
+      margin-top: 8px;
+    }
+
+    &--b {
+      position: absolute;
+      height: 4px;
+      width: 30px;
+      border-radius: 1px;
+      transform: rotate(-40deg);
+      margin-top: 8px;
+    }
+  }
+}

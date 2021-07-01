@@ -3,14 +3,14 @@
 @import './utils';
 @import './text';
 @import './Icon';
+@import './logo';
 @import './Footer';
-
-* {
-  box-sizing: border-box;
-}
+@import './Navbar';
+@import './NavbarMenu';
+@import './NavbarToggler';
 
 body {
-  font-family: Roboto;
+  font-family: Roboto, Arial, Helvetica, sans-serif;
 }
 
 .container {
