@@ -8,6 +8,7 @@ module.exports = merge(common, {
 
   devServer: {
     contentBase: path.join(__dirname, "dist/apps/client/"),
+    historyApiFallback: true,
     writeToDisk: true,
     compress: true,
     open: true,
