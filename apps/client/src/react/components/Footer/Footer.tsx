@@ -1,18 +1,27 @@
 import * as React from "react";
 import classnames from "classnames";
 
+import { useLocation } from "react-router-dom";
 import { Icon } from "../Icon";
 
-export interface FooterProps {
-  variant?: "light" | "dark";
-}
-export function Footer({ variant = "dark" }: FooterProps): JSX.Element {
+export function Footer(): JSX.Element {
+  const [variant, setVariant] = React.useState<"dark" | "light">("dark");
+  const { pathname } = useLocation();
+
+  React.useEffect(() => {
+    if (pathname === "/") {
+      setVariant("light");
+    } else {
+      setVariant("dark");
+    }
+  }, [pathname]);
+
   const iconColor = variant === "dark" ? "black-light" : "white-dark";
 
   return (
     <footer
       className={classnames("container footer", {
-        "footer--light": variant === "light",
+        "footer--home-page": variant === "light",
       })}
     >
       <div className="footer__item contact">

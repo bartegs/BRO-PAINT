@@ -29,3 +29,21 @@ $spacing: 5px;
     margin-left: $spacing * $i;
   }
 }
+
+.text {
+  &--white {
+    color: $white;
+  }
+
+  &--white-a-60 {
+    color: $white-a-60;
+  }
+
+  &--white-a-80 {
+    color: $white-a-80;
+  }
+
+  &--white-dark {
+    color: $white-dark;
+  }
+}

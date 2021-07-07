@@ -10,12 +10,14 @@ export function Navbar(): JSX.Element {
   };
 
   return (
-    <nav className="container navbar">
-      <a className="navbar__logo" href="/">
-        <Logo />
-      </a>
-      <NavbarToggler isMenuOpen={isMenuOpen} onClick={toggleMenu} />
-      <NavbarMenu isMenuOpen={isMenuOpen} />
+    <nav className="navbar">
+      <div className="container navbar__container">
+        <a className="navbar__logo" href="/">
+          <Logo />
+        </a>
+        <NavbarToggler isMenuOpen={isMenuOpen} onClick={toggleMenu} />
+        <NavbarMenu isMenuOpen={isMenuOpen} />
+      </div>
     </nav>
   );
 }

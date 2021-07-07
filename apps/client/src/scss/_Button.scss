@@ -1,0 +1,17 @@
+.button {
+  border: 0;
+  border-radius: $radius-x1;
+  box-shadow: $shadow-sm;
+  color: $white;
+  font-size: $text-16;
+  font-weight: bold;
+  padding: $spacing-x2 $spacing-x5 $spacing-x3 $spacing-x5;
+
+  &--primary {
+    background-color: $pink;
+
+    &:hover {
+      background-color: $pink-light;
+    }
+  }
+}
