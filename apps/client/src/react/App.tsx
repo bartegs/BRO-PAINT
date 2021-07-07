@@ -1,10 +1,19 @@
 import * as React from "react";
-import { Homepage } from "./components/Homepage/Homepage";
+import { BrowserRouter as Router, Switch } from "react-router-dom";
+
+import createRoutes from "../routes";
+
+import { Footer } from "./components/Footer";
+import { Navbar } from "./components/Navbar";
 
 export default function App(): JSX.Element {
   return (
-    <>
-      <Homepage />
-    </>
+    <Router>
+      <Navbar />
+      <main className="content">
+        <Switch>{createRoutes}</Switch>
+      </main>
+      <Footer />
+    </Router>
   );
 }

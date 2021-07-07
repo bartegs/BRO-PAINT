@@ -1,5 +1,6 @@
 import * as React from "react";
 import classnames from "classnames";
+import { Link } from "react-router-dom";
 
 interface OwnProps {
   isMenuOpen: boolean;
@@ -8,7 +9,7 @@ interface OwnProps {
 export function NavbarMenu({ isMenuOpen }: OwnProps): JSX.Element {
   const menuItems = [
     { id: 0, text: "Strona główna", href: "/" },
-    { id: 1, text: "Zleć naprawę", href: "/zlec-naprawe" },
+    { id: 1, text: "Zleć naprawę", href: "/nowa-naprawa" },
     { id: 2, text: "Stan naprawy", href: "/stan-naprawy" },
     { id: 3, text: "O nas", href: "/o-nas" },
     { id: 4, text: "Galeria", href: "/galeria" },
@@ -25,7 +26,7 @@ export function NavbarMenu({ isMenuOpen }: OwnProps): JSX.Element {
     >
       {menuItems.map(({ text, href, id }) => (
         <li key={id} className="navbar-menu__item">
-          <a href={href}>{text}</a>
+          <Link to={href}>{text}</Link>
         </li>
       ))}
     </ul>

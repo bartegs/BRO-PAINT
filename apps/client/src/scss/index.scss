@@ -1,19 +1,31 @@
-@import './reset';
-@import './variables';
-@import './utils';
-@import './text';
-@import './icon';
-@import './logo';
-@import './Footer';
-@import './Navbar';
-@import './HomepageForm';
-@import './Homepage';
-@import './Button';
-@import './NavbarMenu';
-@import './NavbarToggler';
+@import "./reset";
+@import "./variables";
+@import "./utils";
+@import "./text";
+@import "./icon";
+@import "./logo";
+@import "./Footer";
+@import "./Navbar";
+@import "./HomePageForm";
+@import "./HomePage";
+@import "./Button";
+@import "./Input";
+@import "./NavbarMenu";
+@import "./NavbarToggler";
 
 body {
   font-family: Roboto, Arial, Helvetica, sans-serif;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  flex: 1;
+  display: flex;
 }
 
 .container {
@@ -27,12 +39,4 @@ body {
   @media (min-width: $screen-lg) {
     width: $content-width-lg;
   }
-}
-
-.content {
-  align-items: center;
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  justify-content: flex-end;
 }

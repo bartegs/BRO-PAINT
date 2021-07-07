@@ -1,21 +1,13 @@
-.homepage-form {
-  align-items: flex-start;
+.home-page-form {
   background-color: $grey-dark-a-80;
-  border-radius: 5px;
-  box-shadow: $shadow2;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  height: 152px;
-  justify-content: center;
-  margin-bottom: $spacing-x10;
+  border-radius: $radius-x1;
+  box-shadow: $shadow-md;
+  margin-bottom: 125px;
   padding: $spacing-x2 $spacing-x8;
   text-align: center;
-  width: 342px;
+  max-width: 342px;
 
-  &__heading {
-    color: $white-a-80;
-    font-size: 24px;
-    font-weight: bold;
+  @media (min-width: $screen-md) {
+    margin-bottom: 100px;
   }
 }

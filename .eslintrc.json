@@ -18,17 +18,15 @@
     "sourceType": "module",
     "project": ["./tsconfig.json"]
   },
-  "plugins": [
-    "react",
-    "@typescript-eslint",
-    "prettier"
-  ],
+  "plugins": ["react", "@typescript-eslint", "prettier"],
   "rules": {
     "no-use-before-define": "off",
     "@typescript-eslint/no-use-before-define": ["error"],
     "no-undef": "off",
     "react/jsx-filename-extension": "off",
     "import/prefer-default-export": "off",
+    "react/require-default-props": "off",
+    "react/button-has-type": "off",
     "prettier/prettier": [
       "error",
       {
