@@ -8,6 +8,7 @@
 @import "./Navbar";
 @import "./HomePageForm";
 @import "./HomePage";
+@import "./NewRepair";
 @import "./Button";
 @import "./Input";
 @import "./NavbarMenu";
@@ -29,7 +30,9 @@ body {
 }
 
 .container {
-  margin: auto;
+  // margin: auto; - breakes vertical positioning, works fine with l/r auto
+  margin-left: auto;
+  margin-right: auto;
   width: $content-width-sm;
 
   @media (min-width: $screen-md) {
