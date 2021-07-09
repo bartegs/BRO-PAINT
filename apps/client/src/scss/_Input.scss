@@ -1,5 +1,5 @@
 .input {
-  font-size: inherit;
+  font-size: $text-16;
   border: none;
   background-color: transparent;
   border-bottom: 2px solid $pink;
@@ -14,4 +14,38 @@
   &--home-page {
     margin: 15px 5px 25px 5px;
   }
+
+  &--outlined {
+    padding: $spacing-x2;
+    border-bottom: none;
+    border: 1px solid $black-light;
+    border-radius: 5px;
+    background: none;
+    display: block;
+    margin-bottom: $spacing-x1;
+
+    &__label {
+      color: $green;
+      font-size: $text-12;
+      font-weight: bold;
+      text-transform: uppercase;
+      position: relative;
+      bottom: -8px;
+      left: $spacing-x2;
+      background: $white;
+      padding: 0 $spacing-x1;
+
+      &--other {
+        bottom: -7px;
+      }
+    }
+  }
+}
+
+.text-area {
+  font-family: Roboto, Arial, Helvetica, sans-serif;
+  font-size: $text-16;
+  resize: none;
+  width: 100%;
+  height: 100px;
 }

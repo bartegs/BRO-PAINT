@@ -131,37 +131,56 @@ export function NewRepair(): JSX.Element {
           zleceniu, a my zajmiemy się resztą!
         </h2>
         <form className="new-repair__contact__form">
+          <label htmlFor="names" className="input--outlined__label">
+            imie i nazwisko*
+          </label>
           <Input
             placeholder="Wpisz swoje imię i nazwisko"
             name="names"
+            id="names"
             value={contact.names}
             onChange={handleValueChange}
-            additionalClasses="mt-3 mb-5"
+            additionalClasses="input--outlined"
             type="text"
           />
-          {/* {contact.names} */}
+          <label htmlFor="email" className="input--outlined__label">
+            email*
+          </label>
           <Input
             placeholder="Wpisz swój adres email"
             name="email"
+            id="email"
             value={contact.email}
             onChange={handleValueChange}
-            additionalClasses="mt-3 mb-5"
+            additionalClasses="input--outlined"
             type="email"
           />
           {/* {contact.email} */}
+          <label htmlFor="phone" className="input--outlined__label">
+            telefon*
+          </label>
           <Input
             placeholder="Wpisz swój numer telefonu"
             name="phone"
+            id="phone"
             value={contact.phone}
             onChange={handleValueChange}
-            additionalClasses="mt-3 mb-5"
+            additionalClasses="input--outlined"
             type="text"
           />
           {/* {contact.phone} */}
+          <label
+            htmlFor="year"
+            className="input--outlined__label input--outlined__label--other"
+          >
+            rocznik*
+          </label>
           <select
             name="year"
+            id="year"
             value={contact.year}
             onChange={handleSelectChange}
+            className="input--outlined"
           >
             <option value="wybierz">Wybierz rocznik auta</option>
             <option value="1999">1999</option>
@@ -170,10 +189,18 @@ export function NewRepair(): JSX.Element {
             <option value="2002">2002</option>
           </select>
           {/* {contact.year} */}
+          <label
+            htmlFor="make"
+            className="input--outlined__label  input--outlined__label--other"
+          >
+            marka*
+          </label>
           <select
             name="make"
+            id="make"
             value={contact.make}
             onChange={handleSelectChange}
+            className="input--outlined"
           >
             <option value="wybierz">Wybierz markę auta</option>
             <option value="audi">Audi</option>
@@ -182,34 +209,52 @@ export function NewRepair(): JSX.Element {
             <option value="volvo">Volvo</option>
           </select>
           {/* {contact.make} */}
+          <label htmlFor="model" className="input--outlined__label">
+            model*
+          </label>
           <Input
             placeholder="Wpisz model auta"
             name="model"
+            id="model"
             value={contact.model}
             onChange={handleValueChange}
-            additionalClasses="mt-3 mb-5"
+            additionalClasses="input--outlined"
             type="text"
           />
           {/* {contact.model} */}
+          <label htmlFor="plate" className="input--outlined__label">
+            rejestracja*
+          </label>
           <Input
             placeholder="Wpisz numer rejestracyjny auta"
             name="plate"
+            id="plate"
             value={contact.plate}
             onChange={handleValueChange}
-            additionalClasses="mt-3 mb-5"
+            additionalClasses="input--outlined"
             type="text"
           />
           {/* {contact.plate} */}
+          <label htmlFor="paint" className="input--outlined__label">
+            kod lakieru*
+          </label>
           <Input
             placeholder="Wpisz kod lakieru auta"
             name="paint"
+            id="paint"
             value={contact.paint}
             onChange={handleValueChange}
-            additionalClasses="mt-3 mb-5"
+            additionalClasses="input--outlined"
             type="text"
           />
           {/* {contact.paint} */}
-          <div className="radio-container">
+          <label
+            htmlFor="repairType"
+            className="input--outlined__label input--outlined__label--other"
+          >
+            Usługa*
+          </label>
+          <div id="repairType" className="radio-container input--outlined">
             <Input
               name="repairType"
               value="Naprawa"
@@ -236,12 +281,19 @@ export function NewRepair(): JSX.Element {
             Detailing
             {/* {contact.repairType} */}
           </div>
+          <label
+            htmlFor="description"
+            className="input--outlined__label  input--outlined__label--other"
+          >
+            Usługa*
+          </label>
           <textarea
             name="description"
+            id="description"
+            className="input--outlined text-area"
+            placeholder="Opisz swoje zlecenie i podziel się swoimi uwagami."
             value={contact.description}
             onChange={handleTextAreaChange}
-            cols={40}
-            rows={4}
           />
           Zapoznałem/am się z
           <a href="https://policies.google.com/privacy?hl=en-US">
