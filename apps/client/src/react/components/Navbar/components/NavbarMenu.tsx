@@ -26,7 +26,9 @@ export function NavbarMenu({ isMenuOpen }: OwnProps): JSX.Element {
     >
       {menuItems.map(({ text, href, id }) => (
         <li key={id} className="navbar-menu__item">
-          <Link to={href}>{text}</Link>
+          <Link className="navbar-menu__link" to={href}>
+            {text}
+          </Link>
         </li>
       ))}
     </ul>

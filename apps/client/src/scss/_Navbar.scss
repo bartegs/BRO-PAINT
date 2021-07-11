@@ -5,22 +5,24 @@
   position: absolute;
   width: 100%;
 
+  @media (min-width: $screen-lg) {
+    position: static;
+    align-items: center;
+    flex-direction: row;
+  }
+
   &__container {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    padding: $spacing-x3 0;
     align-items: center;
-
-    @media (min-width: $screen-lg) {
-      padding: $spacing-x4 0;
-    }
   }
 
   &__logo {
     display: inline-block;
     height: $logo-sm-y;
     width: $logo-sm-x;
+    margin: $spacing-x3 0;
 
     @media (min-width: $screen-md) {
       height: $logo-md-y;
@@ -30,16 +32,7 @@
     @media (min-width: $screen-lg) {
       height: $logo-lg-y;
       width: $logo-lg-x;
+      margin: $spacing-x4 0;
     }
-  }
-
-  // &__item:current {
-  //   text-shadow: 0 0 .9px $black-light, 0 0 .9px $black-light;
-  // }
-
-  @media (min-width: $screen-lg) {
-    position: static;
-    align-items: center;
-    flex-direction: row;
   }
 }
