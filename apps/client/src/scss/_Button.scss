@@ -7,11 +7,35 @@
   font-weight: bold;
   padding: $spacing-x2 $spacing-x5 $spacing-x3 $spacing-x5;
 
-  &--primary {
-    background-color: $pink;
+  &--green {
+    background-color: $green;
+    width: 100%;
 
     &:hover {
-      background-color: $pink-light;
+      background-color: $green-light;
     }
   }
+
+  &--secondary {
+    background-color: $white;
+    width: 100%;
+    color: $green;
+    border: 2px solid $green;
+
+    &:hover {
+      background-color: $white-dark;
+    }
+  }
+
+  &__container {
+    display: flex;
+  }
+
+  // &--primary {
+  //   background-color: $pink;
+
+  //   &:hover {
+  //     background-color: $pink-light;
+  //   }
+  // }
 }

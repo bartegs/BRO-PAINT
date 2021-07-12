@@ -11,6 +11,7 @@ interface InputProps {
   id?: string;
   additionalClasses?: string;
   type?: string;
+  required?: boolean;
 }
 
 export function Input({
@@ -22,6 +23,7 @@ export function Input({
   id,
   additionalClasses,
   type,
+  required,
 }: InputProps) {
   return (
     <input
@@ -33,6 +35,7 @@ export function Input({
       checked={checked}
       id={id}
       type={type}
+      required={required}
     />
   );
 }
