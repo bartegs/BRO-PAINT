@@ -2,13 +2,11 @@
   display: flex;
   flex-direction: column;
   height: 0;
-  border-top: 4px solid transparent;
   overflow: hidden;
   width: 100vw;
-  transition: height ease-in-out 0.6s, border-color ease-in-out 0.6s;
+  transition: height ease-in-out 0.6s;
 
   @media (min-width: $screen-lg) {
-    border: none;
     flex-direction: row;
     height: auto;
     margin-top: 0;
@@ -20,11 +18,9 @@
   }
 
   &--open {
-    border-color: $black-light;
-    height: 295px;
+    height: 305px;
 
     @media (min-width: $screen-lg) {
-      border-top: unset;
       transition: none;
     }
   }
