@@ -2,6 +2,7 @@ import * as React from "react";
 import useWindowWidth from "../../../hooks/useWindowWidth";
 import { Input } from "../../../components/Input/Input";
 import { Button } from "../../../components/Button/Button";
+import { Icon } from "../../../components/Icon";
 
 export function NewRepairCalculator(): JSX.Element {
   const { width } = useWindowWidth();
@@ -145,31 +146,56 @@ export function NewRepairCalculator(): JSX.Element {
         >
           rozmiar auta*
         </label>
-        <div id="carSize" className="input--outlined">
-          <Input
-            name="carSize"
-            value="Małe"
-            checked={calculator.carSize === "Małe"}
-            onChange={handleValueChange}
-            type="radio"
-          />
-          Małe
-          <Input
-            name="carSize"
-            value="Średnie"
-            checked={calculator.carSize === "Średnie"}
-            onChange={handleValueChange}
-            type="radio"
-          />
-          Średnie
-          <Input
-            name="carSize"
-            value="Duże"
-            checked={calculator.carSize === "Duże"}
-            onChange={handleValueChange}
-            type="radio"
-          />
-          Duże
+        <div id="carSize" className="input--outlined input--outlined--car-size">
+          <label className="radio--car-size" htmlFor="Małe">
+            <span className="radio__input--car-size">
+              <Input
+                name="carSize"
+                id="Małe"
+                value="Małe"
+                checked={calculator.carSize === "Małe"}
+                onChange={handleValueChange}
+                type="radio"
+              />
+            </span>
+            <Icon
+              icon="car-small"
+              size="car-sm"
+              color={calculator.carSize === "Małe" ? "green" : "black-light"}
+            />
+          </label>
+          <label className="radio--car-size" htmlFor="Średnie">
+            <span className="radio__input--car-size radio__input--car-size--md">
+              <Input
+                name="carSize"
+                value="Średnie"
+                checked={calculator.carSize === "Średnie"}
+                onChange={handleValueChange}
+                type="radio"
+              />
+            </span>
+            <Icon
+              icon="car-medium"
+              size="car-md"
+              color={calculator.carSize === "Średnie" ? "green" : "black-light"}
+            />
+          </label>
+          <label className="radio--car-size" htmlFor="Duże">
+            <span className="radio__input--car-size radio__input--car-size--lg">
+              <Input
+                name="carSize"
+                value="Duże"
+                checked={calculator.carSize === "Duże"}
+                onChange={handleValueChange}
+                type="radio"
+              />
+            </span>
+            <Icon
+              icon="car-big"
+              size="car-lg"
+              color={calculator.carSize === "Duże" ? "green" : "black-light"}
+            />
+          </label>
         </div>
         <div className="button__container mt-4">
           <Button
