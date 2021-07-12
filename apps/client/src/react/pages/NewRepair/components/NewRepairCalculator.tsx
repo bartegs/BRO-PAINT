@@ -58,30 +58,46 @@ export function NewRepairCalculator(): JSX.Element {
           Usługa*
         </label>
         <div id="repairType" className="input--outlined">
-          <Input
-            name="repairType"
-            value="Naprawa"
-            checked={calculator.repairType === "Naprawa"}
-            onChange={handleValueChange}
-            type="radio"
-          />
-          Naprawa
-          <Input
-            name="repairType"
-            value="Lakierowanie"
-            checked={calculator.repairType === "Lakierowanie"}
-            onChange={handleValueChange}
-            type="radio"
-          />
-          Lakierowanie
-          <Input
-            name="repairType"
-            value="Detailing"
-            checked={calculator.repairType === "Detailing"}
-            onChange={handleValueChange}
-            type="radio"
-          />
-          Detailing
+          <label className="radio" htmlFor="Naprawa">
+            <span className="radio__input">
+              <Input
+                name="repairType"
+                id="Naprawa"
+                value="Naprawa"
+                checked={calculator.repairType === "Naprawa"}
+                onChange={handleValueChange}
+                type="radio"
+              />
+              <span className="radio__control" />
+            </span>
+            <span className="radio__label">Naprawa</span>
+          </label>
+          <label className="radio my-2" htmlFor="Lakierowanie">
+            <span className="radio__input">
+              <Input
+                name="repairType"
+                value="Lakierowanie"
+                checked={calculator.repairType === "Lakierowanie"}
+                onChange={handleValueChange}
+                type="radio"
+              />
+              <span className="radio__control" />
+            </span>
+            <span className="radio__label">Lakierowanie</span>
+          </label>
+          <label className="radio" htmlFor="Detailing">
+            <span className="radio__input">
+              <Input
+                name="repairType"
+                value="Detailing"
+                checked={calculator.repairType === "Detailing"}
+                onChange={handleValueChange}
+                type="radio"
+              />
+              <span className="radio__control" />
+            </span>
+            <span className="radio__label">Detailing</span>
+          </label>
         </div>
         <label
           htmlFor="year"

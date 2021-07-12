@@ -234,31 +234,46 @@ export function NewRepairContact(): JSX.Element {
           Usługa*
         </label>
         <div id="repairType" className="input--outlined">
-          <Input
-            name="repairType"
-            value="Naprawa"
-            checked={contact.repairType === "Naprawa"}
-            onChange={handleValueChange}
-            type="radio"
-          />
-          Naprawa
-          <Input
-            name="repairType"
-            value="Lakierowanie"
-            checked={contact.repairType === "Lakierowanie"}
-            onChange={handleValueChange}
-            type="radio"
-          />
-          Lakierowanie
-          <Input
-            name="repairType"
-            value="Detailing"
-            checked={contact.repairType === "Detailing"}
-            onChange={handleValueChange}
-            type="radio"
-          />
-          Detailing
-          {/* {contact.repairType} */}
+          <label className="radio" htmlFor="Naprawa">
+            <span className="radio__input">
+              <Input
+                name="repairType"
+                id="Naprawa"
+                value="Naprawa"
+                checked={contact.repairType === "Naprawa"}
+                onChange={handleValueChange}
+                type="radio"
+              />
+              <span className="radio__control" />
+            </span>
+            <span className="radio__label">Naprawa</span>
+          </label>
+          <label className="radio my-2" htmlFor="Lakierowanie">
+            <span className="radio__input">
+              <Input
+                name="repairType"
+                value="Lakierowanie"
+                checked={contact.repairType === "Lakierowanie"}
+                onChange={handleValueChange}
+                type="radio"
+              />
+              <span className="radio__control" />
+            </span>
+            <span className="radio__label">Lakierowanie</span>
+          </label>
+          <label className="radio" htmlFor="Detailing">
+            <span className="radio__input">
+              <Input
+                name="repairType"
+                value="Detailing"
+                checked={contact.repairType === "Detailing"}
+                onChange={handleValueChange}
+                type="radio"
+              />
+              <span className="radio__control" />
+            </span>
+            <span className="radio__label">Detailing</span>
+          </label>
         </div>
         <label
           htmlFor="description"

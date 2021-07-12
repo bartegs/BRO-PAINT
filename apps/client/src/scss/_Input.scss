@@ -93,3 +93,36 @@
     margin-bottom: $spacing-x3;
   }
 }
+
+.radio {
+  display: grid;
+  grid-template-columns: min-content auto;
+  grid-gap: $spacing-x1;
+
+  &__input {
+    display: flex;
+    align-items: center;
+
+    &__control {
+      display: block;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      border: 1px solid $black;
+      transform: translateY(-0.05em);
+    }
+
+    input {
+      margin: 0;
+      opacity: 0;
+      width: 120px;
+      height: 20px;
+      position: absolute;
+      z-index: 100;
+
+      &:checked + .radio__control {
+        background: radial-gradient($green 45%, $white 10%);
+      }
+    }
+  }
+}
