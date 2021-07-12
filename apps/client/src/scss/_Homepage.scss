@@ -2,16 +2,13 @@
   background: no-repeat center url("../../../assets//images/baner-sm.png");
   background-size: cover;
   width: 100%;
-  margin-top: 2 * $spacing-x3 + $logo-sm-y;
 
   @media (min-width: $screen-md) {
-    margin-top: 2 * $spacing-x3 + $logo-md-y;
     background: no-repeat center url("../../../assets//images/baner-md.png");
     background-size: cover;
   }
 
   @media (min-width: $screen-lg) {
-    margin-top: 0;
     background: no-repeat center url("../../../assets//images/baner-lg.png");
     background-size: cover;
   }

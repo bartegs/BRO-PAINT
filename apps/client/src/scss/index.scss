@@ -26,10 +26,19 @@ body {
 .content {
   flex: 1;
   display: flex;
+  margin-top: 2 * $spacing-x3 + $logo-sm-y;
+
+  @media (min-width: $screen-md) {
+    margin-top: 2 * $spacing-x3 + $logo-md-y;
+  }
+
+  @media (min-width: $screen-lg) {
+    margin-top: 0;
+  }
 }
 
 .container {
-  margin: auto;
+  margin: 0 auto;
   width: $content-width-sm;
 
   @media (min-width: $screen-md) {

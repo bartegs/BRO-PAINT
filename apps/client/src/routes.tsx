@@ -1,10 +1,9 @@
 import * as React from "react";
 
 import { Route } from "react-router-dom";
-import { HomePage } from "./react/pages";
+import { HomePage, RepairStatusPage } from "./react/pages";
 
 const NewRepair = () => <div>NewRepair</div>;
-const RepairStatus = () => <div>RepairStatus</div>;
 const AboutUs = () => <div>AboutUs</div>;
 const Gallery = () => <div>Gallery</div>;
 const Contact = () => <div>Contact</div>;
@@ -13,7 +12,7 @@ const Employee = () => <div>Eployee</div>;
 
 const routes = [
   { id: 0, route: "/nowa-naprawa", component: NewRepair },
-  { id: 1, route: "/stan-naprawy", component: RepairStatus },
+  { id: 1, route: "/stan-naprawy", component: RepairStatusPage },
   { id: 2, route: "/o-nas", component: AboutUs },
   { id: 3, route: "/galeria", component: Gallery },
   { id: 4, route: "/kontakt", component: Contact },
