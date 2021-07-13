@@ -202,9 +202,14 @@ export function NewRepairCalculator(): JSX.Element {
             text="Wylicz"
             variation="primary"
             type="submit"
-            additionalClasses="button--green mr-3"
+            additionalClasses="button--primary--green mr-3"
           />
-          <Button text="Resetuj" variation="secondary" type="reset" />
+          <Button
+            text="Resetuj"
+            variation="secondary"
+            additionalClasses="button--secondary--green"
+            type="reset"
+          />
         </div>
       </form>
     </div>

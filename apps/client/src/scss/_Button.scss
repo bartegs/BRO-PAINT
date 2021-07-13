@@ -7,35 +7,77 @@
   font-weight: bold;
   padding: $spacing-x2 $spacing-x5 $spacing-x3 $spacing-x5;
 
-  &--green {
-    background-color: $green;
-    width: 100%;
+  &--primary {
+    background-color: $pink;
 
     &:hover {
-      background-color: $green-light;
+      background-color: $pink-light;
+    }
+
+    &--green {
+      background-color: $green;
+      width: 100%;
+
+      &:hover {
+        background-color: $green-light;
+      }
+    }
+
+    &--blue {
+      background-color: $blue;
+      width: 100%;
+
+      &:hover {
+        background-color: $blue-light;
+      }
+    }
+
+    &--pink {
+      background-color: $pink;
+      width: 100%;
+
+      &:hover {
+        background-color: $pink-light;
+      }
     }
   }
 
   &--secondary {
     background-color: $white;
     width: 100%;
-    color: $green;
-    border: 2px solid $green;
 
-    &:hover {
-      background-color: $white-dark;
+    &--green {
+      color: $green;
+      border: 2px solid $green;
+
+      &:hover {
+        color: $green-light;
+        border: 2px solid $green-light;
+      }
+    }
+
+    &--blue {
+      color: $blue;
+      border: 2px solid $blue;
+
+      &:hover {
+        color: $blue-light;
+        border: 2px solid $blue-light;
+      }
+    }
+
+    &--pink {
+      color: $pink;
+      border: 2px solid $pink;
+
+      &:hover {
+        color: $pink-light;
+        border: 2px solid $pink-light;
+      }
     }
   }
 
   &__container {
     display: flex;
   }
-
-  // &--primary {
-  //   background-color: $pink;
-
-  //   &:hover {
-  //     background-color: $pink-light;
-  //   }
-  // }
 }

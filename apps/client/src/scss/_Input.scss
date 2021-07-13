@@ -7,10 +7,6 @@
   display: block;
   width: 100%;
 
-  .checkbox {
-    vertical-align: middle;
-  }
-
   &--centered-label {
     display: block;
     text-align: center;
@@ -175,6 +171,35 @@
       &:checked + .radio__control {
         background: radial-gradient($green 45%, $white 10%);
       }
+    }
+  }
+}
+
+input[type="checkbox"].checkbox {
+  transform: scale(1.25);
+  margin: 0;
+
+  &--green {
+    filter: hue-rotate(315deg) saturate(70%);
+
+    &:hover {
+      filter: hue-rotate(315deg) brightness(160%);
+    }
+  }
+
+  &--pink {
+    filter: hue-rotate(126deg) saturate(36%);
+
+    &:hover {
+      filter: hue-rotate(119deg) saturate(100%);
+    }
+  }
+
+  &--blue {
+    filter: hue-rotate(338deg) saturate(45%);
+
+    &:hover {
+      filter: hue-rotate(338deg) brightness(140%);
     }
   }
 }

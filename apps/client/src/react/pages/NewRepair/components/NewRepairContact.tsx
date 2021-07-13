@@ -310,7 +310,7 @@ export function NewRepairContact(): JSX.Element {
             checked={contact.privacy}
             onChange={handleCheckboxChange}
             required
-            className="checkbox"
+            className="checkbox--green"
           />
           <p style={{ position: "relative", top: "-17px", marginLeft: "30px" }}>
             Zapoznałem/am się z
@@ -329,9 +329,14 @@ export function NewRepairContact(): JSX.Element {
             text="Wyślij"
             variation="primary"
             type="submit"
-            additionalClasses="button--green mr-3"
+            additionalClasses="button--primary--green mr-3"
           />
-          <Button text="Resetuj" variation="secondary" type="reset" />
+          <Button
+            text="Resetuj"
+            variation="secondary"
+            additionalClasses="button--secondary--green"
+            type="reset"
+          />
         </div>
       </form>
     </div>
