@@ -150,20 +150,21 @@ export function NewRepairContact(): JSX.Element {
         >
           rocznik*
         </label>
-        <select
-          name="year"
-          id="year"
-          value={contact.year}
-          onChange={handleSelectChange}
-          className="input--outlined"
-          required
-        >
-          <option value="">Wybierz rocznik auta</option>
-          <option value="1999">1999</option>
-          <option value="2000">2000</option>
-          <option value="2001">2001</option>
-          <option value="2002">2002</option>
-        </select>
+        <div className="select">
+          <select
+            name="year"
+            id="year"
+            value={contact.year}
+            onChange={handleSelectChange}
+            required
+          >
+            <option value="">Wybierz rocznik auta</option>
+            <option value="1999">1999</option>
+            <option value="2000">2000</option>
+            <option value="2001">2001</option>
+            <option value="2002">2002</option>
+          </select>
+        </div>
         {/* {contact.year} */}
         <label
           htmlFor="make"
@@ -171,20 +172,21 @@ export function NewRepairContact(): JSX.Element {
         >
           marka*
         </label>
-        <select
-          name="make"
-          id="make"
-          value={contact.make}
-          onChange={handleSelectChange}
-          className="input--outlined"
-          required
-        >
-          <option value="">Wybierz markę auta</option>
-          <option value="audi">Audi</option>
-          <option value="bmw">BMW</option>
-          <option value="mercedes">Mercedes</option>
-          <option value="volvo">Volvo</option>
-        </select>
+        <div className="select">
+          <select
+            name="make"
+            id="make"
+            value={contact.make}
+            onChange={handleSelectChange}
+            required
+          >
+            <option value="">Wybierz markę auta</option>
+            <option value="audi">Audi</option>
+            <option value="bmw">BMW</option>
+            <option value="mercedes">Mercedes</option>
+            <option value="volvo">Volvo</option>
+          </select>
+        </div>
         {/* {contact.make} */}
         <label htmlFor="model" className="input--outlined__label">
           model*

@@ -7,49 +7,6 @@
   display: block;
   width: 100%;
 
-  &--centered-label {
-    display: block;
-    text-align: center;
-  }
-
-  &:focus {
-    outline: none;
-  }
-
-  &--file {
-    width: 100%;
-  }
-
-  &--file::-webkit-file-upload-button {
-    visibility: hidden;
-  }
-
-  &--file::before {
-    content: "Załącz pliki";
-    display: block;
-    text-align: center;
-    background: $black-light;
-    border-radius: 5px;
-    padding: $spacing-x1 $spacing-x3;
-    outline: none;
-    white-space: nowrap;
-    -webkit-user-select: none;
-    user-select: none;
-    cursor: pointer;
-    color: $white;
-    font-weight: bold;
-    font-size: $text-16;
-    font-family: Roboto, Arial, Helvetica, sans-serif;
-  }
-
-  &--file:hover::before {
-    background-color: $grey-dark-a-80;
-  }
-
-  &--home-page {
-    margin: 15px 5px 25px 5px;
-  }
-
   &--outlined {
     padding: $spacing-x2;
     border-bottom: none;
@@ -82,6 +39,49 @@
       &--other {
         bottom: -7px;
       }
+    }
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &--home-page {
+    margin: 15px 5px 25px 5px;
+  }
+
+  &--centered-label {
+    display: block;
+    text-align: center;
+  }
+
+  &--file {
+    width: 100%;
+
+    &::-webkit-file-upload-button {
+      visibility: hidden;
+    }
+
+    &::before {
+      content: "Załącz pliki";
+      display: block;
+      text-align: center;
+      background: $black-light;
+      border-radius: 5px;
+      padding: $spacing-x1 $spacing-x3;
+      outline: none;
+      white-space: nowrap;
+      -webkit-user-select: none;
+      user-select: none;
+      cursor: pointer;
+      color: $white;
+      font-weight: bold;
+      font-size: $text-16;
+      font-family: Roboto, Arial, Helvetica, sans-serif;
+    }
+
+    &:hover::before {
+      background-color: $grey-dark-a-80;
     }
   }
 }
@@ -202,4 +202,43 @@ input[type="checkbox"].checkbox {
       filter: hue-rotate(338deg) brightness(140%);
     }
   }
+}
+
+select {
+  appearance: none;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  font-family: Roboto, Arial, Helvetica, sans-serif;
+  font-size: $text-16;
+  line-height: inherit;
+  outline: none;
+}
+
+.select {
+  width: 100%;
+  border: 1px solid $black-light;
+  border-radius: 5px;
+  padding: $spacing-x2;
+  cursor: pointer;
+  margin-bottom: $spacing-x1;
+  display: grid;
+  grid-template-areas: "select";
+  align-items: center;
+
+  &::after {
+    content: "";
+    width: 12px;
+    height: 12px;
+    background-color: $green;
+    clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+    justify-self: end;
+  }
+}
+
+select,
+.select::after {
+  grid-area: select;
 }

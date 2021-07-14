@@ -106,40 +106,43 @@ export function NewRepairCalculator(): JSX.Element {
         >
           rocznik*
         </label>
-        <select
-          name="year"
-          id="year"
-          value={calculator.year}
-          onChange={handleSelectChange}
-          className="input--outlined"
-          required
-        >
-          <option value="">Wybierz rocznik auta</option>
-          <option value="1999">1999</option>
-          <option value="2000">2000</option>
-          <option value="2001">2001</option>
-          <option value="2002">2002</option>
-        </select>
+        <div className="select">
+          <select
+            name="year"
+            id="year"
+            value={calculator.year}
+            onChange={handleSelectChange}
+            required
+          >
+            <option value="">Wybierz rocznik auta</option>
+            <option value="1999">1999</option>
+            <option value="2000">2000</option>
+            <option value="2001">2001</option>
+            <option value="2002">2002</option>
+          </select>
+        </div>
+
         <label
           htmlFor="make"
           className="input--outlined__label  input--outlined__label--other"
         >
           marka*
         </label>
-        <select
-          name="make"
-          id="make"
-          value={calculator.make}
-          onChange={handleSelectChange}
-          className="input--outlined"
-          required
-        >
-          <option value="">Wybierz markę auta</option>
-          <option value="audi">Audi</option>
-          <option value="bmw">BMW</option>
-          <option value="mercedes">Mercedes</option>
-          <option value="volvo">Volvo</option>
-        </select>
+        <div className="select">
+          <select
+            name="make"
+            id="make"
+            value={calculator.make}
+            onChange={handleSelectChange}
+            required
+          >
+            <option value="">Wybierz markę auta</option>
+            <option value="audi">Audi</option>
+            <option value="bmw">BMW</option>
+            <option value="mercedes">Mercedes</option>
+            <option value="volvo">Volvo</option>
+          </select>
+        </div>
         <label
           htmlFor="carSize"
           className="input--outlined__label input--outlined__label--other"
