@@ -6,11 +6,23 @@ import { Icon } from "../../../components/Icon";
 
 export function NewRepairCalculator(): JSX.Element {
   const { width } = useWindowWidth();
-  const [calculator, setCalculator] = React.useState({
+
+  interface ICalculator {
+    repairType: string;
+    year: string;
+    make: string;
+    carSize: string;
+    panels?: number | string;
+    paintCorrection?: string;
+  }
+
+  const [calculator, setCalculator] = React.useState<ICalculator>({
     repairType: "Naprawa",
     year: "",
     make: "",
     carSize: "Małe",
+    panels: 0,
+    paintCorrection: "",
   });
 
   function handleValueChange(event: React.ChangeEvent<HTMLInputElement>) {
@@ -41,6 +53,16 @@ export function NewRepairCalculator(): JSX.Element {
       setCalculator(() => ({
         ...calculator,
         make: element.value,
+      }));
+    } else if (name === "panels") {
+      setCalculator(() => ({
+        ...calculator,
+        panels: parseInt(element.value, 10),
+      }));
+    } else if (name === "paintCorrection") {
+      setCalculator(() => ({
+        ...calculator,
+        paintCorrection: element.value,
       }));
     }
   }
@@ -100,6 +122,33 @@ export function NewRepairCalculator(): JSX.Element {
             <span className="radio__label">Detailing</span>
           </label>
         </div>
+        {calculator.repairType === "Detailing" && (
+          <>
+            <label
+              htmlFor="make"
+              className="input--outlined__label  input--outlined__label--other"
+            >
+              zakres korekty*
+            </label>
+            <div className="select">
+              <select
+                name="paintCorrection"
+                id="paintCorrection"
+                value={calculator.paintCorrection}
+                onChange={handleSelectChange}
+                required
+              >
+                <option value="">Wybierz rodzaj korekty lakieru</option>
+                <option value="3in1">Korekta 3w1</option>
+                <option value="3in1ceramic">Korekta 3w1 + ceramika</option>
+                <option value="3stage">Korekta 3 etapowa</option>
+                <option value="3stage+ceramic">
+                  Korekta 3 etapowa + ceramika
+                </option>
+              </select>
+            </div>
+          </>
+        )}
         <label
           htmlFor="year"
           className="input--outlined__label input--outlined__label--other"
@@ -121,7 +170,6 @@ export function NewRepairCalculator(): JSX.Element {
             <option value="2002">2002</option>
           </select>
         </div>
-
         <label
           htmlFor="make"
           className="input--outlined__label  input--outlined__label--other"
@@ -200,6 +248,31 @@ export function NewRepairCalculator(): JSX.Element {
             />
           </label>
         </div>
+        {calculator.repairType !== "Detailing" && (
+          <>
+            <label
+              htmlFor="make"
+              className="input--outlined__label  input--outlined__label--other"
+            >
+              liczba elementów*
+            </label>
+            <div className="select">
+              <select
+                name="panels"
+                id="panels"
+                value={calculator.panels}
+                onChange={handleSelectChange}
+                required
+              >
+                <option value={0}>Wybierz liczbę elementów</option>
+                <option value={1}>1</option>
+                <option value={2}>2</option>
+                <option value={3}>3</option>
+                <option value={4}>4</option>
+              </select>
+            </div>
+          </>
+        )}
         <div className="button__container mt-4">
           <Button
             text="Wylicz"
