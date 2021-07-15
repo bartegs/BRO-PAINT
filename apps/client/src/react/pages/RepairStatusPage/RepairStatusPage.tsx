@@ -38,20 +38,29 @@ export function RepairStatusPage(): JSX.Element {
 
   return (
     <div className="container repair-status-page">
-      {stages.map((item) => (
-        <div className="repair-status-page__segment">
+      <div className="repair-status-page__axis axis">
+        {stages.map((item) => (
           <div
-            className="axis-fragment"
+            className="axis__fragment"
             style={{ backgroundColor: item.color }}
           >
             <div
-              className="axis-fragment__point"
+              className="axis__point"
               style={{ backgroundColor: item.color }}
             />
           </div>
-          <div className="axis-card">{item.title}</div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 }
+
+// <div className="repair-status-page__segment">
+// <div
+//   className="axis-fragment"
+//   style={{ backgroundColor: item.color }}
+// >
+
+// </div>
+// <div className="axis-card">{item.title}</div>
+// </div>

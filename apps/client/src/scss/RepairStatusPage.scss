@@ -1,60 +1,81 @@
-$axis-point-width: 55px;
-$axis-point-height: 55px;
+$axis-point-size: 55px;
 
 .repair-status-page {
-  padding-top: 50px;
-  padding-left: 15px;
   display: flex;
   flex-direction: column;
-  // height: 1300px;
+  padding-left: $axis-point-size / 2;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  // padding-top: 50px;
+  // padding-left: 15px;
+
+  // &__segment {
+  //   flex: 1;
+  //   display: flex;
+  //   width: 100%;
+  //   justify-content: center;
+
+  //   &:last-child {
+  //     flex: 0;
+  //     height: 26px;
+  //   }
+  // }
+}
+
+.axis {
+  height: 1300px;
+  display: flex;
+  flex-direction: column;
 
   @media (min-width: $screen-md) {
     align-items: center;
   }
 
-  // @media (min-width: $screen-lg) {
-  //   align-items: center;
-  //   flex-direction: row;
-  //   height: unset;
-  // }
-
-  &__segment {
+  @media (min-width: $screen-lg) {
     flex: 1;
-    display: flex;
-    width: 100%;
-    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+  }
+
+  &__fragment {
+    flex: 1;
+    width: 15px;
+    position: relative;
+
+    @media (min-width: $screen-lg) {
+      width: unset;
+      height: 15px;
+    }
 
     &:last-child {
-      flex: 0;
+      flex: unset;
       height: 26px;
-    }
-  }
-}
 
-.axis {
-  &-fragment {
-    position: relative;
-    height: 100%;
-    width: 15px;
-    margin-right: 50px;
-    display: flex;
-
-    &__point {
-      width: 55px;
-      height: 55px;
-      border-radius: 100%;
-      position: absolute;
-      transform: translate(-50%, -50%);
-      left: 50%;
-      // z-index: 1000;
+      @media (min-width: $screen-lg) {
+        width: 26px;
+      }
     }
   }
 
-  &-card {
-    flex: 1;
-    max-width: 280px;
-    height: 50px;
-    background-color: red;
-    transform: translateY(-$axis-point-height / 2);
+  &__point {
+    width: 55px;
+    height: 55px;
+    border-radius: 100%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    left: 50%;
+
+    @media (min-width: $screen-lg) {
+      left: 0;
+      top: 50%;
+    }
   }
+
+  // &-card {
+  //   flex: 1;
+  //   max-width: 280px;
+  //   height: 50px;
+  //   background-color: red;
+  //   transform: translateY(-$axis-point-height / 2);
+  // }
 }
