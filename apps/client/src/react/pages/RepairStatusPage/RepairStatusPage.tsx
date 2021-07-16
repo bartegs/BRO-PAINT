@@ -47,7 +47,9 @@ export function RepairStatusPage(): JSX.Element {
             <div
               className="axis__point"
               style={{ backgroundColor: item.color }}
-            />
+            >
+              <div className="axis__card">{item.title}</div>
+            </div>
           </div>
         ))}
       </div>

@@ -6,20 +6,6 @@ $axis-point-size: 55px;
   padding-left: $axis-point-size / 2;
   padding-top: 50px;
   padding-bottom: 50px;
-  // padding-top: 50px;
-  // padding-left: 15px;
-
-  // &__segment {
-  //   flex: 1;
-  //   display: flex;
-  //   width: 100%;
-  //   justify-content: center;
-
-  //   &:last-child {
-  //     flex: 0;
-  //     height: 26px;
-  //   }
-  // }
 }
 
 .axis {
@@ -37,6 +23,26 @@ $axis-point-size: 55px;
     flex-direction: row;
   }
 
+  &__card {
+    width: 210px;
+    transform: translateX($axis-point-size);
+    margin-left: 15px;
+    position: relative;
+
+    @media (min-width: $screen-md) {
+      width: 280px;
+    }
+
+    @media (min-width: $screen-lg) {
+      margin: 0;
+      margin-top: 30px;
+      left: 50%;
+      transform: translate(-50%, $axis-point-size);
+    }
+
+    background-color: red;
+  }
+
   &__fragment {
     flex: 1;
     width: 15px;
@@ -47,12 +53,48 @@ $axis-point-size: 55px;
       height: 15px;
     }
 
+    &:first-child {
+      div > div {
+        @media (min-width: $screen-md) {
+          transform: translateX(-100%);
+          right: 30px;
+          width: 200px;
+        }
+
+        @media (min-width: $screen-lg) {
+          transform: translate(0, -100%);
+          margin-top: 0;
+          left: 0;
+          bottom: 30px;
+          width: 200px;
+        }
+      }
+    }
+
     &:last-child {
       flex: unset;
-      height: 26px;
+      height: 20px;
 
       @media (min-width: $screen-lg) {
         width: 26px;
+      }
+
+      div > div {
+        transform: translate($axis-point-size, calc(-100% + 55px));
+
+        @media (min-width: $screen-md) {
+          transform: translate(-100%, calc(-100% + 55px));
+          right: 30px;
+          width: 200px;
+        }
+
+        @media (min-width: $screen-lg) {
+          transform: translate(calc(-100% + 55px), -100%);
+          margin-top: 0;
+          left: 0;
+          bottom: 30px;
+          width: 200px;
+        }
       }
     }
   }
@@ -70,12 +112,4 @@ $axis-point-size: 55px;
       top: 50%;
     }
   }
-
-  // &-card {
-  //   flex: 1;
-  //   max-width: 280px;
-  //   height: 50px;
-  //   background-color: red;
-  //   transform: translateY(-$axis-point-height / 2);
-  // }
 }
