@@ -5,7 +5,7 @@ import { NewRepairContact } from "./components/NewRepairContact";
 
 export function NewRepair(): JSX.Element {
   return (
-    <div className="new-repair container">
+    <div className="container new-repair ">
       <NewRepairCalculator />
       <div className="new-repair__line" />
       <NewRepairContact />

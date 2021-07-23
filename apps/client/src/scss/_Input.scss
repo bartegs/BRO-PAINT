@@ -7,6 +7,28 @@
   display: block;
   width: 100%;
 
+  // &:focus {
+  //   outline: none;
+  //   border-radius: 5px;
+  //   box-shadow: 0 0 0 2px $green;
+  // }
+
+  &--homepage {
+    color: $white-dark;
+
+    &::placeholder {
+      color: $white-a-60;
+      opacity: 1;
+    }
+
+    &:focus {
+      outline: none;
+      box-shadow: unset;
+      border-radius: 0;
+      border-bottom: 2px solid $pink-light;
+    }
+  }
+
   &--outlined {
     padding: $spacing-x2;
     border-bottom: none;
@@ -16,6 +38,17 @@
     display: block;
     margin-bottom: $spacing-x1;
     width: 100%;
+
+    &::placeholder {
+      color: $grey-dark-a-80;
+      opacity: 1;
+    }
+
+    &:focus-within {
+      outline: none;
+      border-radius: 5px;
+      box-shadow: 0 0 0 2px $green;
+    }
 
     &--car-size {
       display: flex;
@@ -42,10 +75,6 @@
     }
   }
 
-  &:focus {
-    outline: none;
-  }
-
   &--home-page {
     margin: 15px 5px 25px 5px;
   }
@@ -60,6 +89,12 @@
 
     &::-webkit-file-upload-button {
       visibility: hidden;
+    }
+
+    &:focus-within {
+      outline: none;
+      border-radius: 5px;
+      box-shadow: 0 0 0 2px $green;
     }
 
     &::before {
@@ -96,6 +131,12 @@
   &--contact {
     margin-bottom: $spacing-x3;
   }
+
+  &:focus {
+    outline: none;
+    border-radius: 5px;
+    box-shadow: 0 0 0 2px $green;
+  }
 }
 
 .radio {
@@ -103,8 +144,20 @@
   grid-template-columns: min-content auto;
   grid-gap: $spacing-x1;
 
+  &:focus-within {
+    border: 3px solid $green;
+    border-radius: 5px;
+  }
+
   &--car-size {
     display: inline-block;
+
+    &:focus-within {
+      border-radius: 5px;
+      padding: $spacing-x1;
+      height: 60px;
+      border: 3px solid $green;
+    }
   }
 
   &__control {
@@ -128,6 +181,7 @@
         width: 60px;
         position: absolute;
         z-index: 100;
+        cursor: pointer;
 
         @media (min-width: 768px) {
           height: 30px;
@@ -167,6 +221,7 @@
       height: 20px;
       position: absolute;
       z-index: 100;
+      cursor: pointer;
 
       &:checked + .radio__control {
         background: radial-gradient($green 45%, $white 10%);
@@ -175,9 +230,10 @@
   }
 }
 
-input[type="checkbox"].checkbox {
+.checkbox {
   transform: scale(1.25);
   margin: 0;
+  cursor: pointer;
 
   &--green {
     filter: hue-rotate(315deg) saturate(70%);
@@ -215,6 +271,7 @@ select {
   font-size: $text-16;
   line-height: inherit;
   outline: none;
+  cursor: pointer;
 }
 
 .select {
@@ -227,6 +284,12 @@ select {
   display: grid;
   grid-template-areas: "select";
   align-items: center;
+
+  &:focus-within {
+    outline: none;
+    border-radius: 5px;
+    box-shadow: 0 0 0 2px $green;
+  }
 
   &::after {
     content: "";
@@ -241,4 +304,25 @@ select {
 select,
 .select::after {
   grid-area: select;
+}
+
+select:invalid,
+select option[value=""] {
+  color: $grey-dark-a-80;
+}
+// body:not(.user-is-tabbing) .text-area:focus,
+// body:not(.user-is-tabbing) .input--outlined:focus-within,
+// body:not(.user-is-tabbing) .select:focus-within {
+
+body:not(.user-is-tabbing) button:focus,
+body:not(.user-is-tabbing) .input--file:focus-within {
+  outline: none;
+  box-shadow: unset;
+}
+
+body:not(.user-is-tabbing) .radio:focus-within,
+body:not(.user-is-tabbing) .radio--car-size:focus-within {
+  border: unset;
+  padding: unset;
+  height: unset;
 }

@@ -3,6 +3,7 @@ import useWindowWidth from "../../../hooks/useWindowWidth";
 import { Input } from "../../../components/Input/Input";
 import { Button } from "../../../components/Button/Button";
 import { Icon } from "../../../components/Icon";
+import { NewRepairCalculatorCard } from "./NewRepairCalculatorCard";
 
 export function NewRepairCalculator(): JSX.Element {
   const { width } = useWindowWidth();
@@ -14,6 +15,7 @@ export function NewRepairCalculator(): JSX.Element {
     carSize: string;
     panels?: number | string;
     paintCorrection?: string;
+    // result: number | string;
   }
 
   const [calculator, setCalculator] = React.useState<ICalculator>({
@@ -21,9 +23,12 @@ export function NewRepairCalculator(): JSX.Element {
     year: "",
     make: "",
     carSize: "Małe",
-    panels: 0,
+    panels: "",
     paintCorrection: "",
+    // result: 0,
   });
+
+  const [isCardVisible, setisCardVisible] = React.useState(false);
 
   function handleValueChange(event: React.ChangeEvent<HTMLInputElement>) {
     const { value, name } = event.currentTarget;
@@ -65,6 +70,28 @@ export function NewRepairCalculator(): JSX.Element {
         paintCorrection: element.value,
       }));
     }
+  }
+
+  // function calculate(event: React.FormEvent) {
+  //   event.preventDefault();
+  //   setResult(result);
+  //   return result;
+  // }
+
+  function handleReset() {
+    setCalculator(() => ({
+      ...calculator,
+      repairType: "Naprawa",
+      year: "",
+      make: "",
+      carSize: "Małe",
+      panels: "",
+      paintCorrection: "",
+    }));
+  }
+
+  function showCalculatorCard() {
+    setisCardVisible((prevIsCardVisible) => !prevIsCardVisible);
   }
 
   return (
@@ -138,7 +165,9 @@ export function NewRepairCalculator(): JSX.Element {
                 onChange={handleSelectChange}
                 required
               >
-                <option value="">Wybierz rodzaj korekty lakieru</option>
+                <option value="" selected hidden>
+                  Wybierz rodzaj korekty lakieru
+                </option>
                 <option value="3in1">Korekta 3w1</option>
                 <option value="3in1ceramic">Korekta 3w1 + ceramika</option>
                 <option value="3stage">Korekta 3 etapowa</option>
@@ -163,7 +192,9 @@ export function NewRepairCalculator(): JSX.Element {
             onChange={handleSelectChange}
             required
           >
-            <option value="">Wybierz rocznik auta</option>
+            <option value="" selected hidden>
+              Wybierz rocznik auta
+            </option>
             <option value="1999">1999</option>
             <option value="2000">2000</option>
             <option value="2001">2001</option>
@@ -184,7 +215,9 @@ export function NewRepairCalculator(): JSX.Element {
             onChange={handleSelectChange}
             required
           >
-            <option value="">Wybierz markę auta</option>
+            <option value="" selected hidden>
+              Wybierz markę auta
+            </option>
             <option value="audi">Audi</option>
             <option value="bmw">BMW</option>
             <option value="mercedes">Mercedes</option>
@@ -264,7 +297,9 @@ export function NewRepairCalculator(): JSX.Element {
                 onChange={handleSelectChange}
                 required
               >
-                <option value={0}>Wybierz liczbę elementów</option>
+                <option value="" selected hidden>
+                  Wybierz liczbę elementów
+                </option>
                 <option value={1}>1</option>
                 <option value={2}>2</option>
                 <option value={3}>3</option>
@@ -279,15 +314,19 @@ export function NewRepairCalculator(): JSX.Element {
             variation="primary"
             type="submit"
             additionalClasses="button--primary--green mr-3"
+            onClick={showCalculatorCard}
           />
           <Button
             text="Resetuj"
             variation="secondary"
             additionalClasses="button--secondary--green"
             type="reset"
+            onClick={handleReset}
           />
         </div>
       </form>
+      {/* {result} */}
+      {isCardVisible && <NewRepairCalculatorCard />}
     </div>
   );
 }

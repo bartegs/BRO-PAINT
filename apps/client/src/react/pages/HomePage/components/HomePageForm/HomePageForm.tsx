@@ -22,7 +22,7 @@ export function HomePageForm(): JSX.Element {
           name="repair-number"
           value={value}
           onChange={handleValueChange}
-          additionalClasses="mt-3 mb-5"
+          additionalClasses="input--homepage mt-3 mb-5"
         />
         <Button text="Sprawdź" variation="primary" type="submit" />
       </form>

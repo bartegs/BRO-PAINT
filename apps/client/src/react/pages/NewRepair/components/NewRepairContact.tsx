@@ -78,6 +78,23 @@ export function NewRepairContact(): JSX.Element {
     }));
   }
 
+  function handleReset() {
+    setContact(() => ({
+      ...contact,
+      names: "",
+      email: "",
+      phone: "",
+      year: "",
+      make: "",
+      model: "",
+      plate: "",
+      paint: "",
+      repairType: "Naprawa",
+      description: "",
+      privacy: false,
+    }));
+  }
+
   function handleSelectChange(event: React.FormEvent<HTMLSelectElement>) {
     const { name } = event.currentTarget;
     const element = event.currentTarget as HTMLSelectElement;
@@ -158,7 +175,9 @@ export function NewRepairContact(): JSX.Element {
             onChange={handleSelectChange}
             required
           >
-            <option value="">Wybierz rocznik auta</option>
+            <option value="" selected hidden>
+              Wybierz rocznik auta
+            </option>
             <option value="1999">1999</option>
             <option value="2000">2000</option>
             <option value="2001">2001</option>
@@ -180,7 +199,9 @@ export function NewRepairContact(): JSX.Element {
             onChange={handleSelectChange}
             required
           >
-            <option value="">Wybierz markę auta</option>
+            <option value="" selected hidden>
+              Wybierz markę auta
+            </option>
             <option value="audi">Audi</option>
             <option value="bmw">BMW</option>
             <option value="mercedes">Mercedes</option>
@@ -312,7 +333,7 @@ export function NewRepairContact(): JSX.Element {
             checked={contact.privacy}
             onChange={handleCheckboxChange}
             required
-            className="checkbox--green"
+            className="checkbox checkbox--green"
           />
           <p style={{ position: "relative", top: "-17px", marginLeft: "30px" }}>
             Zapoznałem/am się z
@@ -338,6 +359,7 @@ export function NewRepairContact(): JSX.Element {
             variation="secondary"
             additionalClasses="button--secondary--green"
             type="reset"
+            onClick={handleReset}
           />
         </div>
       </form>
