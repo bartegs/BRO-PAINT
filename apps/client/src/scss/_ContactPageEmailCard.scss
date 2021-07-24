@@ -1,0 +1,12 @@
+.contact-page__email-card {
+  text-align: center;
+  display: block;
+  width: $content-width-sm;
+  padding: $spacing-x1 $spacing-x5 $spacing-x4 $spacing-x5;
+  box-shadow: $shadow;
+
+  &__label {
+    position: relative;
+    left: -35px;
+  }
+}

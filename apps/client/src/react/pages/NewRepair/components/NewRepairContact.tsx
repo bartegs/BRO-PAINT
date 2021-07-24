@@ -307,7 +307,7 @@ export function NewRepairContact(): JSX.Element {
         <textarea
           name="description"
           id="description"
-          className="input--outlined text-area text-area--contact"
+          className="input--outlined text-area text-area--new-repair-page"
           placeholder="Opisz swoje zlecenie i podziel się swoimi uwagami."
           value={contact.description}
           onChange={handleTextAreaChange}

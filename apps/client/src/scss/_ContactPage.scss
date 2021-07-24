@@ -1,0 +1,11 @@
+.contact-page {
+  display: flex;
+
+  &__cards-container {
+    display: flex;
+    flex-direction: column;
+    margin-right: 50px;
+    //temporary height
+    height: 620px;
+  }
+}
