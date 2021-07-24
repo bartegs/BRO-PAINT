@@ -325,7 +325,6 @@ export function NewRepairContact(): JSX.Element {
         />
 
         <label htmlFor="privacy" className="w-100 mb-2">
-          {/* <p> */}
           <input
             name="privacy"
             id="privacy"
