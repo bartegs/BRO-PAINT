@@ -1,9 +1,10 @@
 import * as React from "react";
 
 import { Route } from "react-router-dom";
-import { HomePage } from "./react/pages";
+import { HomePage } from "./react/pages/HomePage";
+import { NewRepair } from "./react/pages/NewRepair";
 
-const NewRepair = () => <div>NewRepair</div>;
+// const NewRepair = { NewRepair };
 const RepairStatus = () => <div>RepairStatus</div>;
 const AboutUs = () => <div>AboutUs</div>;
 const Gallery = () => <div>Gallery</div>;
