@@ -1,31 +1,25 @@
+import classnames from "classnames";
 import * as React from "react";
 
 interface OwnProps {
   onClick: () => void;
-  isMenuOpen: boolean;
+  isClicked: boolean;
 }
 
-export function NavbarToggler({ onClick, isMenuOpen }: OwnProps): JSX.Element {
+export function NavbarToggler({ onClick, isClicked }: OwnProps): JSX.Element {
   return (
     <div
       tabIndex={0}
-      className="navbar-toggler"
+      className={classnames("navbar-toggler", {
+        "navbar-toggler--close": isClicked,
+      })}
       role="button"
       onClick={onClick}
       onKeyDown={onClick}
     >
-      {isMenuOpen === false ? (
-        <>
-          <div className="navbar-toggler__bar" />
-          <div className="navbar-toggler__bar" />
-          <div className="navbar-toggler__bar" />
-        </>
-      ) : (
-        <>
-          <div className="navbar-toggler__cross navbar-toggler__cross--a" />
-          <div className="navbar-toggler__cross navbar-toggler__cross--b" />
-        </>
-      )}
+      <div className="navbar-toggler__bar" />
+      <div className="navbar-toggler__bar" />
+      <div className="navbar-toggler__bar" />
     </div>
   );
 }

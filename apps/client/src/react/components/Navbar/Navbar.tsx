@@ -15,7 +15,7 @@ export function Navbar(): JSX.Element {
         <a className="navbar__logo" href="/">
           <Logo />
         </a>
-        <NavbarToggler isMenuOpen={isMenuOpen} onClick={toggleMenu} />
+        <NavbarToggler isClicked={isMenuOpen} onClick={toggleMenu} />
         <NavbarMenu isMenuOpen={isMenuOpen} />
       </div>
     </nav>
