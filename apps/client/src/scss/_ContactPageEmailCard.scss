@@ -1,6 +1,5 @@
 .contact-page__email-card {
   text-align: center;
-  display: block;
   min-width: $content-width-sm;
   width: $content-width-sm;
   height: 293px;
@@ -15,12 +14,8 @@
     position: relative;
     left: -35px;
 
-    @media (min-width: $screen-md) {
+    @media (min-width: $screen-md) and (max-width: $screen-lg - 1px) {
       left: -254px;
-    }
-
-    @media (min-width: $screen-lg) {
-      left: -35px;
     }
   }
 }

@@ -2,9 +2,6 @@
   display: flex;
   flex-wrap: wrap;
 
-  // @media (min-width: $screen-sm) {
-  // }
-
   @media (min-width: $screen-lg) {
     flex-wrap: nowrap;
   }
@@ -13,21 +10,19 @@
     display: flex;
     flex-wrap: wrap;
     //temp margin
-    // margin-top: 80px;
+    margin-top: 80px;
 
     @media (min-width: $screen-md) {
-      height: 467px;
       //temp margin
-      // margin-top: 100px;
-      align-content: flex-start;
+      margin-top: 100px;
     }
 
     @media (min-width: $screen-lg) {
       flex-direction: column;
-      flex-wrap: nowrap;
       height: 615px;
-      // margin-top: unset;
       margin-right: $spacing-x10;
+      //margin-top temp
+      margin-top: 20px;
     }
   }
 }

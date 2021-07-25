@@ -1,16 +1,13 @@
 .contact-page__map {
   width: 100%;
-  //margin temporary?
-  margin-bottom: 20px;
-  box-shadow: $shadow;
-  margin-top: $spacing-x10;
   height: 400px;
-
-  // @media (min-width: $screen-md) {
-  // }
+  box-shadow: $shadow;
+  margin-bottom: 20px;
+  margin-top: $spacing-x10;
 
   @media (min-width: $screen-lg) {
-    margin-top: unset;
     height: unset;
+    //margin-top temporary
+    margin-top: 20px;
   }
 }
