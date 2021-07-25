@@ -1,7 +1,19 @@
 .contact-page__address-card {
   text-align: center;
   display: inline-block;
+  min-width: $content-width-sm;
   width: $content-width-sm;
+  height: 149px;
   padding: $spacing-x1 $spacing-x5 $spacing-x4 $spacing-x5;
   box-shadow: $shadow;
+
+  @media (min-width: $screen-md) {
+    flex: 1;
+    margin: 0 $spacing-x5 $spacing-x5 0;
+  }
+
+  @media (min-width: $screen-lg) {
+    flex: 1;
+    margin: 0;
+  }
 }

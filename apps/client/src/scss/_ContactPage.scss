@@ -1,11 +1,33 @@
 .contact-page {
   display: flex;
+  flex-wrap: wrap;
+
+  // @media (min-width: $screen-sm) {
+  // }
+
+  @media (min-width: $screen-lg) {
+    flex-wrap: nowrap;
+  }
 
   &__cards-container {
     display: flex;
-    flex-direction: column;
-    margin-right: 50px;
-    //temporary height
-    height: 620px;
+    flex-wrap: wrap;
+    //temp margin
+    // margin-top: 80px;
+
+    @media (min-width: $screen-md) {
+      height: 467px;
+      //temp margin
+      // margin-top: 100px;
+      align-content: flex-start;
+    }
+
+    @media (min-width: $screen-lg) {
+      flex-direction: column;
+      flex-wrap: nowrap;
+      height: 615px;
+      // margin-top: unset;
+      margin-right: $spacing-x10;
+    }
   }
 }

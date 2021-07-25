@@ -1,12 +1,26 @@
 .contact-page__email-card {
   text-align: center;
   display: block;
+  min-width: $content-width-sm;
   width: $content-width-sm;
+  height: 293px;
   padding: $spacing-x1 $spacing-x5 $spacing-x4 $spacing-x5;
   box-shadow: $shadow;
+
+  @media (min-width: $screen-md) {
+    flex: 1;
+  }
 
   &__label {
     position: relative;
     left: -35px;
+
+    @media (min-width: $screen-md) {
+      left: -254px;
+    }
+
+    @media (min-width: $screen-lg) {
+      left: -35px;
+    }
   }
 }
