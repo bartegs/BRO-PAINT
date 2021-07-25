@@ -65,7 +65,7 @@ export function CardEmail(): JSX.Element {
         onChange={handleTextAreaChange}
       />
       <Button
-        text="Sprawdź"
+        text="Wyślij"
         variation="primary"
         type="submit"
         additionalClasses="contact-page__email-card__button"

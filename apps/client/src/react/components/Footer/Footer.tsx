@@ -35,7 +35,7 @@ export function Footer(): JSX.Element {
             color={iconColor}
             additionalClasses="mr-1"
           />
-          bropaint@brocorp.com
+          bropaint@wp.pl
         </div>
       </div>
 
