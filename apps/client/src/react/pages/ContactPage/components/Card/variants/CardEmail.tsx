@@ -1,10 +1,10 @@
 import * as React from "react";
 
-import { Icon } from "../../../components/Icon";
-import { Input } from "../../../components/Input";
-import { Button } from "../../../components/Button";
+import { Card } from "../Card";
+import { Input } from "../../../../../components/Input";
+import { Button } from "../../../../../components/Button";
 
-export function ContactPageEmailCard(): JSX.Element {
+export function CardEmail(): JSX.Element {
   const [messageUs, setMessageUs] = React.useState({
     name: "",
     email: "",
@@ -38,8 +38,7 @@ export function ContactPageEmailCard(): JSX.Element {
   }
 
   return (
-    <div className="contact-page__email-card">
-      <Icon icon="email" size="md" color="pink" additionalClasses="mb-2" />
+    <Card category="email" icon="email" color="pink">
       <Input
         placeholder="Podaj imię"
         name="name"
@@ -54,7 +53,7 @@ export function ContactPageEmailCard(): JSX.Element {
         onChange={handleValueChange}
         additionalClasses="mb-3 input--contact"
       />
-      <label htmlFor="message" className="contact-page__email-card__label">
+      <label htmlFor="message" className="contact-page__card--email__label">
         Jak możemy Ci pomóc?
       </label>
       <textarea
@@ -71,6 +70,6 @@ export function ContactPageEmailCard(): JSX.Element {
         type="submit"
         additionalClasses="contact-page__email-card__button"
       />
-    </div>
+    </Card>
   );
 }

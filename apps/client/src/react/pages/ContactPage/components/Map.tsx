@@ -1,6 +1,6 @@
 import * as React from "react";
 
-export function ContactPageMap(): JSX.Element {
+export function Map(): JSX.Element {
   return (
     <div className="contact-page__map">
       <iframe
@@ -8,9 +8,6 @@ export function ContactPageMap(): JSX.Element {
         title="map"
         width="100%"
         height="100%"
-        // style={{"border": 0"}}
-        // allowfullscreen
-        // loading="lazy"
       />
     </div>
   );

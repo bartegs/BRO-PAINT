@@ -1,4 +1,3 @@
-export * from "./ContactPageAddressCard";
-export * from "./ContactPagePhoneCard";
-export * from "./ContactPageEmailCard";
-export * from "./ContactPageMap";
+export * from "./Card/Card";
+export * from "./Card/variants/CardEmail";
+export * from "./Map";
