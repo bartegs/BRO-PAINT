@@ -2,12 +2,8 @@
   background-color: $grey-dark-a-80;
   border-radius: $radius-x1;
   box-shadow: $shadow-md;
-  margin-bottom: 125px;
+  margin-bottom: $spacing-x5;
   padding: $spacing-x2 $spacing-x8;
   text-align: center;
   max-width: 342px;
-
-  @media (min-width: $screen-md) {
-    margin-bottom: 100px;
-  }
 }

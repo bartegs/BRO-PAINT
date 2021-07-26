@@ -9,10 +9,6 @@
   padding-top: $spacing-x2;
 
   &--home-page {
-    position: absolute;
-    bottom: 0;
-    transform: translateX(-50%);
-    left: 50%;
     border-color: $white-dark;
     color: $white-dark;
   }
