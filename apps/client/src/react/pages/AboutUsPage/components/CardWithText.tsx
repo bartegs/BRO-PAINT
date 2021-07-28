@@ -1,5 +1,6 @@
 import * as React from "react";
-import classNames from "classNames";
+
+import classNames from "classnames";
 
 export function CardWithText({
   color,

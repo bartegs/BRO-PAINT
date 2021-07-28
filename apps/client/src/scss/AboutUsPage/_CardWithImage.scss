@@ -13,6 +13,7 @@
     height: 150px;
     width: 100%;
     display: block;
+    border-radius: $radius-x1 $radius-x1 0 0;
   }
 
   &__heading {

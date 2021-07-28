@@ -1,5 +1,6 @@
-import classNames from "classNames";
 import * as React from "react";
+
+import classNames from "classnames";
 
 export function CardWithImage({
   image,
@@ -14,7 +15,7 @@ export function CardWithImage({
 }): JSX.Element {
   return (
     <div className="card-with-image">
-      <img className="card-with-image__image" alt={image} />
+      <img className="card-with-image__image" alt="card" src={image} />
       <h3 className={classNames("card-with-image__heading", `text--${color}`)}>
         {title}
       </h3>
