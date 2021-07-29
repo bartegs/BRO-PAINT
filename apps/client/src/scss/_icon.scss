@@ -15,6 +15,36 @@
     width: $icon-md;
   }
 
+  &--car-sm {
+    height: 25px;
+    width: 60px;
+
+    @media (min-width: 768px) {
+      height: 30px;
+      width: 70px;
+    }
+  }
+
+  &--car-md {
+    height: 25px;
+    width: 80px;
+
+    @media (min-width: 768px) {
+      height: 30px;
+      width: 90px;
+    }
+  }
+
+  &--car-lg {
+    height: 35px;
+    width: 80px;
+
+    @media (min-width: 768px) {
+      height: 40px;
+      width: 90px;
+    }
+  }
+
   // colors
   &--white {
     filter:
@@ -40,6 +70,24 @@
       brightness(88%) contrast(83%);
   }
 
+  &--green {
+    filter:
+      invert(34%) sepia(98%) saturate(638%) hue-rotate(133deg)
+      brightness(91%) contrast(101%);
+  }
+
+  &--blue {
+    filter:
+      invert(25%) sepia(13%) saturate(7308%) hue-rotate(166deg)
+      brightness(103%) contrast(101%);
+  }
+
+  &--pink {
+    filter:
+      invert(9%) sepia(40%) saturate(6586%) hue-rotate(313deg)
+      brightness(99%) contrast(125%);
+  }
+
   // icons
   &--arrow {
     background: url("../../../assets/icons/arrow.svg");
@@ -47,14 +95,26 @@
 
   &--car-big {
     background: url("../../../assets/icons/car-big.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    display: inline-block;
   }
 
   &--car-medium {
     background: url("../../../assets/icons/car-medium.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    display: inline-block;
   }
 
   &--car-small {
     background: url("../../../assets/icons/car-small.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    display: inline-block;
   }
 
   &--car {

@@ -1,0 +1,45 @@
+.contact-page__card {
+  text-align: center;
+  min-width: $content-width-sm;
+  width: $content-width-sm;
+  padding: $spacing-x1 $spacing-x5 $spacing-x4 $spacing-x5;
+  box-shadow: $shadow;
+
+  &--address {
+    height: 149px;
+    margin: 0;
+
+    @media (min-width: $screen-md) and (max-width: $screen-lg - 1px) {
+      flex: 1;
+      margin: 0 $spacing-x5 $spacing-x5 0;
+    }
+  }
+
+  &--phone {
+    height: 123px;
+    margin: $spacing-x5 0;
+
+    @media (min-width: $screen-md) and (max-width: $screen-lg - 1px) {
+      flex: 1;
+      height: 149px;
+      margin: 0;
+    }
+  }
+
+  &--email {
+    height: 293px;
+
+    @media (min-width: $screen-md) {
+      flex: 1;
+    }
+
+    &__label {
+      position: relative;
+      left: -35px;
+
+      @media (min-width: $screen-md) and (max-width: $screen-lg - 1px) {
+        left: -254px;
+      }
+    }
+  }
+}

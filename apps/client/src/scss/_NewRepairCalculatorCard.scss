@@ -1,0 +1,34 @@
+.new-repair-calculator-card {
+  border-radius: 5px;
+  box-shadow: $shadow-sm;
+  padding: $spacing-x2;
+  margin-top: $spacing-x6;
+  width: $content-width-sm;
+  font-weight: bold;
+
+  @media (min-width: $screen-md) {
+    width: 360px;
+  }
+
+  @media (min-width: $screen-md) {
+    margin-top: $spacing-x9;
+  }
+
+  &__price {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__instruction {
+    display: inline-block;
+    margin: $spacing-x4 0 $spacing-x2 0;
+  }
+
+  &__note {
+    display: inline-block;
+    margin-top: $spacing-x2;
+    font-weight: normal;
+    font-size: $text-10;
+    color: $grey;
+  }
+}

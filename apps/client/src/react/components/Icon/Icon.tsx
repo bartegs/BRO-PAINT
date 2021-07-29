@@ -20,8 +20,15 @@ export interface IconProps {
     | "car-medium"
     | "car-big"
     | "arrow";
-  color?: "white" | "white-dark" | "black" | "black-light";
-  size?: "sm" | "md" | "lg";
+  color?:
+    | "white"
+    | "white-dark"
+    | "black"
+    | "black-light"
+    | "green"
+    | "blue"
+    | "pink";
+  size?: "sm" | "md" | "lg" | "car-sm" | "car-md" | "car-lg";
   additionalClasses?: string;
 }
 

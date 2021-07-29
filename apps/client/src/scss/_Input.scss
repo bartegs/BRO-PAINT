@@ -1,5 +1,5 @@
 .input {
-  font-size: inherit;
+  font-size: $text-16;
   border: none;
   background-color: transparent;
   border-bottom: 2px solid $pink;
@@ -7,11 +7,336 @@
   display: block;
   width: 100%;
 
-  &:focus {
+  &--contact:focus {
     outline: none;
+    box-shadow: unset;
+    border-radius: 0;
+    border-bottom: 2px solid $pink-light;
+  }
+
+  &--homepage {
+    color: $white-dark;
+
+    &::placeholder {
+      color: $white-a-60;
+      opacity: 1;
+    }
+
+    &:focus {
+      outline: none;
+      box-shadow: unset;
+      border-radius: 0;
+      border-bottom: 2px solid $pink-light;
+    }
+  }
+
+  &--outlined {
+    padding: $spacing-x2;
+    border-bottom: none;
+    border: 1px solid $black-light;
+    border-radius: 5px;
+    background: none;
+    display: block;
+    margin-bottom: $spacing-x1;
+    width: 100%;
+
+    &::placeholder {
+      color: $grey-dark-a-80;
+      opacity: 1;
+    }
+
+    &:focus-within {
+      outline: none;
+      border-radius: 5px;
+      box-shadow: 0 0 0 2px $green;
+    }
+
+    &--car-size {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      padding-top: $spacing-x3;
+      margin-bottom: 0;
+    }
+
+    &__label {
+      color: $green;
+      font-size: $text-12;
+      font-weight: bold;
+      text-transform: uppercase;
+      position: relative;
+      bottom: -8px;
+      left: $spacing-x2;
+      background: $white;
+      padding: 0 $spacing-x1;
+
+      &--other {
+        bottom: -7px;
+      }
+    }
   }
 
   &--home-page {
     margin: 15px 5px 25px 5px;
   }
+
+  &--centered-label {
+    display: block;
+    text-align: center;
+  }
+
+  &--file {
+    width: 100%;
+
+    &::-webkit-file-upload-button {
+      visibility: hidden;
+    }
+
+    &:focus-within {
+      outline: none;
+      border-radius: 5px;
+      box-shadow: 0 0 0 2px $green;
+    }
+
+    &::before {
+      content: "Załącz pliki";
+      display: block;
+      text-align: center;
+      background: $black-light;
+      border-radius: 5px;
+      padding: $spacing-x1 $spacing-x3;
+      outline: none;
+      white-space: nowrap;
+      -webkit-user-select: none;
+      user-select: none;
+      cursor: pointer;
+      color: $white;
+      font-weight: bold;
+      font-size: $text-16;
+      font-family: Roboto, Arial, Helvetica, sans-serif;
+    }
+
+    &:hover::before {
+      background-color: $grey-dark-a-80;
+    }
+  }
+}
+
+.text-area {
+  font-family: Roboto, Arial, Helvetica, sans-serif;
+  font-size: $text-16;
+  resize: none;
+  width: 100%;
+
+  &--new-repair-page {
+    height: 100px;
+    margin-bottom: $spacing-x3;
+
+    &:focus {
+      outline: none;
+      border-radius: 5px;
+      box-shadow: 0 0 0 2px $green;
+    }
+  }
+
+  &--contact-page {
+    height: 50px;
+    margin-bottom: $spacing-x2;
+    border: 2px solid $pink;
+    padding: $spacing-x1;
+
+    &:focus {
+      outline: none;
+      // box-shadow: 0 0 0 2px $pink;
+      border: 2px solid $pink-light;
+    }
+  }
+}
+
+.radio {
+  display: grid;
+  grid-template-columns: min-content auto;
+  grid-gap: $spacing-x1;
+
+  &:focus-within {
+    border: 3px solid $green;
+    border-radius: 5px;
+  }
+
+  &--car-size {
+    display: inline-block;
+
+    &:focus-within {
+      border-radius: 5px;
+      padding: $spacing-x1;
+      height: 60px;
+      border: 3px solid $green;
+    }
+  }
+
+  &__control {
+    display: block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 1px solid $black;
+    transform: translateY(-0.05em);
+  }
+
+  &__input {
+    display: flex;
+    align-items: center;
+
+    &--car-size {
+      input {
+        margin: 0;
+        opacity: 0;
+        height: 25px;
+        width: 60px;
+        position: absolute;
+        z-index: 100;
+        cursor: pointer;
+
+        @media (min-width: 768px) {
+          height: 30px;
+          width: 70px;
+        }
+      }
+
+      &--md {
+        input {
+          height: 25px;
+          width: 80px;
+
+          @media (min-width: 768px) {
+            height: 30px;
+            width: 90px;
+          }
+        }
+      }
+
+      &--lg {
+        input {
+          height: 35px;
+          width: 80px;
+
+          @media (min-width: 768px) {
+            height: 40px;
+            width: 90px;
+          }
+        }
+      }
+    }
+
+    input {
+      margin: 0;
+      opacity: 0;
+      width: 120px;
+      height: 20px;
+      position: absolute;
+      z-index: 100;
+      cursor: pointer;
+
+      &:checked + .radio__control {
+        background: radial-gradient($green 45%, $white 10%);
+      }
+    }
+  }
+}
+
+.checkbox {
+  transform: scale(1.25);
+  margin: 0;
+  cursor: pointer;
+
+  &--green {
+    filter: hue-rotate(315deg) saturate(70%);
+
+    &:hover {
+      filter: hue-rotate(315deg) brightness(160%);
+    }
+  }
+
+  &--pink {
+    filter: hue-rotate(126deg) saturate(36%);
+
+    &:hover {
+      filter: hue-rotate(119deg) saturate(100%);
+    }
+  }
+
+  &--blue {
+    filter: hue-rotate(338deg) saturate(45%);
+
+    &:hover {
+      filter: hue-rotate(338deg) brightness(140%);
+    }
+  }
+}
+
+select {
+  appearance: none;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  font-family: Roboto, Arial, Helvetica, sans-serif;
+  font-size: $text-16;
+  line-height: inherit;
+  outline: none;
+  cursor: pointer;
+}
+
+.select {
+  width: 100%;
+  border: 1px solid $black-light;
+  border-radius: 5px;
+  padding: $spacing-x2;
+  cursor: pointer;
+  margin-bottom: $spacing-x1;
+  display: grid;
+  grid-template-areas: "select";
+  align-items: center;
+
+  &:focus-within {
+    outline: none;
+    border-radius: 5px;
+    box-shadow: 0 0 0 2px $green;
+  }
+
+  &::after {
+    content: "";
+    width: 12px;
+    height: 12px;
+    background-color: $green;
+    clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+    justify-self: end;
+  }
+}
+
+select,
+.select::after {
+  grid-area: select;
+}
+
+select:invalid,
+select option[value=""] {
+  color: $grey-dark-a-80;
+}
+// body:not(.user-is-tabbing) .text-area:focus,
+// body:not(.user-is-tabbing) .input--outlined:focus-within,
+// body:not(.user-is-tabbing) .select:focus-within {
+
+body:not(.user-is-tabbing) button:focus,
+body:not(.user-is-tabbing) .input--file:focus-within {
+  outline: none;
+  box-shadow: unset;
+}
+
+body:not(.user-is-tabbing) .radio:focus-within,
+body:not(.user-is-tabbing) .radio--car-size:focus-within {
+  border: unset;
+  padding: unset;
+  height: unset;
 }

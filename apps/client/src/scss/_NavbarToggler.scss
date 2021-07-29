@@ -10,40 +10,34 @@
     display: none;
   }
 
-  &:hover * {
-    background: $pink-light;
-    transition: background-color 0.3s ease-in-out;
-  }
-
   &__bar {
-    background: $black-light;
+    background: $black;
     height: 4px;
     border-radius: 1px;
+    width: 100%;
+    transition: all $animation-short ease-in-out !important;
   }
 
-  &__cross {
-    position: relative;
-    margin: auto;
-    width: 30px;
-    cursor: pointer;
-    background: $black-light;
+  &:hover > div {
+    background: $pink-light;
+    transition: background-color $animation-short ease-in-out;
+  }
 
-    &--a {
-      position: absolute;
-      height: 4px;
-      width: 30px;
-      border-radius: 1px;
-      transform: rotate(40deg);
-      margin-top: 8px;
-    }
+  &--close {
+    height: 30px;
 
-    &--b {
-      position: absolute;
-      height: 4px;
-      width: 30px;
-      border-radius: 1px;
-      transform: rotate(-40deg);
-      margin-top: 8px;
+    .navbar-toggler__bar {
+      &:nth-child(1) {
+        transform: translateY(14px) rotate(40deg);
+      }
+
+      &:nth-child(2) {
+        opacity: 0;
+      }
+
+      &:nth-child(3) {
+        transform: translateY(-13px) rotate(-40deg);
+      }
     }
   }
 }

@@ -7,12 +7,20 @@
 @import "./Footer";
 @import "./Navbar";
 @import "./HomePageForm";
+@import "./AboutUsPage/AboutUsPage";
+@import "./AboutUsPage/CardWithImage";
+@import "./AboutUsPage/CardWithText";
 @import "./HomePage";
 @import "./RepairStatusPage";
+@import "./NewRepair";
+@import "./ContactPage/ContactPage";
+@import "./ContactPage/Card";
+@import "./ContactPage/Map";
 @import "./Button";
 @import "./Input";
 @import "./NavbarMenu";
 @import "./NavbarToggler";
+@import "./NewRepairCalculatorCard";
 
 body {
   font-family: Roboto, Arial, Helvetica, sans-serif;
@@ -39,7 +47,8 @@ body {
 }
 
 .container {
-  margin: 0 auto;
+  margin-left: auto;
+  margin-right: auto;
   width: $content-width-sm;
 
   @media (min-width: $screen-md) {

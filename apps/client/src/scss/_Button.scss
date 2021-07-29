@@ -6,6 +6,18 @@
   font-size: $text-16;
   font-weight: bold;
   padding: $spacing-x2 $spacing-x5 $spacing-x3 $spacing-x5;
+  cursor: pointer;
+
+  //focus for homepage button - naming to be changed
+  // &:focus {
+  //   outline: none;
+  //   box-shadow: 0 0 0 2px $grey-dark-a-80, 0 0 5px 5px $pink;
+  // }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px $white, 0 0 5px 5px $pink;
+  }
 
   &--primary {
     background-color: $pink;
@@ -13,5 +25,101 @@
     &:hover {
       background-color: $pink-light;
     }
+
+    &--green {
+      background-color: $green;
+      width: 100%;
+      box-shadow: none;
+
+      &:hover {
+        background-color: $green-light;
+      }
+
+      &:focus {
+        box-shadow: 0 0 0 2px $white, 0 0 5px 5px $green;
+      }
+    }
+
+    &--blue {
+      background-color: $blue;
+      width: 100%;
+      box-shadow: none;
+
+      &:hover {
+        background-color: $blue-light;
+      }
+
+      &:focus {
+        box-shadow: 0 0 0 2px $white, 0 0 5px 5px $blue;
+      }
+    }
+
+    &--pink {
+      background-color: $pink;
+      width: 100%;
+      box-shadow: none;
+
+      &:hover {
+        background-color: $pink-light;
+      }
+
+      &:focus {
+        box-shadow: 0 0 0 2px $white, 0 0 5px 5px $pink;
+      }
+    }
+  }
+
+  &--secondary {
+    background-color: $white;
+    width: 100%;
+
+    &--green {
+      color: $green;
+      border: 2px solid $green;
+      box-shadow: none;
+
+      &:hover {
+        color: $green-light;
+        border: 2px solid $green-light;
+      }
+
+      &:focus {
+        box-shadow: 0 0 0 2px $white, 0 0 5px 5px $green;
+      }
+    }
+
+    &--blue {
+      color: $blue;
+      border: 2px solid $blue;
+      box-shadow: none;
+
+      &:hover {
+        color: $blue-light;
+        border: 2px solid $blue-light;
+      }
+
+      &:focus {
+        box-shadow: 0 0 0 2px $white, 0 0 5px 5px $blue;
+      }
+    }
+
+    &--pink {
+      color: $pink;
+      border: 2px solid $pink;
+      box-shadow: none;
+
+      &:hover {
+        color: $pink-light;
+        border: 2px solid $pink-light;
+      }
+
+      &:focus {
+        box-shadow: 0 0 0 2px $white, 0 0 5px 5px $pink;
+      }
+    }
+  }
+
+  &__container {
+    display: flex;
   }
 }
