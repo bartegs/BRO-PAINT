@@ -7,7 +7,6 @@ import { NewRepair } from "./react/pages/NewRepair";
 import { ContactPage } from "./react/pages/ContactPage";
 
 const RepairStatus = () => <div>RepairStatus</div>;
-
 const Gallery = () => <div>Gallery</div>;
 const Error = () => <div>Not found</div>;
 const Employee = () => <div>Eployee</div>;
