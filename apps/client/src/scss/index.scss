@@ -7,6 +7,9 @@
 @import "./Footer";
 @import "./Navbar";
 @import "./HomePageForm";
+@import "./AboutUsPage/AboutUsPage";
+@import "./AboutUsPage/CardWithImage";
+@import "./AboutUsPage/CardWithText";
 @import "./HomePage";
 @import "./NewRepair";
 @import "./ContactPage/ContactPage";
@@ -42,8 +45,6 @@ body {
 }
 
 .container {
-  // margin: auto; - breakes vertical positioning, works fine with l/r auto
-  // margin: 0 auto; - disables my margin setting from _NewRepair.scss
   margin-left: auto;
   margin-right: auto;
   width: $content-width-sm;

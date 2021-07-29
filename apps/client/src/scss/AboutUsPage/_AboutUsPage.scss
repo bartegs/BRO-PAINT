@@ -1,0 +1,46 @@
+
+.about-us-page {
+  padding-top: 90px;
+  display: flex;
+  flex-wrap: wrap;
+
+  &__heading {
+    font-weight: lighter;
+    margin-bottom: $spacing-x8;
+    max-width: 1050px;
+
+    @media (min-width: $screen-lg) {
+      margin-bottom: $spacing-x15;
+      font-size: $text-40;
+    }
+  }
+
+  &__cards-with-image {
+    font-family: "Open Sans", sans-serif;
+
+    @media (min-width: $screen-md) {
+      flex: 0;
+    }
+
+    @media (min-width: $screen-lg) {
+      flex: 1;
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+
+  &__cards-with-text {
+    font-family: "Open Sans", sans-serif;
+
+    @media (min-width: $screen-md) {
+      padding-left: $spacing-x5;
+    }
+
+    @media (min-width: $screen-lg) {
+      flex: 100%;
+      padding-left: 0;
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+}
