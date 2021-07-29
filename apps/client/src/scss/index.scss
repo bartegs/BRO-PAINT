@@ -12,6 +12,9 @@
 @import "./AboutUsPage/CardWithText";
 @import "./HomePage";
 @import "./NewRepair";
+@import "./ContactPage/ContactPage";
+@import "./ContactPage/Card";
+@import "./ContactPage/Map";
 @import "./Button";
 @import "./Input";
 @import "./NavbarMenu";
@@ -31,6 +34,14 @@ body {
 .content {
   flex: 1;
   display: flex;
+
+  // margin-top: 2 * $spacing-x3 + $logo-sm-y;
+  // @media (min-width: $screen-md) {
+  //   margin-top: 2 * $spacing-x3 + $logo-md-y;
+  // }
+  // @media (min-width: $screen-lg) {
+  //   margin-top: $spacing-x4;
+  // }
 }
 
 .container {
