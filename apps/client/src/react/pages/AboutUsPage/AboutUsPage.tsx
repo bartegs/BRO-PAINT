@@ -59,8 +59,8 @@ export function AboutUsPage(): JSX.Element {
   return (
     <div className="about-us-page container">
       <h2 className="about-us-page__heading">
-        Mamy doświadczenie, pasję, umiejęności oraz indywidualne
-        <br /> podejście do każdego klienta.
+        Mamy doświadczenie, pasję, umiejęności oraz indywidualne podejście do
+        każdego klienta.
       </h2>
       <div className="about-us-page__cards-with-image">
         {aboutUsPageContent.services.map((item) => (
