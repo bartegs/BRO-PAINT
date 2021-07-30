@@ -1,0 +1,17 @@
+.gallery-page__gallery {
+  width: 100%;
+  height: 70vh;
+  overflow: scroll;
+  overflow-x: hidden;
+  padding-right: $spacing-x2;
+
+  // height: calc(100% - 126px);
+
+  // @media (min-width: $screen-md) {
+  //   height: calc(100% - 152px);
+  // }
+
+  // @media (min-width: $screen-lg) {
+  //   height: calc(100% - 88px);
+  // }
+}

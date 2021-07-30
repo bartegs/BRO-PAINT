@@ -1,5 +1,24 @@
 .gallery-page__carousel {
-  color: $grey;
+  display: flex;
+  text-align: center;
+  font-weight: bold;
+  color: $pink;
+  justify-content: space-between;
+  margin-bottom: $spacing-x3;
+  //temp margin
+  margin-top: 80px;
+
+  @media (min-width: $screen-md) {
+    justify-content: center;
+    font-size: $text-24;
+    //temp margin
+    margin-top: 90px;
+  }
+
+  @media (min-width: $screen-lg) {
+    //temp margin
+    margin-top: 25px;
+  }
 
   &__arrows-container {
     display: inline-block;
@@ -11,22 +30,35 @@
   }
 
   &__toggler-container {
-    display: inline-block;
+    height: 8px;
+    display: flex;
+    justify-content: center;
+  }
+
+  &__toggler-switch {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    @media (min-width: $screen-md) {
+      margin: 0 $spacing-x14;
+    }
+
+    @media (min-width: $screen-lg) {
+      margin: 0 240px;
+    }
   }
 
   &__toggler {
-    display: inline-block;
     width: 45px;
     height: 8px;
 
     @media (min-width: $screen-md) {
       width: 70px;
-      height: 8px;
     }
 
     @media (min-width: $screen-md) {
       width: 75px;
-      height: 8px;
     }
 
     &--on {
