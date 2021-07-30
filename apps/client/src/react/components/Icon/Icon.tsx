@@ -28,7 +28,7 @@ export interface IconProps {
     | "green"
     | "blue"
     | "pink";
-  size?: "sm" | "md" | "lg" | "car-sm" | "car-md" | "car-lg";
+  size?: "sm" | "md" | "lg" | "car-sm" | "car-md" | "car-lg" | "gallery-arrow";
   additionalClasses?: string;
 }
 

@@ -1,0 +1,40 @@
+.gallery-page__carousel {
+  color: $grey;
+
+  &__arrows-container {
+    display: inline-block;
+
+    &--left {
+      -webkit-transform: scaleX(-1);
+      transform: scaleX(-1);
+    }
+  }
+
+  &__toggler-container {
+    display: inline-block;
+  }
+
+  &__toggler {
+    display: inline-block;
+    width: 45px;
+    height: 8px;
+
+    @media (min-width: $screen-md) {
+      width: 70px;
+      height: 8px;
+    }
+
+    @media (min-width: $screen-md) {
+      width: 75px;
+      height: 8px;
+    }
+
+    &--on {
+      background-color: $pink;
+    }
+
+    &--off {
+      background-color: $grey;
+    }
+  }
+}

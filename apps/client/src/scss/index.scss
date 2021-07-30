@@ -4,22 +4,24 @@
 @import "./text";
 @import "./icon";
 @import "./logo";
-@import "./Footer";
+@import "./Input";
+@import "./Button";
 @import "./Navbar";
+@import "./NavbarMenu";
+@import "./NavbarToggler";
+@import "./Footer";
+@import "./HomePage";
 @import "./HomePageForm";
+@import "./NewRepair";
+@import "./NewRepairCalculatorCard";
 @import "./AboutUsPage/AboutUsPage";
 @import "./AboutUsPage/CardWithImage";
 @import "./AboutUsPage/CardWithText";
-@import "./HomePage";
-@import "./NewRepair";
+@import "./GalleryPage/GalleryPage";
+@import "./GalleryPage/Carousel";
 @import "./ContactPage/ContactPage";
 @import "./ContactPage/Card";
 @import "./ContactPage/Map";
-@import "./Button";
-@import "./Input";
-@import "./NavbarMenu";
-@import "./NavbarToggler";
-@import "./NewRepairCalculatorCard";
 
 body {
   font-family: Roboto, Arial, Helvetica, sans-serif;

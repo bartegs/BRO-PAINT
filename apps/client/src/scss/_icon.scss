@@ -15,6 +15,21 @@
     width: $icon-md;
   }
 
+  &--lg {
+    height: $icon-lg;
+    width: $icon-lg;
+  }
+
+  &--gallery-arrow {
+    height: $icon-arrow-sm-y;
+    width: $icon-arrow-sm-x;
+
+    @media (min-width: $screen-md) {
+      height: $icon-arrow-md-y;
+      width: $icon-arrow-md-x;
+    }
+  }
+
   &--car-sm {
     height: 25px;
     width: 60px;
@@ -91,6 +106,10 @@
   // icons
   &--arrow {
     background: url("../../../assets/icons/arrow.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    display: inline-block;
   }
 
   &--car-big {
