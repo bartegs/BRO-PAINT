@@ -1,8 +1,12 @@
 .gallery-page__gallery {
   width: 100%;
-  height: 70vh;
+  // background-color: $white-dark;
+  height: 65vh;
   overflow: scroll;
   overflow-x: hidden;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
   padding-right: $spacing-x2;
 
   // height: calc(100% - 126px);
@@ -14,4 +18,33 @@
   // @media (min-width: $screen-lg) {
   //   height: calc(100% - 88px);
   // }
+
+  &__image {
+    background-color: $green;
+    height: 270px;
+    width: 270px;
+    margin-bottom: $spacing-x5;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    @media (min-width: $screen-md) {
+      height: 345px;
+      width: 345px;
+
+      &:nth-last-child(-n+2) {
+        margin-bottom: 0;
+      }
+    }
+
+    @media (min-width: $screen-lg) {
+      height: 410px;
+      width: 410px;
+
+      &:nth-last-child(-n+3) {
+        margin-bottom: 0;
+      }
+    }
+  }
 }

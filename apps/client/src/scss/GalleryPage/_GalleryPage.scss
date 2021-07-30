@@ -8,12 +8,12 @@
 
   /* Handle */
   ::-webkit-scrollbar-thumb {
-    background: #b3b3b3;
+    background: $grey;
     border-radius: 5px;
   }
 
   /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
-    background: silver;
-  }
+  // ::-webkit-scrollbar-thumb:hover {
+  //   background: $grey;
+  // }
 }
