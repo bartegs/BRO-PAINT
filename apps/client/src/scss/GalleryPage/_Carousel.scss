@@ -9,19 +9,26 @@
   margin-top: 80px;
 
   @media (min-width: $screen-md) {
-    justify-content: center;
+    width: 530px;
+    margin-left: auto;
+    margin-right: auto;
     font-size: $text-24;
     //temp margin
     margin-top: 90px;
   }
 
   @media (min-width: $screen-lg) {
+    width: 860px;
     //temp margin
     margin-top: 25px;
   }
 
   &__arrows-container {
     display: inline-block;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
 
     &--left {
       -webkit-transform: scaleX(-1);
@@ -39,19 +46,18 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-
-    @media (min-width: $screen-md) {
-      margin: 0 $spacing-x14;
-    }
-
-    @media (min-width: $screen-lg) {
-      margin: 0 240px;
-    }
   }
 
   &__toggler {
     width: 45px;
     height: 8px;
+    cursor: pointer;
+    border: none;
+    background-color: $grey;
+
+    &:hover {
+      background-color: $grey-light;
+    }
 
     @media (min-width: $screen-md) {
       width: 70px;
@@ -63,10 +69,10 @@
 
     &--on {
       background-color: $pink;
-    }
 
-    &--off {
-      background-color: $grey;
+      &:hover {
+        background-color: $pink-light;
+      }
     }
   }
 }

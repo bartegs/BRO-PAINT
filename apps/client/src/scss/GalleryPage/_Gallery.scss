@@ -20,10 +20,10 @@
   // }
 
   &__image {
-    background-color: $green;
     height: 270px;
     width: 270px;
     margin-bottom: $spacing-x5;
+    box-shadow: $shadow;
 
     &:last-child {
       margin-bottom: 0;

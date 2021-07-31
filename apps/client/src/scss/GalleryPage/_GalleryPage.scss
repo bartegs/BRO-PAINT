@@ -1,19 +1,18 @@
 .gallery-page {
-  color: black;
-
-  /* width */
   ::-webkit-scrollbar {
     width: 10px;
   }
 
-  /* Handle */
   ::-webkit-scrollbar-thumb {
     background: $grey;
     border-radius: 5px;
-  }
 
-  /* Handle on hover */
-  // ::-webkit-scrollbar-thumb:hover {
-  //   background: $grey;
-  // }
+    &:hover {
+      background: $grey-medium;
+    }
+
+    &:active {
+      background: $grey-dark;
+    }
+  }
 }
