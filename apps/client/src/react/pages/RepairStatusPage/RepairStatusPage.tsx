@@ -1,5 +1,7 @@
 import * as React from "react";
 
+import classnames from "classnames";
+
 export function RepairStatusPage(): JSX.Element {
   enum Color {
     black = "#303030",
@@ -38,31 +40,34 @@ export function RepairStatusPage(): JSX.Element {
 
   return (
     <div className="container repair-status-page">
-      <div className="repair-status-page__axis axis">
-        {stages.map((item) => (
-          <div
-            className="axis__fragment"
-            style={{ backgroundColor: item.color }}
-          >
-            <div
-              className="axis__point"
-              style={{ backgroundColor: item.color }}
-            >
-              <div className="axis__card">{item.title}</div>
-            </div>
-          </div>
-        ))}
+      <div className="repair-status-page__form-container">miki page</div>
+      <div className="repair-status-page__axis-container axis">
+        {stages.map((item, i) => {
+          return (
+            <>
+              <div
+                className={classnames("axis__segment", {
+                  "axis__segment--last": i === stages.length - 1,
+                })}
+                style={{ backgroundColor: item.color }}
+              >
+                <div
+                  className="axis__point"
+                  style={{ backgroundColor: item.color }}
+                />
+              </div>
+              <div
+                className={classnames("axis__card card", {
+                  "card--first": i === 0,
+                  "card--last": i === stages.length - 1,
+                })}
+              >
+                card1
+              </div>
+            </>
+          );
+        })}
       </div>
     </div>
   );
 }
-
-// <div className="repair-status-page__segment">
-// <div
-//   className="axis-fragment"
-//   style={{ backgroundColor: item.color }}
-// >
-
-// </div>
-// <div className="axis-card">{item.title}</div>
-// </div>

@@ -11,7 +11,7 @@
 @import "./AboutUsPage/CardWithImage";
 @import "./AboutUsPage/CardWithText";
 @import "./HomePage";
-@import "./RepairStatusPage";
+@import "./RepairStatusPage/RepairStatusPage";
 @import "./NewRepair";
 @import "./ContactPage/ContactPage";
 @import "./ContactPage/Card";
@@ -32,6 +32,20 @@ body {
   flex-direction: column;
 }
 
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  width: $content-width-sm;
+
+  @media (min-width: $screen-md) {
+    width: $content-width-md;
+  }
+
+  @media (min-width: $screen-lg) {
+    width: $content-width-lg;
+  }
+}
+
 .content {
   flex: 1;
   display: flex;
@@ -46,16 +60,3 @@ body {
   }
 }
 
-.container {
-  margin-left: auto;
-  margin-right: auto;
-  width: $content-width-sm;
-
-  @media (min-width: $screen-md) {
-    width: $content-width-md;
-  }
-
-  @media (min-width: $screen-lg) {
-    width: $content-width-lg;
-  }
-}
