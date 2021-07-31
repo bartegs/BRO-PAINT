@@ -62,7 +62,7 @@ export function RepairStatusPage(): JSX.Element {
                   "card--last": i === stages.length - 1,
                 })}
               >
-                card1
+                {i}
               </div>
             </>
           );
