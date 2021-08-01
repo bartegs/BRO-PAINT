@@ -1,0 +1,29 @@
+.repair-status-page {
+  display: flex;
+  flex-direction: column;
+  margin: $spacing-x6 0;
+
+  &__form-container {
+    // height: 200px;
+  }
+
+  &__axis-container {
+    height: 1300px;
+    display: grid;
+    grid-template-columns: 0 55px 1fr;
+    grid-template-rows: repeat(4, 1fr) min-content;
+
+    @media (min-width: $screen-md) {
+      grid-template-columns: 1fr 55px 1fr;
+      column-gap: $spacing-x6;
+    }
+
+    @media (min-width: $screen-lg) {
+      flex: 1;
+      height: auto;
+      grid-template-rows: 1fr 55px 1fr;
+      grid-template-columns: repeat(4, 1fr) min-content;
+      gap: $spacing-x6 0;
+    }
+  }
+}
