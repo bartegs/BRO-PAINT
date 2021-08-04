@@ -3,8 +3,15 @@ import classnames from "classnames";
 
 import { Icon } from "../../../components/Icon";
 
-export function Carousel(): JSX.Element {
-  const [finishedPhotos, setFinishedPhotos] = React.useState(true);
+interface CarouselProps {
+  finishedPhotos: boolean;
+  setFinishedPhotos: (arg: boolean) => void;
+}
+
+export function Carousel({
+  finishedPhotos,
+  setFinishedPhotos,
+}: CarouselProps): JSX.Element {
   const [isHoveredLeft, setIsHoveredLeft] = React.useState(false);
   const [isHoveredRight, setIsHoveredRight] = React.useState(false);
 

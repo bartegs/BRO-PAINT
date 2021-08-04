@@ -1,69 +1,46 @@
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
 import * as React from "react";
 import * as Modal from "react-modal";
-// import { Photo } from "./Photo";
-import { finished, unfinished } from "./Photo";
-// import { audi } from "../assets";
+import { Photos } from "./Photos";
 
 Modal.setAppElement("div");
 
-export function Gallery(): JSX.Element {
-  const [modalIsOpen, setIsOpen] = React.useState(false);
+interface GalleryProps {
+  finishedPhotos: boolean;
+}
 
-  function closeModal() {
-    setIsOpen(false);
+export function Gallery({ finishedPhotos }: GalleryProps): JSX.Element {
+  const [isModalOpen, setIsModalOpen] = React.useState(false);
+  const [targetImage, setTargetImage] = React.useState("");
+  const [targetAlt, setTargetAlt] = React.useState("");
+
+  function handleModal(e: React.MouseEvent) {
+    setTargetImage((e.target as HTMLImageElement).src);
+    setTargetAlt((e.target as HTMLImageElement).alt);
+    setIsModalOpen((prevState) => !prevState);
   }
-
-  // function openModal() {
-  //   setIsOpen(true);
-  // }
 
   return (
     <>
       <div id="gallery" className="gallery-page__gallery">
-        {/* //ukończone then this} */}
-        {finished}
-        {/* //w trakcie then this} */}
-        {unfinished}
-
-        {/* <Photo file={audi} /> */}
-        {/* <img
-          onClick={openModal}
-          className="gallery-page__gallery__image"
-          src={audi}
-          alt=""
-        />
-        <img
-          onClick={openModal}
-          className="gallery-page__gallery__image"
-          src={bmw}
-          alt=""
-        />
-        <img
-          onClick={openModal}
-          className="gallery-page__gallery__image"
-          src={ferrari}
-          alt=""
-        /> */}
+        <Photos finishedPhotos={finishedPhotos} handleModal={handleModal} />
       </div>
 
       <Modal
-        isOpen={modalIsOpen}
-        onRequestClose={closeModal}
+        isOpen={isModalOpen}
+        onRequestClose={handleModal}
         className="gallery-page__gallery__modal"
         overlayClassName="gallery-page__gallery__overlay"
       >
-        {/* <img
+        <img
           className="gallery-page__gallery__modal__full-screen-image"
-          src={audi}
-          alt=""
-        /> */}
+          src={targetImage}
+          alt={targetAlt}
+        />
         <div className="gallery-page__gallery__modal__button__container">
           <button
             className="gallery-page__gallery__modal__button"
             aria-label="Zamknij pełny ekran"
-            onClick={closeModal}
+            onClick={handleModal}
           />
         </div>
       </Modal>
