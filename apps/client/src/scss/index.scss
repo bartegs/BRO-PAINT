@@ -31,17 +31,25 @@ body {
   flex-direction: column;
 }
 
-.content {
-  flex: 1;
-  display: flex;
+.root-background {
+  background:
+    no-repeat center 2 * $spacing-x3 + $logo-sm-y
+    url("../../../assets//images/baner-md.png");
+  background-size: cover;
 
-  // margin-top: 2 * $spacing-x3 + $logo-sm-y;
-  // @media (min-width: $screen-md) {
-  //   margin-top: 2 * $spacing-x3 + $logo-md-y;
-  // }
-  // @media (min-width: $screen-lg) {
-  //   margin-top: $spacing-x4;
-  // }
+  @media (min-width: $screen-md) {
+    background:
+      no-repeat center 2 * $spacing-x3 + $logo-md-y
+      url("../../../assets//images/baner-md.png");
+    background-size: cover;
+  }
+
+  @media (min-width: $screen-lg) {
+    background:
+      no-repeat center 2 * $spacing-x4 + $logo-lg-y
+      url("../../../assets//images/baner-lg.png");
+    background-size: cover;
+  }
 }
 
 .container {
@@ -55,5 +63,21 @@ body {
 
   @media (min-width: $screen-lg) {
     width: $content-width-lg;
+  }
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  padding-top: 2 * $spacing-x3 + $logo-sm-y + 25;
+  padding-bottom: $spacing-x5;
+
+  @media (min-width: $screen-md) {
+    padding-top: 2 * $spacing-x3 + $logo-md-y + 25;
+    padding-bottom: $spacing-x5;
+  }
+
+  @media (min-width: $screen-lg) {
+    padding: $spacing-x5 0;
   }
 }

@@ -10,7 +10,7 @@ export default function App(): JSX.Element {
   return (
     <Router>
       <Navbar />
-      <main className="content">
+      <main className="content container">
         <Switch>{createRoutes}</Switch>
       </main>
       <Footer />
