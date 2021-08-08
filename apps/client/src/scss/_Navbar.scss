@@ -4,6 +4,7 @@
   font-size: $text-16;
   position: absolute;
   width: 100%;
+  z-index: 1000;
 
   @media (min-width: $screen-lg) {
     position: static;

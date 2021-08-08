@@ -1,0 +1,38 @@
+.card-with-text {
+  width: 290px;
+  margin: $spacing-x6 0;
+
+  @media (min-width: $screen-md) {
+    width: 310px;
+    height: 420px;
+    margin-top: 0;
+    margin-bottom: $spacing-x5;
+    padding-top: $spacing-x16;
+  }
+
+  @media (min-width: $screen-lg) {
+    height: auto;
+    margin-top: $spacing-x11;
+    padding: 0;
+  }
+
+  &__heading {
+    display: inline-block;
+    font-weight: normal;
+    margin: 0 0 $spacing-x3 $spacing-x3;
+    border-bottom: 3px solid transparent;
+    padding-bottom: $spacing-x1;
+
+    &--with-green-border {
+      border-color: $green;
+    }
+
+    &--with-blue-border {
+      border-color: $blue;
+    }
+
+    &--with-pink-border {
+      border-color: $pink;
+    }
+  }
+}
