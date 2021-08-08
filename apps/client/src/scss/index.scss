@@ -34,6 +34,27 @@ body {
   flex-direction: column;
 }
 
+.root-background {
+  background:
+    no-repeat center 2 * $spacing-x3 + $logo-sm-y
+    url("../../../assets//images/baner-md.png");
+  background-size: cover;
+
+  @media (min-width: $screen-md) {
+    background:
+      no-repeat center 2 * $spacing-x3 + $logo-md-y
+      url("../../../assets//images/baner-md.png");
+    background-size: cover;
+  }
+
+  @media (min-width: $screen-lg) {
+    background:
+      no-repeat center 2 * $spacing-x4 + $logo-lg-y
+      url("../../../assets//images/baner-lg.png");
+    background-size: cover;
+  }
+}
+
 .container {
   margin-left: auto;
   margin-right: auto;
@@ -51,13 +72,15 @@ body {
 .content {
   flex: 1;
   display: flex;
-  margin-top: 2 * $spacing-x3 + $logo-sm-y;
+  padding-top: 2 * $spacing-x3 + $logo-sm-y + 25;
+  padding-bottom: $spacing-x5;
 
   @media (min-width: $screen-md) {
-    margin-top: 2 * $spacing-x3 + $logo-md-y;
+    padding-top: 2 * $spacing-x3 + $logo-md-y + 25;
+    padding-bottom: $spacing-x5;
   }
 
   @media (min-width: $screen-lg) {
-    margin-top: 0;
+    padding: $spacing-x5 0;
   }
 }
