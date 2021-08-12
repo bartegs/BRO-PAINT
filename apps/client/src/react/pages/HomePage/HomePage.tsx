@@ -1,5 +1,5 @@
 import * as React from "react";
-import { HomePageForm } from "./components/HomePageForm";
+import { CheckStatusForm } from "../../components/CheckStatusForm/CheckStatusForm";
 
 export function HomePage(): JSX.Element {
   React.useEffect(() => {
@@ -12,7 +12,11 @@ export function HomePage(): JSX.Element {
 
   return (
     <div className="home-page">
-      <HomePageForm />
+      <CheckStatusForm
+        inputFontTheme="light"
+        buttonColor="pink"
+        background="dark"
+      />
     </div>
   );
 }

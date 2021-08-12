@@ -346,19 +346,19 @@ export function NewRepairContact(): JSX.Element {
         </label>
 
         {/* {contact.privacy.toString()} */}
-        <div className="button__container">
+        <div className="new-repair__buttons">
           <Button
             text="Wyślij"
-            variation="primary"
+            color="green"
             type="submit"
-            additionalClasses="button--primary--green mr-3"
+            additionalClasses="mr-3 w-100"
           />
           <Button
             text="Resetuj"
-            variation="secondary"
-            additionalClasses="button--secondary--green"
+            color="green"
             type="reset"
             onClick={handleReset}
+            additionalClasses="button--new-repair w-100"
           />
         </div>
       </form>

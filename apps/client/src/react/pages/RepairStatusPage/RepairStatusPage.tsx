@@ -1,9 +1,10 @@
 import * as React from "react";
 
+import { CheckStatusForm } from "../../components/CheckStatusForm";
 import { Axis } from "./components";
 
 enum Color {
-  black = "#303030",
+  blackLight = "#303030",
   green = "#008377",
   blue = "#006180",
   pink = "#6F0032",
@@ -22,7 +23,7 @@ export function RepairStatusPage(): JSX.Element {
   const stages: Stages = [
     {
       id: 0,
-      color: Color.black,
+      color: Color.blackLight,
       title: "Zlecenie przyjęte Zaczynamy!",
       descrption: "",
     },
@@ -59,7 +60,14 @@ export function RepairStatusPage(): JSX.Element {
 
   return (
     <div className="container repair-status-page">
-      <div className="repair-status-page__form-container">miki page</div>
+      <div className="repair-status-page__form-container">
+        <CheckStatusForm
+          inputFontTheme="dark"
+          buttonColor="black"
+          headingColor="black"
+          inputBorderColor="black"
+        />
+      </div>
       <Axis stages={stages} />
     </div>
   );

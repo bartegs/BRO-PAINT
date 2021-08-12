@@ -3,7 +3,8 @@
   flex-direction: column;
 
   &__form-container {
-    // height: 200px;
+    display: flex;
+    justify-content: center;
   }
 
   &__axis-container {
