@@ -10,16 +10,24 @@ enum Color {
   pink = "#6F0032",
 }
 
-interface Stage {
-  id: number;
+interface MainStage {
+  id: 0 | 1 | 2 | 3 | 4;
   title: string;
   descrption: string;
   color: Color;
 }
 
-export type Stages = Stage[];
+interface Repair {
+  id: number;
+  repairStage: number;
+}
+
+export type Stages = MainStage[];
 
 export function RepairStatusPage(): JSX.Element {
+  const [repair] = React.useState<Repair>({ id: 1, repairStage: 2 });
+  const { repairStage } = repair || {};
+
   const stages: Stages = [
     {
       id: 0,
@@ -29,7 +37,6 @@ export function RepairStatusPage(): JSX.Element {
     },
     {
       id: 1,
-
       color: Color.green,
       title: "Prace przygotowawcze",
       descrption:
@@ -37,7 +44,6 @@ export function RepairStatusPage(): JSX.Element {
     },
     {
       id: 2,
-
       color: Color.blue,
       title: "Prace lakiernicze",
       descrption:
@@ -68,7 +74,7 @@ export function RepairStatusPage(): JSX.Element {
           inputBorderColor="black"
         />
       </div>
-      <Axis stages={stages} />
+      <Axis repairStage={repairStage} stages={stages} />
     </div>
   );
 }

@@ -1,13 +1,13 @@
 import * as React from "react";
 
 import classnames from "classnames";
-
-import { Color } from "../../../../../utils/models";
+import type { Color } from "../../../../../utils/types";
 
 import { Button } from "../Button";
 import { Input } from "../Input";
 
 interface OwnProps {
+  additionalClasses?: string;
   headingColor?: Color | "white-a-80";
   buttonColor?: Color;
   inputFontTheme?: "dark" | "light";
@@ -16,6 +16,7 @@ interface OwnProps {
 }
 
 export function CheckStatusForm({
+  additionalClasses,
   buttonColor = "pink",
   headingColor = "white-a-80",
   inputFontTheme = "light",
@@ -35,6 +36,7 @@ export function CheckStatusForm({
   return (
     <div
       className={classnames(
+        additionalClasses,
         "check-status-form",
         `check-status-form--background-${background}`
       )}

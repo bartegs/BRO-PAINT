@@ -9,6 +9,11 @@
   padding: $spacing-x2;
   text-align: center;
 
+  &--inactive {
+    background-color: $white;
+    color: $grey;
+  }
+
   &__heading {
     text-align: center;
     margin-bottom: $spacing-x3;

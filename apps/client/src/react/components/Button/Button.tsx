@@ -1,7 +1,8 @@
 import * as React from "react";
 
 import classnames from "classnames";
-import { Color } from "../../../../../utils/models";
+
+import type { Color } from "../../../../../utils/types";
 
 interface ButtonProps {
   type?: "submit" | "button" | "reset";
