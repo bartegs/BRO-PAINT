@@ -1,7 +1,7 @@
 .icon {
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-size: contain !important;
   display: inline-block;
 
   // sizes
@@ -13,6 +13,11 @@
   &--md {
     height: $icon-md;
     width: $icon-md;
+  }
+
+  &--lg {
+    height: $icon-lg;
+    width: $icon-lg;
   }
 
   &--car-sm {

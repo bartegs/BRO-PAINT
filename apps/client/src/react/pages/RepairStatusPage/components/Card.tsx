@@ -4,7 +4,7 @@ import AnimateHeight from "react-animate-height";
 
 import classnames from "classnames";
 
-import flag from "../../../../../../assets/icons/flag.svg";
+import { Icon } from "../../../components/Icon";
 
 interface OwnProps {
   title: string;
@@ -28,15 +28,23 @@ export function Card({
       <h4 className="card__heading">{title}</h4>
       {isFirst || isLast ? (
         <div className="card__images">
-          <img
-            className={classnames("card__image image", {
-              "image--left": isLast,
+          <Icon
+            additionalClasses={classnames({
+              "icon--left": isLast,
             })}
-            src={flag}
-            alt="flag"
+            color="black"
+            icon="flag"
+            size="lg"
           />
           {isLast && (
-            <img className="card__image image--right" src={flag} alt="flag" />
+            <Icon
+              additionalClasses={classnames({
+                "icon--right": isLast,
+              })}
+              color="black"
+              icon="flag"
+              size="lg"
+            />
           )}
         </div>
       ) : null}
@@ -50,9 +58,7 @@ export function Card({
             className={classnames("card__button toggler", {
               "toggler--toggled": isExpanded,
             })}
-          >
-            {" "}
-          </button>
+          />
         </>
       ) : null}
     </div>
