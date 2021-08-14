@@ -2,12 +2,12 @@ import * as React from "react";
 
 import classnames from "classnames";
 
-import type { Stages } from "../RepairStatusPage";
+import type { RepairMainStages } from "../RepairStatusPage";
 
 import { Card } from "./Card";
 
 interface OwnProps {
-  stages: Stages;
+  stages: RepairMainStages;
   repairStage: number;
 }
 
@@ -16,11 +16,11 @@ function handleAxisColoring(
   stageColor: string,
   repairStage: number
 ): { segmentColor: string; pointColor: string } {
-  if (stageId < repairStage) {
+  if (stageId <= repairStage) {
     return { segmentColor: stageColor, pointColor: stageColor };
   }
   return {
-    segmentColor: "#E5E5E5",
+    segmentColor: "grey-light",
     pointColor: "white",
   };
 }
@@ -38,14 +38,19 @@ export function Axis({ stages, repairStage }: OwnProps): JSX.Element {
         return (
           <React.Fragment key={id}>
             <div
-              className={classnames("axis__segment", {
-                "axis__segment--last": i === stages.length - 1,
-              })}
-              style={{ backgroundColor: segmentColor }}
+              className={classnames(
+                "axis__segment segment",
+                `segment--${segmentColor}`,
+                {
+                  "axis__segment--last": i === stages.length - 1,
+                }
+              )}
             >
               <div
-                className="axis__point"
-                style={{ backgroundColor: pointColor }}
+                className={classnames(
+                  "segment__point point",
+                  `point--${pointColor}`
+                )}
               />
             </div>
             <Card
