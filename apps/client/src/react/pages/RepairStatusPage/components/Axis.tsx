@@ -29,6 +29,9 @@ export function Axis({ stages, repairStage }: OwnProps): JSX.Element {
   return (
     <div className="repair-status-page__axis-container axis">
       {stages.map(({ color, title, descrption, id }, i) => {
+        const isFirstElement = i === 0;
+        const isLastElement = i === stages.length - 1;
+
         const { segmentColor, pointColor } = handleAxisColoring(
           i,
           color,
@@ -42,7 +45,7 @@ export function Axis({ stages, repairStage }: OwnProps): JSX.Element {
                 "axis__segment segment",
                 `segment--${segmentColor}`,
                 {
-                  "axis__segment--last": i === stages.length - 1,
+                  "axis__segment--last": isLastElement,
                 }
               )}
             >
@@ -55,13 +58,15 @@ export function Axis({ stages, repairStage }: OwnProps): JSX.Element {
             </div>
             <Card
               additionalClasses={classnames({
-                "card--first": i === 0,
-                "card--last": i === stages.length - 1,
+                "card--first": isFirstElement,
+                "card--last": isLastElement,
                 "card--inactive":
                   typeof repairStage === "undefined" || i > repairStage,
               })}
               desc={descrption}
               title={title}
+              isFirst={isFirstElement}
+              isLast={isLastElement}
             />
           </React.Fragment>
         );

@@ -14,6 +14,11 @@
     color: $grey;
   }
 
+  &__image {
+    height: 50px;
+    width: 50px;
+  }
+
   &__heading {
     text-align: center;
     margin-bottom: $spacing-x3;
@@ -22,10 +27,6 @@
   &__text {
     text-align: left;
     font-family: "Open Sans" Arial, Helvetica, sans-serif;
-  }
-
-  &__button {
-    margin-top: $spacing-x3;
   }
 
   @media (min-width: $screen-md) {
@@ -70,5 +71,33 @@
       grid-column: span 4 / 6;
       grid-row: 1;
     }
+  }
+}
+
+.toggler {
+  width: 25px;
+  height: 25px;
+  border: 1px solid #b3b3b3;
+  border-radius: 100%;
+  background-color: transparent;
+  margin-top: $spacing-x3;
+  transform: rotate(90deg);
+  background-image: url("../../../../assets/icons/arrow.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+
+  &--toggled {
+    transform: rotate(-90deg);
+  }
+}
+
+.image {
+  &--left {
+    transform: scaleX(-1) translateX(-5px);
+  }
+
+  &--right {
+    transform: translateX(-5px);
   }
 }
