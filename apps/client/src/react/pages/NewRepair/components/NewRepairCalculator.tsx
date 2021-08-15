@@ -308,19 +308,19 @@ export function NewRepairCalculator(): JSX.Element {
             </div>
           </>
         )}
-        <div className="button__container mt-4">
+        <div className="new-repair__buttons mt-4">
           <Button
             text="Wylicz"
-            variation="primary"
+            color="green"
             type="submit"
-            additionalClasses="button--primary--green mr-3"
+            additionalClasses="mr-3 w-100"
             onClick={showCalculatorCard}
           />
           <Button
             text="Resetuj"
-            variation="secondary"
-            additionalClasses="button--secondary--green"
+            color="green"
             type="reset"
+            additionalClasses="w-100 button--new-repair"
             onClick={handleReset}
           />
         </div>

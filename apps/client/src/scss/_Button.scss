@@ -1,125 +1,93 @@
 .button {
   border: 0;
   border-radius: $radius-x1;
-  box-shadow: $shadow-sm;
+  box-shadow: $shadow;
   color: $white;
   font-size: $text-16;
   font-weight: bold;
   padding: $spacing-x2 $spacing-x5 $spacing-x3 $spacing-x5;
   cursor: pointer;
 
-  //focus for homepage button - naming to be changed
-  // &:focus {
-  //   outline: none;
-  //   box-shadow: 0 0 0 2px $grey-dark-a-80, 0 0 5px 5px $pink;
-  // }
-
-  &:focus {
-    outline: none;
-    box-shadow: 0 0 0 2px $white, 0 0 5px 5px $pink;
-  }
-
-  &--primary {
+  &--pink {
     background-color: $pink;
 
     &:hover {
       background-color: $pink-light;
     }
 
-    &--green {
-      background-color: $green;
-      width: 100%;
-      box-shadow: none;
-
-      &:hover {
-        background-color: $green-light;
-      }
-
-      &:focus {
-        box-shadow: 0 0 0 2px $white, 0 0 5px 5px $green;
-      }
-    }
-
-    &--blue {
-      background-color: $blue;
-      width: 100%;
-      box-shadow: none;
-
-      &:hover {
-        background-color: $blue-light;
-      }
-
-      &:focus {
-        box-shadow: 0 0 0 2px $white, 0 0 5px 5px $blue;
-      }
-    }
-
-    &--pink {
-      background-color: $pink;
-      width: 100%;
-      box-shadow: none;
-
-      &:hover {
-        background-color: $pink-light;
-      }
-
-      &:focus {
-        box-shadow: 0 0 0 2px $white, 0 0 5px 5px $pink;
-      }
+    &:focus {
+      box-shadow: 0 0 0 2px $white, 0 0 5px 5px $pink;
     }
   }
 
-  &--secondary {
-    background-color: $white;
+  &--full-width {
     width: 100%;
+  }
 
-    &--green {
-      color: $green;
-      border: 2px solid $green;
-      box-shadow: none;
+  &--blue {
+    background-color: $blue;
 
-      &:hover {
-        color: $green-light;
-        border: 2px solid $green-light;
-      }
-
-      &:focus {
-        box-shadow: 0 0 0 2px $white, 0 0 5px 5px $green;
-      }
+    &:hover {
+      background-color: $blue-light;
     }
 
-    &--blue {
-      color: $blue;
-      border: 2px solid $blue;
-      box-shadow: none;
-
-      &:hover {
-        color: $blue-light;
-        border: 2px solid $blue-light;
-      }
-
-      &:focus {
-        box-shadow: 0 0 0 2px $white, 0 0 5px 5px $blue;
-      }
-    }
-
-    &--pink {
-      color: $pink;
-      border: 2px solid $pink;
-      box-shadow: none;
-
-      &:hover {
-        color: $pink-light;
-        border: 2px solid $pink-light;
-      }
-
-      &:focus {
-        box-shadow: 0 0 0 2px $white, 0 0 5px 5px $pink;
-      }
+    &:focus {
+      box-shadow: 0 0 0 2px $white, 0 0 5px 5px $blue;
     }
   }
 
-  &__container {
-    display: flex;
+  &--green {
+    background-color: $green;
+
+    &:hover {
+      outline: none;
+      background-color: $green-light;
+    }
+
+    &:focus {
+      box-shadow: 0 0 0 2px $white, 0 0 5px 5px $green;
+    }
+  }
+
+  &--black {
+    background-color: $black;
+
+    &:hover {
+      outline: none;
+      background-color: $black-light;
+    }
+
+    &:focus {
+      box-shadow: 0 0 0 2px $white, 0 0 5px 5px $black;
+    }
+  }
+
+  &--black-light {
+    background-color: $black-light;
+
+    &:hover {
+      outline: none;
+      background-color: $grey-dark-a-80;
+    }
+
+    &:focus {
+      box-shadow: 0 0 0 2px $white, 0 0 5px 5px $black-light;
+    }
+  }
+
+  &--new-repair {
+    background: $white;
+    color: $green;
+    border: 2px solid $green;
+
+    &:hover {
+      color: $green-light;
+      border: 2px solid $green-light;
+      background: $white;
+    }
+
+    &:focus {
+      box-shadow: 0 0 0 2px $white, 0 0 5px 5px $green;
+    }
   }
 }

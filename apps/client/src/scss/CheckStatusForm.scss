@@ -1,0 +1,16 @@
+.check-status-form {
+  border-radius: $radius-x1;
+  box-shadow: $shadow;
+  margin-bottom: $spacing-x5;
+  padding: $spacing-x2 $spacing-x8;
+  text-align: center;
+  max-width: 342px;
+
+  &--background-dark {
+    background-color: $grey-dark-a-80;
+  }
+
+  &--background-light {
+    background-color: $white;
+  }
+}

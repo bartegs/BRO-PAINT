@@ -2,12 +2,14 @@ import * as React from "react";
 
 import classnames from "classnames";
 
+import type { Color } from "../../../../../utils/types";
+
 interface ButtonProps {
   type?: "submit" | "button" | "reset";
   onClick?: () => void;
   text: string;
   additionalClasses?: string;
-  variation?: "primary" | "secondary" | "tertiary";
+  color: Color;
 }
 
 export function Button({
@@ -15,16 +17,12 @@ export function Button({
   onClick,
   text,
   additionalClasses,
-  variation = "primary",
+  color = "pink",
 }: ButtonProps): JSX.Element {
   return (
     <button
       onClick={onClick}
-      className={classnames(
-        "button",
-        `button--${variation}`,
-        additionalClasses
-      )}
+      className={classnames("button", `button--${color}`, additionalClasses)}
       type={type}
     >
       {text}

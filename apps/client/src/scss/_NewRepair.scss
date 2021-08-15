@@ -16,6 +16,10 @@
     }
   }
 
+  &__buttons {
+    display: flex;
+  }
+
   &__calculator {
     width: 100%;
     display: flex;

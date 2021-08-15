@@ -1,7 +1,7 @@
 .icon {
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-size: contain !important;
   display: inline-block;
 
   // sizes
@@ -13,6 +13,11 @@
   &--md {
     height: $icon-md;
     width: $icon-md;
+  }
+
+  &--lg {
+    height: $icon-lg;
+    width: $icon-lg;
   }
 
   &--car-sm {
@@ -56,6 +61,12 @@
     filter:
       invert(99%) sepia(3%) saturate(89%) hue-rotate(57deg)
       brightness(114%) contrast(91%);
+  }
+
+  &--grey {
+    filter:
+      invert(78%) sepia(0%) saturate(21%) hue-rotate(151deg)
+      brightness(95%) contrast(84%);
   }
 
   &--black {
