@@ -22,6 +22,7 @@ export function Card({
   isLast,
 }: OwnProps): JSX.Element {
   const [isExpanded, setIsExpanded] = React.useState(false);
+  const isCardInactive = additionalClasses.includes("card--inactive");
 
   return (
     <div className={classnames("axis__card card", additionalClasses)}>
@@ -32,7 +33,7 @@ export function Card({
             additionalClasses={classnames({
               "icon--left": isLast,
             })}
-            color="black"
+            color={isCardInactive ? "grey" : "black"}
             icon="flag"
             size="lg"
           />
@@ -41,7 +42,7 @@ export function Card({
               additionalClasses={classnames({
                 "icon--right": isLast,
               })}
-              color="black"
+              color={isCardInactive ? "grey" : "black"}
               icon="flag"
               size="lg"
             />
@@ -55,7 +56,7 @@ export function Card({
           </AnimateHeight>
           <button
             onClick={() => setIsExpanded((prevState) => !prevState)}
-            className={classnames("card__button toggler", {
+            className={classnames("card__button toggler icon--grey", {
               "toggler--toggled": isExpanded,
             })}
           />

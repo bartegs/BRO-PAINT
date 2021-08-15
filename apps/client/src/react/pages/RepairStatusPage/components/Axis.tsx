@@ -45,7 +45,7 @@ export function Axis({ stages, repairStage }: OwnProps): JSX.Element {
                 "axis__segment segment",
                 `segment--${segmentColor}`,
                 {
-                  "axis__segment--last": isLastElement,
+                  "segment--last": isLastElement,
                 }
               )}
             >

@@ -63,6 +63,12 @@
       brightness(114%) contrast(91%);
   }
 
+  &--grey {
+    filter:
+      invert(78%) sepia(0%) saturate(21%) hue-rotate(151deg)
+      brightness(95%) contrast(84%);
+  }
+
   &--black {
     filter:
       invert(0%) sepia(42%) saturate(4532%) hue-rotate(103deg)
