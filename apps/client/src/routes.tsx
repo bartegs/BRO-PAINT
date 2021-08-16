@@ -1,19 +1,20 @@
 import * as React from "react";
-
 import { Route } from "react-router-dom";
-import { HomePage } from "./react/pages/HomePage";
-import { NewRepair } from "./react/pages/NewRepair";
-import { AboutUsPage } from "./react/pages/AboutUsPage";
-import { GalleryPage } from "./react/pages/GalleryPage";
-import { ContactPage } from "./react/pages/ContactPage";
+import {
+  HomePage,
+  NewRepair,
+  RepairStatusPage,
+  GalleryPage,
+  AboutUsPage,
+  ContactPage,
+} from "./react/pages";
 
-const RepairStatus = () => <div>RepairStatus</div>;
 const Error = () => <div>Not found</div>;
 const Employee = () => <div>Eployee</div>;
 
 const routes = [
   { id: 0, route: "/nowa-naprawa", component: NewRepair },
-  { id: 1, route: "/stan-naprawy", component: RepairStatus },
+  { id: 1, route: "/stan-naprawy", component: RepairStatusPage },
   { id: 2, route: "/o-nas", component: AboutUsPage },
   { id: 3, route: "/galeria", component: GalleryPage },
   { id: 4, route: "/kontakt", component: ContactPage },

@@ -2,31 +2,55 @@
   font-size: $text-16;
   border: none;
   background-color: transparent;
-  border-bottom: 2px solid $pink;
+  border-bottom: 2px solid transparent;
   padding: $spacing-x1 0;
   display: block;
   width: 100%;
-
-  &--contact:focus {
-    outline: none;
-    box-shadow: unset;
-    border-radius: 0;
-    border-bottom: 2px solid $pink-light;
-  }
+  outline: none;
 
   &--homepage {
+    &:focus {
+      box-shadow: unset;
+    }
+  }
+
+  &--font-light {
     color: $white-dark;
 
     &::placeholder {
-      color: $white-a-60;
-      opacity: 1;
+      color: $white-a-80;
     }
+  }
+
+  &--font-dark {
+    color: $black;
+
+    &::placeholder {
+      color: $black-light;
+    }
+  }
+
+  &--border-green {
+    border-color: $green;
+  }
+
+  &--border-blue {
+    border-color: $blue;
+  }
+
+  &--border-black {
+    border-color: $black;
+  }
+
+  &--border-black-light {
+    border-color: $black-light;
+  }
+
+  &--border-pink {
+    border-color: $pink;
 
     &:focus {
-      outline: none;
-      box-shadow: unset;
-      border-radius: 0;
-      border-bottom: 2px solid $pink-light;
+      border-color: $pink-light;
     }
   }
 
@@ -51,6 +75,7 @@
       box-shadow: 0 0 0 2px $green;
     }
 
+    // to be repair
     &--car-size {
       display: flex;
       justify-content: space-between;

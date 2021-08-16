@@ -23,6 +23,7 @@ export interface IconProps {
   color?:
     | "white"
     | "white-dark"
+    | "grey"
     | "black"
     | "black-light"
     | "green"

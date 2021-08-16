@@ -44,14 +44,18 @@ export function CardEmail(): JSX.Element {
         name="name"
         value={messageUs.name}
         onChange={handleValueChange}
-        additionalClasses="mb-3 input--contact"
+        additionalClasses="mb-3"
+        borderColor="pink"
+        fontTheme="dark"
       />
       <Input
         placeholder="Podaj email"
         name="email"
         value={messageUs.email}
         onChange={handleValueChange}
-        additionalClasses="mb-3 input--contact"
+        additionalClasses="mb-3"
+        borderColor="pink"
+        fontTheme="dark"
       />
       <label htmlFor="message" className="contact-page__card--email__label">
         Jak możemy Ci pomóc?
@@ -66,9 +70,9 @@ export function CardEmail(): JSX.Element {
       />
       <Button
         text="Wyślij"
-        variation="primary"
+        color="pink"
         type="submit"
-        additionalClasses="contact-page__email-card__button"
+        additionalClasses="email-card__button"
       />
     </Card>
   );

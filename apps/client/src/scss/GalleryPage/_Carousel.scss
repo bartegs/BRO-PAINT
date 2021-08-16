@@ -5,22 +5,16 @@
   color: $pink;
   justify-content: space-between;
   margin-bottom: $spacing-x3;
-  //temp margin
-  margin-top: 80px;
 
   @media (min-width: $screen-md) {
     width: 530px;
     margin-left: auto;
     margin-right: auto;
     font-size: $text-24;
-    //temp margin
-    margin-top: 90px;
   }
 
   @media (min-width: $screen-lg) {
     width: 860px;
-    //temp margin
-    margin-top: 25px;
   }
 
   &__arrows-container {

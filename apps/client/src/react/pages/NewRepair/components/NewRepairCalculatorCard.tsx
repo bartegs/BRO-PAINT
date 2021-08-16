@@ -19,7 +19,7 @@ export function NewRepairCalculatorCard(): JSX.Element {
       <Button
         text="Zleć usługę"
         // onClick={sendToContactForm}
-        variation="primary"
+        color="pink"
         type="button"
         additionalClasses="button--primary"
       />
