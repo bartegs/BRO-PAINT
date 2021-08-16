@@ -62,16 +62,16 @@ export function AboutUsPage(): JSX.Element {
         Mamy doświadczenie, pasję, umiejęności oraz indywidualne podejście do
         każdego klienta.
       </h2>
-      <div className="about-us-page__cards-with-image">
+      <section className="about-us-page__cards-with-image">
         {aboutUsPageContent.services.map((item) => (
           <CardWithImage {...item} key={item.id} />
         ))}
-      </div>
-      <div className="about-us-page__cards-with-text">
+      </section>
+      <section className="about-us-page__cards-with-text">
         {aboutUsPageContent.aboutUs.map((item) => (
           <CardWithText {...item} key={item.id} />
         ))}
-      </div>
+      </section>
     </div>
   );
 }

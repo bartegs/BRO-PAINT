@@ -10,7 +10,7 @@ export function Photo({ photo, caption, onClick }: PhotoProps): JSX.Element {
   return (
     <img
       role="presentation"
-      className="gallery-page__gallery__image"
+      className="gallery-page__image"
       src={photo}
       alt={caption}
       onClick={onClick}

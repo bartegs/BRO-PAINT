@@ -47,7 +47,7 @@ export function Carousel({
         onMouseOut={handleLeftArrowsColor}
         onFocus={handleLeftArrowsColorHover}
         onBlur={handleLeftArrowsColor}
-        className="gallery-page__carousel__arrows-container gallery-page__carousel__arrows-container--left"
+        className="gallery-page__arrows-container gallery-page__arrows-container--left"
       >
         <Icon
           icon="arrow"
@@ -65,20 +65,20 @@ export function Carousel({
           color={isHoveredLeft ? "green-light" : "green"}
         />
       </button>
-      <div className="gallery-page__carousel__toggler-switch">
-        <div className="gallery-page__carousel__toggler-container">
+      <div className="gallery-page__toggler-switch">
+        <div className="gallery-page__toggler-container">
           <button
             onClick={handleLeftClick}
             aria-label="Ukończone zlecenia"
-            className={classnames("mr-4", "gallery-page__carousel__toggler", {
-              "gallery-page__carousel__toggler--on": finishedPhotos,
+            className={classnames("mr-4", "gallery-page__toggler", {
+              "gallery-page__toggler--on": finishedPhotos,
             })}
           />
           <button
             onClick={handleRightClick}
             aria-label="Przebieg naszej pracy"
-            className={classnames("gallery-page__carousel__toggler", {
-              "gallery-page__carousel__toggler--on": !finishedPhotos,
+            className={classnames("gallery-page__toggler", {
+              "gallery-page__toggler--on": !finishedPhotos,
             })}
           />
         </div>
@@ -94,7 +94,7 @@ export function Carousel({
         onMouseOut={handleRightArrowsColor}
         onFocus={handleRightArrowsColorHover}
         onBlur={handleRightArrowsColor}
-        className="gallery-page__carousel__arrows-container"
+        className="gallery-page__arrows-container"
       >
         <Icon
           icon="arrow"

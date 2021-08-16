@@ -27,7 +27,7 @@ function handleAxisColoring(
 
 export function Axis({ stages, repairStage }: OwnProps): JSX.Element {
   return (
-    <div className="repair-status-page__axis-container axis">
+    <section className="repair-status-page__axis-container axis">
       {stages.map(({ color, title, descrption, id }, i) => {
         const isFirstElement = i === 0;
         const isLastElement = i === stages.length - 1;
@@ -71,6 +71,6 @@ export function Axis({ stages, repairStage }: OwnProps): JSX.Element {
           </React.Fragment>
         );
       })}
-    </div>
+    </section>
   );
 }

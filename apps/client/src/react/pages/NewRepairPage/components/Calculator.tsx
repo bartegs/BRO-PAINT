@@ -3,9 +3,9 @@ import useWindowWidth from "../../../hooks/useWindowWidth";
 import { Input } from "../../../components/Input/Input";
 import { Button } from "../../../components/Button/Button";
 import { Icon } from "../../../components/Icon";
-import { NewRepairCalculatorCard } from "./NewRepairCalculatorCard";
+import { CalculatorCard } from "./CalculatorCard";
 
-export function NewRepairCalculator(): JSX.Element {
+export function Calculator(): JSX.Element {
   const { width } = useWindowWidth();
 
   interface ICalculator {
@@ -95,12 +95,12 @@ export function NewRepairCalculator(): JSX.Element {
   }
 
   return (
-    <div className="new-repair__calculator">
-      <h2 className="new-repair__heading">
+    <section className="new-repair-page__section">
+      <h2 className="new-repair-page__heading">
         Wylicz szacunkowy koszt naprawy {width >= 768 && <br />}
         za pomocą naszego kalkulatora
       </h2>
-      <form className="new-repair__calculator__form">
+      <form className="new-repair-page__form">
         <label
           htmlFor="repairType"
           className="input--outlined__label input--outlined__label--other"
@@ -308,7 +308,7 @@ export function NewRepairCalculator(): JSX.Element {
             </div>
           </>
         )}
-        <div className="new-repair__buttons mt-4">
+        <div className="new-repair-page__buttons mt-4">
           <Button
             text="Wylicz"
             color="green"
@@ -326,7 +326,7 @@ export function NewRepairCalculator(): JSX.Element {
         </div>
       </form>
       {/* {result} */}
-      {isCardVisible && <NewRepairCalculatorCard />}
-    </div>
+      {isCardVisible && <CalculatorCard />}
+    </section>
   );
 }

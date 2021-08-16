@@ -166,21 +166,20 @@ export function Gallery({ finishedPhotos }: GalleryProps): JSX.Element {
       <div id="gallery" className="gallery-page__gallery">
         <Photos finishedPhotos={finishedPhotos} handleModal={handleModal} />
       </div>
-
       <Modal
         isOpen={isModalOpen}
         onRequestClose={handleModal}
-        className="gallery-page__gallery__modal"
-        overlayClassName="gallery-page__gallery__overlay"
+        className="gallery-page__modal"
+        overlayClassName="gallery-page__overlay"
       >
         <img
-          className="gallery-page__gallery__modal__full-screen-image"
+          className="gallery-page__full-screen-image"
           src={targetImage}
           alt={targetAlt}
         />
-        <div className="gallery-page__gallery__modal__button__container">
+        <div className="gallery-page__button-container">
           <button
-            className="gallery-page__gallery__modal__button"
+            className="gallery-page__button"
             aria-label="Zamknij pełny ekran"
             onClick={handleModal}
           />

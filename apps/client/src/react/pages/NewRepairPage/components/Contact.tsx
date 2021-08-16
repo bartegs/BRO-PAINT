@@ -4,7 +4,7 @@ import useWindowWidth from "../../../hooks/useWindowWidth";
 import { Input } from "../../../components/Input/Input";
 import { Button } from "../../../components/Button/Button";
 
-export function NewRepairContact(): JSX.Element {
+export function Contact(): JSX.Element {
   const { width } = useWindowWidth();
   const [contact, setContact] = React.useState({
     names: "",
@@ -112,14 +112,16 @@ export function NewRepairContact(): JSX.Element {
   }
 
   return (
-    <div className="new-repair__contact">
+    <section className="new-repair-page__section">
       <h2
-        className={classnames("new-repair__heading", { "mt-10": width < 1366 })}
+        className={classnames("new-repair-page__heading", {
+          "mt-10": width < 1366,
+        })}
       >
         Lub po prostu zostaw nam dane o {width >= 768 && <br />}
         zleceniu, a my zajmiemy się resztą!
       </h2>
-      <form className="new-repair__contact__form">
+      <form className="new-repair-page__form">
         <label htmlFor="names" className="input--outlined__label">
           imie i nazwisko*
         </label>
@@ -334,19 +336,17 @@ export function NewRepairContact(): JSX.Element {
             required
             className="checkbox checkbox--green"
           />
-          <p style={{ position: "relative", top: "-17px", marginLeft: "30px" }}>
+          <p className="new-repair-page__checkbox-paragraph">
             Zapoznałem/am się z
             <a href="https://policies.google.com/privacy?hl=en-US">
               &nbsp;Polityką Prywatności&nbsp;
             </a>
             i wyrażam zgodę na przetwarzanie danych osobowych.
           </p>
-
-          {/* </p> */}
         </label>
 
         {/* {contact.privacy.toString()} */}
-        <div className="new-repair__buttons">
+        <div className="new-repair-page__buttons">
           <Button
             text="Wyślij"
             color="green"
@@ -362,6 +362,6 @@ export function NewRepairContact(): JSX.Element {
           />
         </div>
       </form>
-    </div>
+    </section>
   );
 }
