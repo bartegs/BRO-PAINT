@@ -1,0 +1,18 @@
+.gallery-page {
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: $grey;
+    border-radius: 5px;
+
+    &:hover {
+      background: $grey-medium;
+    }
+
+    &:active {
+      background: $grey-dark;
+    }
+  }
+}

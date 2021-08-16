@@ -24,7 +24,7 @@ const ServicesController = {
 
   get_all: (req: Request, res: Response) => {
     Service.find({})
-      .then((result) => {
+      .then((result: any) => {
         res.status(200).send(result);
       })
       .catch(() => {
@@ -35,7 +35,7 @@ const ServicesController = {
   get_single: (req: Request, res: Response) => {
     const id = req.params.serviceId;
     Service.findById(id)
-      .then((result) => {
+      .then((result: any) => {
         res.status(200).send(result);
       })
       .catch(() => {
@@ -54,7 +54,7 @@ const ServicesController = {
       },
       { new: true }
     )
-      .then((result) => {
+      .then((result: any) => {
         res.status(200).json({
           wiadomosc: "Zmodyfikowano usługę",
           info: result,

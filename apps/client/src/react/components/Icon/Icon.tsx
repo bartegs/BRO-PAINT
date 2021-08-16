@@ -23,13 +23,16 @@ export interface IconProps {
   color?:
     | "white"
     | "white-dark"
+    | "grey"
     | "black"
     | "black-light"
     | "green"
+    | "green-light"
     | "blue"
+    | "blue-light"
     | "pink"
-    | "grey";
-  size?: "sm" | "md" | "lg" | "car-sm" | "car-md" | "car-lg";
+    | "pink-light";
+  size?: "sm" | "md" | "lg" | "car-sm" | "car-md" | "car-lg" | "gallery-arrow";
   additionalClasses?: string;
 }
 

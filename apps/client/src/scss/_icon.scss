@@ -20,6 +20,16 @@
     width: $icon-lg;
   }
 
+  &--gallery-arrow {
+    height: $icon-arrow-sm-y;
+    width: $icon-arrow-sm-x;
+
+    @media (min-width: $screen-md) {
+      height: $icon-arrow-md-y;
+      width: $icon-arrow-md-x;
+    }
+  }
+
   &--car-sm {
     height: 25px;
     width: 60px;
@@ -87,10 +97,22 @@
       brightness(91%) contrast(101%);
   }
 
+  &--green-light {
+    filter:
+      invert(51%) sepia(61%) saturate(3210%) hue-rotate(141deg)
+      brightness(98%) contrast(101%);
+  }
+
   &--blue {
     filter:
       invert(25%) sepia(13%) saturate(7308%) hue-rotate(166deg)
       brightness(103%) contrast(101%);
+  }
+
+  &--blue-light {
+    filter:
+      invert(35%) sepia(100%) saturate(840%) hue-rotate(160deg)
+      brightness(97%) contrast(101%);
   }
 
   &--pink {
@@ -99,9 +121,19 @@
       brightness(99%) contrast(125%);
   }
 
+  &--pink-light {
+    filter:
+      invert(15%) sepia(65%) saturate(6982%) hue-rotate(324deg)
+      brightness(82%) contrast(107%);
+  }
+
   // icons
   &--arrow {
     background: url("../../../assets/icons/arrow.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    display: inline-block;
   }
 
   &--car-big {

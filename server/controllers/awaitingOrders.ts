@@ -4,7 +4,7 @@ import AwaitingOrder from "../models/AwaitingOrder";
 const AwaitingOrdersController = {
   get_all: (req: Request, res: Response) => {
     AwaitingOrder.find({})
-      .then((result) => {
+      .then((result: any) => {
         res.status(200).send(result);
       })
       .catch(() => {
@@ -15,7 +15,7 @@ const AwaitingOrdersController = {
   get_single: (req: Request, res: Response) => {
     const id = req.params.awaitingOrderId;
     AwaitingOrder.findById(id)
-      .then((result) => {
+      .then((result: any) => {
         res.status(200).send(result);
       })
       .catch(() => {
@@ -90,7 +90,7 @@ const AwaitingOrdersController = {
       },
       { new: true }
     )
-      .then((result) => {
+      .then((result: any) => {
         res.status(200).json({
           wiadomosc: "Zmodyfikowano oczekujące zlecenie",
           info: result,

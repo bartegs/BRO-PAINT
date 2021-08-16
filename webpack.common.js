@@ -9,7 +9,7 @@ module.exports = {
     worker: "./apps/worker/src/index.tsx",
   },
   output: {
-    filename: "[name]/[name].[hash:5].js",
+    filename: "[name]/[name].[fullhash:5].js",
     path: path.resolve(__dirname, "dist/apps"),
   },
 

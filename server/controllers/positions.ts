@@ -26,7 +26,7 @@ const PositionsController = {
 
   get_all: (req: Request, res: Response) => {
     Position.find({})
-      .then((result) => {
+      .then((result: any) => {
         res.status(200).send(result);
       })
       .catch(() => {
@@ -37,7 +37,7 @@ const PositionsController = {
   get_single: (req: Request, res: Response) => {
     const id = req.params.positionId;
     Position.findById(id)
-      .then((result) => {
+      .then((result: any) => {
         res.status(200).send(result);
       })
       .catch(() => {
@@ -56,7 +56,7 @@ const PositionsController = {
       },
       { new: true }
     )
-      .then((result) => {
+      .then((result: any) => {
         res.status(200).json({
           wiadomosc: "Zmodyfikowano stanowisko",
           info: result,
