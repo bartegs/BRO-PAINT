@@ -1,6 +1,6 @@
 import * as React from "react";
 import classnames from "classnames";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 interface OwnProps {
   isMenuOpen: boolean;
@@ -25,10 +25,15 @@ export function NavbarMenu({ isMenuOpen }: OwnProps): JSX.Element {
       })}
     >
       {menuItems.map(({ text, href, id }) => (
-        <li key={id} className="navbar-menu__item">
-          <Link className="navbar-menu__link" to={href}>
+        <li key={id}>
+          <NavLink
+            className="navbar-menu__link"
+            activeClassName="navbar-menu__link--active"
+            to={href}
+            exact
+          >
             {text}
-          </Link>
+          </NavLink>
         </li>
       ))}
     </ul>
