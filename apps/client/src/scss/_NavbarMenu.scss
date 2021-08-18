@@ -18,7 +18,12 @@
   }
 
   &--open {
-    height: 440px;
+    // height: 440px;
+    height: calc(100vh - 60px);
+
+    @media (min-width: $screen-md) {
+      height: calc(100vh - 70px);
+    }
 
     @media (min-width: $screen-lg) {
       transition: none;
