@@ -4,7 +4,7 @@ import classnames from "classnames";
 
 import type { Color } from "../../../../../utils/types";
 
-interface ButtonProps {
+export interface ButtonProps {
   type?: "submit" | "button" | "reset";
   onClick?: () => void;
   text: string;
