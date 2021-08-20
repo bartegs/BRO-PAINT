@@ -1,4 +1,4 @@
-.new-repair {
+.new-repair-page {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -16,41 +16,19 @@
     }
   }
 
-  &__buttons {
-    display: flex;
-  }
-
-  &__calculator {
+  &__section {
     width: 100%;
     display: flex;
     flex-direction: column;
-    // align-items: flex-start;
     align-items: center;
-
-    &__form {
-      align-self: center;
-      width: 265px;
-
-      @media (min-width: $screen-md) {
-        width: 300px;
-      }
-    }
   }
 
-  &__contact {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    // align-items: flex-end;
-    align-items: center;
+  &__form {
+    align-self: center;
+    width: 265px;
 
-    &__form {
-      align-self: center;
-      width: 265px;
-
-      @media (min-width: $screen-md) {
-        width: 300px;
-      }
+    @media (min-width: $screen-md) {
+      width: 300px;
     }
   }
 
@@ -62,5 +40,15 @@
       border-left: 2px solid $black-light;
       height: auto;
     }
+  }
+
+  &__checkbox-paragraph {
+    position: relative;
+    top: -17px;
+    margin-left: 30px;
+  }
+
+  &__buttons {
+    display: flex;
   }
 }

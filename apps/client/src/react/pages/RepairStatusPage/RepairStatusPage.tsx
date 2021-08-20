@@ -67,14 +67,14 @@ export function RepairStatusPage(): JSX.Element {
 
   return (
     <div className="container repair-status-page">
-      <div className="repair-status-page__form-container">
+      <section className="repair-status-page__form-container">
         <CheckStatusForm
           inputFontTheme="dark"
           inputBorderColor={formElementColor}
           buttonColor={formElementColor}
           headingColor={formElementColor}
         />
-      </div>
+      </section>
       <Axis repairStage={repairStage} stages={repairMainStages} />
     </div>
   );

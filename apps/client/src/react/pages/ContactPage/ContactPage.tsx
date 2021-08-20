@@ -7,7 +7,7 @@ import { Map } from "./components/Map";
 export function ContactPage(): JSX.Element {
   return (
     <div className="contact-page container">
-      <div className="contact-page__cards-container">
+      <section className="contact-page__cards-container">
         <Card category="address" icon="location" color="green">
           <p className="mb-2">BRO PAINT siedziba w Gdańsku</p>
           <p className="mb-2">ul. Detailingowa 21</p>
@@ -24,7 +24,7 @@ export function ContactPage(): JSX.Element {
           </p>
         </Card>
         <CardEmail />
-      </div>
+      </section>
       <Map />
     </div>
   );

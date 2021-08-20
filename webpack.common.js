@@ -17,12 +17,14 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: "./apps/client/src/index.html",
       filename: "client/index.html",
+      favicon: "./apps/assets/icons/favicon.png",
       chunks: ["client"],
     }),
 
     new HtmlWebpackPlugin({
       template: "./apps/worker/src/index.html",
       filename: "worker/index.html",
+      favicon: "./apps/assets/icons/favicon.png",
       chunks: ["worker"],
     }),
 

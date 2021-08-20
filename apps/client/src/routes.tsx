@@ -2,7 +2,7 @@ import * as React from "react";
 import { Route } from "react-router-dom";
 import {
   HomePage,
-  NewRepair,
+  NewRepairPage,
   RepairStatusPage,
   GalleryPage,
   AboutUsPage,
@@ -13,7 +13,7 @@ const Error = () => <div>Not found</div>;
 const Employee = () => <div>Eployee</div>;
 
 const routes = [
-  { id: 0, route: "/nowa-naprawa", component: NewRepair },
+  { id: 0, route: "/nowa-naprawa", component: NewRepairPage },
   { id: 1, route: "/stan-naprawy", component: RepairStatusPage },
   { id: 2, route: "/o-nas", component: AboutUsPage },
   { id: 3, route: "/galeria", component: GalleryPage },

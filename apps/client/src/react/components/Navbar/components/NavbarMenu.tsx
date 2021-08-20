@@ -1,12 +1,18 @@
 import * as React from "react";
 import classnames from "classnames";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 interface OwnProps {
   isMenuOpen: boolean;
+  handleMenuKeyboard: (e: React.KeyboardEvent) => void;
+  closeMenu: () => void;
 }
 
-export function NavbarMenu({ isMenuOpen }: OwnProps): JSX.Element {
+export function NavbarMenu({
+  isMenuOpen,
+  handleMenuKeyboard,
+  closeMenu,
+}: OwnProps): JSX.Element {
   const menuItems = [
     { id: 0, text: "Strona główna", href: "/" },
     { id: 1, text: "Zleć naprawę", href: "/nowa-naprawa" },
@@ -17,6 +23,8 @@ export function NavbarMenu({ isMenuOpen }: OwnProps): JSX.Element {
     { id: 6, text: "Pracownik", href: "/pracownik" },
   ];
 
+  // const closeMenu = () => setIsMenuOpen(false);
+
   return (
     <ul
       className={classnames("navbar-menu", {
@@ -25,10 +33,20 @@ export function NavbarMenu({ isMenuOpen }: OwnProps): JSX.Element {
       })}
     >
       {menuItems.map(({ text, href, id }) => (
-        <li key={id} className="navbar-menu__item">
-          <Link className="navbar-menu__link" to={href}>
+        <li
+          role="menuitem"
+          onClick={closeMenu}
+          key={id}
+          onKeyDown={handleMenuKeyboard}
+        >
+          <NavLink
+            className="navbar-menu__link"
+            activeClassName="navbar-menu__link--active"
+            to={href}
+            exact
+          >
             {text}
-          </Link>
+          </NavLink>
         </li>
       ))}
     </ul>
