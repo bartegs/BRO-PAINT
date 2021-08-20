@@ -177,7 +177,7 @@ export function Contact(): JSX.Element {
             onChange={handleSelectChange}
             required
           >
-            <option value="" selected hidden>
+            <option value="" hidden>
               Wybierz rocznik auta
             </option>
             <option value="1999">1999</option>
@@ -201,7 +201,7 @@ export function Contact(): JSX.Element {
             onChange={handleSelectChange}
             required
           >
-            <option value="" selected hidden>
+            <option value="" hidden>
               Wybierz markę auta
             </option>
             <option value="audi">Audi</option>
