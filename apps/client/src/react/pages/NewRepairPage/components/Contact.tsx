@@ -3,6 +3,7 @@ import classnames from "classnames";
 import useWindowWidth from "../../../hooks/useWindowWidth";
 import { Input } from "../../../components/forms/components/Input";
 import { Select } from "../../../components/forms/components/Select";
+import { Checkbox } from "../../../components/forms/components/Checkbox";
 import { Button } from "../../../components/Button/Button";
 
 export function Contact(): JSX.Element {
@@ -311,25 +312,14 @@ export function Contact(): JSX.Element {
           name="photo"
         />
 
-        <label htmlFor="privacy" className="w-100 mb-2">
-          <input
-            name="privacy"
-            id="privacy"
-            type="checkbox"
-            checked={contact.privacy}
-            onChange={handleCheckboxChange}
-            required
-            className="checkbox checkbox--green"
-          />
-          <p className="new-repair-page__checkbox-paragraph">
-            Zapoznałem/am się z
-            <a href="https://policies.google.com/privacy?hl=en-US">
-              &nbsp;Polityką Prywatności&nbsp;
-            </a>
-            i wyrażam zgodę na przetwarzanie danych osobowych.
-          </p>
-        </label>
-
+        <Checkbox
+          name="privacy"
+          id="privacy"
+          isChecked={contact.privacy}
+          onChange={handleCheckboxChange}
+          required
+          color="pink"
+        />
         {/* {contact.privacy.toString()} */}
         <div className="new-repair-page__buttons">
           <Button
