@@ -1,10 +1,10 @@
 import * as React from "react";
 
 import classnames from "classnames";
-import type { Color } from "../../../../../utils/types";
+import type { Color } from "../../../../../../utils/types";
 
-import { Button } from "../Button";
-import { Input } from "../Input";
+import { Button } from "../../Button";
+import { Input } from "../components/Input";
 
 interface OwnProps {
   additionalClasses?: string;
@@ -48,7 +48,7 @@ export function CheckStatusForm({
           name="repair-code"
           value={value}
           onChange={handleValueChange}
-          additionalClasses="input--homepage mt-3 mb-5"
+          additionalClasses="mt-3 mb-5"
           borderColor={inputBorderColor}
           fontTheme={inputFontTheme}
         />

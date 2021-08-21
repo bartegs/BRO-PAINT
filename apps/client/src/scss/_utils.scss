@@ -72,3 +72,16 @@ $spacing: 5px;
   display: inline-block;
   width: 100%;
 }
+
+body:not(.user-is-tabbing) button:focus,
+body:not(.user-is-tabbing) .input--file:focus-within {
+  outline: none;
+  box-shadow: unset;
+}
+
+body:not(.user-is-tabbing) .radio:focus-within,
+body:not(.user-is-tabbing) .radio--car-size:focus-within {
+  border: unset;
+  padding: unset;
+  height: unset;
+}

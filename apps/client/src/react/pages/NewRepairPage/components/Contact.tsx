@@ -1,7 +1,8 @@
 import * as React from "react";
 import classnames from "classnames";
 import useWindowWidth from "../../../hooks/useWindowWidth";
-import { Input } from "../../../components/Input/Input";
+import { Input } from "../../../components/forms/components/Input";
+import { Select } from "../../../components/forms/components/Select";
 import { Button } from "../../../components/Button/Button";
 
 export function Contact(): JSX.Element {
@@ -111,6 +112,22 @@ export function Contact(): JSX.Element {
     }
   }
 
+  const yearsData = [
+    { id: 0, value: "", text: "Wybierz rocznik auta" },
+    { id: 1, value: "1999", text: "1999" },
+    { id: 2, value: "2000", text: "2000" },
+    { id: 3, value: "2001", text: "2001" },
+    { id: 4, value: "2002", text: "2002" },
+  ];
+
+  const makesData = [
+    { id: 0, value: "", text: "Wybierz markę auta" },
+    { id: 1, value: "audi", text: "Audi" },
+    { id: 2, value: "bmw", text: "BMW" },
+    { id: 3, value: "mercedes", text: "Mercedes" },
+    { id: 4, value: "volvo", text: "Volvo" },
+  ];
+
   return (
     <section className="new-repair-page__section">
       <h2
@@ -163,53 +180,27 @@ export function Contact(): JSX.Element {
           required
         />
         {/* {contact.phone} */}
-        <label
-          htmlFor="year"
-          className="input--outlined__label input--outlined__label--other"
-        >
-          rocznik*
-        </label>
-        <div className="select">
-          <select
-            name="year"
-            id="year"
-            value={contact.year}
-            onChange={handleSelectChange}
-            required
-          >
-            <option value="" hidden>
-              Wybierz rocznik auta
-            </option>
-            <option value="1999">1999</option>
-            <option value="2000">2000</option>
-            <option value="2001">2001</option>
-            <option value="2002">2002</option>
-          </select>
-        </div>
+        <Select
+          labelText="rocznik*"
+          color="blue"
+          name="year"
+          id="year"
+          value={contact.year}
+          onChange={handleSelectChange}
+          required
+          optionsData={yearsData}
+        />
         {/* {contact.year} */}
-        <label
-          htmlFor="make"
-          className="input--outlined__label  input--outlined__label--other"
-        >
-          marka*
-        </label>
-        <div className="select">
-          <select
-            name="make"
-            id="make"
-            value={contact.make}
-            onChange={handleSelectChange}
-            required
-          >
-            <option value="" hidden>
-              Wybierz markę auta
-            </option>
-            <option value="audi">Audi</option>
-            <option value="bmw">BMW</option>
-            <option value="mercedes">Mercedes</option>
-            <option value="volvo">Volvo</option>
-          </select>
-        </div>
+        <Select
+          labelText="marka*"
+          color="green"
+          name="make"
+          id="make"
+          value={contact.make}
+          onChange={handleSelectChange}
+          required
+          optionsData={makesData}
+        />
         {/* {contact.make} */}
         <label htmlFor="model" className="input--outlined__label">
           model*
@@ -252,10 +243,7 @@ export function Contact(): JSX.Element {
           type="text"
         />
         {/* {contact.paint} */}
-        <label
-          htmlFor="repairType"
-          className="input--outlined__label input--outlined__label--other"
-        >
+        <label htmlFor="repairType" className="input--outlined__label">
           Usługa*
         </label>
         <div id="repairType" className="input--outlined">
@@ -300,10 +288,7 @@ export function Contact(): JSX.Element {
             <span className="radio__label">Detailing</span>
           </label>
         </div>
-        <label
-          htmlFor="description"
-          className="input--outlined__label  input--outlined__label--other"
-        >
+        <label htmlFor="description" className="input--outlined__label">
           Usługa
         </label>
         <textarea

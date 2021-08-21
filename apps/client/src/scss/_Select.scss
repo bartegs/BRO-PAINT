@@ -1,0 +1,102 @@
+.select {
+  width: 100%;
+  border: 1px solid $black-light;
+  border-radius: 5px;
+  padding: $spacing-x2;
+  cursor: pointer;
+  margin-bottom: $spacing-x1;
+  display: grid;
+  grid-template-areas: "select";
+  align-items: center;
+
+  &:focus-within {
+    outline: none;
+    border-radius: 5px;
+  }
+
+  &::after {
+    content: "";
+    width: 12px;
+    height: 12px;
+    clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+    justify-self: end;
+  }
+
+  &--green {
+    &:focus-within {
+      box-shadow: 0 0 0 2px $green;
+    }
+
+    &::after {
+      background-color: $green;
+    }
+  }
+
+  &--blue {
+    &:focus-within {
+      box-shadow: 0 0 0 2px $blue;
+    }
+
+    &::after {
+      background-color: $blue;
+    }
+  }
+
+  &--pink {
+    &:focus-within {
+      box-shadow: 0 0 0 2px $pink;
+    }
+
+    &::after {
+      background-color: $pink;
+    }
+  }
+
+  &__label {
+    color: $black-light;
+    font-size: $text-12;
+    font-weight: bold;
+    text-transform: uppercase;
+    position: relative;
+    bottom: -7px;
+    left: $spacing-x2;
+    background: $white;
+    padding: 0 $spacing-x1;
+
+    &--green {
+      color: $green;
+    }
+
+    &--blue {
+      color: $blue;
+    }
+
+    &--pink {
+      color: $pink;
+    }
+  }
+}
+
+select {
+  appearance: none;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  font-family: Roboto, Arial, Helvetica, sans-serif;
+  font-size: $text-16;
+  line-height: inherit;
+  outline: none;
+  cursor: pointer;
+}
+
+select,
+.select::after {
+  grid-area: select;
+}
+
+select:invalid,
+select option[value=""] {
+  color: $grey-dark-a-80;
+}

@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Color } from "../../../../../utils/types";
 
-import { CheckStatusForm } from "../../components/CheckStatusForm";
+import { CheckStatusForm } from "../../components/forms/CheckStatusForm";
 import { Axis } from "./components";
 
 type RepairMainStageId = 0 | 1 | 2 | 3 | 4;

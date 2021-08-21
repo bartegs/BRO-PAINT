@@ -1,6 +1,7 @@
 import * as React from "react";
 import useWindowWidth from "../../../hooks/useWindowWidth";
-import { Input } from "../../../components/Input/Input";
+import { Input } from "../../../components/forms/components/Input";
+import { Select } from "../../../components/forms/components/Select";
 import { Button } from "../../../components/Button/Button";
 import { Icon } from "../../../components/Icon";
 import { CalculatorCard } from "./CalculatorCard";
@@ -94,6 +95,38 @@ export function Calculator(): JSX.Element {
     setisCardVisible((prevIsCardVisible) => !prevIsCardVisible);
   }
 
+  const paintCorrectionsData = [
+    { id: 0, value: "", text: "Wybierz rodzaj korekty lakieru" },
+    { id: 1, value: "3in1", text: "Korekta 3w1" },
+    { id: 2, value: "3in1ceramic", text: "Korekta 3w1 + ceramika" },
+    { id: 3, value: "3stage", text: "Korekta 3 etapowa" },
+    { id: 4, value: "3stage+ceramic", text: "Korekta 3 etapowa + ceramika" },
+  ];
+
+  const yearsData = [
+    { id: 0, value: "", text: "Wybierz rocznik auta" },
+    { id: 1, value: "1999", text: "1999" },
+    { id: 2, value: "2000", text: "2000" },
+    { id: 3, value: "2001", text: "2001" },
+    { id: 4, value: "2002", text: "2002" },
+  ];
+
+  const makesData = [
+    { id: 0, value: "", text: "Wybierz markę auta" },
+    { id: 1, value: "audi", text: "Audi" },
+    { id: 2, value: "bmw", text: "BMW" },
+    { id: 3, value: "mercedes", text: "Mercedes" },
+    { id: 4, value: "volvo", text: "Volvo" },
+  ];
+
+  const panelsData = [
+    { id: 0, value: "", text: "Wybierz liczbę elementów" },
+    { id: 1, value: 1, text: "1" },
+    { id: 2, value: 2, text: "2" },
+    { id: 3, value: 3, text: "3" },
+    { id: 4, value: 4, text: "4" },
+  ];
+
   return (
     <section className="new-repair-page__section">
       <h2 className="new-repair-page__heading">
@@ -101,10 +134,7 @@ export function Calculator(): JSX.Element {
         za pomocą naszego kalkulatora
       </h2>
       <form className="new-repair-page__form">
-        <label
-          htmlFor="repairType"
-          className="input--outlined__label input--outlined__label--other"
-        >
+        <label htmlFor="repairType" className="input--outlined__label">
           Usługa*
         </label>
         <div id="repairType" className="input--outlined">
@@ -150,84 +180,38 @@ export function Calculator(): JSX.Element {
           </label>
         </div>
         {calculator.repairType === "Detailing" && (
-          <>
-            <label
-              htmlFor="make"
-              className="input--outlined__label  input--outlined__label--other"
-            >
-              zakres korekty*
-            </label>
-            <div className="select">
-              <select
-                name="paintCorrection"
-                id="paintCorrection"
-                value={calculator.paintCorrection}
-                onChange={handleSelectChange}
-                required
-              >
-                <option value="" hidden>
-                  Wybierz rodzaj korekty lakieru
-                </option>
-                <option value="3in1">Korekta 3w1</option>
-                <option value="3in1ceramic">Korekta 3w1 + ceramika</option>
-                <option value="3stage">Korekta 3 etapowa</option>
-                <option value="3stage+ceramic">
-                  Korekta 3 etapowa + ceramika
-                </option>
-              </select>
-            </div>
-          </>
+          <Select
+            labelText="zakres korekty*"
+            color="blue"
+            name="paintCorrection"
+            id="paintCorrection"
+            value={calculator.paintCorrection}
+            onChange={handleSelectChange}
+            required
+            optionsData={paintCorrectionsData}
+          />
         )}
-        <label
-          htmlFor="year"
-          className="input--outlined__label input--outlined__label--other"
-        >
-          rocznik*
-        </label>
-        <div className="select">
-          <select
-            name="year"
-            id="year"
-            value={calculator.year}
-            onChange={handleSelectChange}
-            required
-          >
-            <option value="" hidden>
-              Wybierz rocznik auta
-            </option>
-            <option value="1999">1999</option>
-            <option value="2000">2000</option>
-            <option value="2001">2001</option>
-            <option value="2002">2002</option>
-          </select>
-        </div>
-        <label
-          htmlFor="make"
-          className="input--outlined__label  input--outlined__label--other"
-        >
-          marka*
-        </label>
-        <div className="select">
-          <select
-            name="make"
-            id="make"
-            value={calculator.make}
-            onChange={handleSelectChange}
-            required
-          >
-            <option value="" hidden>
-              Wybierz markę auta
-            </option>
-            <option value="audi">Audi</option>
-            <option value="bmw">BMW</option>
-            <option value="mercedes">Mercedes</option>
-            <option value="volvo">Volvo</option>
-          </select>
-        </div>
-        <label
-          htmlFor="carSize"
-          className="input--outlined__label input--outlined__label--other"
-        >
+        <Select
+          labelText="rocznik*"
+          color="blue"
+          name="year"
+          id="year"
+          value={calculator.year}
+          onChange={handleSelectChange}
+          required
+          optionsData={yearsData}
+        />
+        <Select
+          labelText="marka*"
+          color="green"
+          name="make"
+          id="make"
+          value={calculator.make}
+          onChange={handleSelectChange}
+          required
+          optionsData={makesData}
+        />
+        <label htmlFor="carSize" className="input--outlined__label">
           rozmiar auta*
         </label>
         <div id="carSize" className="input--outlined input--outlined--car-size">
@@ -282,31 +266,16 @@ export function Calculator(): JSX.Element {
           </label>
         </div>
         {calculator.repairType !== "Detailing" && (
-          <>
-            <label
-              htmlFor="make"
-              className="input--outlined__label  input--outlined__label--other"
-            >
-              liczba elementów*
-            </label>
-            <div className="select">
-              <select
-                name="panels"
-                id="panels"
-                value={calculator.panels}
-                onChange={handleSelectChange}
-                required
-              >
-                <option value="" hidden>
-                  Wybierz liczbę elementów
-                </option>
-                <option value={1}>1</option>
-                <option value={2}>2</option>
-                <option value={3}>3</option>
-                <option value={4}>4</option>
-              </select>
-            </div>
-          </>
+          <Select
+            labelText="liczba elementów*"
+            color="green"
+            name="panels"
+            id="panels"
+            value={calculator.panels}
+            onChange={handleSelectChange}
+            required
+            optionsData={panelsData}
+          />
         )}
         <div className="new-repair-page__buttons mt-4">
           <Button

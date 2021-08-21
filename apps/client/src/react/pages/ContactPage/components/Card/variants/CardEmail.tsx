@@ -1,7 +1,7 @@
 import * as React from "react";
 
 import { Card } from "../Card";
-import { Input } from "../../../../../components/Input";
+import { Input } from "../../../../../components/forms/components/Input";
 import { Button } from "../../../../../components/Button";
 
 export function CardEmail(): JSX.Element {
