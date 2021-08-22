@@ -118,47 +118,6 @@
       }
     }
   }
-
-  &--centered-label {
-    display: block;
-    text-align: center;
-  }
-
-  &--file {
-    width: 100%;
-
-    &::-webkit-file-upload-button {
-      visibility: hidden;
-    }
-
-    &:focus-within {
-      outline: none;
-      border-radius: 5px;
-      box-shadow: 0 0 0 2px $green;
-    }
-
-    &::before {
-      content: "Załącz pliki";
-      display: block;
-      text-align: center;
-      background: $black-light;
-      border-radius: 5px;
-      padding: $spacing-x1 $spacing-x3;
-      outline: none;
-      white-space: nowrap;
-      -webkit-user-select: none;
-      user-select: none;
-      cursor: pointer;
-      color: $white;
-      font-weight: bold;
-      font-size: $text-16;
-      font-family: Roboto, Arial, Helvetica, sans-serif;
-    }
-
-    &:hover::before {
-      background-color: $grey-dark-a-80;
-    }
-  }
 }
 
 .text-area {
@@ -279,36 +238,6 @@
       &:checked + .radio__control {
         background: radial-gradient($green 45%, $white 10%);
       }
-    }
-  }
-}
-
-.checkbox {
-  transform: scale(1.25);
-  margin: 0;
-  cursor: pointer;
-
-  &--green {
-    filter: hue-rotate(315deg) saturate(70%);
-
-    &:hover {
-      filter: hue-rotate(315deg) brightness(160%);
-    }
-  }
-
-  &--pink {
-    filter: hue-rotate(126deg) saturate(36%);
-
-    &:hover {
-      filter: hue-rotate(119deg) saturate(100%);
-    }
-  }
-
-  &--blue {
-    filter: hue-rotate(338deg) saturate(45%);
-
-    &:hover {
-      filter: hue-rotate(338deg) brightness(140%);
     }
   }
 }

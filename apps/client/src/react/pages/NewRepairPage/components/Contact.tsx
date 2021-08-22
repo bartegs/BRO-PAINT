@@ -3,6 +3,7 @@ import classnames from "classnames";
 import useWindowWidth from "../../../hooks/useWindowWidth";
 import { Input } from "../../../components/forms/components/Input";
 import { Select } from "../../../components/forms/components/Select";
+import { File } from "../../../components/forms/components/File";
 import { Checkbox } from "../../../components/forms/components/Checkbox";
 import { Button } from "../../../components/Button/Button";
 
@@ -300,7 +301,7 @@ export function Contact(): JSX.Element {
           value={contact.description}
           onChange={handleTextAreaChange}
         />
-        <label htmlFor="photo" className="input--centered-label">
+        {/* <label htmlFor="photo" className="input--centered-label">
           Jeśli chcesz, możesz załączyć zdjęcia auta, pomoże nam to w
           oszacowaniu wymaganej pracy.
         </label>
@@ -310,6 +311,11 @@ export function Contact(): JSX.Element {
           multiple
           id="photo"
           name="photo"
+        /> */}
+        <File
+          name="photo"
+          id="photo"
+          additionalClasses="file__label--centered"
         />
 
         <Checkbox

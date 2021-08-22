@@ -74,7 +74,7 @@ $spacing: 5px;
 }
 
 body:not(.user-is-tabbing) button:focus,
-body:not(.user-is-tabbing) .input--file:focus-within {
+body:not(.user-is-tabbing) .file:focus-within {
   outline: none;
   box-shadow: unset;
 }
