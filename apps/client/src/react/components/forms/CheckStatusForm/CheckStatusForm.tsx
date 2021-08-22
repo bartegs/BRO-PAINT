@@ -52,7 +52,12 @@ export function CheckStatusForm({
           borderColor={inputBorderColor}
           fontTheme={inputFontTheme}
         />
-        <Button text="Sprawdź" color={buttonColor} type="submit" />
+        <Button
+          text="Sprawdź"
+          variant="primary"
+          color={buttonColor}
+          type="submit"
+        />
       </form>
     </div>
   );

@@ -74,18 +74,12 @@
     margin-bottom: $spacing-x1;
     width: 100%;
 
-    &::placeholder {
-      color: $grey-dark-a-80;
-      opacity: 1;
-    }
-
     &:focus-within {
       outline: none;
       border-radius: 5px;
       box-shadow: 0 0 0 2px $green;
     }
 
-    // to be repair
     &--car-size {
       display: flex;
       justify-content: space-between;
@@ -116,37 +110,6 @@
       &--pink {
         color: $pink;
       }
-    }
-  }
-}
-
-.text-area {
-  font-family: Roboto, Arial, Helvetica, sans-serif;
-  font-size: $text-16;
-  resize: none;
-  width: 100%;
-
-  &--new-repair-page {
-    height: 100px;
-    margin-bottom: $spacing-x3;
-
-    &:focus {
-      outline: none;
-      border-radius: 5px;
-      box-shadow: 0 0 0 2px $green;
-    }
-  }
-
-  &--contact-page {
-    height: 50px;
-    margin-bottom: $spacing-x2;
-    border: 2px solid $pink;
-    padding: $spacing-x1;
-
-    &:focus {
-      outline: none;
-      // box-shadow: 0 0 0 2px $pink;
-      border: 2px solid $pink-light;
     }
   }
 }

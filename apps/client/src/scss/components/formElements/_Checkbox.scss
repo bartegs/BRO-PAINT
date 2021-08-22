@@ -1,7 +1,19 @@
 .checkbox {
   transform: scale(1.25);
-  margin: 0;
   cursor: pointer;
+  position: relative;
+  margin: 0;
+  top: 2px;
+  left: 1px;
+
+  @media (min-width: $screen-md) {
+    left: 2px;
+  }
+
+  @media (min-width: $screen-lg) {
+    left: 2px;
+    top: 3px;
+  }
 
   &--green {
     filter: hue-rotate(315deg) saturate(70%);

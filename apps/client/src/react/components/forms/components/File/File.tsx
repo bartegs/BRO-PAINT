@@ -4,20 +4,35 @@ import classnames from "classnames";
 interface FileProps {
   name: string;
   id: string;
-  additionalClasses?: string;
+  fileAdditionalClasses?: string;
+  labelAdditionalClasses?: string;
+  required?: boolean;
 }
 
-export function File({ name, id, additionalClasses }: FileProps): JSX.Element {
+export function File({
+  name,
+  id,
+  fileAdditionalClasses,
+  labelAdditionalClasses,
+  required,
+}: FileProps): JSX.Element {
   return (
     <>
       <label
         htmlFor={id}
-        className={classnames("file__label", additionalClasses)}
+        className={classnames("file__label", labelAdditionalClasses)}
       >
         Jeśli chcesz, możesz załączyć zdjęcia auta, pomoże nam to w oszacowaniu
         wymaganej pracy.
       </label>
-      <input type="file" className="file my-3" multiple id={id} name={name} />
+      <input
+        type="file"
+        className={classnames("file", fileAdditionalClasses)}
+        multiple
+        id={id}
+        name={name}
+        required={required}
+      />
     </>
   );
 }

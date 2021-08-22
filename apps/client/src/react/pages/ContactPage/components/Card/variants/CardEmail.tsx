@@ -3,6 +3,7 @@ import * as React from "react";
 import { Card } from "../Card";
 import { Input } from "../../../../../components/forms/components/Input";
 import { Button } from "../../../../../components/Button";
+import { TextArea } from "../../../../../components/forms/components/TextArea";
 
 export function CardEmail(): JSX.Element {
   const [messageUs, setMessageUs] = React.useState({
@@ -57,23 +58,18 @@ export function CardEmail(): JSX.Element {
         borderColor="pink"
         fontTheme="dark"
       />
-      <label htmlFor="message" className="contact-page__card--email__label">
-        Jak możemy Ci pomóc?
-      </label>
-      <textarea
+      <TextArea
+        labelText="Jak możemy Ci pomóc?"
         name="message"
         id="message"
-        className="mt-1 text-area text-area--contact-page "
-        placeholder="Twoja wiadomość"
         value={messageUs.message}
+        placeholder="Twoja wiadomość"
         onChange={handleTextAreaChange}
-      />
-      <Button
-        text="Wyślij"
         color="pink"
-        type="submit"
-        additionalClasses="email-card__button"
+        variant="underlined"
+        additionalClasses="mt-1"
       />
+      <Button text="Wyślij" variant="primary" color="pink" type="submit" />
     </Card>
   );
 }

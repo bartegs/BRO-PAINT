@@ -3,9 +3,12 @@ import classnames from "classnames";
 import useWindowWidth from "../../../hooks/useWindowWidth";
 import { Input } from "../../../components/forms/components/Input";
 import { Select } from "../../../components/forms/components/Select";
+import { TextArea } from "../../../components/forms/components/TextArea";
 import { File } from "../../../components/forms/components/File";
 import { Checkbox } from "../../../components/forms/components/Checkbox";
 import { Button } from "../../../components/Button/Button";
+
+import { Color } from "../../../../../../utils/types";
 
 export function Contact(): JSX.Element {
   const { width } = useWindowWidth();
@@ -130,6 +133,11 @@ export function Contact(): JSX.Element {
     { id: 4, value: "volvo", text: "Volvo" },
   ];
 
+  const [
+    color,
+    // setColor
+  ] = React.useState<Color>("pink");
+
   return (
     <section className="new-repair-page__section">
       <h2
@@ -167,7 +175,6 @@ export function Contact(): JSX.Element {
           type="email"
           required
         />
-        {/* {contact.email} */}
         <label htmlFor="phone" className="input--outlined__label">
           telefon*
         </label>
@@ -181,10 +188,9 @@ export function Contact(): JSX.Element {
           type="text"
           required
         />
-        {/* {contact.phone} */}
         <Select
           labelText="rocznik*"
-          color="blue"
+          color={color}
           name="year"
           id="year"
           value={contact.year}
@@ -192,10 +198,9 @@ export function Contact(): JSX.Element {
           required
           optionsData={yearsData}
         />
-        {/* {contact.year} */}
         <Select
           labelText="marka*"
-          color="green"
+          color={color}
           name="make"
           id="make"
           value={contact.make}
@@ -203,7 +208,6 @@ export function Contact(): JSX.Element {
           required
           optionsData={makesData}
         />
-        {/* {contact.make} */}
         <label htmlFor="model" className="input--outlined__label">
           model*
         </label>
@@ -217,7 +221,6 @@ export function Contact(): JSX.Element {
           type="text"
           required
         />
-        {/* {contact.model} */}
         <label htmlFor="plate" className="input--outlined__label">
           rejestracja*
         </label>
@@ -231,7 +234,6 @@ export function Contact(): JSX.Element {
           type="text"
           required
         />
-        {/* {contact.plate} */}
         <label htmlFor="paint" className="input--outlined__label">
           kod lakieru
         </label>
@@ -244,7 +246,6 @@ export function Contact(): JSX.Element {
           additionalClasses="input--outlined"
           type="text"
         />
-        {/* {contact.paint} */}
         <label htmlFor="repairType" className="input--outlined__label">
           Usługa*
         </label>
@@ -290,56 +291,46 @@ export function Contact(): JSX.Element {
             <span className="radio__label">Detailing</span>
           </label>
         </div>
-        <label htmlFor="description" className="input--outlined__label">
-          Usługa
-        </label>
-        <textarea
+        <TextArea
+          labelText="Usługa"
           name="description"
           id="description"
-          className="input--outlined text-area text-area--new-repair-page"
-          placeholder="Opisz swoje zlecenie i podziel się swoimi uwagami."
           value={contact.description}
+          placeholder="Opisz swoje zlecenie i podziel się swoimi uwagami."
           onChange={handleTextAreaChange}
+          color={color}
+          variant="outlined"
+          additionalClasses="mb-3"
         />
-        {/* <label htmlFor="photo" className="input--centered-label">
-          Jeśli chcesz, możesz załączyć zdjęcia auta, pomoże nam to w
-          oszacowaniu wymaganej pracy.
-        </label>
-        <input
-          type="file"
-          className="input--file my-3"
-          multiple
-          id="photo"
-          name="photo"
-        /> */}
         <File
           name="photo"
           id="photo"
-          additionalClasses="file__label--centered"
+          labelAdditionalClasses="file__label--centered"
+          fileAdditionalClasses="my-3"
         />
-
         <Checkbox
           name="privacy"
           id="privacy"
           isChecked={contact.privacy}
           onChange={handleCheckboxChange}
           required
-          color="pink"
+          color={color}
         />
-        {/* {contact.privacy.toString()} */}
         <div className="new-repair-page__buttons">
           <Button
             text="Wyślij"
-            color="green"
+            color={color}
             type="submit"
+            variant="primary"
             additionalClasses="mr-3 w-100"
           />
           <Button
             text="Resetuj"
-            color="green"
+            color={color}
             type="reset"
+            variant="secondary"
             onClick={handleReset}
-            additionalClasses="button--new-repair w-100"
+            additionalClasses="w-100"
           />
         </div>
       </form>

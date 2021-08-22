@@ -32,14 +32,5 @@
     @media (min-width: $screen-md) {
       flex: 1;
     }
-
-    &__label {
-      position: relative;
-      left: -35px;
-
-      @media (min-width: $screen-md) and (max-width: $screen-lg - 1px) {
-        left: -254px;
-      }
-    }
   }
 }

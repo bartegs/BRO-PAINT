@@ -6,6 +6,8 @@ import { Button } from "../../../components/Button/Button";
 import { Icon } from "../../../components/Icon";
 import { CalculatorCard } from "./CalculatorCard";
 
+import { Color } from "../../../../../../utils/types";
+
 export function Calculator(): JSX.Element {
   const { width } = useWindowWidth();
 
@@ -127,6 +129,11 @@ export function Calculator(): JSX.Element {
     { id: 4, value: 4, text: "4" },
   ];
 
+  const [
+    color,
+    // setColor
+  ] = React.useState<Color>("pink");
+
   return (
     <section className="new-repair-page__section">
       <h2 className="new-repair-page__heading">
@@ -182,7 +189,7 @@ export function Calculator(): JSX.Element {
         {calculator.repairType === "Detailing" && (
           <Select
             labelText="zakres korekty*"
-            color="blue"
+            color={color}
             name="paintCorrection"
             id="paintCorrection"
             value={calculator.paintCorrection}
@@ -193,7 +200,7 @@ export function Calculator(): JSX.Element {
         )}
         <Select
           labelText="rocznik*"
-          color="blue"
+          color={color}
           name="year"
           id="year"
           value={calculator.year}
@@ -203,7 +210,7 @@ export function Calculator(): JSX.Element {
         />
         <Select
           labelText="marka*"
-          color="green"
+          color={color}
           name="make"
           id="make"
           value={calculator.make}
@@ -268,7 +275,7 @@ export function Calculator(): JSX.Element {
         {calculator.repairType !== "Detailing" && (
           <Select
             labelText="liczba elementów*"
-            color="green"
+            color={color}
             name="panels"
             id="panels"
             value={calculator.panels}
@@ -280,16 +287,18 @@ export function Calculator(): JSX.Element {
         <div className="new-repair-page__buttons mt-4">
           <Button
             text="Wylicz"
-            color="green"
+            color={color}
             type="submit"
-            additionalClasses="mr-3 w-100"
+            variant="primary"
+            additionalClasses="button--centered mr-3 w-100"
             onClick={showCalculatorCard}
           />
           <Button
             text="Resetuj"
-            color="green"
+            color={color}
             type="reset"
-            additionalClasses="w-100 button--new-repair"
+            variant="secondary"
+            additionalClasses="button--centered w-100"
             onClick={handleReset}
           />
         </div>

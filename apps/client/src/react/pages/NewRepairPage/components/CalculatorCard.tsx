@@ -21,7 +21,7 @@ export function CalculatorCard(): JSX.Element {
         // onClick={sendToContactForm}
         color="pink"
         type="button"
-        additionalClasses="button--primary"
+        variant="primary"
       />
       <span className="calculator-card__note">
         *Wyliczona kwota jest jedynie szacunkiem. Każde zlecenie jest wyceniane
