@@ -7,6 +7,7 @@ import { Icon } from "../../../components/Icon";
 import { CalculatorCard } from "./CalculatorCard";
 
 import { Color } from "../../../../../../utils/types";
+import { Radio } from "../../../components/forms/components/Radio";
 
 export function Calculator(): JSX.Element {
   const { width } = useWindowWidth();
@@ -129,6 +130,20 @@ export function Calculator(): JSX.Element {
     { id: 4, value: 4, text: "4" },
   ];
 
+  // interface RadioData {
+  //   id: string;
+  //   name: string;
+  //   value: string | number;
+  //   onChange: () => void;
+  //   checked: boolean;
+  // }
+
+  const servicesData = [
+    { id: "Naprawa ", value: "Naprawa" },
+    { id: "Lakierowanie ", value: "Lakierowanie", additionalClasses: "my-2" },
+    { id: "Detailing ", value: "Detailing" },
+  ];
+
   const [
     color,
     // setColor
@@ -141,51 +156,15 @@ export function Calculator(): JSX.Element {
         za pomocą naszego kalkulatora
       </h2>
       <form className="new-repair-page__form">
-        <label htmlFor="repairType" className="input--outlined__label">
-          Usługa*
-        </label>
-        <div id="repairType" className="input--outlined">
-          <label className="radio" htmlFor="Naprawa">
-            <span className="radio__input">
-              <Input
-                name="repairType"
-                id="Naprawa"
-                value="Naprawa"
-                checked={calculator.repairType === "Naprawa"}
-                onChange={handleValueChange}
-                type="radio"
-              />
-              <span className="radio__control" />
-            </span>
-            <span className="radio__label">Naprawa</span>
-          </label>
-          <label className="radio my-2" htmlFor="Lakierowanie">
-            <span className="radio__input">
-              <Input
-                name="repairType"
-                value="Lakierowanie"
-                checked={calculator.repairType === "Lakierowanie"}
-                onChange={handleValueChange}
-                type="radio"
-              />
-              <span className="radio__control" />
-            </span>
-            <span className="radio__label">Lakierowanie</span>
-          </label>
-          <label className="radio" htmlFor="Detailing">
-            <span className="radio__input">
-              <Input
-                name="repairType"
-                value="Detailing"
-                checked={calculator.repairType === "Detailing"}
-                onChange={handleValueChange}
-                type="radio"
-              />
-              <span className="radio__control" />
-            </span>
-            <span className="radio__label">Detailing</span>
-          </label>
-        </div>
+        <Radio
+          name="repairType"
+          id="repairType"
+          labelText="Usługa*"
+          value={calculator.repairType}
+          onChange={handleValueChange}
+          radioData={servicesData}
+          color={color}
+        />
         {calculator.repairType === "Detailing" && (
           <Select
             labelText="zakres korekty*"
