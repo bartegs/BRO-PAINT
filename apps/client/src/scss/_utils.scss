@@ -85,3 +85,8 @@ body:not(.user-is-tabbing) .radio--car-size:focus-within {
   padding: unset;
   height: unset;
 }
+
+// functions
+@mixin create-box-shadow($shadow-color) {
+  box-shadow: 0 0 0 2px $white, 0 0 5px 5px $shadow-color;
+}
