@@ -7,8 +7,14 @@
   padding: $spacing-x2 $spacing-x5 $spacing-x3 $spacing-x5;
   cursor: pointer;
 
-  &--primary {
-    &--blue {
+  &--secondary {
+    background: $white;
+    color: $black-light;
+    border: 2px solid $black-light;
+  }
+
+  &--blue {
+    &-primary {
       background-color: $blue;
 
       &:hover {
@@ -16,11 +22,27 @@
       }
 
       &:focus {
-        box-shadow: 0 0 0 2px $white, 0 0 5px 5px $blue;
+        @include create-box-shadow($blue);
       }
     }
 
-    &--green {
+    &-secondary {
+      color: $blue;
+      border-color: $blue;
+
+      &:hover {
+        color: $blue-light;
+        border-color: $blue-light;
+      }
+
+      &:focus {
+        @include create-box-shadow($blue);
+      }
+    }
+  }
+
+  &--green {
+    &-primary {
       background-color: $green;
 
       &:hover {
@@ -29,11 +51,27 @@
       }
 
       &:focus {
-        box-shadow: 0 0 0 2px $white, 0 0 5px 5px $green;
+        @include create-box-shadow($green);
       }
     }
 
-    &--pink {
+    &-secondary {
+      color: $green;
+      border-color: $green;
+
+      &:hover {
+        color: $green-light;
+        border-color: $green-light;
+      }
+
+      &:focus {
+        @include create-box-shadow($green);
+      }
+    }
+  }
+
+  &--pink {
+    &-primary {
       background-color: $pink;
 
       &:hover {
@@ -41,11 +79,27 @@
       }
 
       &:focus {
-        box-shadow: 0 0 0 2px $white, 0 0 5px 5px $pink;
+        @include create-box-shadow($pink);
       }
     }
 
-    &--black {
+    &-secondary {
+      color: $pink;
+      border-color: $pink;
+
+      &:hover {
+        color: $pink-light;
+        border-color: $pink-light;
+      }
+
+      &:focus {
+        @include create-box-shadow($pink);
+      }
+    }
+  }
+
+  &--black {
+    &-primary {
       background-color: $black;
 
       &:hover {
@@ -54,11 +108,13 @@
       }
 
       &:focus {
-        box-shadow: 0 0 0 2px $white, 0 0 5px 5px $black;
+        @include create-box-shadow($black);
       }
     }
+  }
 
-    &--black-light {
+  &--black-light {
+    &-primary {
       background-color: $black-light;
 
       &:hover {
@@ -67,55 +123,7 @@
       }
 
       &:focus {
-        box-shadow: 0 0 0 2px $white, 0 0 5px 5px $black-light;
-      }
-    }
-  }
-
-  &--secondary {
-    background: $white;
-    color: $black-light;
-    border: 2px solid $black-light;
-
-    &--blue {
-      color: $blue;
-      border: 2px solid $blue;
-
-      &:hover {
-        color: $blue-light;
-        border: 2px solid $blue-light;
-      }
-
-      &:focus {
-        box-shadow: 0 0 0 2px $white, 0 0 5px 5px $blue;
-      }
-    }
-
-    &--green {
-      color: $green;
-      border: 2px solid $green;
-
-      &:hover {
-        color: $green-light;
-        border: 2px solid $green-light;
-      }
-
-      &:focus {
-        box-shadow: 0 0 0 2px $white, 0 0 5px 5px $green;
-      }
-    }
-
-    &--pink {
-      color: $pink;
-      border: 2px solid $pink;
-
-      &:hover {
-        color: $pink-light;
-        border: 2px solid $pink-light;
-      }
-
-      &:focus {
-        box-shadow: 0 0 0 2px $white, 0 0 5px 5px $pink;
+        @include create-box-shadow($black-light);
       }
     }
   }
