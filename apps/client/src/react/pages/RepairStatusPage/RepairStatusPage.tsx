@@ -20,7 +20,7 @@ interface Repair {
 }
 
 // this should be app state fetched from db
-const repairMainStages: RepairMainStages = [
+export const repairMainStages: RepairMainStages = [
   {
     id: 0,
     color: "black-light",
