@@ -11,10 +11,11 @@ interface OptionData {
 interface SelectProps {
   labelText: string;
   color: Color;
-  name: string;
+  selectName: string;
   id: string;
   value: string | number;
-  onChange: (event: React.FormEvent<HTMLSelectElement>) => void;
+  setState: (args: any) => void;
+  state: object;
   required?: boolean;
   optionsData: OptionData[];
 }
@@ -22,13 +23,22 @@ interface SelectProps {
 export function Select({
   labelText,
   color,
-  name,
+  selectName,
   id,
   value,
-  onChange,
+  setState,
+  state,
   required,
   optionsData,
 }: SelectProps): JSX.Element {
+  function handleSelectChange(event: React.FormEvent<HTMLSelectElement>) {
+    const { name } = event.currentTarget;
+    const element = event.currentTarget as HTMLSelectElement;
+    if (selectName === name) {
+      setState(() => ({ ...state, [name]: element.value }));
+    }
+  }
+
   return (
     <>
       <label
@@ -39,10 +49,10 @@ export function Select({
       </label>
       <div className={classnames("select", `select--${color}`)}>
         <select
-          name={name}
+          name={selectName}
           id={id}
           value={value}
-          onChange={onChange}
+          onChange={handleSelectChange}
           required={required}
         >
           {optionsData.map(

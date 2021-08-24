@@ -1,0 +1,75 @@
+.input-outlined {
+  padding: $spacing-x2;
+  border: 1px solid $black-light;
+  border-radius: 5px;
+  background: none;
+  display: block;
+  margin-bottom: $spacing-x1;
+  width: 100%;
+  font-size: $text-16;
+  outline: none;
+
+  &--font-light {
+    color: $white-dark;
+
+    &::placeholder {
+      color: $white-a-60;
+    }
+  }
+
+  &--font-dark {
+    color: $black;
+
+    &::placeholder {
+      color: $grey-dark-a-80;
+    }
+  }
+
+  &--border-green {
+    &:focus {
+      box-shadow: 0 0 0 2px $green;
+    }
+  }
+
+  &--border-blue {
+    &:focus {
+      box-shadow: 0 0 0 2px $blue;
+    }
+  }
+
+  &--border-pink {
+    &:focus {
+      box-shadow: 0 0 0 2px $pink;
+    }
+  }
+
+  &--border-black-light {
+    &:focus {
+      box-shadow: 0 0 0 2px $black-light;
+    }
+  }
+
+  &__label {
+    color: $black-light;
+    font-size: $text-12;
+    font-weight: bold;
+    text-transform: uppercase;
+    position: relative;
+    bottom: -7px;
+    left: $spacing-x2;
+    background: $white;
+    padding: 0 $spacing-x1;
+
+    &--green {
+      color: $green;
+    }
+
+    &--blue {
+      color: $blue;
+    }
+
+    &--pink {
+      color: $pink;
+    }
+  }
+}

@@ -1,13 +1,16 @@
 import * as React from "react";
 import useWindowWidth from "../../../hooks/useWindowWidth";
-import { Input } from "../../../components/forms/components/Input";
+// import { Input } from "../../../components/forms/components/Input";
 import { Select } from "../../../components/forms/components/Select";
 import { Button } from "../../../components/Button/Button";
-import { Icon } from "../../../components/Icon";
+// import { Icon } from "../../../components/Icon";
 import { CalculatorCard } from "./CalculatorCard";
 
 import { Color } from "../../../../../../utils/types";
 import { Radio } from "../../../components/forms/components/Radio";
+import { RadioCarSize } from "../../../components/forms/components/RadioCarSize";
+
+import { CarSizeType, CarIconType } from "../../../components/icons/CarIcon";
 
 export function Calculator(): JSX.Element {
   const { width } = useWindowWidth();
@@ -50,31 +53,31 @@ export function Calculator(): JSX.Element {
     }
   }
 
-  function handleSelectChange(event: React.FormEvent<HTMLSelectElement>) {
-    const { name } = event.currentTarget;
-    const element = event.currentTarget as HTMLSelectElement;
-    if (name === "year") {
-      setCalculator(() => ({
-        ...calculator,
-        year: element.value,
-      }));
-    } else if (name === "make") {
-      setCalculator(() => ({
-        ...calculator,
-        make: element.value,
-      }));
-    } else if (name === "panels") {
-      setCalculator(() => ({
-        ...calculator,
-        panels: parseInt(element.value, 10),
-      }));
-    } else if (name === "paintCorrection") {
-      setCalculator(() => ({
-        ...calculator,
-        paintCorrection: element.value,
-      }));
-    }
-  }
+  // function handleSelectChange(event: React.FormEvent<HTMLSelectElement>) {
+  //   const { name } = event.currentTarget;
+  //   const element = event.currentTarget as HTMLSelectElement;
+  //   if (name === "year") {
+  //     setCalculator(() => ({
+  //       ...calculator,
+  //       year: element.value,
+  //     }));
+  //   } else if (name === "make") {
+  //     setCalculator(() => ({
+  //       ...calculator,
+  //       make: element.value,
+  //     }));
+  //   } else if (name === "panels") {
+  //     setCalculator(() => ({
+  //       ...calculator,
+  //       panels: parseInt(element.value, 10),
+  //     }));
+  //   } else if (name === "paintCorrection") {
+  //     setCalculator(() => ({
+  //       ...calculator,
+  //       paintCorrection: element.value,
+  //     }));
+  //   }
+  // }
 
   // function calculate(event: React.FormEvent) {
   //   event.preventDefault();
@@ -130,18 +133,28 @@ export function Calculator(): JSX.Element {
     { id: 4, value: 4, text: "4" },
   ];
 
-  // interface RadioData {
-  //   id: string;
-  //   name: string;
-  //   value: string | number;
-  //   onChange: () => void;
-  //   checked: boolean;
-  // }
-
   const servicesData = [
     { id: "Naprawa ", value: "Naprawa" },
     { id: "Lakierowanie ", value: "Lakierowanie", additionalClasses: "my-2" },
     { id: "Detailing ", value: "Detailing" },
+  ];
+
+  interface CarSizesDataType {
+    id: string;
+    value: string;
+    icon: CarIconType;
+    iconSize: CarSizeType;
+  }
+
+  const carSizesData: CarSizesDataType[] = [
+    { id: "Małe ", value: "Małe", icon: "car-small", iconSize: "car-sm" },
+    {
+      id: "Średnie ",
+      value: "Średnie",
+      icon: "car-medium",
+      iconSize: "car-md",
+    },
+    { id: "Duże ", value: "Duże", icon: "car-big", iconSize: "car-lg" },
   ];
 
   const [
@@ -169,10 +182,12 @@ export function Calculator(): JSX.Element {
           <Select
             labelText="zakres korekty*"
             color={color}
-            name="paintCorrection"
+            selectName="paintCorrection"
             id="paintCorrection"
             value={calculator.paintCorrection}
-            onChange={handleSelectChange}
+            // onChange={handleSelectChange}
+            state={calculator}
+            setState={setCalculator}
             required
             optionsData={paintCorrectionsData}
           />
@@ -180,85 +195,46 @@ export function Calculator(): JSX.Element {
         <Select
           labelText="rocznik*"
           color={color}
-          name="year"
+          selectName="year"
           id="year"
           value={calculator.year}
-          onChange={handleSelectChange}
+          // onChange={handleSelectChange}
+          state={calculator}
+          setState={setCalculator}
           required
           optionsData={yearsData}
         />
         <Select
           labelText="marka*"
           color={color}
-          name="make"
+          selectName="make"
           id="make"
           value={calculator.make}
-          onChange={handleSelectChange}
+          // onChange={handleSelectChange}
+          state={calculator}
+          setState={setCalculator}
           required
           optionsData={makesData}
         />
-        <label htmlFor="carSize" className="input--outlined__label">
-          rozmiar auta*
-        </label>
-        <div id="carSize" className="input--outlined input--outlined--car-size">
-          <label className="radio--car-size" htmlFor="Małe">
-            <span className="radio__input--car-size">
-              <Input
-                name="carSize"
-                id="Małe"
-                value="Małe"
-                checked={calculator.carSize === "Małe"}
-                onChange={handleValueChange}
-                type="radio"
-              />
-            </span>
-            <Icon
-              icon="car-small"
-              size="car-sm"
-              color={calculator.carSize === "Małe" ? "green" : "black-light"}
-            />
-          </label>
-          <label className="radio--car-size" htmlFor="Średnie">
-            <span className="radio__input--car-size radio__input--car-size--md">
-              <Input
-                name="carSize"
-                value="Średnie"
-                checked={calculator.carSize === "Średnie"}
-                onChange={handleValueChange}
-                type="radio"
-              />
-            </span>
-            <Icon
-              icon="car-medium"
-              size="car-md"
-              color={calculator.carSize === "Średnie" ? "green" : "black-light"}
-            />
-          </label>
-          <label className="radio--car-size" htmlFor="Duże">
-            <span className="radio__input--car-size radio__input--car-size--lg">
-              <Input
-                name="carSize"
-                value="Duże"
-                checked={calculator.carSize === "Duże"}
-                onChange={handleValueChange}
-                type="radio"
-              />
-            </span>
-            <Icon
-              icon="car-big"
-              size="car-lg"
-              color={calculator.carSize === "Duże" ? "green" : "black-light"}
-            />
-          </label>
-        </div>
+        <RadioCarSize
+          name="carSize"
+          id="carSize"
+          labelText="rozmiar auta*"
+          value={calculator.carSize}
+          onChange={handleValueChange}
+          color={color}
+          radioData={carSizesData}
+        />
         {calculator.repairType !== "Detailing" && (
           <Select
             labelText="liczba elementów*"
             color={color}
-            name="panels"
+            selectName="panels"
             id="panels"
             value={calculator.panels}
-            onChange={handleSelectChange}
+            // onChange={handleSelectChange}
+            state={calculator}
+            setState={setCalculator}
             required
             optionsData={panelsData}
           />

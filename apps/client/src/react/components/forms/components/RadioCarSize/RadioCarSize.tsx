@@ -1,14 +1,17 @@
 import * as React from "react";
 import classnames from "classnames";
 import { Color } from "../../../../../../../utils/types";
+import { CarIcon, CarSizeType, CarIconType } from "../../../icons/CarIcon";
 
 interface RadioData {
   id: string;
   value: string | number;
+  icon: CarIconType;
+  iconSize: CarSizeType;
   additionalClasses?: string;
 }
 
-interface RadioProps {
+interface RadioCarSizeProps {
   id: string;
   name: string;
   labelText: string;
@@ -18,7 +21,7 @@ interface RadioProps {
   color?: Color;
 }
 
-export function Radio({
+export function RadioCarSize({
   id,
   labelText,
   name,
@@ -26,7 +29,7 @@ export function Radio({
   value,
   onChange,
   color,
-}: RadioProps): JSX.Element {
+}: RadioCarSizeProps): JSX.Element {
   return (
     <>
       <label
@@ -39,22 +42,26 @@ export function Radio({
       </label>
       <div
         id={id}
-        className={classnames(`radio-container radio-container--${color}`)}
+        className={classnames(
+          `radio-container radio-container--${color} radio-container--car-size`
+        )}
       >
         {radioData.map(
           ({
             id: radioDataId,
             value: radioDataValue,
             additionalClasses: radioDataAdditionalClasses,
+            icon: radioDataIcon,
+            iconSize: radioDataIconSize,
           }) => (
             <label
               key={radioDataId}
               className={classnames(
-                `radio radio--${color} ${radioDataAdditionalClasses}`
+                `radio--car-size radio--${color} ${radioDataAdditionalClasses}`
               )}
               htmlFor={radioDataId}
             >
-              <span className="radio__input">
+              <span className="radio__input--car-size">
                 <input
                   type="radio"
                   id={radioDataId}
@@ -63,13 +70,12 @@ export function Radio({
                   checked={value === radioDataValue}
                   onChange={onChange}
                 />
-                <span
-                  className={classnames(
-                    `radio__control radio__control--${color}`
-                  )}
-                />
               </span>
-              <span className="radio__label">{radioDataValue}</span>
+              <CarIcon
+                icon={radioDataIcon}
+                size={radioDataIconSize}
+                color={value === radioDataValue ? `${color}` : "black-light"}
+              />
             </label>
           )
         )}

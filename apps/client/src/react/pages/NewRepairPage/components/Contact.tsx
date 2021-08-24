@@ -1,7 +1,7 @@
 import * as React from "react";
 import classnames from "classnames";
 import useWindowWidth from "../../../hooks/useWindowWidth";
-import { Input } from "../../../components/forms/components/Input";
+import { InputOutlined } from "../../../components/forms/components/InputOutlined";
 import { Select } from "../../../components/forms/components/Select";
 import { TextArea } from "../../../components/forms/components/TextArea";
 import { File } from "../../../components/forms/components/File";
@@ -102,21 +102,21 @@ export function Contact(): JSX.Element {
     }));
   }
 
-  function handleSelectChange(event: React.FormEvent<HTMLSelectElement>) {
-    const { name } = event.currentTarget;
-    const element = event.currentTarget as HTMLSelectElement;
-    if (name === "year") {
-      setContact(() => ({
-        ...contact,
-        year: element.value,
-      }));
-    } else if (name === "make") {
-      setContact(() => ({
-        ...contact,
-        make: element.value,
-      }));
-    }
-  }
+  // function handleSelectChange(event: React.FormEvent<HTMLSelectElement>) {
+  //   const { name } = event.currentTarget;
+  //   const element = event.currentTarget as HTMLSelectElement;
+  //   if (name === "year") {
+  //     setContact(() => ({
+  //       ...contact,
+  //       year: element.value,
+  //     }));
+  //   } else if (name === "make") {
+  //     setContact(() => ({
+  //       ...contact,
+  //       make: element.value,
+  //     }));
+  //   }
+  // }
 
   const yearsData = [
     { id: 0, value: "", text: "Wybierz rocznik auta" },
@@ -143,7 +143,7 @@ export function Contact(): JSX.Element {
   const [
     color,
     // setColor
-  ] = React.useState<Color>("pink");
+  ] = React.useState<Color>("blue");
 
   return (
     <section className="new-repair-page__section">
@@ -156,101 +156,93 @@ export function Contact(): JSX.Element {
         zleceniu, a my zajmiemy się resztą!
       </h2>
       <form className="new-repair-page__form">
-        <label htmlFor="names" className="input--outlined__label">
-          imie i nazwisko*
-        </label>
-        <Input
+        <InputOutlined
           placeholder="Wpisz swoje imię i nazwisko"
+          labelText="imie i nazwisko*"
+          color={color}
           name="names"
           id="names"
           value={contact.names}
           onChange={handleValueChange}
-          additionalClasses="input--outlined"
           type="text"
           required
         />
-        <label htmlFor="email" className="input--outlined__label">
-          email*
-        </label>
-        <Input
+        <InputOutlined
           placeholder="Wpisz swój adres email"
+          labelText="email*"
+          color={color}
           name="email"
           id="email"
           value={contact.email}
           onChange={handleValueChange}
-          additionalClasses="input--outlined"
           type="email"
           required
         />
-        <label htmlFor="phone" className="input--outlined__label">
-          telefon*
-        </label>
-        <Input
+        <InputOutlined
           placeholder="Wpisz swój numer telefonu"
+          labelText="telefon*"
+          color={color}
           name="phone"
           id="phone"
           value={contact.phone}
           onChange={handleValueChange}
-          additionalClasses="input--outlined"
           type="text"
           required
         />
         <Select
           labelText="rocznik*"
           color={color}
-          name="year"
+          selectName="year"
           id="year"
           value={contact.year}
-          onChange={handleSelectChange}
+          // onChange={handleSelectChange}
+          state={contact}
+          setState={setContact}
           required
           optionsData={yearsData}
         />
         <Select
           labelText="marka*"
           color={color}
-          name="make"
+          selectName="make"
           id="make"
           value={contact.make}
-          onChange={handleSelectChange}
+          // onChange={handleSelectChange}
+          state={contact}
+          setState={setContact}
           required
           optionsData={makesData}
         />
-        <label htmlFor="model" className="input--outlined__label">
-          model*
-        </label>
-        <Input
+        <InputOutlined
+          labelText="model*"
+          color={color}
           placeholder="Wpisz model auta"
           name="model"
           id="model"
           value={contact.model}
           onChange={handleValueChange}
-          additionalClasses="input--outlined"
           type="text"
           required
         />
-        <label htmlFor="plate" className="input--outlined__label">
-          rejestracja*
-        </label>
-        <Input
+        <InputOutlined
+          labelText="rejestracja*"
+          color={color}
           placeholder="Wpisz numer rejestracyjny auta"
           name="plate"
           id="plate"
           value={contact.plate}
           onChange={handleValueChange}
-          additionalClasses="input--outlined"
           type="text"
           required
         />
-        <label htmlFor="paint" className="input--outlined__label">
-          kod lakieru
-        </label>
-        <Input
+        <InputOutlined
+          labelText="kod lakieru"
+          color={color}
           placeholder="Wpisz kod lakieru auta"
           name="paint"
           id="paint"
           value={contact.paint}
           onChange={handleValueChange}
-          additionalClasses="input--outlined"
           type="text"
         />
         <Radio

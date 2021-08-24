@@ -61,7 +61,7 @@ function handleFormColoring(repairStage: number, stages: RepairMainStages) {
 }
 
 export function RepairStatusPage(): JSX.Element {
-  const [repair] = React.useState<Repair>({ id: 1, repairStage: 1 });
+  const [repair] = React.useState<Repair>({ id: 1, repairStage: 2 });
   const { repairStage } = repair || {};
   const formElementColor = handleFormColoring(repairStage, repairMainStages);
 

@@ -4,8 +4,26 @@
   grid-gap: $spacing-x1;
 
   &:focus-within {
-    border: 3px solid $green;
+    border: 3px solid $black-light;
     border-radius: 5px;
+  }
+
+  &--green {
+    &:focus-within {
+      border: 3px solid $green;
+    }
+  }
+
+  &--blue {
+    &:focus-within {
+      border: 3px solid $blue;
+    }
+  }
+
+  &--pink {
+    &:focus-within {
+      border: 3px solid $pink;
+    }
   }
 
   &--car-size {
@@ -15,7 +33,6 @@
       border-radius: 5px;
       padding: $spacing-x1;
       height: 60px;
-      border: 3px solid $green;
     }
   }
 
@@ -110,6 +127,14 @@
   display: block;
   margin-bottom: $spacing-x1;
   width: 100%;
+
+  &--car-size {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding-top: $spacing-x3;
+    margin-bottom: 0;
+  }
 
   &:focus-within {
     outline: none;

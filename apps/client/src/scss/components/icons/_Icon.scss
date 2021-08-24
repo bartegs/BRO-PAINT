@@ -30,36 +30,6 @@
     }
   }
 
-  &--car-sm {
-    height: 25px;
-    width: 60px;
-
-    @media (min-width: 768px) {
-      height: 30px;
-      width: 70px;
-    }
-  }
-
-  &--car-md {
-    height: 25px;
-    width: 80px;
-
-    @media (min-width: 768px) {
-      height: 30px;
-      width: 90px;
-    }
-  }
-
-  &--car-lg {
-    height: 35px;
-    width: 80px;
-
-    @media (min-width: 768px) {
-      height: 40px;
-      width: 90px;
-    }
-  }
-
   // colors
   &--white {
     filter:
@@ -129,31 +99,7 @@
 
   // icons
   &--arrow {
-    background: url("../../../../assets/icons/arrow.svg");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: contain;
-    display: inline-block;
-  }
-
-  &--car-big {
-    background: url("../../../../assets/icons/car-big.svg");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: contain;
-    display: inline-block;
-  }
-
-  &--car-medium {
-    background: url("../../../../assets/icons/car-medium.svg");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: contain;
-    display: inline-block;
-  }
-
-  &--car-small {
-    background: url("../../../../assets/icons/car-small.svg");
+    background: url("../../../../../assets/icons/arrow.svg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
@@ -161,54 +107,54 @@
   }
 
   &--car {
-    background: url("../../../../assets/icons/car.svg");
+    background: url("../../../../../assets/icons/car.svg");
   }
 
   &--dropdown-arrow {
-    background: url("../../../../assets/icons/dropdown-arrow.svg");
+    background: url("../../../../../assets/icons/dropdown-arrow.svg");
   }
 
   &--email {
-    background: url("../../../../assets/icons/email.svg");
+    background: url("../../../../../assets/icons/email.svg");
   }
 
   &--fb {
-    background: url("../../../../assets/icons/fb.svg");
+    background: url("../../../../../assets/icons/fb.svg");
   }
 
   &--flag {
-    background: url("../../../../assets/icons/flag.svg");
+    background: url("../../../../../assets/icons/flag.svg");
   }
 
   &--footer-email {
-    background: url("../../../../assets/icons/footer-email.svg");
+    background: url("../../../../../assets/icons/footer-email.svg");
   }
 
   &--footer-phone {
-    background: url("../../../../assets/icons/footer-phone.svg");
+    background: url("../../../../../assets/icons/footer-phone.svg");
   }
 
   &--ig {
-    background: url("../../../../assets/icons/ig.svg");
+    background: url("../../../../../assets/icons/ig.svg");
   }
 
   &--location {
-    background: url("../../../../assets/icons/location.svg");
+    background: url("../../../../../assets/icons/location.svg");
   }
 
   &--person {
-    background: url("../../../../assets/icons/person.svg");
+    background: url("../../../../../assets/icons/person.svg");
   }
 
   &--phone {
-    background: url("../../../../assets/icons/phone.svg");
+    background: url("../../../../../assets/icons/phone.svg");
   }
 
   &--tooltip {
-    background: url("../../../../assets/icons/tooltip.svg");
+    background: url("../../../../../assets/icons/tooltip.svg");
   }
 
   &--tt {
-    background: url("../../../../assets/icons/tt.svg");
+    background: url("../../../../../assets/icons/tt.svg");
   }
 }
