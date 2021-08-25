@@ -20,11 +20,14 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
+
+    @media (min-width: $screen-md) {
+      align-items: center;
+    }
   }
 
   &__form {
-    align-self: center;
+    // align-self: center;
     width: 265px;
 
     @media (min-width: $screen-md) {

@@ -192,6 +192,8 @@ export function Contact({
           required
         />
         <InputOutlined
+          hasTooltip={true}
+          tooltipText="pekinczyk"
           labelText="kod lakieru"
           color={color}
           placeholder="Wpisz kod lakieru auta"

@@ -1,6 +1,7 @@
 import * as React from "react";
 import classnames from "classnames";
 import { Color } from "../../../../../../../utils/types";
+import { Tooltip } from "../Tooltip/Tooltip";
 
 interface OptionData {
   id: number;
@@ -17,6 +18,8 @@ interface SelectProps {
   setState: (args: any) => void;
   required?: boolean;
   optionsData: OptionData[];
+  hasTooltip?: boolean;
+  tooltipText?: string;
 }
 
 export function Select({
@@ -28,11 +31,14 @@ export function Select({
   setState,
   required,
   optionsData,
+  hasTooltip = false,
+  tooltipText,
 }: SelectProps): JSX.Element {
   function handleSelectChange(event: React.FormEvent<HTMLSelectElement>) {
     const element = event.currentTarget as HTMLSelectElement;
     setState(element.value);
   }
+
 
   return (
     <>
@@ -66,6 +72,9 @@ export function Select({
             )
           )}
         </select>
+        {hasTooltip && (
+         <Tooltip text={tooltipText}/>
+        )}
       </div>
     </>
   );

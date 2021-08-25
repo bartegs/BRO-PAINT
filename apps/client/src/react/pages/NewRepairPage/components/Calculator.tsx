@@ -145,6 +145,8 @@ export function Calculator({
         />
         {repairType === "Detailing" && (
           <Select
+            hasTooltip={true}
+            tooltipText="miki"
             labelText="zakres korekty*"
             color={color}
             selectName="paintCorrection"
@@ -194,6 +196,8 @@ export function Calculator({
             setState={setPanels}
             required
             optionsData={panelsData}
+            hasTooltip={true}
+            tooltipText="miki"
           />
         )}
         <div className="new-repair-page__buttons mt-4">

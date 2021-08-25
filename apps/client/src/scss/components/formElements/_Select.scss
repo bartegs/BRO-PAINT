@@ -8,6 +8,7 @@
   display: grid;
   grid-template-areas: "select";
   align-items: center;
+  position: relative;
 
   &:focus-within {
     outline: none;
@@ -53,6 +54,7 @@
   }
 
   &__label {
+    z-index: 1000;
     color: $black-light;
     font-size: $text-12;
     font-weight: bold;

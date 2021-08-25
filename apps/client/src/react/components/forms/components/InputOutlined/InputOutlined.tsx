@@ -3,6 +3,7 @@ import * as React from "react";
 import classnames from "classnames";
 
 import type { Color } from "../../../../../../../utils/types";
+import { Tooltip } from "../Tooltip/Tooltip";
 
 interface InputOutlinedProps {
   setState: (arg: any) => void;
@@ -17,6 +18,8 @@ interface InputOutlinedProps {
   required?: boolean;
   color?: Color;
   fontTheme?: "dark" | "light";
+  hasTooltip?: boolean;
+  tooltipText?: string;
 }
 
 export function InputOutlined({
@@ -32,6 +35,8 @@ export function InputOutlined({
   required,
   color,
   fontTheme,
+  hasTooltip = false,
+  tooltipText,
 }: InputOutlinedProps) {
   function handleValueChange(event: React.ChangeEvent<HTMLInputElement>) {
     setState(event.currentTarget.value);
@@ -46,22 +51,28 @@ export function InputOutlined({
       >
         {labelText}
       </label>
-      <input
-        onChange={handleValueChange}
-        className={classnames(
-          "input-outlined",
-          additionalClasses,
-          `input-outlined--border-${color}`,
-          `input-outlined--font-${fontTheme}`
+      <div className="input-outlined__container">
+        <input
+          onChange={handleValueChange}
+          className={classnames(
+            "input-outlined",
+            additionalClasses,
+            `input-outlined--border-${color}`,
+            `input-outlined--font-${fontTheme}`
+          )}
+          name={name}
+          placeholder={placeholder}
+          value={value}
+          checked={checked}
+          id={id}
+          type={type}
+          required={required}
+        />
+
+        {hasTooltip && (
+         <Tooltip text={tooltipText} />
         )}
-        name={name}
-        placeholder={placeholder}
-        value={value}
-        checked={checked}
-        id={id}
-        type={type}
-        required={required}
-      />
+      </div>
     </>
   );
 }
