@@ -4,8 +4,8 @@ import classnames from "classnames";
 
 import type { Color } from "../../../../../../../utils/types";
 
-interface InputProps {
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+interface InputOutlinedProps {
+  setState: (arg: any) => void;
   name: string;
   value: string;
   labelText: string;
@@ -20,7 +20,7 @@ interface InputProps {
 }
 
 export function InputOutlined({
-  onChange,
+  setState,
   name,
   value,
   labelText,
@@ -32,7 +32,10 @@ export function InputOutlined({
   required,
   color,
   fontTheme,
-}: InputProps) {
+}: InputOutlinedProps) {
+  function handleValueChange(event: React.ChangeEvent<HTMLInputElement>) {
+    setState(event.currentTarget.value);
+  }
   return (
     <>
       <label
@@ -44,7 +47,7 @@ export function InputOutlined({
         {labelText}
       </label>
       <input
-        onChange={onChange}
+        onChange={handleValueChange}
         className={classnames(
           "input-outlined",
           additionalClasses,

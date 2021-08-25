@@ -1,122 +1,82 @@
 import * as React from "react";
 import classnames from "classnames";
 import useWindowWidth from "../../../hooks/useWindowWidth";
+
 import { InputOutlined } from "../../../components/forms/components/InputOutlined";
 import { Select } from "../../../components/forms/components/Select";
+import { Radio } from "../../../components/forms/components/Radio";
 import { TextArea } from "../../../components/forms/components/TextArea";
 import { File } from "../../../components/forms/components/File";
 import { Checkbox } from "../../../components/forms/components/Checkbox";
 import { Button } from "../../../components/Button/Button";
-
 import { Color } from "../../../../../../utils/types";
-import { Radio } from "../../../components/forms/components/Radio";
 
-export function Contact(): JSX.Element {
+interface ContactProps {
+  color: Color;
+  names: string;
+  email: string;
+  phone: string;
+  model: string;
+  plate: string;
+  paint: string;
+  description: string;
+  privacy: boolean;
+  repairType: string;
+  year: string;
+  make: string;
+  setNames: (args: any) => void;
+  setEmail: (args: any) => void;
+  setPhone: (args: any) => void;
+  setYear: (args: any) => void;
+  setMake: (args: any) => void;
+  setModel: (args: any) => void;
+  setPlate: (args: any) => void;
+  setPaint: (args: any) => void;
+  setRepairType: (args: any) => void;
+  setDescription: (args: any) => void;
+  setPrivacy: (arg: boolean) => void;
+}
+
+export function Contact({
+  color,
+  names,
+  email,
+  phone,
+  year,
+  make,
+  model,
+  plate,
+  paint,
+  repairType,
+  description,
+  privacy,
+  setNames,
+  setEmail,
+  setPhone,
+  setYear,
+  setMake,
+  setModel,
+  setPlate,
+  setPaint,
+  setRepairType,
+  setDescription,
+  setPrivacy,
+}: ContactProps): JSX.Element {
   const { width } = useWindowWidth();
-  const [contact, setContact] = React.useState({
-    names: "",
-    email: "",
-    phone: "",
-    year: "",
-    make: "",
-    model: "",
-    plate: "",
-    paint: "",
-    repairType: "Naprawa",
-    description: "",
-    privacy: false,
-  });
 
-  function handleValueChange(event: React.ChangeEvent<HTMLInputElement>) {
-    const { value, name } = event.currentTarget;
-
-    if (name === "names") {
-      setContact(() => ({
-        ...contact,
-        names: value,
-      }));
-    } else if (name === "email") {
-      setContact(() => ({
-        ...contact,
-        email: value,
-      }));
-    } else if (name === "phone") {
-      setContact(() => ({
-        ...contact,
-        phone: value,
-      }));
-    } else if (name === "model") {
-      setContact(() => ({
-        ...contact,
-        model: value,
-      }));
-    } else if (name === "plate") {
-      setContact(() => ({
-        ...contact,
-        plate: value,
-      }));
-    } else if (name === "paint") {
-      setContact(() => ({
-        ...contact,
-        paint: value,
-      }));
-    } else if (name === "repairType") {
-      setContact(() => ({
-        ...contact,
-        repairType: value,
-      }));
-    }
+  function handleContactReset() {
+    setNames("");
+    setEmail("");
+    setPhone("");
+    setYear("");
+    setMake("");
+    setModel("");
+    setPlate("");
+    setPaint("");
+    setRepairType("Naprawa");
+    setDescription("");
+    setPrivacy(false);
   }
-
-  function handleTextAreaChange(event: React.ChangeEvent<HTMLTextAreaElement>) {
-    const { value, name } = event.currentTarget;
-    if (name === "description") {
-      setContact(() => ({
-        ...contact,
-        description: value,
-      }));
-    }
-  }
-
-  function handleCheckboxChange() {
-    setContact(() => ({
-      ...contact,
-      privacy: !contact.privacy,
-    }));
-  }
-
-  function handleReset() {
-    setContact(() => ({
-      ...contact,
-      names: "",
-      email: "",
-      phone: "",
-      year: "",
-      make: "",
-      model: "",
-      plate: "",
-      paint: "",
-      repairType: "Naprawa",
-      description: "",
-      privacy: false,
-    }));
-  }
-
-  // function handleSelectChange(event: React.FormEvent<HTMLSelectElement>) {
-  //   const { name } = event.currentTarget;
-  //   const element = event.currentTarget as HTMLSelectElement;
-  //   if (name === "year") {
-  //     setContact(() => ({
-  //       ...contact,
-  //       year: element.value,
-  //     }));
-  //   } else if (name === "make") {
-  //     setContact(() => ({
-  //       ...contact,
-  //       make: element.value,
-  //     }));
-  //   }
-  // }
 
   const yearsData = [
     { id: 0, value: "", text: "Wybierz rocznik auta" },
@@ -140,11 +100,6 @@ export function Contact(): JSX.Element {
     { id: "Detailing ", value: "Detailing" },
   ];
 
-  const [
-    color,
-    // setColor
-  ] = React.useState<Color>("blue");
-
   return (
     <section className="new-repair-page__section">
       <h2
@@ -162,9 +117,10 @@ export function Contact(): JSX.Element {
           color={color}
           name="names"
           id="names"
-          value={contact.names}
-          onChange={handleValueChange}
+          value={names}
+          setState={setNames}
           type="text"
+          fontTheme="dark"
           required
         />
         <InputOutlined
@@ -173,9 +129,10 @@ export function Contact(): JSX.Element {
           color={color}
           name="email"
           id="email"
-          value={contact.email}
-          onChange={handleValueChange}
+          value={email}
+          setState={setEmail}
           type="email"
+          fontTheme="dark"
           required
         />
         <InputOutlined
@@ -184,9 +141,10 @@ export function Contact(): JSX.Element {
           color={color}
           name="phone"
           id="phone"
-          value={contact.phone}
-          onChange={handleValueChange}
+          value={phone}
+          setState={setPhone}
           type="text"
+          fontTheme="dark"
           required
         />
         <Select
@@ -194,10 +152,8 @@ export function Contact(): JSX.Element {
           color={color}
           selectName="year"
           id="year"
-          value={contact.year}
-          // onChange={handleSelectChange}
-          state={contact}
-          setState={setContact}
+          value={year}
+          setState={setYear}
           required
           optionsData={yearsData}
         />
@@ -206,10 +162,8 @@ export function Contact(): JSX.Element {
           color={color}
           selectName="make"
           id="make"
-          value={contact.make}
-          // onChange={handleSelectChange}
-          state={contact}
-          setState={setContact}
+          value={make}
+          setState={setMake}
           required
           optionsData={makesData}
         />
@@ -219,9 +173,10 @@ export function Contact(): JSX.Element {
           placeholder="Wpisz model auta"
           name="model"
           id="model"
-          value={contact.model}
-          onChange={handleValueChange}
+          value={model}
+          setState={setModel}
           type="text"
+          fontTheme="dark"
           required
         />
         <InputOutlined
@@ -230,9 +185,10 @@ export function Contact(): JSX.Element {
           placeholder="Wpisz numer rejestracyjny auta"
           name="plate"
           id="plate"
-          value={contact.plate}
-          onChange={handleValueChange}
+          value={plate}
+          setState={setPlate}
           type="text"
+          fontTheme="dark"
           required
         />
         <InputOutlined
@@ -241,16 +197,17 @@ export function Contact(): JSX.Element {
           placeholder="Wpisz kod lakieru auta"
           name="paint"
           id="paint"
-          value={contact.paint}
-          onChange={handleValueChange}
+          value={paint}
+          setState={setPaint}
           type="text"
+          fontTheme="dark"
         />
         <Radio
           name="repairType"
           id="repairType"
           labelText="Usługa*"
-          value={contact.repairType}
-          onChange={handleValueChange}
+          value={repairType}
+          setState={setRepairType}
           radioData={servicesData}
           color={color}
         />
@@ -258,9 +215,9 @@ export function Contact(): JSX.Element {
           labelText="Usługa"
           name="description"
           id="description"
-          value={contact.description}
+          value={description}
           placeholder="Opisz swoje zlecenie i podziel się swoimi uwagami."
-          onChange={handleTextAreaChange}
+          setState={setDescription}
           color={color}
           variant="outlined"
           additionalClasses="mb-3"
@@ -274,8 +231,8 @@ export function Contact(): JSX.Element {
         <Checkbox
           name="privacy"
           id="privacy"
-          isChecked={contact.privacy}
-          onChange={handleCheckboxChange}
+          isChecked={privacy}
+          setState={setPrivacy}
           required
           color={color}
         />
@@ -292,7 +249,7 @@ export function Contact(): JSX.Element {
             color={color}
             type="reset"
             variant="secondary"
-            onClick={handleReset}
+            onClick={handleContactReset}
             additionalClasses="w-100"
           />
         </div>

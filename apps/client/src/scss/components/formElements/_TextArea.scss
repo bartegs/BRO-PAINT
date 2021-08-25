@@ -31,10 +31,10 @@
 
     &--underlined {
       position: relative;
-      left: -35px;
+      left: -32px;
 
       @media (min-width: $screen-md) and (max-width: $screen-lg - 1px) {
-        left: -254px;
+        left: -250px;
       }
     }
   }
@@ -72,7 +72,7 @@
     }
 
     &::placeholder {
-      color: $grey-dark-a-80;
+      color: $grey-placeholder;
       opacity: 1;
     }
   }
@@ -110,6 +110,11 @@
       &:focus {
         border: 2px solid $pink-light;
       }
+    }
+
+    &::placeholder {
+      color: $grey-placeholder;
+      opacity: 1;
     }
   }
 }

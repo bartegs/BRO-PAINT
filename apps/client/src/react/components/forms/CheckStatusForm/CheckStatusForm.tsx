@@ -23,11 +23,7 @@ export function CheckStatusForm({
   inputBorderColor = "pink",
   background = "light",
 }: OwnProps): JSX.Element {
-  const [value, setValue] = React.useState("");
-
-  function handleValueChange(event: React.ChangeEvent<HTMLInputElement>) {
-    return setValue(event.currentTarget.value);
-  }
+  const [orderNumber, setOrderNumber] = React.useState("");
 
   function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
@@ -46,8 +42,8 @@ export function CheckStatusForm({
         <Input
           placeholder="Podaj numer zlecenia"
           name="repair-code"
-          value={value}
-          onChange={handleValueChange}
+          value={orderNumber}
+          setState={setOrderNumber}
           additionalClasses="mt-3 mb-5"
           borderColor={inputBorderColor}
           fontTheme={inputFontTheme}

@@ -7,7 +7,7 @@ interface SelectProps {
   id: string;
   color: Color;
   isChecked: boolean;
-  onChange: () => void;
+  setState: (arg: any) => void;
   required?: boolean;
 }
 
@@ -16,9 +16,12 @@ export function Checkbox({
   id,
   color,
   isChecked,
-  onChange,
+  setState,
   required,
 }: SelectProps): JSX.Element {
+  function handleCheckboxChange() {
+    setState((prevState: boolean) => !prevState);
+  }
   return (
     <>
       <label htmlFor="privacy" className="w-100 mb-2">
@@ -27,7 +30,7 @@ export function Checkbox({
           id={id}
           type="checkbox"
           checked={isChecked}
-          onChange={onChange}
+          onChange={handleCheckboxChange}
           required={required}
           className={classnames("checkbox", `checkbox--${color}`)}
         />

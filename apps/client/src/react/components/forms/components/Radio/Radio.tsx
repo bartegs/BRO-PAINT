@@ -14,7 +14,7 @@ interface RadioProps {
   labelText: string;
   radioData: RadioData[];
   value: string;
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  setState: (args: any) => void;
   color?: Color;
 }
 
@@ -24,9 +24,13 @@ export function Radio({
   name,
   radioData,
   value,
-  onChange,
+  setState,
   color,
 }: RadioProps): JSX.Element {
+  function handleValueChange(event: React.ChangeEvent<HTMLInputElement>) {
+    setState(event.currentTarget.value);
+  }
+
   return (
     <>
       <label
@@ -61,7 +65,7 @@ export function Radio({
                   name={name}
                   value={radioDataValue}
                   checked={value === radioDataValue}
-                  onChange={onChange}
+                  onChange={handleValueChange}
                 />
                 <span
                   className={classnames(

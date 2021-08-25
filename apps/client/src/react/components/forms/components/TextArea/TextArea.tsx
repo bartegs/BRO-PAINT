@@ -11,7 +11,7 @@ interface TextAreaProps {
   id: string;
   placeholder: string;
   value: string | number;
-  onChange: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  setState: (arg: string) => void;
   required?: boolean;
   variant: TextAreaVariant;
   additionalClasses?: string;
@@ -24,11 +24,15 @@ export function TextArea({
   id,
   placeholder,
   value,
-  onChange,
+  setState,
   required,
   variant,
   additionalClasses,
 }: TextAreaProps): JSX.Element {
+  function handleTextAreaChange(event: React.ChangeEvent<HTMLTextAreaElement>) {
+    setState(event.currentTarget.value);
+  }
+
   return (
     <>
       <label
@@ -47,7 +51,7 @@ export function TextArea({
         )}
         placeholder={placeholder}
         value={value}
-        onChange={onChange}
+        onChange={handleTextAreaChange}
         required={required}
       />
     </>

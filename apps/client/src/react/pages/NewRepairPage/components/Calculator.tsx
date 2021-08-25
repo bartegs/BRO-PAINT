@@ -1,104 +1,74 @@
 import * as React from "react";
 import useWindowWidth from "../../../hooks/useWindowWidth";
-// import { Input } from "../../../components/forms/components/Input";
-import { Select } from "../../../components/forms/components/Select";
-import { Button } from "../../../components/Button/Button";
-// import { Icon } from "../../../components/Icon";
-import { CalculatorCard } from "./CalculatorCard";
-
-import { Color } from "../../../../../../utils/types";
-import { Radio } from "../../../components/forms/components/Radio";
-import { RadioCarSize } from "../../../components/forms/components/RadioCarSize";
 
 import { CarSizeType, CarIconType } from "../../../components/icons/CarIcon";
 
-export function Calculator(): JSX.Element {
+import { Radio } from "../../../components/forms/components/Radio";
+import { Select } from "../../../components/forms/components/Select";
+import { RadioCarSize } from "../../../components/forms/components/RadioCarSize";
+import { Button } from "../../../components/Button/Button";
+
+import { CalculatorCard } from "./CalculatorCard";
+import { Color } from "../../../../../../utils/types";
+
+interface CalculatorProps {
+  color: Color;
+  repairType: string;
+  year: string;
+  make: string;
+  carSize: string;
+  panels: string;
+  paintCorrection: string;
+  result: string;
+  setRepairType: (arg: string) => void;
+  setYear: (arg: string) => void;
+  setMake: (arg: string) => void;
+  setCarSize: (arg: string) => void;
+  setPanels?: (arg: string) => void;
+  setPaintCorrection?: (arg: string) => void;
+  setResult: (arg: string) => void;
+}
+
+export function Calculator({
+  color,
+  repairType,
+  year,
+  make,
+  carSize,
+  panels,
+  paintCorrection,
+  result,
+  setRepairType,
+  setYear,
+  setMake,
+  setCarSize,
+  setPanels,
+  setPaintCorrection,
+  setResult,
+}: CalculatorProps): JSX.Element {
   const { width } = useWindowWidth();
-
-  interface ICalculator {
-    repairType: string;
-    year: string;
-    make: string;
-    carSize: string;
-    panels?: number | string;
-    paintCorrection?: string;
-    // result: number | string;
-  }
-
-  const [calculator, setCalculator] = React.useState<ICalculator>({
-    repairType: "Naprawa",
-    year: "",
-    make: "",
-    carSize: "Małe",
-    panels: "",
-    paintCorrection: "",
-    // result: 0,
-  });
 
   const [isCardVisible, setisCardVisible] = React.useState(false);
 
-  function handleValueChange(event: React.ChangeEvent<HTMLInputElement>) {
-    const { value, name } = event.currentTarget;
-
-    if (name === "carSize") {
-      setCalculator(() => ({
-        ...calculator,
-        carSize: value,
-      }));
-    } else if (name === "repairType") {
-      setCalculator(() => ({
-        ...calculator,
-        repairType: value,
-      }));
-    }
-  }
-
-  // function handleSelectChange(event: React.FormEvent<HTMLSelectElement>) {
-  //   const { name } = event.currentTarget;
-  //   const element = event.currentTarget as HTMLSelectElement;
-  //   if (name === "year") {
-  //     setCalculator(() => ({
-  //       ...calculator,
-  //       year: element.value,
-  //     }));
-  //   } else if (name === "make") {
-  //     setCalculator(() => ({
-  //       ...calculator,
-  //       make: element.value,
-  //     }));
-  //   } else if (name === "panels") {
-  //     setCalculator(() => ({
-  //       ...calculator,
-  //       panels: parseInt(element.value, 10),
-  //     }));
-  //   } else if (name === "paintCorrection") {
-  //     setCalculator(() => ({
-  //       ...calculator,
-  //       paintCorrection: element.value,
-  //     }));
-  //   }
-  // }
-
-  // function calculate(event: React.FormEvent) {
-  //   event.preventDefault();
-  //   setResult(result);
-  //   return result;
-  // }
-
-  function handleReset() {
-    setCalculator(() => ({
-      ...calculator,
-      repairType: "Naprawa",
-      year: "",
-      make: "",
-      carSize: "Małe",
-      panels: "",
-      paintCorrection: "",
-    }));
+  function handleCalculatorReset() {
+    setRepairType("Naprawa");
+    setYear("");
+    setMake("");
+    setCarSize("Małe");
+    setPanels("");
+    setPaintCorrection("");
+    setResult("");
+    setisCardVisible(false);
   }
 
   function showCalculatorCard() {
     setisCardVisible((prevIsCardVisible) => !prevIsCardVisible);
+  }
+
+  function calculate(e: React.FormEvent) {
+    e.preventDefault();
+    showCalculatorCard();
+    setResult("2137");
   }
 
   const paintCorrectionsData = [
@@ -157,37 +127,30 @@ export function Calculator(): JSX.Element {
     { id: "Duże ", value: "Duże", icon: "car-big", iconSize: "car-lg" },
   ];
 
-  const [
-    color,
-    // setColor
-  ] = React.useState<Color>("pink");
-
   return (
     <section className="new-repair-page__section">
       <h2 className="new-repair-page__heading">
         Wylicz szacunkowy koszt naprawy {width >= 768 && <br />}
         za pomocą naszego kalkulatora
       </h2>
-      <form className="new-repair-page__form">
+      <form className="new-repair-page__form" onSubmit={calculate}>
         <Radio
           name="repairType"
           id="repairType"
           labelText="Usługa*"
-          value={calculator.repairType}
-          onChange={handleValueChange}
+          value={repairType}
+          setState={setRepairType}
           radioData={servicesData}
           color={color}
         />
-        {calculator.repairType === "Detailing" && (
+        {repairType === "Detailing" && (
           <Select
             labelText="zakres korekty*"
             color={color}
             selectName="paintCorrection"
             id="paintCorrection"
-            value={calculator.paintCorrection}
-            // onChange={handleSelectChange}
-            state={calculator}
-            setState={setCalculator}
+            value={paintCorrection}
+            setState={setPaintCorrection}
             required
             optionsData={paintCorrectionsData}
           />
@@ -197,10 +160,8 @@ export function Calculator(): JSX.Element {
           color={color}
           selectName="year"
           id="year"
-          value={calculator.year}
-          // onChange={handleSelectChange}
-          state={calculator}
-          setState={setCalculator}
+          value={year}
+          setState={setYear}
           required
           optionsData={yearsData}
         />
@@ -209,10 +170,8 @@ export function Calculator(): JSX.Element {
           color={color}
           selectName="make"
           id="make"
-          value={calculator.make}
-          // onChange={handleSelectChange}
-          state={calculator}
-          setState={setCalculator}
+          value={make}
+          setState={setMake}
           required
           optionsData={makesData}
         />
@@ -220,21 +179,19 @@ export function Calculator(): JSX.Element {
           name="carSize"
           id="carSize"
           labelText="rozmiar auta*"
-          value={calculator.carSize}
-          onChange={handleValueChange}
+          value={carSize}
+          setState={setCarSize}
           color={color}
           radioData={carSizesData}
         />
-        {calculator.repairType !== "Detailing" && (
+        {repairType !== "Detailing" && (
           <Select
             labelText="liczba elementów*"
             color={color}
             selectName="panels"
             id="panels"
-            value={calculator.panels}
-            // onChange={handleSelectChange}
-            state={calculator}
-            setState={setCalculator}
+            value={panels}
+            setState={setPanels}
             required
             optionsData={panelsData}
           />
@@ -246,7 +203,6 @@ export function Calculator(): JSX.Element {
             type="submit"
             variant="primary"
             additionalClasses="button--centered mr-3 w-100"
-            onClick={showCalculatorCard}
           />
           <Button
             text="Resetuj"
@@ -254,12 +210,12 @@ export function Calculator(): JSX.Element {
             type="reset"
             variant="secondary"
             additionalClasses="button--centered w-100"
-            onClick={handleReset}
+            onClick={handleCalculatorReset}
           />
         </div>
       </form>
       {/* {result} */}
-      {isCardVisible && <CalculatorCard />}
+      {isCardVisible && <CalculatorCard color={color} result={result} />}
     </section>
   );
 }

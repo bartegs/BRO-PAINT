@@ -5,7 +5,7 @@ import classnames from "classnames";
 import type { Color } from "../../../../../../../utils/types";
 
 interface InputProps {
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  setState: (arg: any) => void;
   name: string;
   value: string;
   checked?: boolean;
@@ -19,7 +19,7 @@ interface InputProps {
 }
 
 export function Input({
-  onChange,
+  setState,
   name,
   value,
   checked,
@@ -31,9 +31,12 @@ export function Input({
   borderColor,
   fontTheme,
 }: InputProps) {
+  function handleValueChange(event: React.ChangeEvent<HTMLInputElement>) {
+    setState(event.currentTarget.value);
+  }
   return (
     <input
-      onChange={onChange}
+      onChange={handleValueChange}
       className={classnames(
         "input",
         additionalClasses,

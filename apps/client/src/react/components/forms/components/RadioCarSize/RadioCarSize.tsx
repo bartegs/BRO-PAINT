@@ -17,7 +17,7 @@ interface RadioCarSizeProps {
   labelText: string;
   radioData: RadioData[];
   value: string;
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  setState: (args: any) => void;
   color?: Color;
 }
 
@@ -27,9 +27,12 @@ export function RadioCarSize({
   name,
   radioData,
   value,
-  onChange,
+  setState,
   color,
 }: RadioCarSizeProps): JSX.Element {
+  function handleValueChange(event: React.ChangeEvent<HTMLInputElement>) {
+    setState(event.currentTarget.value);
+  }
   return (
     <>
       <label
@@ -68,7 +71,7 @@ export function RadioCarSize({
                   name={name}
                   value={radioDataValue}
                   checked={value === radioDataValue}
-                  onChange={onChange}
+                  onChange={handleValueChange}
                 />
               </span>
               <CarIcon

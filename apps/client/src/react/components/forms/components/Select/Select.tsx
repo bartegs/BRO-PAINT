@@ -15,7 +15,7 @@ interface SelectProps {
   id: string;
   value: string | number;
   setState: (args: any) => void;
-  state: object;
+  // state: object;
   required?: boolean;
   optionsData: OptionData[];
 }
@@ -27,16 +27,14 @@ export function Select({
   id,
   value,
   setState,
-  state,
+  // state,
   required,
   optionsData,
 }: SelectProps): JSX.Element {
   function handleSelectChange(event: React.FormEvent<HTMLSelectElement>) {
-    const { name } = event.currentTarget;
+    // const { name } = event.currentTarget;
     const element = event.currentTarget as HTMLSelectElement;
-    if (selectName === name) {
-      setState(() => ({ ...state, [name]: element.value }));
-    }
+    setState(element.value);
   }
 
   return (
