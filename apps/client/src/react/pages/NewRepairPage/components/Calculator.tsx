@@ -214,7 +214,6 @@ export function Calculator({
           />
         </div>
       </form>
-      {/* {result} */}
       {isCardVisible && <CalculatorCard color={color} result={result} />}
     </section>
   );
