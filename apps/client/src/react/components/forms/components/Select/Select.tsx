@@ -39,7 +39,6 @@ export function Select({
     setState(element.value);
   }
 
-
   return (
     <>
       <label
@@ -72,9 +71,7 @@ export function Select({
             )
           )}
         </select>
-        {hasTooltip && (
-         <Tooltip text={tooltipText}/>
-        )}
+        {hasTooltip && <Tooltip text={tooltipText} />}
       </div>
     </>
   );

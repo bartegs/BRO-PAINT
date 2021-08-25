@@ -69,9 +69,7 @@ export function InputOutlined({
           required={required}
         />
 
-        {hasTooltip && (
-         <Tooltip text={tooltipText} />
-        )}
+        {hasTooltip && <Tooltip text={tooltipText} />}
       </div>
     </>
   );

@@ -145,7 +145,7 @@ export function Calculator({
         />
         {repairType === "Detailing" && (
           <Select
-            hasTooltip={true}
+            hasTooltip
             tooltipText="miki"
             labelText="zakres korekty*"
             color={color}
@@ -196,7 +196,7 @@ export function Calculator({
             setState={setPanels}
             required
             optionsData={panelsData}
-            hasTooltip={true}
+            hasTooltip
             tooltipText="miki"
           />
         )}

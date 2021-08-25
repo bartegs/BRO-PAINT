@@ -192,7 +192,7 @@ export function Contact({
           required
         />
         <InputOutlined
-          hasTooltip={true}
+          hasTooltip
           tooltipText="pekinczyk"
           labelText="kod lakieru"
           color={color}
