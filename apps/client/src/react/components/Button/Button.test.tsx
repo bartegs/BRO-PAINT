@@ -22,7 +22,7 @@ describe("Button", () => {
     // then
     expect(
       (container.firstChild as Element).classList.contains(
-        "button--primary--green"
+        "button--green-primary"
       )
     ).toBeTruthy();
   });

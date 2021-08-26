@@ -20,57 +20,53 @@ interface InputOutlinedProps {
   fontTheme?: "dark" | "light";
   hasTooltip?: boolean;
   tooltipText?: string;
+  // ref?: any;
 }
 
-export function InputOutlined({
-  setState,
-  name,
-  value,
-  labelText,
-  checked,
-  placeholder,
-  id,
-  additionalClasses,
-  type,
-  required,
-  color,
-  fontTheme,
-  hasTooltip = false,
-  tooltipText,
-}: InputOutlinedProps) {
-  function handleValueChange(event: React.ChangeEvent<HTMLInputElement>) {
-    setState(event.currentTarget.value);
-  }
-  return (
-    <>
-      <label
-        htmlFor="paint"
-        className={classnames(
-          `input-outlined__label input-outlined__label--${color}`
-        )}
-      >
-        {labelText}
-      </label>
-      <div className="input-outlined__container">
-        <input
-          onChange={handleValueChange}
+const InputOutlined = React.forwardRef<HTMLInputElement, InputOutlinedProps>(
+  (props: InputOutlinedProps, ref) => {
+    function handleValueChange(event: React.ChangeEvent<HTMLInputElement>) {
+      props.setState(event.currentTarget.value);
+    }
+
+    return (
+      <>
+        <label
+          htmlFor="paint"
           className={classnames(
-            "input-outlined",
-            additionalClasses,
-            `input-outlined--border-${color}`,
-            `input-outlined--font-${fontTheme}`
+            `input-outlined__label input-outlined__label--${props.color}`
           )}
-          name={name}
-          placeholder={placeholder}
-          value={value}
-          checked={checked}
-          id={id}
-          type={type}
-          required={required}
-        />
+        >
+          {props.labelText}
+        </label>
+        <div className="input-outlined__container">
+          <input
+            onChange={handleValueChange}
+            ref={ref}
+            className={classnames(
+              "input-outlined",
+              props.additionalClasses,
+              `input-outlined--border-${props.color}`,
+              `input-outlined--font-${props.fontTheme}`
+            )}
+            name={props.name}
+            placeholder={props.placeholder}
+            value={props.value}
+            checked={props.checked}
+            id={props.id}
+            type={props.type}
+            required={props.required}
+          />
 
-        {hasTooltip && <Tooltip color={color} text={tooltipText} />}
-      </div>
-    </>
-  );
-}
+          {props.hasTooltip && (
+            <Tooltip color={props.color} text={props.tooltipText} />
+          )}
+        </div>
+      </>
+    );
+  }
+);
+
+export { InputOutlined };
+export default InputOutlined;
+// export default React.forwardRef(InputOutlined);

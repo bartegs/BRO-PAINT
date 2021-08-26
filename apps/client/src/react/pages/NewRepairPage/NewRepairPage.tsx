@@ -78,11 +78,13 @@ export function NewRepairPage(): JSX.Element {
     }
   }, [repairType]);
 
+  const inputRef = React.createRef<HTMLInputElement>();
+
   return (
     <div className="container new-repair-page">
-      <Calculator {...calculatorState} color={color} />
+      <Calculator ref={inputRef} {...calculatorState} color={color} />
       <div role="presentation" className="new-repair-page__line" />
-      <Contact {...contactState} color={color} />
+      <Contact ref={inputRef} {...contactState} color={color} />
     </div>
   );
 }
