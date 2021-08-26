@@ -1,7 +1,7 @@
 import * as React from "react";
 import classnames from "classnames";
 
-import { useLocation } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { Icon } from "../Icon";
 
 export function Footer(): JSX.Element {
@@ -55,12 +55,12 @@ export function Footer(): JSX.Element {
       </div>
 
       <div className="footer__item informations">
-        <a href="/" className="informations__item mr-2">
+        <NavLink to="/prawa-autorskie" className="informations__item mr-2">
           BRO PAINT © 2021
-        </a>
-        <a href="/privacy" className="informations__item">
+        </NavLink>
+        <NavLink to="/polityka-prywatnosci" className="informations__item">
           Polityka prywatności
-        </a>
+        </NavLink>
       </div>
     </footer>
   );
