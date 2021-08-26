@@ -71,7 +71,7 @@ export function Select({
             )
           )}
         </select>
-        {hasTooltip && <Tooltip text={tooltipText} />}
+        {hasTooltip && <Tooltip color={color} text={tooltipText} />}
       </div>
     </>
   );

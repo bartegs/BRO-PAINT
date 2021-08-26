@@ -6,6 +6,7 @@
   font-weight: bold;
   padding: $spacing-x2 $spacing-x5 $spacing-x3 $spacing-x5;
   cursor: pointer;
+  transition: 0.2s;
 
   &--secondary {
     background: $white;

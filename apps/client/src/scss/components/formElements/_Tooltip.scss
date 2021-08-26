@@ -12,22 +12,50 @@
   border-radius: 50% 50% 50% 0;
   border: 1px solid $black-light;
   font-weight: lighter;
+  transition: ease-in-out 0.3s;
 
   &:hover {
+    color: $white;
+    border-radius: 0% 50% 50% 50%;
+    transition: ease-in-out 0.3s;
+
     > div {
       visibility: visible;
     }
   }
 
+  &--green {
+    &:hover {
+      background-color: $green;
+      border-color: $green;
+    }
+  }
+
+  &--blue {
+    &:hover {
+      background-color: $blue;
+      border-color: $blue;
+    }
+  }
+
+  &--pink {
+    &:hover {
+      background-color: $pink;
+      border-color: $pink;
+    }
+  }
+
   &__text {
+    position: absolute;
     visibility: hidden;
-    width: 200px;
+    color: $black;
     padding: $spacing-x2;
-    right: 0;
-    bottom: 25px;
+    font-size: $text-12;
     box-shadow: $shadow;
     background-color: $white;
     border-radius: $radius-x1;
-    position: absolute;
+    width: 250px;
+    right: 0;
+    bottom: 25px;
   }
 }

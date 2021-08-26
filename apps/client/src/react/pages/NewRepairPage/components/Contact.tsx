@@ -193,7 +193,11 @@ export function Contact({
         />
         <InputOutlined
           hasTooltip
-          tooltipText="pekinczyk"
+          tooltipText="Podaj kod lakieru auta. Zazwyczaj znajdziesz go na naklejce na przednim błotniku 
+          oraz na naklejce we wnęce koła zapasowego. Prosimy o to, żeby przyśpieszyć realizację zlecenia, 
+          bo jeśli nie mamy akurat dostępu do tego lakieru, to sprowadzimy go za wczasu, 
+          aby czas oczekiwania na auto był jak najkrótszy!
+          Jeśli nie masz do tego kodu dostępu, nic się nie stało, poradzimy sobie."
           labelText="kod lakieru"
           color={color}
           placeholder="Wpisz kod lakieru auta"

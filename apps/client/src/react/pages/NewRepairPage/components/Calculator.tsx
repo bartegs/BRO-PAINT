@@ -146,7 +146,9 @@ export function Calculator({
         {repairType === "Detailing" && (
           <Select
             hasTooltip
-            tooltipText="miki"
+            tooltipText="Wybierz zakres korekty. Wykonujemy wyłącznie korekty 3-etapowe, 
+            ponieważ one przynoszą najlepszy efekt co jest naszym priorytetem. 
+            Dajemy jednak możliwość wyboru, czy zabezpieczać lakier powłoką ceramiczną."
             labelText="zakres korekty*"
             color={color}
             selectName="paintCorrection"
@@ -197,7 +199,11 @@ export function Calculator({
             required
             optionsData={panelsData}
             hasTooltip
-            tooltipText="miki"
+            tooltipText={
+              repairType === "Naprawa"
+                ? "Podaj ilość elementów, które wymagają naprawy. Przy szacunkowej kalkulacji uszkodzone elementy liczymy jako wymagające wymiany"
+                : "Podaj ilość elementów, które wymagają lakierowania. Możesz też wybrac lakierowanie całego auta w dwóch wariantach - pomalowanie auta w ten samo kolor, lub pomalowanie auta na zupełnie nowy, wybrany przez Ciebie kolor."
+            }
           />
         )}
         <div className="new-repair-page__buttons mt-4">
