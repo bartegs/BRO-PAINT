@@ -4,7 +4,6 @@ import classNames from "classnames";
 export interface IconProps {
   icon:
     | "tt"
-    | "tooltip"
     | "phone"
     | "person"
     | "location"
@@ -16,9 +15,6 @@ export interface IconProps {
     | "email"
     | "dropdown-arrow"
     | "car"
-    | "car-small"
-    | "car-medium"
-    | "car-big"
     | "arrow";
   color?:
     | "white"
@@ -32,7 +28,7 @@ export interface IconProps {
     | "blue-light"
     | "pink"
     | "pink-light";
-  size?: "sm" | "md" | "lg" | "car-sm" | "car-md" | "car-lg" | "gallery-arrow";
+  size?: "sm" | "md" | "lg";
   additionalClasses?: string;
 }
 

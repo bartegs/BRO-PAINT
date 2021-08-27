@@ -1,4 +1,5 @@
 import * as React from "react";
+import { NavLink } from "react-router-dom";
 import classnames from "classnames";
 import { Color } from "../../../../../../../utils/types";
 
@@ -36,9 +37,12 @@ export function Checkbox({
         />
         <p className="new-repair-page__checkbox-paragraph">
           Zapoznałem/am się z
-          <a href="https://policies.google.com/privacy?hl=en-US">
+          <NavLink
+            to="/polityka-prywatnosci"
+            className="new-repair-page__checkbox-paragraph--privacy"
+          >
             &nbsp;Polityką Prywatności&nbsp;
-          </a>
+          </NavLink>
           i wyrażam zgodę na przetwarzanie danych osobowych.
         </p>
       </label>

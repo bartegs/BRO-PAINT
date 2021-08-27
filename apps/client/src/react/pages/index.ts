@@ -4,6 +4,8 @@ import { RepairStatusPage } from "./RepairStatusPage";
 import { GalleryPage } from "./GalleryPage";
 import { AboutUsPage } from "./AboutUsPage";
 import { ContactPage } from "./ContactPage";
+import { CopyrightPage } from "./CopyrightPage";
+import { PrivacyPage } from "./PrivacyPage";
 
 export {
   HomePage,
@@ -12,4 +14,6 @@ export {
   GalleryPage,
   AboutUsPage,
   ContactPage,
+  CopyrightPage,
+  PrivacyPage,
 };

@@ -20,7 +20,6 @@ export function NavbarMenu({
     { id: 3, text: "O nas", href: "/o-nas" },
     { id: 4, text: "Galeria", href: "/galeria" },
     { id: 5, text: "Kontakt", href: "/kontakt" },
-    { id: 6, text: "Pracownik", href: "/pracownik" },
   ];
 
   return (
@@ -47,6 +46,11 @@ export function NavbarMenu({
           </NavLink>
         </li>
       ))}
+      <li role="menuitem" onClick={closeMenu} onKeyDown={handleMenuKeyboard}>
+        <a className="navbar-menu__link" href="/miki">
+          Pracownik
+        </a>
+      </li>
     </ul>
   );
 }
