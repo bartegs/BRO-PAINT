@@ -2,7 +2,7 @@ import classnames from "classnames";
 import * as React from "react";
 
 interface OwnProps {
-  onClick: (e: any) => void;
+  onClick: (e: React.MouseEvent) => void;
   isClicked: boolean;
   handleMenuKeyboard: (e: React.KeyboardEvent) => void;
 }

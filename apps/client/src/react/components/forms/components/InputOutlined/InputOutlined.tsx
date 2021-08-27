@@ -6,7 +6,7 @@ import type { Color } from "../../../../../../../utils/types";
 import { Tooltip } from "../Tooltip/Tooltip";
 
 interface InputOutlinedProps {
-  setState: (arg: any) => void;
+  setState: React.Dispatch<React.SetStateAction<string>>;
   name: string;
   value: string;
   labelText: string;
@@ -20,7 +20,6 @@ interface InputOutlinedProps {
   fontTheme?: "dark" | "light";
   hasTooltip?: boolean;
   tooltipText?: string;
-  // ref?: any;
 }
 
 const InputOutlined = React.forwardRef<HTMLInputElement, InputOutlinedProps>(
@@ -69,4 +68,3 @@ const InputOutlined = React.forwardRef<HTMLInputElement, InputOutlinedProps>(
 
 export { InputOutlined };
 export default InputOutlined;
-// export default React.forwardRef(InputOutlined);

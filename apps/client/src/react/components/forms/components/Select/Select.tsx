@@ -15,7 +15,7 @@ interface SelectProps {
   selectName: string;
   id: string;
   value: string | number;
-  setState: (args: any) => void;
+  setState: React.Dispatch<React.SetStateAction<string>>;
   required?: boolean;
   optionsData: OptionData[];
   hasTooltip?: boolean;

@@ -24,17 +24,17 @@ interface ContactProps {
   repairType: string;
   year: string;
   make: string;
-  setNames: (args: any) => void;
-  setEmail: (args: any) => void;
-  setPhone: (args: any) => void;
-  setYear: (args: any) => void;
-  setMake: (args: any) => void;
-  setModel: (args: any) => void;
-  setPlate: (args: any) => void;
-  setPaint: (args: any) => void;
-  setRepairType: (args: any) => void;
-  setDescription: (args: any) => void;
-  setPrivacy: (arg: boolean) => void;
+  setNames: React.Dispatch<React.SetStateAction<string>>;
+  setEmail: React.Dispatch<React.SetStateAction<string>>;
+  setPhone: React.Dispatch<React.SetStateAction<string>>;
+  setYear: React.Dispatch<React.SetStateAction<string>>;
+  setMake: React.Dispatch<React.SetStateAction<string>>;
+  setModel: React.Dispatch<React.SetStateAction<string>>;
+  setPlate: React.Dispatch<React.SetStateAction<string>>;
+  setPaint: React.Dispatch<React.SetStateAction<string>>;
+  setRepairType: React.Dispatch<React.SetStateAction<string>>;
+  setDescription: React.Dispatch<React.SetStateAction<string>>;
+  setPrivacy: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const Contact = React.forwardRef<HTMLInputElement, ContactProps>(

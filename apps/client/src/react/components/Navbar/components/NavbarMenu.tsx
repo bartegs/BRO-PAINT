@@ -23,8 +23,6 @@ export function NavbarMenu({
     { id: 6, text: "Pracownik", href: "/pracownik" },
   ];
 
-  // const closeMenu = () => setIsMenuOpen(false);
-
   return (
     <ul
       className={classnames("navbar-menu", {

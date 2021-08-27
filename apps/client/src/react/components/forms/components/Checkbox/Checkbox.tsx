@@ -2,12 +2,12 @@ import * as React from "react";
 import classnames from "classnames";
 import { Color } from "../../../../../../../utils/types";
 
-interface SelectProps {
+interface CheckboxProps {
   name: string;
   id: string;
   color: Color;
   isChecked: boolean;
-  setState: (arg: any) => void;
+  setState: React.Dispatch<React.SetStateAction<boolean>>;
   required?: boolean;
 }
 
@@ -18,7 +18,7 @@ export function Checkbox({
   isChecked,
   setState,
   required,
-}: SelectProps): JSX.Element {
+}: CheckboxProps): JSX.Element {
   function handleCheckboxChange() {
     setState((prevState: boolean) => !prevState);
   }

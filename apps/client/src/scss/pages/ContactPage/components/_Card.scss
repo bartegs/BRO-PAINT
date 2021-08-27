@@ -34,3 +34,11 @@
     }
   }
 }
+
+.form-confirmation {
+  &__heading {
+    display: inline-block;
+    font-weight: bold;
+    margin-bottom: $spacing-x2;
+  }
+}

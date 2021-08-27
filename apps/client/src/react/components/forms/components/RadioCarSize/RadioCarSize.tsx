@@ -17,7 +17,7 @@ interface RadioCarSizeProps {
   labelText: string;
   radioData: RadioData[];
   value: string;
-  setState: (args: any) => void;
+  setState: React.Dispatch<React.SetStateAction<string>>;
   color?: Color;
 }
 

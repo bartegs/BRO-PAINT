@@ -5,7 +5,7 @@ import classnames from "classnames";
 import type { Color } from "../../../../../../../utils/types";
 
 interface InputProps {
-  setState: (arg: any) => void;
+  setState: React.Dispatch<React.SetStateAction<string>>;
   name: string;
   value: string;
   checked?: boolean;

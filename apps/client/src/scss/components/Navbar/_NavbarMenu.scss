@@ -18,7 +18,6 @@
   }
 
   &--open {
-    // height: 440px;
     height: calc(100vh - 60px);
 
     @media (min-width: $screen-md) {
