@@ -1,0 +1,185 @@
+.radio {
+  display: grid;
+  grid-template-columns: min-content auto;
+  grid-gap: $spacing-x1;
+
+  &:focus-within {
+    border: 3px solid $black-light;
+    border-radius: 5px;
+  }
+
+  &--green {
+    &:focus-within {
+      border: 3px solid $green;
+    }
+  }
+
+  &--blue {
+    &:focus-within {
+      border: 3px solid $blue;
+    }
+  }
+
+  &--pink {
+    &:focus-within {
+      border: 3px solid $pink;
+    }
+  }
+
+  &--car-size {
+    display: inline-block;
+
+    &:focus-within {
+      border-radius: 5px;
+      padding: $spacing-x1;
+      height: 60px;
+    }
+  }
+
+  &__control {
+    display: block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 1px solid $black;
+    transform: translateY(-0.05em);
+  }
+
+  &__input {
+    display: flex;
+    align-items: center;
+
+    &--car-size {
+      input {
+        margin: 0;
+        opacity: 0;
+        height: 25px;
+        width: 60px;
+        position: absolute;
+        z-index: 100;
+        cursor: pointer;
+
+        @media (min-width: 768px) {
+          height: 30px;
+          width: 70px;
+        }
+      }
+
+      &--md {
+        input {
+          height: 25px;
+          width: 80px;
+
+          @media (min-width: 768px) {
+            height: 30px;
+            width: 90px;
+          }
+        }
+      }
+
+      &--lg {
+        input {
+          height: 35px;
+          width: 80px;
+
+          @media (min-width: 768px) {
+            height: 40px;
+            width: 90px;
+          }
+        }
+      }
+    }
+
+    input {
+      margin: 0;
+      opacity: 0;
+      width: 120px;
+      height: 20px;
+      position: absolute;
+      z-index: 100;
+      cursor: pointer;
+
+      &:checked + .radio__control {
+        background: radial-gradient($black 45%, $white 10%);
+
+        &--green {
+          background: radial-gradient($green 45%, $white 10%);
+        }
+
+        &--blue {
+          background: radial-gradient($blue 45%, $white 10%);
+        }
+
+        &--pink {
+          background: radial-gradient($pink 45%, $white 10%);
+        }
+      }
+    }
+  }
+}
+
+.radio-container {
+  padding: $spacing-x2;
+  border-bottom: none;
+  border: 1px solid $black-light;
+  border-radius: 5px;
+  background: none;
+  display: block;
+  margin-bottom: $spacing-x1;
+  width: 100%;
+
+  &--car-size {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding-top: $spacing-x3;
+    margin-bottom: 0;
+  }
+
+  &:focus-within {
+    outline: none;
+    border-radius: 5px;
+  }
+
+  &--green {
+    &:focus-within {
+      box-shadow: 0 0 0 2px $green;
+    }
+  }
+
+  &--blue {
+    &:focus-within {
+      box-shadow: 0 0 0 2px $blue;
+    }
+  }
+
+  &--pink {
+    &:focus-within {
+      box-shadow: 0 0 0 2px $pink;
+    }
+  }
+
+  &__label {
+    color: $black-light;
+    font-size: $text-12;
+    font-weight: bold;
+    text-transform: uppercase;
+    position: relative;
+    bottom: -7px;
+    left: $spacing-x2;
+    background: $white;
+    padding: 0 $spacing-x1;
+
+    &--green {
+      color: $green;
+    }
+
+    &--blue {
+      color: $blue;
+    }
+
+    &--pink {
+      color: $pink;
+    }
+  }
+}

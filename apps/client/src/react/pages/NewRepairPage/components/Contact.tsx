@@ -1,367 +1,274 @@
 import * as React from "react";
 import classnames from "classnames";
 import useWindowWidth from "../../../hooks/useWindowWidth";
-import { Input } from "../../../components/Input/Input";
+
+import { InputOutlined } from "../../../components/forms/components/InputOutlined";
+import { Select } from "../../../components/forms/components/Select";
+import { Radio } from "../../../components/forms/components/Radio";
+import { TextArea } from "../../../components/forms/components/TextArea";
+import { File } from "../../../components/forms/components/File";
+import { Checkbox } from "../../../components/forms/components/Checkbox";
 import { Button } from "../../../components/Button/Button";
+import { Color } from "../../../../../../utils/types";
 
-export function Contact(): JSX.Element {
-  const { width } = useWindowWidth();
-  const [contact, setContact] = React.useState({
-    names: "",
-    email: "",
-    phone: "",
-    year: "",
-    make: "",
-    model: "",
-    plate: "",
-    paint: "",
-    repairType: "Naprawa",
-    description: "",
-    privacy: false,
-  });
+interface ContactProps {
+  color: Color;
+  names: string;
+  email: string;
+  phone: string;
+  model: string;
+  plate: string;
+  paint: string;
+  description: string;
+  privacy: boolean;
+  repairType: string;
+  year: string;
+  make: string;
+  setNames: React.Dispatch<React.SetStateAction<string>>;
+  setEmail: React.Dispatch<React.SetStateAction<string>>;
+  setPhone: React.Dispatch<React.SetStateAction<string>>;
+  setYear: React.Dispatch<React.SetStateAction<string>>;
+  setMake: React.Dispatch<React.SetStateAction<string>>;
+  setModel: React.Dispatch<React.SetStateAction<string>>;
+  setPlate: React.Dispatch<React.SetStateAction<string>>;
+  setPaint: React.Dispatch<React.SetStateAction<string>>;
+  setRepairType: React.Dispatch<React.SetStateAction<string>>;
+  setDescription: React.Dispatch<React.SetStateAction<string>>;
+  setPrivacy: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
-  function handleValueChange(event: React.ChangeEvent<HTMLInputElement>) {
-    const { value, name } = event.currentTarget;
+const Contact = React.forwardRef<HTMLInputElement, ContactProps>(
+  (
+    {
+      color,
+      names,
+      email,
+      phone,
+      model,
+      plate,
+      paint,
+      description,
+      privacy,
+      repairType,
+      year,
+      make,
+      setNames,
+      setEmail,
+      setPhone,
+      setYear,
+      setMake,
+      setModel,
+      setPlate,
+      setPaint,
+      setRepairType,
+      setDescription,
+      setPrivacy,
+    }: ContactProps,
+    ref
+  ) => {
+    const { width } = useWindowWidth();
 
-    if (name === "names") {
-      setContact(() => ({
-        ...contact,
-        names: value,
-      }));
-    } else if (name === "email") {
-      setContact(() => ({
-        ...contact,
-        email: value,
-      }));
-    } else if (name === "phone") {
-      setContact(() => ({
-        ...contact,
-        phone: value,
-      }));
-    } else if (name === "model") {
-      setContact(() => ({
-        ...contact,
-        model: value,
-      }));
-    } else if (name === "plate") {
-      setContact(() => ({
-        ...contact,
-        plate: value,
-      }));
-    } else if (name === "paint") {
-      setContact(() => ({
-        ...contact,
-        paint: value,
-      }));
-    } else if (name === "repairType") {
-      setContact(() => ({
-        ...contact,
-        repairType: value,
-      }));
+    function handleContactReset() {
+      setNames("");
+      setEmail("");
+      setPhone("");
+      setYear("");
+      setMake("");
+      setModel("");
+      setPlate("");
+      setPaint("");
+      setRepairType("Naprawa");
+      setDescription("");
+      setPrivacy(false);
     }
-  }
 
-  function handleTextAreaChange(event: React.ChangeEvent<HTMLTextAreaElement>) {
-    const { value, name } = event.currentTarget;
-    if (name === "description") {
-      setContact(() => ({
-        ...contact,
-        description: value,
-      }));
-    }
-  }
+    const yearsData = [
+      { id: 0, value: "", text: "Wybierz rocznik auta" },
+      { id: 1, value: "1999", text: "1999" },
+      { id: 2, value: "2000", text: "2000" },
+      { id: 3, value: "2001", text: "2001" },
+      { id: 4, value: "2002", text: "2002" },
+    ];
 
-  function handleCheckboxChange() {
-    setContact(() => ({
-      ...contact,
-      privacy: !contact.privacy,
-    }));
-  }
+    const makesData = [
+      { id: 0, value: "", text: "Wybierz markę auta" },
+      { id: 1, value: "audi", text: "Audi" },
+      { id: 2, value: "bmw", text: "BMW" },
+      { id: 3, value: "mercedes", text: "Mercedes" },
+      { id: 4, value: "volvo", text: "Volvo" },
+    ];
 
-  function handleReset() {
-    setContact(() => ({
-      ...contact,
-      names: "",
-      email: "",
-      phone: "",
-      year: "",
-      make: "",
-      model: "",
-      plate: "",
-      paint: "",
-      repairType: "Naprawa",
-      description: "",
-      privacy: false,
-    }));
-  }
+    const servicesData = [
+      { id: "Naprawa ", value: "Naprawa" },
+      { id: "Lakierowanie ", value: "Lakierowanie", additionalClasses: "my-2" },
+      { id: "Detailing ", value: "Detailing" },
+    ];
 
-  function handleSelectChange(event: React.FormEvent<HTMLSelectElement>) {
-    const { name } = event.currentTarget;
-    const element = event.currentTarget as HTMLSelectElement;
-    if (name === "year") {
-      setContact(() => ({
-        ...contact,
-        year: element.value,
-      }));
-    } else if (name === "make") {
-      setContact(() => ({
-        ...contact,
-        make: element.value,
-      }));
-    }
-  }
-
-  return (
-    <section className="new-repair-page__section">
-      <h2
-        className={classnames("new-repair-page__heading", {
-          "mt-10": width < 1366,
-        })}
-      >
-        Lub po prostu zostaw nam dane o {width >= 768 && <br />}
-        zleceniu, a my zajmiemy się resztą!
-      </h2>
-      <form className="new-repair-page__form">
-        <label htmlFor="names" className="input--outlined__label">
-          imie i nazwisko*
-        </label>
-        <Input
-          placeholder="Wpisz swoje imię i nazwisko"
-          name="names"
-          id="names"
-          value={contact.names}
-          onChange={handleValueChange}
-          additionalClasses="input--outlined"
-          type="text"
-          required
-        />
-        <label htmlFor="email" className="input--outlined__label">
-          email*
-        </label>
-        <Input
-          placeholder="Wpisz swój adres email"
-          name="email"
-          id="email"
-          value={contact.email}
-          onChange={handleValueChange}
-          additionalClasses="input--outlined"
-          type="email"
-          required
-        />
-        {/* {contact.email} */}
-        <label htmlFor="phone" className="input--outlined__label">
-          telefon*
-        </label>
-        <Input
-          placeholder="Wpisz swój numer telefonu"
-          name="phone"
-          id="phone"
-          value={contact.phone}
-          onChange={handleValueChange}
-          additionalClasses="input--outlined"
-          type="text"
-          required
-        />
-        {/* {contact.phone} */}
-        <label
-          htmlFor="year"
-          className="input--outlined__label input--outlined__label--other"
+    return (
+      <section className="new-repair-page__section">
+        <h2
+          className={classnames("new-repair-page__heading", {
+            "mt-10": width < 1366,
+          })}
         >
-          rocznik*
-        </label>
-        <div className="select">
-          <select
-            name="year"
+          Lub po prostu zostaw nam dane o {width >= 768 && <br />}
+          zleceniu, a my zajmiemy się resztą!
+        </h2>
+        <form className="new-repair-page__form">
+          <InputOutlined
+            placeholder="Wpisz swoje imię i nazwisko"
+            labelText="imie i nazwisko*"
+            color={color}
+            name="names"
+            id="names"
+            value={names}
+            setState={setNames}
+            type="text"
+            fontTheme="dark"
+            required
+            ref={ref}
+          />
+          <InputOutlined
+            placeholder="Wpisz swój adres email"
+            labelText="email*"
+            color={color}
+            name="email"
+            id="email"
+            value={email}
+            setState={setEmail}
+            type="email"
+            fontTheme="dark"
+            required
+          />
+          <InputOutlined
+            placeholder="Wpisz swój numer telefonu"
+            labelText="telefon*"
+            color={color}
+            name="phone"
+            id="phone"
+            value={phone}
+            setState={setPhone}
+            type="text"
+            fontTheme="dark"
+            required
+          />
+          <Select
+            labelText="rocznik*"
+            color={color}
+            selectName="year"
             id="year"
-            value={contact.year}
-            onChange={handleSelectChange}
+            value={year}
+            setState={setYear}
             required
-          >
-            <option value="" hidden>
-              Wybierz rocznik auta
-            </option>
-            <option value="1999">1999</option>
-            <option value="2000">2000</option>
-            <option value="2001">2001</option>
-            <option value="2002">2002</option>
-          </select>
-        </div>
-        {/* {contact.year} */}
-        <label
-          htmlFor="make"
-          className="input--outlined__label  input--outlined__label--other"
-        >
-          marka*
-        </label>
-        <div className="select">
-          <select
-            name="make"
+            optionsData={yearsData}
+          />
+          <Select
+            labelText="marka*"
+            color={color}
+            selectName="make"
             id="make"
-            value={contact.make}
-            onChange={handleSelectChange}
+            value={make}
+            setState={setMake}
             required
-          >
-            <option value="" hidden>
-              Wybierz markę auta
-            </option>
-            <option value="audi">Audi</option>
-            <option value="bmw">BMW</option>
-            <option value="mercedes">Mercedes</option>
-            <option value="volvo">Volvo</option>
-          </select>
-        </div>
-        {/* {contact.make} */}
-        <label htmlFor="model" className="input--outlined__label">
-          model*
-        </label>
-        <Input
-          placeholder="Wpisz model auta"
-          name="model"
-          id="model"
-          value={contact.model}
-          onChange={handleValueChange}
-          additionalClasses="input--outlined"
-          type="text"
-          required
-        />
-        {/* {contact.model} */}
-        <label htmlFor="plate" className="input--outlined__label">
-          rejestracja*
-        </label>
-        <Input
-          placeholder="Wpisz numer rejestracyjny auta"
-          name="plate"
-          id="plate"
-          value={contact.plate}
-          onChange={handleValueChange}
-          additionalClasses="input--outlined"
-          type="text"
-          required
-        />
-        {/* {contact.plate} */}
-        <label htmlFor="paint" className="input--outlined__label">
-          kod lakieru
-        </label>
-        <Input
-          placeholder="Wpisz kod lakieru auta"
-          name="paint"
-          id="paint"
-          value={contact.paint}
-          onChange={handleValueChange}
-          additionalClasses="input--outlined"
-          type="text"
-        />
-        {/* {contact.paint} */}
-        <label
-          htmlFor="repairType"
-          className="input--outlined__label input--outlined__label--other"
-        >
-          Usługa*
-        </label>
-        <div id="repairType" className="input--outlined">
-          <label className="radio" htmlFor="Naprawa">
-            <span className="radio__input">
-              <Input
-                name="repairType"
-                id="Naprawa"
-                value="Naprawa"
-                checked={contact.repairType === "Naprawa"}
-                onChange={handleValueChange}
-                type="radio"
-              />
-              <span className="radio__control" />
-            </span>
-            <span className="radio__label">Naprawa</span>
-          </label>
-          <label className="radio my-2" htmlFor="Lakierowanie">
-            <span className="radio__input">
-              <Input
-                name="repairType"
-                value="Lakierowanie"
-                checked={contact.repairType === "Lakierowanie"}
-                onChange={handleValueChange}
-                type="radio"
-              />
-              <span className="radio__control" />
-            </span>
-            <span className="radio__label">Lakierowanie</span>
-          </label>
-          <label className="radio" htmlFor="Detailing">
-            <span className="radio__input">
-              <Input
-                name="repairType"
-                value="Detailing"
-                checked={contact.repairType === "Detailing"}
-                onChange={handleValueChange}
-                type="radio"
-              />
-              <span className="radio__control" />
-            </span>
-            <span className="radio__label">Detailing</span>
-          </label>
-        </div>
-        <label
-          htmlFor="description"
-          className="input--outlined__label  input--outlined__label--other"
-        >
-          Usługa
-        </label>
-        <textarea
-          name="description"
-          id="description"
-          className="input--outlined text-area text-area--new-repair-page"
-          placeholder="Opisz swoje zlecenie i podziel się swoimi uwagami."
-          value={contact.description}
-          onChange={handleTextAreaChange}
-        />
-        <label htmlFor="photo" className="input--centered-label">
-          Jeśli chcesz, możesz załączyć zdjęcia auta, pomoże nam to w
-          oszacowaniu wymaganej pracy.
-        </label>
-        <input
-          type="file"
-          className="input--file my-3"
-          multiple
-          id="photo"
-          name="photo"
-        />
-
-        <label htmlFor="privacy" className="w-100 mb-2">
-          <input
+            optionsData={makesData}
+          />
+          <InputOutlined
+            labelText="model*"
+            color={color}
+            placeholder="Wpisz model auta"
+            name="model"
+            id="model"
+            value={model}
+            setState={setModel}
+            type="text"
+            fontTheme="dark"
+            required
+          />
+          <InputOutlined
+            labelText="rejestracja*"
+            color={color}
+            placeholder="Wpisz numer rejestracyjny auta"
+            name="plate"
+            id="plate"
+            value={plate}
+            setState={setPlate}
+            type="text"
+            fontTheme="dark"
+            required
+          />
+          <InputOutlined
+            hasTooltip
+            tooltipText="Podaj kod lakieru auta. Zazwyczaj znajdziesz go na naklejce na przednim błotniku 
+              oraz na naklejce we wnęce koła zapasowego. Prosimy o to, żeby przyśpieszyć realizację zlecenia, 
+              bo jeśli nie mamy akurat dostępu do tego lakieru, to sprowadzimy go za wczasu, 
+              aby czas oczekiwania na auto był jak najkrótszy!
+              Jeśli nie masz do tego kodu dostępu, nic się nie stało, poradzimy sobie."
+            labelText="kod lakieru"
+            color={color}
+            placeholder="Wpisz kod lakieru auta"
+            name="paint"
+            id="paint"
+            value={paint}
+            setState={setPaint}
+            type="text"
+            fontTheme="dark"
+          />
+          <Radio
+            name="repairType"
+            id="repairType"
+            labelText="Usługa*"
+            value={repairType}
+            setState={setRepairType}
+            radioData={servicesData}
+            color={color}
+          />
+          <TextArea
+            labelText="Usługa"
+            name="description"
+            id="description"
+            value={description}
+            placeholder="Opisz swoje zlecenie i podziel się swoimi uwagami."
+            setState={setDescription}
+            color={color}
+            variant="outlined"
+            additionalClasses="mb-3"
+          />
+          <File
+            name="photo"
+            id="photo"
+            labelAdditionalClasses="file__label--centered"
+            fileAdditionalClasses="my-3"
+          />
+          <Checkbox
             name="privacy"
             id="privacy"
-            type="checkbox"
-            checked={contact.privacy}
-            onChange={handleCheckboxChange}
+            isChecked={privacy}
+            setState={setPrivacy}
             required
-            className="checkbox checkbox--green"
+            color={color}
           />
-          <p className="new-repair-page__checkbox-paragraph">
-            Zapoznałem/am się z
-            <a href="https://policies.google.com/privacy?hl=en-US">
-              &nbsp;Polityką Prywatności&nbsp;
-            </a>
-            i wyrażam zgodę na przetwarzanie danych osobowych.
-          </p>
-        </label>
+          <div className="new-repair-page__buttons">
+            <Button
+              text="Wyślij"
+              color={color}
+              type="submit"
+              variant="primary"
+              additionalClasses="mr-3 w-100"
+            />
+            <Button
+              text="Resetuj"
+              color={color}
+              type="reset"
+              variant="secondary"
+              onClick={handleContactReset}
+              additionalClasses="w-100"
+            />
+          </div>
+        </form>
+      </section>
+    );
+  }
+);
 
-        {/* {contact.privacy.toString()} */}
-        <div className="new-repair-page__buttons">
-          <Button
-            text="Wyślij"
-            color="green"
-            type="submit"
-            additionalClasses="mr-3 w-100"
-          />
-          <Button
-            text="Resetuj"
-            color="green"
-            type="reset"
-            onClick={handleReset}
-            additionalClasses="button--new-repair w-100"
-          />
-        </div>
-      </form>
-    </section>
-  );
-}
+export { Contact };
+export default Contact;

@@ -8,6 +8,7 @@ import { Button, ButtonProps } from ".";
 describe("Button", () => {
   const defaultProps: ButtonProps = {
     color: "green",
+    variant: "primary",
     text: "sample label",
   };
 
@@ -20,7 +21,9 @@ describe("Button", () => {
 
     // then
     expect(
-      (container.firstChild as Element).classList.contains("button--green")
+      (container.firstChild as Element).classList.contains(
+        "button--green-primary"
+      )
     ).toBeTruthy();
   });
 

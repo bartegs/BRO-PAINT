@@ -1,332 +1,240 @@
 import * as React from "react";
 import useWindowWidth from "../../../hooks/useWindowWidth";
-import { Input } from "../../../components/Input/Input";
+
+import { Color } from "../../../../../../utils/types";
+import { CarSizeType, CarIconType } from "../../../components/icons/CarIcon";
+
+import { Radio } from "../../../components/forms/components/Radio";
+import { Select } from "../../../components/forms/components/Select";
+import { RadioCarSize } from "../../../components/forms/components/RadioCarSize";
 import { Button } from "../../../components/Button/Button";
-import { Icon } from "../../../components/Icon";
+
 import { CalculatorCard } from "./CalculatorCard";
 
-export function Calculator(): JSX.Element {
-  const { width } = useWindowWidth();
-
-  interface ICalculator {
-    repairType: string;
-    year: string;
-    make: string;
-    carSize: string;
-    panels?: number | string;
-    paintCorrection?: string;
-    // result: number | string;
-  }
-
-  const [calculator, setCalculator] = React.useState<ICalculator>({
-    repairType: "Naprawa",
-    year: "",
-    make: "",
-    carSize: "Małe",
-    panels: "",
-    paintCorrection: "",
-    // result: 0,
-  });
-
-  const [isCardVisible, setisCardVisible] = React.useState(false);
-
-  function handleValueChange(event: React.ChangeEvent<HTMLInputElement>) {
-    const { value, name } = event.currentTarget;
-
-    if (name === "carSize") {
-      setCalculator(() => ({
-        ...calculator,
-        carSize: value,
-      }));
-    } else if (name === "repairType") {
-      setCalculator(() => ({
-        ...calculator,
-        repairType: value,
-      }));
-    }
-  }
-
-  function handleSelectChange(event: React.FormEvent<HTMLSelectElement>) {
-    const { name } = event.currentTarget;
-    const element = event.currentTarget as HTMLSelectElement;
-    if (name === "year") {
-      setCalculator(() => ({
-        ...calculator,
-        year: element.value,
-      }));
-    } else if (name === "make") {
-      setCalculator(() => ({
-        ...calculator,
-        make: element.value,
-      }));
-    } else if (name === "panels") {
-      setCalculator(() => ({
-        ...calculator,
-        panels: parseInt(element.value, 10),
-      }));
-    } else if (name === "paintCorrection") {
-      setCalculator(() => ({
-        ...calculator,
-        paintCorrection: element.value,
-      }));
-    }
-  }
-
-  // function calculate(event: React.FormEvent) {
-  //   event.preventDefault();
-  //   setResult(result);
-  //   return result;
-  // }
-
-  function handleReset() {
-    setCalculator(() => ({
-      ...calculator,
-      repairType: "Naprawa",
-      year: "",
-      make: "",
-      carSize: "Małe",
-      panels: "",
-      paintCorrection: "",
-    }));
-  }
-
-  function showCalculatorCard() {
-    setisCardVisible((prevIsCardVisible) => !prevIsCardVisible);
-  }
-
-  return (
-    <section className="new-repair-page__section">
-      <h2 className="new-repair-page__heading">
-        Wylicz szacunkowy koszt naprawy {width >= 768 && <br />}
-        za pomocą naszego kalkulatora
-      </h2>
-      <form className="new-repair-page__form">
-        <label
-          htmlFor="repairType"
-          className="input--outlined__label input--outlined__label--other"
-        >
-          Usługa*
-        </label>
-        <div id="repairType" className="input--outlined">
-          <label className="radio" htmlFor="Naprawa">
-            <span className="radio__input">
-              <Input
-                name="repairType"
-                id="Naprawa"
-                value="Naprawa"
-                checked={calculator.repairType === "Naprawa"}
-                onChange={handleValueChange}
-                type="radio"
-              />
-              <span className="radio__control" />
-            </span>
-            <span className="radio__label">Naprawa</span>
-          </label>
-          <label className="radio my-2" htmlFor="Lakierowanie">
-            <span className="radio__input">
-              <Input
-                name="repairType"
-                value="Lakierowanie"
-                checked={calculator.repairType === "Lakierowanie"}
-                onChange={handleValueChange}
-                type="radio"
-              />
-              <span className="radio__control" />
-            </span>
-            <span className="radio__label">Lakierowanie</span>
-          </label>
-          <label className="radio" htmlFor="Detailing">
-            <span className="radio__input">
-              <Input
-                name="repairType"
-                value="Detailing"
-                checked={calculator.repairType === "Detailing"}
-                onChange={handleValueChange}
-                type="radio"
-              />
-              <span className="radio__control" />
-            </span>
-            <span className="radio__label">Detailing</span>
-          </label>
-        </div>
-        {calculator.repairType === "Detailing" && (
-          <>
-            <label
-              htmlFor="make"
-              className="input--outlined__label  input--outlined__label--other"
-            >
-              zakres korekty*
-            </label>
-            <div className="select">
-              <select
-                name="paintCorrection"
-                id="paintCorrection"
-                value={calculator.paintCorrection}
-                onChange={handleSelectChange}
-                required
-              >
-                <option value="" hidden>
-                  Wybierz rodzaj korekty lakieru
-                </option>
-                <option value="3in1">Korekta 3w1</option>
-                <option value="3in1ceramic">Korekta 3w1 + ceramika</option>
-                <option value="3stage">Korekta 3 etapowa</option>
-                <option value="3stage+ceramic">
-                  Korekta 3 etapowa + ceramika
-                </option>
-              </select>
-            </div>
-          </>
-        )}
-        <label
-          htmlFor="year"
-          className="input--outlined__label input--outlined__label--other"
-        >
-          rocznik*
-        </label>
-        <div className="select">
-          <select
-            name="year"
-            id="year"
-            value={calculator.year}
-            onChange={handleSelectChange}
-            required
-          >
-            <option value="" hidden>
-              Wybierz rocznik auta
-            </option>
-            <option value="1999">1999</option>
-            <option value="2000">2000</option>
-            <option value="2001">2001</option>
-            <option value="2002">2002</option>
-          </select>
-        </div>
-        <label
-          htmlFor="make"
-          className="input--outlined__label  input--outlined__label--other"
-        >
-          marka*
-        </label>
-        <div className="select">
-          <select
-            name="make"
-            id="make"
-            value={calculator.make}
-            onChange={handleSelectChange}
-            required
-          >
-            <option value="" hidden>
-              Wybierz markę auta
-            </option>
-            <option value="audi">Audi</option>
-            <option value="bmw">BMW</option>
-            <option value="mercedes">Mercedes</option>
-            <option value="volvo">Volvo</option>
-          </select>
-        </div>
-        <label
-          htmlFor="carSize"
-          className="input--outlined__label input--outlined__label--other"
-        >
-          rozmiar auta*
-        </label>
-        <div id="carSize" className="input--outlined input--outlined--car-size">
-          <label className="radio--car-size" htmlFor="Małe">
-            <span className="radio__input--car-size">
-              <Input
-                name="carSize"
-                id="Małe"
-                value="Małe"
-                checked={calculator.carSize === "Małe"}
-                onChange={handleValueChange}
-                type="radio"
-              />
-            </span>
-            <Icon
-              icon="car-small"
-              size="car-sm"
-              color={calculator.carSize === "Małe" ? "green" : "black-light"}
-            />
-          </label>
-          <label className="radio--car-size" htmlFor="Średnie">
-            <span className="radio__input--car-size radio__input--car-size--md">
-              <Input
-                name="carSize"
-                value="Średnie"
-                checked={calculator.carSize === "Średnie"}
-                onChange={handleValueChange}
-                type="radio"
-              />
-            </span>
-            <Icon
-              icon="car-medium"
-              size="car-md"
-              color={calculator.carSize === "Średnie" ? "green" : "black-light"}
-            />
-          </label>
-          <label className="radio--car-size" htmlFor="Duże">
-            <span className="radio__input--car-size radio__input--car-size--lg">
-              <Input
-                name="carSize"
-                value="Duże"
-                checked={calculator.carSize === "Duże"}
-                onChange={handleValueChange}
-                type="radio"
-              />
-            </span>
-            <Icon
-              icon="car-big"
-              size="car-lg"
-              color={calculator.carSize === "Duże" ? "green" : "black-light"}
-            />
-          </label>
-        </div>
-        {calculator.repairType !== "Detailing" && (
-          <>
-            <label
-              htmlFor="make"
-              className="input--outlined__label  input--outlined__label--other"
-            >
-              liczba elementów*
-            </label>
-            <div className="select">
-              <select
-                name="panels"
-                id="panels"
-                value={calculator.panels}
-                onChange={handleSelectChange}
-                required
-              >
-                <option value="" hidden>
-                  Wybierz liczbę elementów
-                </option>
-                <option value={1}>1</option>
-                <option value={2}>2</option>
-                <option value={3}>3</option>
-                <option value={4}>4</option>
-              </select>
-            </div>
-          </>
-        )}
-        <div className="new-repair-page__buttons mt-4">
-          <Button
-            text="Wylicz"
-            color="green"
-            type="submit"
-            additionalClasses="mr-3 w-100"
-            onClick={showCalculatorCard}
-          />
-          <Button
-            text="Resetuj"
-            color="green"
-            type="reset"
-            additionalClasses="w-100 button--new-repair"
-            onClick={handleReset}
-          />
-        </div>
-      </form>
-      {/* {result} */}
-      {isCardVisible && <CalculatorCard />}
-    </section>
-  );
+interface CalculatorProps {
+  color: Color;
+  repairType: string;
+  year: string;
+  make: string;
+  carSize: string;
+  panels: string;
+  paintCorrection: string;
+  result: string;
+  setRepairType: (arg: string) => void;
+  setYear: (arg: string) => void;
+  setMake: (arg: string) => void;
+  setCarSize: (arg: string) => void;
+  setPanels?: (arg: string) => void;
+  setPaintCorrection?: (arg: string) => void;
+  setResult: (arg: string) => void;
 }
+
+const Calculator = React.forwardRef<HTMLInputElement, CalculatorProps>(
+  (
+    {
+      color,
+      repairType,
+      year,
+      make,
+      carSize,
+      panels,
+      paintCorrection,
+      result,
+      setRepairType,
+      setYear,
+      setMake,
+      setCarSize,
+      setPanels,
+      setPaintCorrection,
+      setResult,
+    }: CalculatorProps,
+    ref
+  ) => {
+    const { width } = useWindowWidth();
+
+    const [isCardVisible, setisCardVisible] = React.useState(false);
+
+    function handleCalculatorReset() {
+      setRepairType("Naprawa");
+      setYear("");
+      setMake("");
+      setCarSize("Małe");
+      setPanels("");
+      setPaintCorrection("");
+      setResult("");
+      setisCardVisible(false);
+    }
+
+    function showCalculatorCard() {
+      setisCardVisible((prevIsCardVisible) => !prevIsCardVisible);
+    }
+
+    function calculate(e: React.FormEvent) {
+      e.preventDefault();
+      showCalculatorCard();
+      setResult("2137");
+    }
+
+    const paintCorrectionsData = [
+      { id: 0, value: "", text: "Wybierz rodzaj korekty lakieru" },
+      { id: 1, value: "3in1", text: "Korekta 3w1" },
+      { id: 2, value: "3in1ceramic", text: "Korekta 3w1 + ceramika" },
+      { id: 3, value: "3stage", text: "Korekta 3 etapowa" },
+      { id: 4, value: "3stage+ceramic", text: "Korekta 3 etapowa + ceramika" },
+    ];
+
+    const yearsData = [
+      { id: 0, value: "", text: "Wybierz rocznik auta" },
+      { id: 1, value: "1999", text: "1999" },
+      { id: 2, value: "2000", text: "2000" },
+      { id: 3, value: "2001", text: "2001" },
+      { id: 4, value: "2002", text: "2002" },
+    ];
+
+    const makesData = [
+      { id: 0, value: "", text: "Wybierz markę auta" },
+      { id: 1, value: "audi", text: "Audi" },
+      { id: 2, value: "bmw", text: "BMW" },
+      { id: 3, value: "mercedes", text: "Mercedes" },
+      { id: 4, value: "volvo", text: "Volvo" },
+    ];
+
+    const panelsData = [
+      { id: 0, value: "", text: "Wybierz liczbę elementów" },
+      { id: 1, value: 1, text: "1" },
+      { id: 2, value: 2, text: "2" },
+      { id: 3, value: 3, text: "3" },
+      { id: 4, value: 4, text: "4" },
+    ];
+
+    const servicesData = [
+      { id: "Naprawa ", value: "Naprawa" },
+      { id: "Lakierowanie ", value: "Lakierowanie", additionalClasses: "my-2" },
+      { id: "Detailing ", value: "Detailing" },
+    ];
+
+    interface CarSizesDataType {
+      id: string;
+      value: string;
+      icon: CarIconType;
+      iconSize: CarSizeType;
+    }
+
+    const carSizesData: CarSizesDataType[] = [
+      { id: "Małe ", value: "Małe", icon: "car-small", iconSize: "car-sm" },
+      {
+        id: "Średnie ",
+        value: "Średnie",
+        icon: "car-medium",
+        iconSize: "car-md",
+      },
+      { id: "Duże ", value: "Duże", icon: "car-big", iconSize: "car-lg" },
+    ];
+
+    return (
+      <section className="new-repair-page__section">
+        <h2 className="new-repair-page__heading">
+          Wylicz szacunkowy koszt naprawy {width >= 768 && <br />}
+          za pomocą naszego kalkulatora
+        </h2>
+        <form className="new-repair-page__form" onSubmit={calculate}>
+          <Radio
+            name="repairType"
+            id="repairType"
+            labelText="Usługa*"
+            value={repairType}
+            setState={setRepairType}
+            radioData={servicesData}
+            color={color}
+          />
+          {repairType === "Detailing" && (
+            <Select
+              hasTooltip
+              tooltipText="Wybierz zakres korekty. Wykonujemy wyłącznie korekty 3-etapowe, 
+                ponieważ one przynoszą najlepszy efekt co jest naszym priorytetem. 
+                Dajemy jednak możliwość wyboru, czy zabezpieczać lakier powłoką ceramiczną."
+              labelText="zakres korekty*"
+              color={color}
+              selectName="paintCorrection"
+              id="paintCorrection"
+              value={paintCorrection}
+              setState={setPaintCorrection}
+              required
+              optionsData={paintCorrectionsData}
+            />
+          )}
+          <Select
+            labelText="rocznik*"
+            color={color}
+            selectName="year"
+            id="year"
+            value={year}
+            setState={setYear}
+            required
+            optionsData={yearsData}
+          />
+          <Select
+            labelText="marka*"
+            color={color}
+            selectName="make"
+            id="make"
+            value={make}
+            setState={setMake}
+            required
+            optionsData={makesData}
+          />
+          <RadioCarSize
+            name="carSize"
+            id="carSize"
+            labelText="rozmiar auta*"
+            value={carSize}
+            setState={setCarSize}
+            color={color}
+            radioData={carSizesData}
+          />
+          {repairType !== "Detailing" && (
+            <Select
+              labelText="liczba elementów*"
+              color={color}
+              selectName="panels"
+              id="panels"
+              value={panels}
+              setState={setPanels}
+              required
+              optionsData={panelsData}
+              hasTooltip
+              tooltipText={
+                repairType === "Naprawa"
+                  ? "Podaj ilość elementów, które wymagają naprawy. Przy szacunkowej kalkulacji uszkodzone elementy liczymy jako wymagające wymiany"
+                  : "Podaj ilość elementów, które wymagają lakierowania. Możesz też wybrac lakierowanie całego auta w dwóch wariantach - pomalowanie auta w ten samo kolor, lub pomalowanie auta na zupełnie nowy, wybrany przez Ciebie kolor."
+              }
+            />
+          )}
+          <div className="new-repair-page__buttons mt-4">
+            <Button
+              text="Wylicz"
+              color={color}
+              type="submit"
+              variant="primary"
+              additionalClasses="button--centered mr-3 w-100"
+            />
+            <Button
+              text="Resetuj"
+              color={color}
+              type="reset"
+              variant="secondary"
+              additionalClasses="button--centered w-100"
+              onClick={handleCalculatorReset}
+            />
+          </div>
+        </form>
+        {isCardVisible && (
+          <CalculatorCard ref={ref} color={color} result={result} />
+        )}
+      </section>
+    );
+  }
+);
+
+export { Calculator };
+export default Calculator;

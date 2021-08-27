@@ -1,0 +1,66 @@
+.input {
+  font-size: $text-16;
+  border: none;
+  background-color: transparent;
+  border-bottom: 2px solid transparent;
+  padding: $spacing-x1 0;
+  display: block;
+  width: 100%;
+  outline: none;
+
+  &--font-light {
+    color: $white-dark;
+
+    &::placeholder {
+      color: $white-a-60;
+    }
+  }
+
+  &--font-dark {
+    color: $black;
+
+    &::placeholder {
+      color: $grey-placeholder;
+    }
+  }
+
+  &--border-green {
+    border-color: $green;
+
+    &:focus {
+      border-color: $green-light;
+    }
+  }
+
+  &--border-blue {
+    border-color: $blue;
+
+    &:focus {
+      border-color: $blue-light;
+    }
+  }
+
+  &--border-pink {
+    border-color: $pink;
+
+    &:focus {
+      border-color: $pink-light;
+    }
+  }
+
+  &--border-black {
+    border-color: $black;
+
+    &:focus {
+      border-color: $black-light;
+    }
+  }
+
+  &--border-black-light {
+    border-color: $black-light;
+
+    &:focus {
+      border-color: $grey-dark-a-80;
+    }
+  }
+}

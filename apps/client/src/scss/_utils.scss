@@ -72,3 +72,21 @@ $spacing: 5px;
   display: inline-block;
   width: 100%;
 }
+
+body:not(.user-is-tabbing) button:focus,
+body:not(.user-is-tabbing) .file:focus-within {
+  outline: none;
+  box-shadow: unset;
+}
+
+body:not(.user-is-tabbing) .radio:focus-within,
+body:not(.user-is-tabbing) .radio--car-size:focus-within {
+  border: unset;
+  padding: unset;
+  height: unset;
+}
+
+// functions
+@mixin create-box-shadow($shadow-color) {
+  box-shadow: 0 0 0 2px $white, 0 0 5px 5px $shadow-color;
+}

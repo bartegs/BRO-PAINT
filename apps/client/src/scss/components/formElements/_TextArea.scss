@@ -1,0 +1,120 @@
+.text-area {
+  font-family: Roboto, Arial, Helvetica, sans-serif;
+  font-size: $text-16;
+  resize: none;
+  width: 100%;
+
+  &__label {
+    &--outlined {
+      color: $black-light;
+      font-size: $text-12;
+      font-weight: bold;
+      text-transform: uppercase;
+      position: relative;
+      bottom: -7px;
+      left: $spacing-x2;
+      background: $white;
+      padding: 0 $spacing-x1;
+
+      &--green {
+        color: $green;
+      }
+
+      &--blue {
+        color: $blue;
+      }
+
+      &--pink {
+        color: $pink;
+      }
+    }
+
+    &--underlined {
+      position: relative;
+      left: -32px;
+
+      @media (min-width: $screen-md) and (max-width: $screen-lg - 1px) {
+        left: -250px;
+      }
+    }
+  }
+
+  &--outlined {
+    height: 100px;
+    padding: $spacing-x2;
+    border: 1px solid $black-light;
+    border-radius: 5px;
+    background: none;
+    display: block;
+
+    &:focus {
+      outline: none;
+      border-radius: 5px;
+      box-shadow: 0 0 0 2px $black-light;
+    }
+
+    &--green {
+      &:focus {
+        box-shadow: 0 0 0 2px $green;
+      }
+    }
+
+    &--blue {
+      &:focus {
+        box-shadow: 0 0 0 2px $blue;
+      }
+    }
+
+    &--pink {
+      &:focus {
+        box-shadow: 0 0 0 2px $pink;
+      }
+    }
+
+    &::placeholder {
+      color: $grey-placeholder;
+      opacity: 1;
+    }
+  }
+
+  &--underlined {
+    height: 50px;
+    margin-bottom: $spacing-x2;
+    border: 2px solid $black;
+    padding: $spacing-x1;
+
+    &:focus {
+      outline: none;
+      border: 2px solid $black-light;
+    }
+
+    &--green {
+      border: 2px solid $green;
+
+      &:focus {
+        border: 2px solid $green-light;
+      }
+    }
+
+    &--blue {
+      border: 2px solid $blue;
+
+      &:focus {
+        border: 2px solid $blue-light;
+      }
+    }
+
+    &--pink {
+      border: 2px solid $pink;
+
+      &:focus {
+        border: 2px solid $pink-light;
+      }
+    }
+
+    &::placeholder {
+      color: $grey-placeholder;
+      opacity: 1;
+    }
+  }
+}

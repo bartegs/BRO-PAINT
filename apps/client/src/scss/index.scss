@@ -1,31 +1,9 @@
 @import "./reset";
 @import "./variables";
-@import "./utils";
 @import "./text";
-@import "./icon";
-@import "./logo";
-@import "./Input";
-@import "./Button";
-@import "./Navbar";
-@import "./NavbarMenu";
-@import "./NavbarToggler";
-@import "./Footer";
-@import "./HomePage/HomePage";
-@import "./NewRepairPage/NewRepairPage";
-@import "./NewRepairPage/CalculatorCard";
-@import "./AboutUsPage/AboutUsPage";
-@import "./AboutUsPage/CardWithImage";
-@import "./AboutUsPage/CardWithText";
-@import "./GalleryPage/GalleryPage";
-@import "./GalleryPage/Carousel";
-@import "./GalleryPage/Gallery";
-@import "./CheckStatusForm";
-@import "./RepairStatusPage/RepairStatusPage";
-@import "./RepairStatusPage/Card";
-@import "./RepairStatusPage/Axis";
-@import "./ContactPage/ContactPage";
-@import "./ContactPage/Card";
-@import "./ContactPage/Map";
+@import "./utils";
+@import "./components";
+@import "./pages";
 
 body {
   font-family: Roboto, Arial, Helvetica, sans-serif;
@@ -40,20 +18,20 @@ body {
 .root-background {
   background:
     no-repeat center 2 * $spacing-x3 + $logo-sm-y
-    url("../../../assets//images/baner-md.png");
+    url("../../../assets/images/baner-md.png");
   background-size: cover;
 
   @media (min-width: $screen-md) {
     background:
       no-repeat center 2 * $spacing-x3 + $logo-md-y
-      url("../../../assets//images/baner-md.png");
+      url("../../../assets/images/baner-md.png");
     background-size: cover;
   }
 
   @media (min-width: $screen-lg) {
     background:
       no-repeat center 2 * $spacing-x4 + $logo-lg-y
-      url("../../../assets//images/baner-lg.png");
+      url("../../../assets/images/baner-lg.png");
     background-size: cover;
   }
 }

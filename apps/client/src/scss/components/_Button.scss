@@ -1,0 +1,131 @@
+.button {
+  border: 0;
+  border-radius: $radius-x1;
+  color: $white;
+  font-size: $text-16;
+  font-weight: bold;
+  padding: $spacing-x2 $spacing-x5 $spacing-x3 $spacing-x5;
+  cursor: pointer;
+  transition: 0.2s;
+
+  &--secondary {
+    background: $white;
+    color: $black-light;
+    border: 2px solid $black-light;
+  }
+
+  &--blue {
+    &-primary {
+      background-color: $blue;
+
+      &:hover {
+        background-color: $blue-light;
+      }
+
+      &:focus {
+        @include create-box-shadow($blue);
+      }
+    }
+
+    &-secondary {
+      color: $blue;
+      border-color: $blue;
+
+      &:hover {
+        color: $blue-light;
+        border-color: $blue-light;
+      }
+
+      &:focus {
+        @include create-box-shadow($blue);
+      }
+    }
+  }
+
+  &--green {
+    &-primary {
+      background-color: $green;
+
+      &:hover {
+        outline: none;
+        background-color: $green-light;
+      }
+
+      &:focus {
+        @include create-box-shadow($green);
+      }
+    }
+
+    &-secondary {
+      color: $green;
+      border-color: $green;
+
+      &:hover {
+        color: $green-light;
+        border-color: $green-light;
+      }
+
+      &:focus {
+        @include create-box-shadow($green);
+      }
+    }
+  }
+
+  &--pink {
+    &-primary {
+      background-color: $pink;
+
+      &:hover {
+        background-color: $pink-light;
+      }
+
+      &:focus {
+        @include create-box-shadow($pink);
+      }
+    }
+
+    &-secondary {
+      color: $pink;
+      border-color: $pink;
+
+      &:hover {
+        color: $pink-light;
+        border-color: $pink-light;
+      }
+
+      &:focus {
+        @include create-box-shadow($pink);
+      }
+    }
+  }
+
+  &--black {
+    &-primary {
+      background-color: $black;
+
+      &:hover {
+        outline: none;
+        background-color: $black-light;
+      }
+
+      &:focus {
+        @include create-box-shadow($black);
+      }
+    }
+  }
+
+  &--black-light {
+    &-primary {
+      background-color: $black-light;
+
+      &:hover {
+        outline: none;
+        background-color: $grey-dark-a-80;
+      }
+
+      &:focus {
+        @include create-box-shadow($black-light);
+      }
+    }
+  }
+}

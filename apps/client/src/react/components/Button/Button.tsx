@@ -6,6 +6,7 @@ import type { Color } from "../../../../../utils/types";
 
 export interface ButtonProps {
   type?: "submit" | "button" | "reset";
+  variant?: "primary" | "secondary";
   onClick?: () => void;
   text: string;
   additionalClasses?: string;
@@ -14,6 +15,7 @@ export interface ButtonProps {
 
 export function Button({
   type = "button",
+  variant = "primary",
   onClick,
   text,
   additionalClasses,
@@ -22,7 +24,12 @@ export function Button({
   return (
     <button
       onClick={onClick}
-      className={classnames("button", `button--${color}`, additionalClasses)}
+      className={classnames(
+        "button",
+        `button--${variant}`,
+        `button--${color}-${variant}`,
+        additionalClasses
+      )}
       type={type}
     >
       {text}

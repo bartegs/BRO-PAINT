@@ -22,8 +22,6 @@ export function NavbarMenu({
     { id: 5, text: "Kontakt", href: "/kontakt" },
   ];
 
-  // const closeMenu = () => setIsMenuOpen(false);
-
   return (
     <ul
       className={classnames("navbar-menu", {

@@ -4,7 +4,7 @@ import AnimateHeight from "react-animate-height";
 
 import classnames from "classnames";
 
-import { Icon } from "../../../components/Icon";
+import { Icon } from "../../../components/icons/Icon";
 
 interface OwnProps {
   title: string;

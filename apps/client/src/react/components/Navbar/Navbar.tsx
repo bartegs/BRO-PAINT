@@ -5,7 +5,7 @@ import { NavbarMenu, NavbarToggler } from "./components";
 export function Navbar(): JSX.Element {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
-  const toggleMenu = (e: any) => {
+  const toggleMenu = (e: React.MouseEvent) => {
     setIsMenuOpen((prevState) => !prevState);
     e.stopPropagation();
   };

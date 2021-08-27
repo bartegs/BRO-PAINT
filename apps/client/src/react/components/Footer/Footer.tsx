@@ -2,7 +2,7 @@ import * as React from "react";
 import classnames from "classnames";
 
 import { NavLink, useLocation } from "react-router-dom";
-import { Icon } from "../Icon";
+import { Icon } from "../icons/Icon";
 
 export function Footer(): JSX.Element {
   const [variant, setVariant] = React.useState<"dark" | "light">("dark");

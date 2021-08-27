@@ -1,7 +1,7 @@
 import * as React from "react";
 import classnames from "classnames";
 
-import { Icon } from "../../../components/Icon";
+import { ArrowIcon } from "../../../components/icons/ArrowIcon";
 
 interface CarouselProps {
   finishedPhotos: boolean;
@@ -49,21 +49,9 @@ export function Carousel({
         onBlur={handleLeftArrowsColor}
         className="gallery-page__arrows-container gallery-page__arrows-container--left"
       >
-        <Icon
-          icon="arrow"
-          size="gallery-arrow"
-          color={isHoveredLeft ? "pink-light" : "pink"}
-        />
-        <Icon
-          icon="arrow"
-          size="gallery-arrow"
-          color={isHoveredLeft ? "blue-light" : "blue"}
-        />
-        <Icon
-          icon="arrow"
-          size="gallery-arrow"
-          color={isHoveredLeft ? "green-light" : "green"}
-        />
+        <ArrowIcon color={isHoveredLeft ? "pink-light" : "pink"} />
+        <ArrowIcon color={isHoveredLeft ? "blue-light" : "blue"} />
+        <ArrowIcon color={isHoveredLeft ? "green-light" : "green"} />
       </button>
       <div className="gallery-page__toggler-switch">
         <div className="gallery-page__toggler-container">
@@ -96,21 +84,9 @@ export function Carousel({
         onBlur={handleRightArrowsColor}
         className="gallery-page__arrows-container"
       >
-        <Icon
-          icon="arrow"
-          size="gallery-arrow"
-          color={isHoveredRight ? "pink-light" : "pink"}
-        />
-        <Icon
-          icon="arrow"
-          size="gallery-arrow"
-          color={isHoveredRight ? "blue-light" : "blue"}
-        />
-        <Icon
-          icon="arrow"
-          size="gallery-arrow"
-          color={isHoveredRight ? "green-light" : "green"}
-        />
+        <ArrowIcon color={isHoveredRight ? "pink-light" : "pink"} />
+        <ArrowIcon color={isHoveredRight ? "blue-light" : "blue"} />
+        <ArrowIcon color={isHoveredRight ? "green-light" : "green"} />
       </button>
     </div>
   );

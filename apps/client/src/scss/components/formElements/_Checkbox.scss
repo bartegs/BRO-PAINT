@@ -1,0 +1,41 @@
+.checkbox {
+  transform: scale(1.25);
+  cursor: pointer;
+  position: relative;
+  margin: 0;
+  top: 2px;
+  left: 1px;
+
+  @media (min-width: $screen-md) {
+    left: 2px;
+  }
+
+  @media (min-width: $screen-lg) {
+    left: 2px;
+    top: 3px;
+  }
+
+  &--green {
+    filter: hue-rotate(315deg) saturate(70%);
+
+    &:hover {
+      filter: hue-rotate(315deg) brightness(160%);
+    }
+  }
+
+  &--pink {
+    filter: hue-rotate(126deg) saturate(36%);
+
+    &:hover {
+      filter: hue-rotate(119deg) saturate(100%);
+    }
+  }
+
+  &--blue {
+    filter: hue-rotate(338deg) saturate(45%);
+
+    &:hover {
+      filter: hue-rotate(338deg) brightness(140%);
+    }
+  }
+}
