@@ -13,7 +13,6 @@ export interface IconProps {
     | "flag"
     | "fb"
     | "email"
-    | "dropdown-arrow"
     | "car"
     | "arrow";
   color?:
