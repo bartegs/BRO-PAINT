@@ -1,0 +1,13 @@
+.board-page {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+
+  &__menu {
+    flex: 1;
+  }
+
+  &__board {
+    flex: 1;
+  }
+}
