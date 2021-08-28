@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Color } from "../../../../../utils/types";
+import { Color } from "../../../../../common/utils/types";
 
 import { Calculator } from "./components/Calculator";
 import { Contact } from "./components/Contact";

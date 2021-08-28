@@ -1,6 +1,6 @@
 import * as React from "react";
 import classnames from "classnames";
-import { Color } from "../../../../../../../utils/types";
+import { Color } from "../../../../../../../common/utils/types";
 
 interface RadioData {
   id: string;

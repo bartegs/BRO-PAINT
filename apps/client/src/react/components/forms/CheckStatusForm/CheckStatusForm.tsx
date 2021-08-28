@@ -1,7 +1,7 @@
 import * as React from "react";
 
 import classnames from "classnames";
-import type { Color } from "../../../../../../utils/types";
+import type { Color } from "../../../../../../common/utils/types";
 
 import { Button } from "../../Button";
 import { Input } from "../components/Input";

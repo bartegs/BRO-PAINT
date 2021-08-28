@@ -2,7 +2,7 @@ import * as React from "react";
 
 import classnames from "classnames";
 
-import type { Color } from "../../../../../../../utils/types";
+import type { Color } from "../../../../../../../common/utils/types";
 
 interface InputProps {
   setState: React.Dispatch<React.SetStateAction<string>>;
