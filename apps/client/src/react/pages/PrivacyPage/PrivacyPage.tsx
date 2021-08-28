@@ -3,22 +3,26 @@ import * as React from "react";
 export function PrivacyPage(): JSX.Element {
   return (
     <article>
-      <h1 style={{ textAlign: "center" }}>Polityka Prywatności</h1>
-      <p>
+      <h2 className="mb-5" style={{ textAlign: "center" }}>
+        Polityka Prywatności
+      </h2>
+      <p className="mb-1">
         Poniższa Polityka Prywatności określa
         <strong>
+          {" "}
           zasady zapisywania i uzyskiwania dostępu do danych na Urządzeniach
-          Użytkowników
+          Użytkowników{" "}
         </strong>
         korzystających z Serwisu do celów świadczenia usług drogą elektroniczną
         przez Administratora oraz
         <strong>
+          {" "}
           zasady gromadzenia i przetwarzania danych osobowych Użytkowników
         </strong>
         , które zostały podane przez nich osobiście i dobrowolnie za
         pośrednictwem narzędzi dostępnych w Serwisie.
       </p>
-      <p>
+      <p className="mb-1">
         Poniższa Polityka Prywatności jest integralną częścią{" "}
         <a href="https://bro-paint.pl/polityka-prywatnosci">
           Regulaminu Serwisu
@@ -26,22 +30,24 @@ export function PrivacyPage(): JSX.Element {
         , który określa zasady, prawa i obowiązki Użytkowników korzystających z
         Serwisu.
       </p>
-      <h2 style={{ textAlign: "center" }}>§1 Definicje</h2>
+      <h2 className="my-5" style={{ textAlign: "center" }}>
+        §1 Definicje
+      </h2>
       <ul>
         <li>
-          <p>
+          <p className="mb-1">
             <strong>Serwis</strong> - serwis internetowy BRO PAINT działający
             pod adresem https://bro-paint.pl
           </p>
         </li>
         <li>
-          <p>
+          <p className="mb-1">
             <strong>Serwis zewnętrzny</strong> - serwisy internetowe partnerów,
             usługodawców lub usługobiorców współpracujących z Administratorem
           </p>
         </li>
         <li>
-          <p>
+          <p className="mb-1">
             <strong>Administrator Serwisu / Danych</strong>- Administratorem
             Serwisu oraz Administratorem Danych (dalej Administrator) jest firma
             BRO PAINT, prowadząca działalność pod adresem: ul. Detailingowa
@@ -50,27 +56,27 @@ export function PrivacyPage(): JSX.Element {
           </p>
         </li>
         <li>
-          <p>
+          <p className="mb-1">
             <strong>Użytkownik</strong> - osoba fizyczna, dla której
             Administrator świadczy usługi drogą elektroniczną za pośrednictwem
             Serwisu.
           </p>
         </li>
         <li>
-          <p>
+          <p className="mb-1">
             <strong>Urządzenie</strong> - elektroniczne urządzenie wraz z
             oprogramowaniem, za pośrednictwem którego Użytkownik uzyskuje dostęp
             do Serwisu
           </p>
         </li>{" "}
         <li>
-          <p>
+          <p className="mb-1">
             <strong>Cookies (ciasteczka)</strong> - dane tekstowe gromadzone w
             formie plików zamieszczanych na Urządzeniu Użytkownika
           </p>
         </li>
         <li>
-          <p>
+          <p className="mb-1">
             <strong>RODO</strong> - Rozporządzenie Parlamentu Europejskiego i
             Rady (UE) 2016/679 z dnia 27 kwietnia 2016 r. w sprawie ochrony osób
             fizycznych w związku z przetwarzaniem danych osobowych i w sprawie
@@ -79,7 +85,7 @@ export function PrivacyPage(): JSX.Element {
           </p>
         </li>{" "}
         <li>
-          <p>
+          <p className="mb-1">
             <strong>Dane osobowe</strong> - oznaczają informacje o
             zidentyfikowanej lub możliwej do zidentyfikowania osobie fizycznej
             („osobie, której dane dotyczą”); możliwa do zidentyfikowania osoba
@@ -93,7 +99,7 @@ export function PrivacyPage(): JSX.Element {
           </p>
         </li>
         <li>
-          <p>
+          <p className="mb-1">
             <strong>Przetwarzanie</strong> - oznacza operację lub zestaw
             operacji wykonywanych na danych osobowych lub zestawach danych
             osobowych w sposób zautomatyzowany lub niezautomatyzowany, taką jak
@@ -105,14 +111,14 @@ export function PrivacyPage(): JSX.Element {
           </p>
         </li>{" "}
         <li>
-          <p>
+          <p className="mb-1">
             <strong>Ograniczenie przetwarzania</strong> - oznacza oznaczenie
             przechowywanych danych osobowych w celu ograniczenia ich przyszłego
             przetwarzania{" "}
           </p>
         </li>{" "}
         <li>
-          <p>
+          <p className="mb-1">
             <strong>Profilowanie</strong> - oznacza dowolną formę
             zautomatyzowanego przetwarzania danych osobowych, które polega na
             wykorzystaniu danych osobowych do oceny niektórych czynników
@@ -123,7 +129,7 @@ export function PrivacyPage(): JSX.Element {
           </p>
         </li>{" "}
         <li>
-          <p>
+          <p className="mb-1">
             <strong>Zgoda</strong> - zgoda osoby, której dane dotyczą oznacza
             dobrowolne, konkretne, świadome i jednoznaczne okazanie woli, którym
             osoba, której dane dotyczą, w formie oświadczenia lub wyraźnego
@@ -132,7 +138,7 @@ export function PrivacyPage(): JSX.Element {
           </p>
         </li>{" "}
         <li>
-          <p>
+          <p className="mb-1">
             <strong>Naruszenie ochrony danych osobowych</strong> - oznacza
             naruszenie bezpieczeństwa prowadzące do przypadkowego lub
             niezgodnego z prawem zniszczenia, utracenia, zmodyfikowania,
@@ -142,7 +148,7 @@ export function PrivacyPage(): JSX.Element {
           </p>
         </li>{" "}
         <li>
-          <p>
+          <p className="mb-1">
             <strong>Pseudonimizacja</strong>- oznacza przetworzenie danych
             osobowych w taki sposób, by nie można ich było już przypisać
             konkretnej osobie, której dane dotyczą, bez użycia dodatkowych
@@ -153,7 +159,7 @@ export function PrivacyPage(): JSX.Element {
           </p>
         </li>
         <li>
-          <p>
+          <p className="mb-1">
             <strong>Anonimizacja</strong> - Anonimizacja danych to nieodwracalny
             proces operacji na danych, który niszczy / nadpisuje dane osobowe
             uniemożliwiając identyfikację, lub powiązanie danego rekordu z
@@ -161,7 +167,9 @@ export function PrivacyPage(): JSX.Element {
           </p>
         </li>
       </ul>
-      <h2 style={{ textAlign: "center" }}>§2 Inspektor Ochrony Danych</h2>
+      <h2 className="my-5" style={{ textAlign: "center" }}>
+        §2 Inspektor Ochrony Danych
+      </h2>
       <p>
         Na podstawie Art. 37 RODO, Administrator nie powołał Inspektora Ochrony
         Danych.
@@ -170,17 +178,19 @@ export function PrivacyPage(): JSX.Element {
         W sprawach dotyczących przetwarzania danych, w tym danych osobowych,
         należy kontaktować się bezpośrednio z Administratorem.
       </p>
-      <h2 style={{ textAlign: "center" }}>§3 Rodzaje Plików Cookies</h2>
+      <h2 className="my-5" style={{ textAlign: "center" }}>
+        §3 Rodzaje Plików Cookies
+      </h2>
       <ul>
         <li>
-          <p>
+          <p className="mb-1">
             <strong>Cookies wewnętrzne</strong> - pliki zamieszczane i
             odczytywane z Urządzenia Użytkownika przez system teleinformatyczny
             Serwisu
           </p>
         </li>{" "}
         <li>
-          <p>
+          <p className="mb-1">
             <strong>Cookies zewnętrzne</strong>- pliki zamieszczane i
             odczytywane z Urządzenia Użytkownika przez systemy teleinformatyczne
             Serwisów zewnętrznych. Skrypty Serwisów zewnętrznych, które mogą
@@ -190,7 +200,7 @@ export function PrivacyPage(): JSX.Element {
           </p>
         </li>{" "}
         <li>
-          <p>
+          <p className="mb-1">
             <strong>Cookies sesyjne</strong> - pliki zamieszczane i odczytywane
             z Urządzenia Użytkownika przez Serwis
             <span id="sz1" style={{ display: "none" }}>
@@ -201,7 +211,7 @@ export function PrivacyPage(): JSX.Element {
           </p>
         </li>{" "}
         <li>
-          <p>
+          <p className="mb-1">
             <strong>Cookies trwałe</strong> - pliki zamieszczane i odczytywane z
             Urządzenia Użytkownik a przez Serwis{" "}
             <span id="sz2" style={{ display: "none" }}>
@@ -214,12 +224,12 @@ export function PrivacyPage(): JSX.Element {
           </p>
         </li>
       </ul>
-      <h2 style={{ textAlign: "center" }}>
+      <h2 className="my-5" style={{ textAlign: "center" }}>
         §4 Bezpieczeństwo składowania danych
       </h2>
       <ul>
         <li>
-          <p>
+          <p className="mb-1">
             <strong>Mechanizmy składowania i odczytu plików Cookie</strong> -
             Mechanizmy składowania, odczytu i wymiany danych pomiędzy Plikami
             Cookies zapisywanymi na Urządzeniu Użytkownika a Serwisem są
@@ -232,7 +242,7 @@ export function PrivacyPage(): JSX.Element {
           </p>
         </li>{" "}
         <li>
-          <p>
+          <p className="mb-1">
             <strong>Cookie wewnętrzne</strong> - zastosowane przez
             Administratora pliki Cookie są bezpieczne dla Urządzeń Użytkowników
             i nie zawierają skryptów, treści lub informacji mogących zagrażać
@@ -241,7 +251,7 @@ export function PrivacyPage(): JSX.Element {
           </p>
         </li>{" "}
         <li>
-          <p>
+          <p className="mb-1">
             <strong>Cookie zewnętrzne</strong> - Administrator dokonuje
             wszelkich możliwych działań w celu weryfikacji i doboru partnerów
             serwisu w kontekście bezpieczeństwa Użytkowników. Administrator do
@@ -256,11 +266,11 @@ export function PrivacyPage(): JSX.Element {
           </p>
         </li>
         <li>
-          <p>
+          <p className="mb-1">
             <strong>Kontrola plików Cookie</strong>
             <ul>
               <li>
-                <p>
+                <p className="mb-1">
                   Użytkownik może w dowolnym momencie, samodzielnie zmienić
                   ustawienia dotyczące zapisywania, usuwania oraz dostępu do
                   danych zapisanych plików Cookies przez każdą witrynę
@@ -268,7 +278,7 @@ export function PrivacyPage(): JSX.Element {
                 </p>
               </li>
               <li>
-                <p>
+                <p className="mb-1">
                   Informacje o sposobie wyłączenia plików Cookie w
                   najpopularniejszych przeglądarkach komputerowych dostępne są
                   na stronie:{" "}
@@ -280,7 +290,7 @@ export function PrivacyPage(): JSX.Element {
                   </a>{" "}
                   lub u jednego ze wskazanych dostawców:
                   <ul>
-                    <li>
+                    <li className="mb-1">
                       <a
                         rel="nofollow external"
                         href="https://support.google.com/accounts/answer/61416?co=GENIE.Platform%3DDesktop&#038;hl=pl"
@@ -289,7 +299,7 @@ export function PrivacyPage(): JSX.Element {
                         <strong>Chrome</strong>
                       </a>
                     </li>
-                    <li>
+                    <li className="mb-1">
                       <a
                         rel="nofollow external"
                         href="https://help.opera.com/pl/latest/web-preferences/"
@@ -298,7 +308,7 @@ export function PrivacyPage(): JSX.Element {
                         <strong>Opera</strong>
                       </a>
                     </li>
-                    <li>
+                    <li className="mb-1">
                       <a
                         rel="nofollow external"
                         href="https://support.mozilla.org/pl/kb/blokowanie-ciasteczek"
@@ -307,30 +317,30 @@ export function PrivacyPage(): JSX.Element {
                         <strong>FireFox</strong>
                       </a>
                     </li>
-                    <li>
+                    <li className="mb-1">
                       <a
                         rel="nofollow external"
                         href="https://support.microsoft.com/pl-pl/help/4027947/microsoft-edge-delete-cookies"
                       >
-                        Zarządzanie plikami cookies w przeglądarce
+                        Zarządzanie plikami cookies w przeglądarce{" "}
                         <strong>Edge</strong>
                       </a>
                     </li>
-                    <li>
+                    <li className="mb-1">
                       <a
                         rel="nofollow external"
                         href="https://support.apple.com/pl-pl/guide/safari/sfri11471/mac"
                       >
-                        Zarządzanie plikami cookies w przeglądarce
+                        Zarządzanie plikami cookies w przeglądarce{" "}
                         <strong>Safari</strong>
                       </a>
                     </li>
-                    <li>
+                    <li className="mb-1">
                       <a
                         rel="nofollow external"
                         href="https://windows.microsoft.com/pl-pl/internet-explorer/delete-manage-cookies#ie=ie-11"
                       >
-                        Zarządzanie plikami cookies w przeglądarce
+                        Zarządzanie plikami cookies w przeglądarce{" "}
                         <strong>Internet Explorer 11</strong>
                       </a>
                     </li>
@@ -338,7 +348,7 @@ export function PrivacyPage(): JSX.Element {
                 </p>
               </li>
               <li>
-                <p>
+                <p className="mb-1">
                   Użytkownik może w dowolnym momencie usunąć wszelkie zapisane
                   do tej pory pliki Cookie korzystając z narzędzi Urządzenia
                   Użytkownika, za pośrednictwem którego Użytkownik korzysta z
@@ -349,7 +359,7 @@ export function PrivacyPage(): JSX.Element {
           </p>
         </li>
         <li>
-          <p>
+          <p className="mb-1">
             <strong>Zagrożenia po stronie Użytkownika </strong> - Administrator
             stosuje wszelkie możliwe środki techniczne w celu zapewnienia
             bezpieczeństwa danych umieszczanych w plikach Cookie. Należy jednak
@@ -380,49 +390,51 @@ export function PrivacyPage(): JSX.Element {
           </p>
         </li>
       </ul>
-      <h2 style={{ textAlign: "center" }}>
+      <h2 className="my-5" style={{ textAlign: "center" }}>
         §5 Cele do których wykorzystywane są pliki Cookie
       </h2>
       <ul id="cele">
-        <li>Usprawnienie i ułatwienie dostępu do Serwisu</li>
-        <li>Personalizacja Serwisu dla Użytkowników</li>
-        <li>Serwowanie usług multimedialnych</li>
-        <li>Świadczenie usług społecznościowych</li>
+        <li className="mb-1">Usprawnienie i ułatwienie dostępu do Serwisu</li>
+        <li className="mb-1">Personalizacja Serwisu dla Użytkowników</li>
+        <li className="mb-1">Serwowanie usług multimedialnych</li>
+        <li className="mb-1">Świadczenie usług społecznościowych</li>
       </ul>
-      <h2 style={{ textAlign: "center" }}>
+      <h2 className="my-5" style={{ textAlign: "center" }}>
         §6 Cele przetwarzania danych osobowych
       </h2>
-      <p>
+      <p className="mb-1">
         Dane osobowe dobrowolnie podane przez Użytkowników są przetwarzane w
         jednym z następujących celów:
       </p>
       <ul>
-        <li>
+        <li className="mb-1">
           Realizacji usług elektronicznych:
           <ul>
-            <li>
+            <li className="my-1">
               Usługi udostępniania informacji o treści umieszczonych w Serwisie
               w serwisach społecznościowych lub innych witrynach.
             </li>
           </ul>
         </li>
-        <li>
+        <li className="mb-1">
           Komunikacji Administratora z Użytkownikami w sprawach związanych z
           Serwisem oraz ochrony danych
         </li>
-        <li>Zapewnienia prawnie uzasadnionego interesu Administratora</li>
+        <li className="mb-1">
+          Zapewnienia prawnie uzasadnionego interesu Administratora
+        </li>
       </ul>
-      <p>
+      <p className="mb-1">
         Dane o Użytkownikach gromadzone anonimowo i automatycznie są
         przetwarzane w jednym z następujących celów:
       </p>
       <ul>
         <li>Zapewnienia prawnie uzasadnionego interesu Administratora</li>
       </ul>
-      <h2 style={{ textAlign: "center" }}>
+      <h2 className="my-5" style={{ textAlign: "center" }}>
         §7 Pliki Cookies Serwisów zewnętrznych
       </h2>
-      <p id="zewinfo">
+      <p className="mb-1" id="zewinfo">
         Administrator w Serwisie wykorzystuje skrypty javascript i komponenty
         webowe partnerów, którzy mogą umieszczać własne pliki cookies na
         Urządzeniu Użytkownika. Pamiętaj, że w ustawieniach swojej przeglądarki
@@ -432,13 +444,14 @@ export function PrivacyPage(): JSX.Element {
         umieszczać pliki cookies:{" "}
       </p>
       <ul id="zewnetrzne">
-        <li>
+        <li className="">
           <strong>Usługi społecznościowe / łączone:</strong>
           <br />
-          (Rejestracja, Logowanie, udostępnianie treści, komunikacja, itp.)
-          <br />
+          <p className="my-1">
+            (Rejestracja, Logowanie, udostępnianie treści, komunikacja, itp.)
+          </p>
           <ul>
-            <li>
+            <li className="mb-1">
               <a
                 rel="nofollow external"
                 href="https://twitter.com/en/tos?wcmmode=disabled#intlTerms"
@@ -446,7 +459,7 @@ export function PrivacyPage(): JSX.Element {
                 Twitter
               </a>
             </li>
-            <li>
+            <li className="mb-1">
               <a
                 rel="nofollow external"
                 href="https://www.facebook.com/legal/terms"
@@ -457,9 +470,11 @@ export function PrivacyPage(): JSX.Element {
           </ul>
         </li>
         <li>
-          <strong>Usługi udostępniania treści:</strong>
+          <strong>
+            <p className="mt-1">Usługi udostępniania treści:</p>
+          </strong>
           <ul>
-            <li>
+            <li className="mt-1">
               <a
                 rel="nofollow external"
                 href="https://help.instagram.com/519522125107875"
@@ -469,10 +484,10 @@ export function PrivacyPage(): JSX.Element {
             </li>
           </ul>
         </li>
-        <li>
+        <li className="mt-1">
           <strong>Usługi inne:</strong>
           <ul>
-            <li>
+            <li className="mt-1">
               <a
                 rel="nofollow external"
                 href="https://www.google.com/intl/en_be/help/terms_maps/"
@@ -483,88 +498,86 @@ export function PrivacyPage(): JSX.Element {
           </ul>
         </li>
       </ul>
-      <p>
+      <p className="mt-1">
         Usługi świadczone przez podmioty trzecie są poza kontrolą
         Administratora. Podmioty te mogą w każdej chwili zmienić swoje warunki
         świadczenia usług, polityki prywatności, cel przetwarzania danych oraz
         sposów wykorzystywania plików cookie.
       </p>
-      <h2 style={{ textAlign: "center" }}>§8 Rodzaje gromadzonych danych</h2>
-      <p>
+      <h2 className="my-5" style={{ textAlign: "center" }}>
+        §8 Rodzaje gromadzonych danych
+      </h2>
+      <p className="mb-1">
         Serwis gromadzi dane o Użytkownikach. Cześć danych jest gromadzona
         automatycznie i anonimowo, a część danych to dane osobowe podane
         dobrowolnie przez Użytkowników w trakcie zapisywania się do
         poszczególnych usług oferowanych przez Serwis.
       </p>
-      <p>
+      <p className="mb-1">
         <strong>Anonimowe dane gromadzone automatycznie:</strong>
       </p>
       <ul>
-        <li>Adres IP</li>
-        <li>Typ przeglądarki</li>
-        <li>Rozdzielczość ekranu</li>
-        <li>Przybliżona lokalizacja</li>
-        <li>Otwierane podstrony serwisu</li>
-        <li>Czas spędzony na odpowiedniej podstronie serwisu</li>
-        <li>Rodzaj systemu operacyjnego</li>
-        <li>Adres poprzedniej podstrony</li>
-        <li>Adres strony odsyłającej</li>
-        <li>Język przeglądarki</li>
-        <li>Prędkość łącza internetowego</li>
-        <li>Dostawca usług internetowych</li>
+        <li className="mt-1">Adres IP</li>
+        <li className="mt-1">Typ przeglądarki</li>
+        <li className="mt-1">Rozdzielczość ekranu</li>
+        <li className="mt-1">Przybliżona lokalizacja</li>
+        <li className="mt-1">Otwierane podstrony serwisu</li>
+        <li className="mt-1">
+          Czas spędzony na odpowiedniej podstronie serwisu
+        </li>
+        <li className="mt-1">Rodzaj systemu operacyjnego</li>
+        <li className="mt-1">Adres poprzedniej podstrony</li>
+        <li className="mt-1">Adres strony odsyłającej</li>
+        <li className="mt-1">Język przeglądarki</li>
+        <li className="mt-1">Prędkość łącza internetowego</li>
+        <li className="mt-1">Dostawca usług internetowych</li>
       </ul>
-      <p>
+      <p className="my-1">
         <strong>Dane gromadzone podczas rejestracji:</strong>
       </p>
       <ul>
-        <li>Imię / nazwisko / pseudonim</li>
-        <li>Login</li>
-        <li>Adres e-mail</li>
-        <li>Adres zamieszkania</li>
-        <li>Data urodzenia / wiek</li>
-        <li>Numer telefonu</li>
-        <li>Numer PESEL</li>
-        <li>Adres IP (zbierane automatycznie)</li>
-        <li>Inne dane zwykłe</li>
+        <li className="mt-1">Imię / nazwisko / pseudonim</li>
+        <li className="mt-1">Login</li>
+        <li className="mt-1">Adres e-mail</li>
+        <li className="mt-1">Adres zamieszkania</li>
+        <li className="mt-1">Data urodzenia / wiek</li>
+        <li className="mt-1">Numer telefonu</li>
+        <li className="mt-1">Numer PESEL</li>
+        <li className="mt-1">Adres IP (zbierane automatycznie)</li>
+        <li className="mt-1">Inne dane zwykłe</li>
       </ul>
-      <p>
-        <strong>Dane gromadzone podczas zapisu do usługi Newsletter</strong>
-      </p>
-      <ul>
-        <li>Adres e-mail</li>
-      </ul>
-      <p>
+      <p className="mt-1">
         Część danych (bez danych identyfikujących) może być przechowywana w
         plikach cookies. Cześć danych (bez danych identyfikujących) może być
         przekazywana do dostawcy usług statystycznych.
       </p>
-      <h2 style={{ textAlign: "center" }}>
+      <h2 className="my-5" style={{ textAlign: "center" }}>
         §9 Dostęp do danych osobowych przez podmioty trzecie
       </h2>
-      <p>
+      <p className="mt-1">
         Co do zasady jedynym odbiorcą danych osobowych podawanych przez
         Użytkowników jest Administrator. Dane gromadzone w ramach świadczonych
         usług nie są przekazywane ani odsprzedawane podmiotom trzecim.
       </p>
-      <p>
+      <p className="mt-1">
         Dostęp do danych (najczęściej na podstawie Umowy powierzenia
         przetwarzania danych) mogą posiadać podmioty, odpowiedzialne za
         utrzymania infrastruktury i usług niezbędnych do prowadzenia serwisu
         tj.:
       </p>
       <ul>
-        <li>
+        <li className="mt-1">
           Firmy hostingowe, świadczące usługi hostingu lub usług pokrewnych dla
           Administratora
         </li>
       </ul>
-      <p>
+      <p className="mt-1">
         <strong>
           Powierzenie przetwarzania danych osobowych - Usługi Hostingu, VPS lub
           Serwerów Dedykowanych
         </strong>
       </p>
-      <p>
+      <p className="mt-1">
         Administrator w celu prowadzenia serwisu korzysta z usług zewnętrznego
         dostawcy hostingu, VPS lub Serwerów Dedykowanych -{" "}
         <strong>
@@ -583,24 +596,26 @@ export function PrivacyPage(): JSX.Element {
         Usługodawcą.
       </p>
       <br />
-      <h2 style={{ textAlign: "center" }}>
+      <h2 className="my-5" style={{ textAlign: "center" }}>
         §10 Sposób przetwarzania danych osobowych
       </h2>
-      <p>
+      <p className="my-1">
         <strong>Dane osobowe podane dobrowolnie przez Użytkowników:</strong>
       </p>
       <ul>
-        <li>
+        <li className="mb-1">
           Dane osobowe nie będą przekazywane poza Unię Europejską, chyba że
           zostały opublikowane na skutek indywidualnego działania Użytkownika
           (np. wprowadzenie komentarza lub wpisu), co sprawi, że dane będą
           dostępne dla każdej osoby odwiedzającej serwis.
         </li>
-        <li>
+        <li className="mb-1">
           Dane osobowe nie będą wykorzystywane do zautomatyzowanego podejmowania
           decyzji (profilowania).
         </li>
-        <li>Dane osobowe nie będą odsprzedawane podmiotom trzecim.</li>
+        <li className="mb-1">
+          Dane osobowe nie będą odsprzedawane podmiotom trzecim.
+        </li>
       </ul>
       <p>
         <strong>
@@ -608,7 +623,7 @@ export function PrivacyPage(): JSX.Element {
         </strong>
       </p>
       <ul>
-        <li>
+        <li className="my-1">
           Dane anonimiwe (bez danych osobowych) nie będą przekazywane poza Unię
           Europejską.
         </li>
@@ -616,15 +631,17 @@ export function PrivacyPage(): JSX.Element {
           Dane anonimiwe (bez danych osobowych) nie będą wykorzystywane do
           zautomatyzowanego podejmowania decyzji (profilowania).
         </li>
-        <li>
+        <li className="mt-1">
           Dane anonimiwe (bez danych osobowych) nie będą odsprzedawane podmiotom
           trzecim.
         </li>
       </ul>
-      <h2 style={{ textAlign: "center" }}>
+      <h2 className="my-5" style={{ textAlign: "center" }}>
         §11 Podstawy prawne przetwarzania danych osobowych
       </h2>
-      <p>Serwis gromadzi i przetwarza dane Użytkowników na podstawie:</p>
+      <p className="mb-1">
+        Serwis gromadzi i przetwarza dane Użytkowników na podstawie:
+      </p>
       <ul>
         <li>
           Rozporządzenia Parlamentu Europejskiego i Rady (UE) 2016/679 z dnia 27
@@ -633,7 +650,7 @@ export function PrivacyPage(): JSX.Element {
           takich danych oraz uchylenia dyrektywy 95/46/WE (ogólne rozporządzenie
           o ochronie danych)
           <ul>
-            <li>
+            <li className="mt-1">
               art. 6 ust. 1 lit. a<br />
               <small>
                 osoba, której dane dotyczą wyraziła zgodę na przetwarzanie
@@ -641,7 +658,7 @@ export function PrivacyPage(): JSX.Element {
                 określonych celów
               </small>
             </li>
-            <li>
+            <li className="mt-1">
               art. 6 ust. 1 lit. b<br />
               <small>
                 przetwarzanie jest niezbędne do wykonania umowy, której stroną
@@ -649,7 +666,7 @@ export function PrivacyPage(): JSX.Element {
                 żądanie osoby, której dane dotyczą, przed zawarciem umowy
               </small>
             </li>
-            <li>
+            <li className="mt-1">
               art. 6 ust. 1 lit. f<br />
               <small>
                 przetwarzanie jest niezbędne do celów wynikających z prawnie
@@ -659,11 +676,11 @@ export function PrivacyPage(): JSX.Element {
             </li>
           </ul>
         </li>
-        <li>
+        <li className="my-1">
           Ustawa z dnia 10 maja 2018 r. o ochronie danych osobowych (Dz.U. 2018
           poz. 1000)
         </li>
-        <li>
+        <li className="mb-1">
           Ustawa z dnia 16 lipca 2004 r. Prawo telekomunikacyjne (Dz.U. 2004 nr
           171 poz. 1800)
         </li>
@@ -672,13 +689,13 @@ export function PrivacyPage(): JSX.Element {
           (Dz. U. 1994 Nr 24 poz. 83)
         </li>
       </ul>
-      <h2 style={{ textAlign: "center" }}>
+      <h2 className="my-5" style={{ textAlign: "center" }}>
         §12 Okres przetwarzania danych osobowych
       </h2>
-      <p>
+      <p className="my-1">
         <strong>Dane osobowe podane dobrowolnie przez Użytkowników:</strong>
       </p>
-      <p>
+      <p className="mb-1">
         Co do zasady wskazane dane osobowe są przechowywane wyłącznie przez
         okres świadczenia Usługi w ramach Serwisu przez Administratora. Są one
         usuwane lub anonimizowane w okresie do 30 dni od chwili zakończenia
@@ -693,7 +710,7 @@ export function PrivacyPage(): JSX.Element {
         dłużej niż przez okres 3 lat w przypadku naruszenia lub podejrzenia
         naruszenia zapisów regulaminu serwisu przez Użytkownika
       </p>
-      <p>
+      <p className="my-1">
         <strong>
           Dane anonimowe (bez danych osobowych) gromadzone automatycznie:
         </strong>
@@ -703,12 +720,14 @@ export function PrivacyPage(): JSX.Element {
         przechowywane przez Administratora w celu prowadzenia statystyk serwisu
         przez czas nieoznaczony
       </p>
-      <h2 style={{ textAlign: "center" }}>
+      <h2 className="my-5" style={{ textAlign: "center" }}>
         §13 Prawa Użytkowników związane z przetwarzaniem danych osobowych
       </h2>
-      <p>Serwis gromadzi i przetwarza dane Użytkowników na podstawie:</p>
+      <p className="mb-1">
+        Serwis gromadzi i przetwarza dane Użytkowników na podstawie:
+      </p>
       <ul>
-        <li>
+        <li className="mb-1">
           <p>
             <strong>Prawo dostępu do danych osobowych</strong>
             <br />
@@ -716,7 +735,7 @@ export function PrivacyPage(): JSX.Element {
             osobowych, realizowane na żądanie złożone do Administratora
           </p>
         </li>
-        <li>
+        <li className="mb-1">
           <p>
             <strong>Prawo do sprostowania danych osobowych</strong>
             <br />
@@ -726,7 +745,7 @@ export function PrivacyPage(): JSX.Element {
             na żądanie złożone do Administratora
           </p>
         </li>
-        <li>
+        <li className="mb-1">
           <p>
             <strong>Prawo do usunięcia danych osobowych</strong>
             <br />
@@ -744,7 +763,7 @@ export function PrivacyPage(): JSX.Element {
             odnośnika umieszczonego w każdej przesyłanej wiadomości e-mail.
           </p>
         </li>
-        <li>
+        <li className="mb-1">
           <p>
             <strong>
               Prawo do ograniczenia przetwarzania danych osobowych
@@ -756,7 +775,7 @@ export function PrivacyPage(): JSX.Element {
             złożone do Administratora
           </p>
         </li>
-        <li>
+        <li className="mb-1">
           <p>
             <strong>Prawo do przenoszenia danych osobowych</strong>
             <br />
@@ -766,7 +785,7 @@ export function PrivacyPage(): JSX.Element {
             na żądanie złożone do Administratora
           </p>
         </li>
-        <li>
+        <li className="mb-1">
           <p>
             <strong>
               Prawo wniesienia sprzeciwu wobec przetwarzania danych osobowych
@@ -777,7 +796,7 @@ export function PrivacyPage(): JSX.Element {
             2 1 RODO, realizowane na żądanie złożone do Administratora
           </p>
         </li>
-        <li>
+        <li className="mb-1">
           <p>
             <strong>Prawo wniesienia skargi</strong>
             <br />
@@ -786,64 +805,72 @@ export function PrivacyPage(): JSX.Element {
           </p>
         </li>
       </ul>
-      <h2 style={{ textAlign: "center" }}>§14 Kontakt do Administratora</h2>
-      <p>
+      <h2 className="my-5" style={{ textAlign: "center" }}>
+        §14 Kontakt do Administratora
+      </h2>
+      <p className="mb-1">
         Z Ad ministratorem można skontaktować się w jeden z poniższych sposobów
       </p>
       <ul>
-        <li>
+        <li className="mb-1">
           <p>
             <strong>Adres po cztowy</strong> - BRO PAINT, ul. Detailingowa
             21/21-2137 Gdańsk
           </p>
         </li>{" "}
-        <li>
+        <li className="mb-1">
           <p>
             <strong>Adres poczty elektronicznej</strong> - bropaint@wp.pl
           </p>
         </li>{" "}
-        <li>
+        <li className="mb-1">
           <p>
             <strong>Połączenie telefoniczne</strong> - +48 000 222 444
           </p>
         </li>{" "}
-        <li>
+        <li className="mb-1">
           <p>
-            <strong>Formularz kontaktowy</strong> - dostępny pod adresem: /kont
-            akt
+            <strong>Formularz kontaktowy</strong> - dostępny pod adresem:
+            /kontakt
           </p>
         </li>
       </ul>
-      <h2 style={{ textAlign: "center" }}>§15 Wymagania Serwisu</h2>
+      <h2 className="my-5" style={{ textAlign: "center" }}>
+        §15 Wymagania Serwisu
+      </h2>
       <ul>
         <li>
-          <p>
+          <p className="mb-1">
             Ogranic zenie zapisu i dostępu do plików Cookie na Urządzeniu
-            Użytkownika może spowodować niepraw idłowe działanie niektórych
+            Użytkownika może spowodować nieprawidłowe działanie niektórych
             funkcji Serwisu.
           </p>
         </li>{" "}
         <li>
           <p>
-            Administrator nie ponosi żad nej odpowiedzialności za nieprawidłowo
-            działające funkcje Serwisu w przypadku gdy Użytk ownik ograniczy w
+            Administrator nie ponosi żadnej odpowiedzialności za nieprawidłowo
+            działające funkcje Serwisu w przypadku gdy Użytkownik ograniczy w
             jakikolwiek sposób możliwość zapisywania i odczytu plików Cookie.
           </p>
         </li>
       </ul>
-      <h2 style={{ textAlign: "center" }}>§16 Linki zewnętrzne</h2>
+      <h2 className="my-5" style={{ textAlign: "center" }}>
+        §16 Linki zewnętrzne
+      </h2>
       <p>
-        W Serwisie - arty kułach, postach, wpisach czy komentarzach Użytkowników
+        W Serwisie - artykułach, postach, wpisach czy komentarzach Użytkowników
         mogą znajdować się odnośniki do w itryn zewnętrznych, z którymi
         Właściciel serwisu nie współpracuje. Linki te oraz strony lub pliki pod
         nimi wskazane mogą być niebezpieczne dla Twojego Urządzenia lub stanowić
         zagrożenie bezpieczeństwa Twoich danych. Administrator nie ponosi
         odpowiedzialności za zawartość znajdującą się poza Serwisem.
       </p>
-      <h2 style={{ textAlign: "center" }}>§17 Zmiany w Polityce Prywatności</h2>
+      <h2 className="my-5" style={{ textAlign: "center" }}>
+        §17 Zmiany w Polityce Prywatności
+      </h2>
       <ul>
         <li>
-          <p>
+          <p className="mb-1">
             Administrator zastrzega sobie prawo do dowolnej zmiany niniejszej
             Polityki Prywatności bez konieczności informowania o tym
             Użytkowników w zakresie stosowania i wykorzystywania danych
@@ -851,7 +878,7 @@ export function PrivacyPage(): JSX.Element {
           </p>
         </li>
         <li>
-          <p>
+          <p className="mb-1">
             Administrator zastrzega sobie prawo do dowolnej zmiany niniejszej
             Polityki Prywatności w zakresie przetwarzania Danych Osobowych, o
             czym poinformuje Użyt kowników posiadających konta użytkownika lub
@@ -865,7 +892,7 @@ export function PrivacyPage(): JSX.Element {
           </p>
         </li>
         <li>
-          <p>
+          <p className="mb-1">
             Wprowadzone zmiany w Polityce Prywatności będą publikowane na tej
             podstronie Serwisu.
           </p>
