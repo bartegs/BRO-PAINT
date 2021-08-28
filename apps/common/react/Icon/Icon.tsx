@@ -28,6 +28,7 @@ export type IconColorType =
   | "blue-light"
   | "pink"
   | "pink-light";
+
 export interface IconProps {
   icon: IconType;
   color?: IconColorType;
