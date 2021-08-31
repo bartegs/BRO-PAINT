@@ -14,7 +14,11 @@ export type IconType =
   | "email"
   | "dropdown-arrow"
   | "car"
-  | "arrow";
+  | "arrow"
+  | "history"
+  | "notifications"
+  | "groups"
+  | "fact-check";
 
 export type IconColorType =
   | "white"

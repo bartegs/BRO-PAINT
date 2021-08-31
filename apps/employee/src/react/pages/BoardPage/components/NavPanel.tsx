@@ -1,3 +1,4 @@
+import classnames from "classnames";
 import * as React from "react";
 import { NavLink } from "react-router-dom";
 
@@ -10,21 +11,27 @@ interface MenuItemType {
   icon: IconType;
 }
 const menuItems: MenuItemType[] = [
-  { id: 0, text: "Nowe zgłoszenia", href: "/", icon: "person" },
+  { id: 0, text: "Nowe zgłoszenia", href: "/", icon: "notifications" },
   {
     id: 1,
     text: "Zarządzanie zleceniami",
     href: "/zarzadzanie-zleceniami",
-    icon: "person",
+    icon: "fact-check",
   },
-  { id: 2, text: "Lista pracowników", href: "/", icon: "person" },
-  { id: 3, text: "Archiwum napraw", href: "/", icon: "person" },
+  { id: 2, text: "Lista pracowników", href: "/", icon: "groups" },
+  { id: 3, text: "Archiwum napraw", href: "/", icon: "history" },
 ];
 
 export function NavPanel() {
+  const [isToggled, setIsToggled] = React.useState(false);
+
   return (
-    <nav className="nav nav--hidden">
-      <ul className="board-page__menu">
+    <nav className={classnames("nav")}>
+      <ul
+        className={classnames("board-page__menu menu ", {
+          "menu--hidden": isToggled,
+        })}
+      >
         {menuItems.map(({ text, icon, id, href }) => (
           <li key={id} className="menu__item">
             <NavLink className="menu__link" to={href}>
@@ -39,12 +46,14 @@ export function NavPanel() {
           </li>
         ))}
         <li className="menu__item">
-          <Icon
-            additionalClasses="menu__toggler"
-            size="sm"
-            icon="arrow"
-            color="white"
-          />
+          <button
+            className={classnames("menu__toggler toggler", {
+              "toggler--toggled": !isToggled,
+            })}
+            onClick={() => setIsToggled((prevState) => !prevState)}
+          >
+            <Icon size="sm" icon="arrow" color="white" />
+          </button>
         </li>
       </ul>
     </nav>
