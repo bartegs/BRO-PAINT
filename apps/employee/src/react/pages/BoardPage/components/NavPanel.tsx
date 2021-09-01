@@ -22,13 +22,15 @@ const menuItems: MenuItemType[] = [
   { id: 3, text: "Archiwum napraw", href: "/", icon: "history" },
 ];
 
+// will be moved to router
+
 export function NavPanel() {
   const [isToggled, setIsToggled] = React.useState(false);
 
   return (
-    <nav className={classnames("nav")}>
+    <nav className={classnames("board-page__nav-panel nav-panel")}>
       <ul
-        className={classnames("board-page__menu menu ", {
+        className={classnames("nav-panel__menu menu ", {
           "menu--hidden": isToggled,
         })}
       >

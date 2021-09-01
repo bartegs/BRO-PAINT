@@ -1,0 +1,30 @@
+.task-card {
+  height: 115px;
+  background: $white;
+  padding: $spacing-x2;
+  border-radius: $radius-x1;
+  margin-bottom: $spacing-x2;
+
+  &__label {
+    font-size: $text-12;
+    padding: $spacing-x1 $spacing-x2;
+    border-radius: $radius-x1;
+    color: $white;
+    background: $blue;
+  }
+
+  &__temp {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__client-car {
+    display: flex;
+    align-items: center;
+  }
+
+  &__client {
+    display: flex;
+    align-items: center;
+  }
+}
