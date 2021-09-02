@@ -1,7 +1,19 @@
 import * as React from "react";
 
-import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+import { DragDropContext, Droppable, DropResult } from "react-beautiful-dnd";
 import { TaskCard } from "../../../components";
+
+export interface TaskType {
+  id: string;
+  taskId?: number;
+  carModel: string;
+  clientName: string;
+  licencePlate: string;
+  repairMainStage?: 0 | 1 | 2 | 3 | 4;
+  repairSubStage?: number;
+}
+
+type TasksType = { [key: number]: TaskType[] };
 
 const stages = [
   {
@@ -34,17 +46,7 @@ const stages = [
 // tasks should be fetched in json
 // ??? sorted by backended by stages before fetching and send in separate object of arrays
 
-interface TaskType {
-  id: string;
-  taskId: number;
-  carModel: string;
-  clientName: string;
-  licencePlate: string;
-  repairMainStage: 0 | 1 | 2 | 3 | 4;
-  repairSubStage: number;
-}
-
-const tasks: { [key: number]: TaskType[] } = {
+const data: TasksType = {
   0: [
     {
       id: "ec323888997",
@@ -121,11 +123,41 @@ const tasks: { [key: number]: TaskType[] } = {
 };
 
 export function Board(): JSX.Element {
+  const [tasks, setTasks] = React.useState(data);
+
+  function handleOnDragEnd(result: DropResult) {
+    const tasksCopy: TasksType = JSON.parse(JSON.stringify(tasks));
+
+    const { source, destination, draggableId: draggableTaskId } = result;
+    const { droppableId: columnIdFrom } = source;
+    const { droppableId: columnIdTo } = destination;
+
+    const parsedDraggableTaskId = Number(draggableTaskId);
+    const parsedColumIdFrom = Number(columnIdFrom);
+    const parsedColumIdTo = Number(columnIdTo);
+
+    const tasksWithMatchingStageFrom = tasksCopy[parsedColumIdFrom];
+    const tasksWithMatchingStageTo = tasksCopy[parsedColumIdTo];
+
+    const draggingTaskIndex = tasksWithMatchingStageFrom.findIndex(
+      ({ taskId }) => taskId === parsedDraggableTaskId
+    );
+
+    const splicedTask = tasksWithMatchingStageFrom.splice(draggingTaskIndex, 1);
+    tasksWithMatchingStageTo.push(splicedTask[0]);
+
+    setTasks((prevState) => ({
+      ...prevState,
+      [parsedColumIdFrom]: tasksWithMatchingStageFrom,
+      [parsedColumIdTo]: tasksWithMatchingStageTo,
+    }));
+  }
+
   return (
     <section className="board-page__board board">
-      <DragDropContext>
+      <DragDropContext onDragEnd={handleOnDragEnd}>
         {stages.map(({ id: columnId, title, color }) => (
-          <Droppable key={columnId} droppableId={title}>
+          <Droppable key={columnId} droppableId={String(columnId)}>
             {(provided) => (
               <div
                 className={`board__column board__column--${color}`}
@@ -133,14 +165,20 @@ export function Board(): JSX.Element {
                 ref={provided.innerRef}
               >
                 <div className="board__column-title">{title}</div>
-                {tasks[columnId].map(({ id, taskId, carModel, clientName }) => (
-                  <TaskCard
-                    taskId={taskId}
-                    id={id}
-                    carModel={carModel}
-                    clientName={clientName}
-                  />
-                ))}
+                {tasks[columnId].map(
+                  ({ id, taskId, carModel, clientName, licencePlate }, i) => (
+                    <TaskCard
+                      taskId={taskId}
+                      id={id}
+                      carModel={carModel}
+                      clientName={clientName}
+                      licencePlate={licencePlate}
+                      key={taskId}
+                      index={i}
+                    />
+                  )
+                )}
+                {provided.placeholder}
               </div>
             )}
           </Droppable>
