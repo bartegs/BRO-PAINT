@@ -1,6 +1,8 @@
 import * as React from "react";
 
 import { DragDropContext, Droppable, DropResult } from "react-beautiful-dnd";
+import { insertToArrayAt } from "../../../../../../common/utils/functions";
+
 import { TaskCard } from "../../../components";
 
 export interface TaskType {
@@ -126,12 +128,16 @@ export function Board(): JSX.Element {
   const [tasks, setTasks] = React.useState(data);
 
   function handleOnDragEnd(result: DropResult) {
+    if (!result.destination) {
+      return;
+    }
+
     const tasksCopy: TasksType = JSON.parse(JSON.stringify(tasks));
 
     const { source, destination, draggableId: draggableTaskId } = result;
     const { droppableId: columnIdFrom } = source;
-    const { droppableId: columnIdTo } = destination;
-
+    const { droppableId: columnIdTo, index: positionInTargetColum } =
+      destination;
     const parsedDraggableTaskId = Number(draggableTaskId);
     const parsedColumIdFrom = Number(columnIdFrom);
     const parsedColumIdTo = Number(columnIdTo);
@@ -143,8 +149,16 @@ export function Board(): JSX.Element {
       ({ taskId }) => taskId === parsedDraggableTaskId
     );
 
-    const splicedTask = tasksWithMatchingStageFrom.splice(draggingTaskIndex, 1);
-    tasksWithMatchingStageTo.push(splicedTask[0]);
+    const [splicedTask] = tasksWithMatchingStageFrom.splice(
+      draggingTaskIndex,
+      1
+    );
+
+    insertToArrayAt(
+      tasksWithMatchingStageTo,
+      positionInTargetColum,
+      splicedTask
+    );
 
     setTasks((prevState) => ({
       ...prevState,
