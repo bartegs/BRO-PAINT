@@ -1,7 +1,7 @@
 export function insertToArrayAt<T>(
   array: T[],
   insertAtIndex: number,
-  elementsToInsert: T
+  toInsert: T
 ) {
-  array.splice(insertAtIndex, 0, elementsToInsert);
+  array.splice(insertAtIndex, 0, toInsert);
 }
