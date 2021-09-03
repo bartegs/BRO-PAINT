@@ -1,7 +1,6 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
-const  MiniCssExtractPlugin  = require("mini-css-extract-plugin");
 
 module.exports = {
   entry: {
@@ -29,8 +28,6 @@ module.exports = {
     }),
 
     new CleanWebpackPlugin(),
-
-    new MiniCssExtractPlugin(),
   ],
 
   resolve: {
@@ -54,15 +51,25 @@ module.exports = {
       {
         test: /\.scss$/i,
         use: [
-          MiniCssExtractPlugin.loader,
+          "style-loader",
           {
             loader: "css-loader",
             options: {
               sourceMap: true,
             },
           },
-          'resolve-url-loader',
-          "sass-loader",
+          {
+            loader: "resolve-url-loader",
+            options: {
+              sourceMap: true,
+            },
+          },
+          {
+            loader: "sass-loader",
+            options: {
+              sourceMap: true,
+            },
+          },
         ],
       },
 
@@ -71,6 +78,9 @@ module.exports = {
         use: [
           {
             loader: "file-loader",
+            options: {
+              name: "assets/[name].[hash].[ext]",
+            },
           },
         ],
       },
