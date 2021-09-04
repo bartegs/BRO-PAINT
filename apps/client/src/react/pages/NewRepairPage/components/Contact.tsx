@@ -9,7 +9,7 @@ import { TextArea } from "../../../components/forms/components/TextArea";
 import { File } from "../../../components/forms/components/File";
 import { Checkbox } from "../../../components/forms/components/Checkbox";
 import { Button } from "../../../components/Button/Button";
-import { Color } from "../../../../../../utils/types";
+import { Color } from "../../../../../../common/utils/types";
 
 interface ContactProps {
   color: Color;

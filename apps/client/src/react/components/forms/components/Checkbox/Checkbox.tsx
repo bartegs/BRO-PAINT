@@ -1,7 +1,7 @@
 import * as React from "react";
 import { NavLink } from "react-router-dom";
 import classnames from "classnames";
-import { Color } from "../../../../../../../utils/types";
+import { Color } from "../../../../../../../common/utils/types";
 
 interface CheckboxProps {
   name: string;

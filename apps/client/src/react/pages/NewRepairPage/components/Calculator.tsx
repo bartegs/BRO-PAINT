@@ -1,7 +1,7 @@
 import * as React from "react";
 import useWindowWidth from "../../../hooks/useWindowWidth";
 
-import { Color } from "../../../../../../utils/types";
+import { Color } from "../../../../../../common/utils/types";
 import { CarSizeType, CarIconType } from "../../../components/icons/CarIcon";
 
 import { Radio } from "../../../components/forms/components/Radio";

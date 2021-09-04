@@ -1,0 +1,34 @@
+.board {
+  display: flex;
+  align-items: flex-start;
+  overflow-y: auto;
+
+  &__column {
+    min-width: 290px;
+    min-height: 200px;
+    padding: $spacing-x2 $spacing-x1;
+    margin: 0 15px;
+    border-radius: $radius-x1;
+
+    &--blue {
+      background: $blue-a-25;
+    }
+
+    &--green {
+      background: $green-a-25;
+    }
+
+    &--pink {
+      background: $pink-a-25;
+    }
+
+    &--grey {
+      background: $grey-a-25;
+    }
+  }
+
+  &__column-title {
+    margin: 0 0 $spacing-x6 $spacing-x1;
+    font-weight: $text-medium;
+  }
+}

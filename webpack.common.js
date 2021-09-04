@@ -5,7 +5,7 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 module.exports = {
   entry: {
     client: "./apps/client/src/index.tsx",
-    worker: "./apps/worker/src/index.tsx",
+    employee: "./apps/employee/src/index.tsx",
   },
   output: {
     filename: "[name]/[name].[fullhash:5].js",
@@ -21,10 +21,10 @@ module.exports = {
     }),
 
     new HtmlWebpackPlugin({
-      template: "./apps/worker/src/index.html",
-      filename: "worker/index.html",
+      template: "./apps/employee/src/index.html",
+      filename: "employee/index.html",
       favicon: "./apps/assets/icons/favicon.png",
-      chunks: ["worker"],
+      chunks: ["employee"],
     }),
 
     new CleanWebpackPlugin(),
