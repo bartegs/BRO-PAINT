@@ -10,6 +10,7 @@ describe("Footer", () => {
         <Footer />
       </MemoryRouter>
     );
+
     expect(container).toBeTruthy();
   });
 
@@ -19,6 +20,7 @@ describe("Footer", () => {
         <Footer />
       </MemoryRouter>
     );
+
     expect(container.firstChild).toHaveClass("footer--home-page");
   });
 
@@ -28,6 +30,7 @@ describe("Footer", () => {
         <Footer />
       </MemoryRouter>
     );
+
     expect(container.firstChild).not.toHaveClass("footer--home-page");
   });
 
@@ -37,8 +40,42 @@ describe("Footer", () => {
         <Footer />
       </MemoryRouter>
     );
-    const phone = container.querySelectorAll("span")[0];
+
+    const phone = container.querySelector("span.icon--footer-phone");
     expect(phone).toHaveClass("icon--footer-phone");
+  });
+
+  it(`should have phone number rendered to the page`, () => {
+    render(
+      <MemoryRouter initialEntries={["/"]}>
+        <Footer />
+      </MemoryRouter>
+    );
+
+    const phoneNumber = screen.getByText(/\+48/i);
+    expect(phoneNumber).toBeInTheDocument();
+  });
+
+  it(`should have email icon`, () => {
+    const { container } = render(
+      <MemoryRouter initialEntries={["/"]}>
+        <Footer />
+      </MemoryRouter>
+    );
+
+    const email = container.querySelector("span.icon--footer-email");
+    expect(email).toHaveClass("icon--footer-email");
+  });
+
+  it(`should have email adress rendered to the page`, () => {
+    render(
+      <MemoryRouter initialEntries={["/"]}>
+        <Footer />
+      </MemoryRouter>
+    );
+
+    const emailAddress = screen.getByText("bropaint@wp.pl");
+    expect(emailAddress).toBeInTheDocument();
   });
 
   it(`should have facebook icon`, () => {
@@ -47,8 +84,31 @@ describe("Footer", () => {
         <Footer />
       </MemoryRouter>
     );
-    const facebook = container.querySelectorAll("span")[2];
-    expect(facebook).toHaveClass("icon--fb");
+
+    const facebook = container.querySelector("span.icon--fb");
+    expect(facebook).toBeInTheDocument();
+  });
+
+  it(`should have instagram icon`, () => {
+    const { container } = render(
+      <MemoryRouter initialEntries={["/"]}>
+        <Footer />
+      </MemoryRouter>
+    );
+
+    const instagram = container.querySelector("span.icon--ig");
+    expect(instagram).toBeInTheDocument();
+  });
+
+  it(`should have twitter icon`, () => {
+    const { container } = render(
+      <MemoryRouter initialEntries={["/"]}>
+        <Footer />
+      </MemoryRouter>
+    );
+
+    const twitter = container.querySelector("span.icon--tt");
+    expect(twitter).toBeInTheDocument();
   });
 
   it(`should have a link to privacy policy page`, () => {
@@ -57,7 +117,19 @@ describe("Footer", () => {
         <Footer />
       </MemoryRouter>
     );
+
     const privacy = screen.getByText("Polityka prywatności");
-    expect(privacy).toBeTruthy();
+    expect(privacy).toBeInTheDocument();
+  });
+
+  it(`should have a link to copyright page`, () => {
+    render(
+      <MemoryRouter initialEntries={["/"]}>
+        <Footer />
+      </MemoryRouter>
+    );
+
+    const copyright = screen.getByText("BRO PAINT © 2021");
+    expect(copyright).toBeInTheDocument();
   });
 });
