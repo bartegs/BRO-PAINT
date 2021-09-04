@@ -1,0 +1,23 @@
+.copyright-page {
+  color: $black-light;
+
+  &__container {
+    width: 100%;
+  }
+
+  &__heading {
+    text-align: center;
+  }
+
+  &__attribution {
+    display: block;
+  }
+
+  &__link {
+    color: $green;
+
+    &:hover {
+      color: $green-light;
+    }
+  }
+}
