@@ -13,7 +13,7 @@ describe("Footer", () => {
     expect(container).toBeTruthy();
   });
 
-  it(`should have class "footer--home-page" which is responsible for light variant`, () => {
+  it(`should have class "footer--home-page" (when on homepage) which is responsible for light variant`, () => {
     const { container } = render(
       <MemoryRouter initialEntries={["/"]}>
         <Footer />
@@ -22,7 +22,7 @@ describe("Footer", () => {
     expect(container.firstChild).toHaveClass("footer--home-page");
   });
 
-  it(`shouldn't have class "footer--home-page" and therefore be dark variant`, () => {
+  it(`shouldn't have class "footer--home-page" (when on every other page) and therefore be dark variant`, () => {
     const { container } = render(
       <MemoryRouter initialEntries={["/nowa-naprawa"]}>
         <Footer />
