@@ -12,7 +12,6 @@ export type IconType =
   | "flag"
   | "fb"
   | "email"
-  | "dropdown-arrow"
   | "car"
   | "arrow"
   | "history"

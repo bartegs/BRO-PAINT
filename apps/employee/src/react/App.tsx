@@ -1,5 +1,5 @@
 import * as React from "react";
-import { BrowserRouter as Router, Switch } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 
 import { BoardPage } from "./pages";
 
