@@ -9,6 +9,7 @@ module.exports = {
   // using ts-jest
   transform: {
     "^.+\\.tsx?$": "ts-jest",
+    ".+\\.(png|jpg)$": "jest-transform-stub"
   },
 
   // Test spec file resolution pattern
