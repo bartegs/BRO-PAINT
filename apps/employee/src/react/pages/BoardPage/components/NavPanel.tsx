@@ -15,7 +15,7 @@ const menuItems: MenuItemType[] = [
   {
     id: 1,
     text: "Zarządzanie zleceniami",
-    href: "/zarzadzanie-zleceniami",
+    href: "/",
     icon: "fact-check",
   },
   { id: 2, text: "Lista pracowników", href: "/", icon: "groups" },

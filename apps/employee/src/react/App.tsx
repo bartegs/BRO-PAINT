@@ -1,13 +1,13 @@
 import * as React from "react";
-import { BrowserRouter as Router } from "react-router-dom";
+import { BrowserRouter as Router, Switch } from "react-router-dom";
 
-import { BoardPage } from "./pages";
+import createRoutes from "../routes";
 
 export default function App(): JSX.Element {
   return (
     <Router>
       <main className="content">
-        <BoardPage />
+        <Switch>{createRoutes}</Switch>
       </main>
     </Router>
   );
