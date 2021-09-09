@@ -48,17 +48,15 @@ export function NavPanel() {
             </NavLink>
           </li>
         ))}
-        <li className="menu__item">
-          <button
-            className={classnames("menu__toggler toggler", {
-              "toggler--toggled": !isToggled,
-            })}
-            onClick={() => setIsToggled((prevState) => !prevState)}
-          >
-            <Icon size="sm" icon="arrow" color="white" />
-          </button>
-        </li>
       </ul>
+      <button
+        className={classnames("menu__toggler toggler", {
+          "toggler--toggled": !isToggled,
+        })}
+        onClick={() => setIsToggled((prevState) => !prevState)}
+      >
+        <Icon size="sm" icon="arrow" color="white" />
+      </button>
     </nav>
   );
 }
