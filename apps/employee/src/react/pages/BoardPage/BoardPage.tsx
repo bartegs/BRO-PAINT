@@ -1,8 +1,13 @@
 import * as React from "react";
 
-import { Board } from "./components";
+import { Board, NavPanel } from "./components";
 
 // manageTaksPage
 export function BoardPage(): JSX.Element {
-  return <Board />;
+  return (
+    <div className="board-page">
+      <NavPanel />
+      <Board />
+    </div>
+  );
 }

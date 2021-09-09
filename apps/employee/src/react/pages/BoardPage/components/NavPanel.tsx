@@ -1,8 +1,8 @@
 import classnames from "classnames";
 import * as React from "react";
-
 import { NavLink } from "react-router-dom";
-import { Icon, IconType } from "../../../../../common/react/Icon";
+
+import { Icon, IconType } from "../../../../../../common/react/Icon";
 
 interface MenuItemType {
   id: number;
@@ -11,19 +11,18 @@ interface MenuItemType {
   icon: IconType;
 }
 const menuItems: MenuItemType[] = [
-  {
-    id: 0,
-    text: "Nowe zgłoszenia",
-    href: "/",
-    icon: "notifications",
-  },
+  { id: 0, text: "Nowe zgłoszenia", href: "/", icon: "notifications" },
   {
     id: 1,
     text: "Zarządzanie zleceniami",
     href: "/zarzadzanie-zleceniami",
     icon: "fact-check",
   },
+  { id: 2, text: "Lista pracowników", href: "/", icon: "groups" },
+  { id: 3, text: "Archiwum napraw", href: "/", icon: "history" },
 ];
+
+// will be moved to router
 
 export function NavPanel() {
   const [isToggled, setIsToggled] = React.useState(false);

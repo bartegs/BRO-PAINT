@@ -1,18 +1,13 @@
 import * as React from "react";
-import { BrowserRouter as Router, Switch } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 
-import createRoutes from "../routes";
-import { NavPanel } from "./components/NavPanel";
+import { BoardPage } from "./pages";
 
 export default function App(): JSX.Element {
-  const { pathname } = window.location;
-  const isLoginPage = pathname.includes("/zaloguj-sie");
-
   return (
-    <Router basename="/pracownik">
+    <Router>
       <main className="content">
-        {!isLoginPage && <NavPanel />}
-        <Switch>{createRoutes}</Switch>
+        <BoardPage />
       </main>
     </Router>
   );

@@ -9,7 +9,7 @@ module.exports = {
   },
   output: {
     filename: "[name]/[name].[fullhash:5].js",
-    path: path.resolve(__dirname, "dist/apps/"),
+    path: path.resolve(__dirname, "dist/apps"),
   },
 
   plugins: [
