@@ -2,7 +2,7 @@ import classnames from "classnames";
 import * as React from "react";
 
 import { NavLink } from "react-router-dom";
-import { Icon, IconType } from "../../../../../common/react/Icon";
+import { Icon, IconType } from "../../../../../common/react/components";
 
 interface MenuItemType {
   id: number;
