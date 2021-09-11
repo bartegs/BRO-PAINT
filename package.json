@@ -16,9 +16,12 @@
     "lint:fix": "run-p lint:ts:fix lint:scss:fix",
     "check-types": "tsc -p tsconfig.json --noEmit",
     "prepare": "husky install",
-    "build:dev": "webpack --config webpack.dev.js",
-    "build:prod": "webpack --config webpack.prod.js",
-    "build:server": "tsc server/server.ts --outDir ./dist/server"
+    "build:server": "tsc server/server.ts --outDir ./dist/server",
+    "build:apps:dev": "webpack --config webpack.dev.js",
+    "build:apps:prod": "webpack --config webpack.prod.js",
+    "build:prod": "run-p build:apps:prod build:server",
+    "start": "node dist/server/server.js",
+    "heroku-postbuild": "run-p build:prod"
   },
   "repository": {
     "type": "git",
