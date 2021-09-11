@@ -1,10 +1,21 @@
 import * as React from "react";
 import { Route } from "react-router-dom";
 
+// temp
+import { Navbar } from "../../common/react/components";
+import { NavPanel } from "./react/components/NavPanel";
+
 import { RepairManagementPage } from "./react/pages";
 
 const Error = () => <div>Not found</div>;
-const NewOrdersPage = () => <div>NewOrdersPage</div>;
+const NewOrdersPage = () => (
+  <>
+    <Navbar />
+    <div className="content">
+      <NavPanel />
+    </div>
+  </>
+);
 // const OrdersManagmentPage = () => <div>OrdersManagmentPage</div>;
 const LoginPage = () => <div>LoginPage</div>;
 
