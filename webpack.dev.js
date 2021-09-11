@@ -15,7 +15,7 @@ module.exports = merge(common, {
     compress: true,
     open: true,
     port: 9000,
-    // host: '0.0.0.0',
+    openPage: 'pracownik',
   },
 
   plugins: [new webpack.HotModuleReplacementPlugin()],

@@ -13,7 +13,7 @@ export default function App(): JSX.Element {
   return (
     <Router basename="/pracownik">
       <main>
-        <Navbar />
+        {!isLoginPage && <Navbar />}
         <div className="content">
           {!isLoginPage && <NavPanel />}
           <Switch>{createRoutes}</Switch>

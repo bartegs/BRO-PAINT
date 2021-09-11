@@ -1,6 +1,9 @@
 import * as React from "react";
-import classnames from "classnames";
 import { NavLink } from "react-router-dom";
+
+import classnames from "classnames";
+
+import { isGivenLocation } from "../../../../utils/functions";
 
 interface OwnProps {
   isMenuOpen: boolean;
@@ -13,6 +16,8 @@ export function NavbarMenu({
   handleMenuKeyboard,
   closeMenu,
 }: OwnProps): JSX.Element {
+  const isEmployee = isGivenLocation("pracownik");
+
   const menuItems = [
     { id: 0, text: "Strona główna", href: "/" },
     { id: 1, text: "Zleć naprawę", href: "/nowa-naprawa" },
@@ -29,28 +34,47 @@ export function NavbarMenu({
         "navbar-menu--close": isMenuOpen === false,
       })}
     >
-      {menuItems.map(({ text, href, id }) => (
-        <li
-          role="menuitem"
-          onClick={closeMenu}
-          key={id}
-          onKeyDown={handleMenuKeyboard}
-        >
-          <NavLink
-            className="navbar-menu__link"
-            activeClassName="navbar-menu__link--active"
-            to={href}
-            exact
+      {!isEmployee && (
+        <>
+          {menuItems.map(({ text, href, id }) => (
+            <li
+              role="menuitem"
+              onClick={closeMenu}
+              key={id}
+              onKeyDown={handleMenuKeyboard}
+            >
+              <NavLink
+                className="navbar-menu__link"
+                activeClassName="navbar-menu__link--active"
+                to={href}
+                exact
+              >
+                {text}
+              </NavLink>
+            </li>
+          ))}
+          <li
+            role="menuitem"
+            onClick={closeMenu}
+            onKeyDown={handleMenuKeyboard}
           >
-            {text}
-          </NavLink>
+            <a className="navbar-menu__link" href="/miki">
+              Pracownik
+            </a>
+          </li>
+        </>
+      )}
+      {isEmployee && (
+        <li role="menuitem" onClick={closeMenu} onKeyDown={handleMenuKeyboard}>
+          <a
+            className="navbar-menu__link navbar-menu__link--logout"
+            href="/pracownik/zaloguj-sie"
+          >
+            {/* <Icon additionalClasses="mr-2" size="sm" icon="logout" /> */}
+            Wyloguj się
+          </a>
         </li>
-      ))}
-      <li role="menuitem" onClick={closeMenu} onKeyDown={handleMenuKeyboard}>
-        <a className="navbar-menu__link" href="/miki">
-          Pracownik
-        </a>
-      </li>
+      )}
     </ul>
   );
 }

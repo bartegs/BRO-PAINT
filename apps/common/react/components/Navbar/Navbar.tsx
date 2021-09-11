@@ -2,8 +2,8 @@ import * as React from "react";
 
 import { isGivenLocation } from "../../../utils/functions";
 
-import { Logo } from "../Logo";
 import { NavbarMenu, NavbarToggler } from "./components";
+import { Logo } from "../Logo";
 
 export function Navbar(): JSX.Element {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
@@ -31,22 +31,18 @@ export function Navbar(): JSX.Element {
         <a className="navbar__logo" href="/">
           <Logo />
         </a>
-        {isEmployee ? (
-          "miki"
-        ) : (
-          <>
-            <NavbarToggler
-              handleMenuKeyboard={handleMenuKeyboard}
-              isClicked={isMenuOpen}
-              onClick={toggleMenu}
-            />
-            <NavbarMenu
-              isMenuOpen={isMenuOpen}
-              handleMenuKeyboard={handleMenuKeyboard}
-              closeMenu={closeMenu}
-            />
-          </>
+        {isEmployee ? null : (
+          <NavbarToggler
+            handleMenuKeyboard={handleMenuKeyboard}
+            isClicked={isMenuOpen}
+            onClick={toggleMenu}
+          />
         )}
+        <NavbarMenu
+          isMenuOpen={isMenuOpen}
+          handleMenuKeyboard={handleMenuKeyboard}
+          closeMenu={closeMenu}
+        />
       </div>
     </nav>
   );

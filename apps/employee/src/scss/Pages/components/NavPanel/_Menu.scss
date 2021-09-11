@@ -27,7 +27,11 @@
     align-items: center;
     padding: $spacing-x2 $spacing-x2;
     margin-bottom: $spacing-x1;
-    // overflow: hidden;
     color: $white;
+    white-space: nowrap;
+
+    &--active {
+      background: #555555bf;
+    }
   }
 }
