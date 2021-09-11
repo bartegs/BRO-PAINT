@@ -9,4 +9,13 @@ body {
   height: 100vh;
   width: 100vw;
   display: flex;
+  padding-top: 2 * $spacing-x3 + $logo-sm-y;
+
+  @media (min-width: $screen-md) {
+    padding-top: 2 * $spacing-x3 + $logo-md-y;
+  }
+
+  @media (min-width: $screen-lg) {
+    padding: 0;
+  }
 }

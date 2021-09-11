@@ -1,0 +1,20 @@
+.toggler {
+  padding: 2px 0;
+  cursor: pointer;
+  border: none;
+  margin-left: $spacing-x2;
+  position: absolute;
+  right: 0;
+  background: $black-light;
+  border-radius: 0 $radius-x1 $radius-x1 0;
+  transform: translateX(100%) rotate(0);
+
+  &--toggled {
+    border-radius: $radius-x1 0 0 $radius-x1;
+    transform: rotate(180deg);
+
+    @media (min-width: $screen-md) {
+      transform: translateX(100%) rotate(180deg);
+    }
+  }
+}

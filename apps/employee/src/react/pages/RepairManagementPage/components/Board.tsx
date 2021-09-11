@@ -40,7 +40,7 @@ const stages = [
   },
   {
     id: 4,
-    color: "miki",
+    color: "grey-dark",
     title: "ZLECENIA UKOŃCZONE",
   },
 ];

@@ -3,7 +3,7 @@ import { Draggable } from "react-beautiful-dnd";
 
 import { Icon } from "../../../../../client/src/react/components/icons/Icon";
 
-import type { TaskType } from "../../pages/BoardPage/components";
+import type { TaskType } from "../../pages/RepairManagementPage/components";
 
 interface OwnProps {
   index: number;
