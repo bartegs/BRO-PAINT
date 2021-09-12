@@ -18,7 +18,7 @@ interface InputProps {
   fontTheme?: "dark" | "light";
 }
 
-export function Input({
+export function Temp({
   setState,
   name,
   value,

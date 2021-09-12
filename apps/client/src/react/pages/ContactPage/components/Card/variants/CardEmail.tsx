@@ -1,7 +1,7 @@
 import * as React from "react";
 
 import { Card } from "../Card";
-import { Input } from "../../../../../components/forms/components/Input";
+import { Temp } from "../../../../../components/forms/components/Temp";
 import { Button } from "../../../../../components/Button";
 import { TextArea } from "../../../../../components/forms/components/TextArea";
 
@@ -22,7 +22,7 @@ export function CardEmail(): JSX.Element {
     <Card category="email" icon="email" color="pink">
       {!isMessageSent ? (
         <form onSubmit={sendMessage}>
-          <Input
+          <Temp
             placeholder="Podaj imię*"
             name="name"
             value={name}
@@ -32,7 +32,7 @@ export function CardEmail(): JSX.Element {
             fontTheme="dark"
             required
           />
-          <Input
+          <Temp
             placeholder="Podaj email*"
             name="email"
             value={email}
