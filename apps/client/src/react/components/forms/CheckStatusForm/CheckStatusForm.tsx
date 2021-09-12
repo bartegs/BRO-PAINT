@@ -4,7 +4,7 @@ import classnames from "classnames";
 import type { Color } from "../../../../../../common/utils/types";
 
 import { Button } from "../../Button";
-import { Temp } from "../components/Temp";
+// import { Temp } from "../components/Temp";
 
 interface OwnProps {
   additionalClasses?: string;
@@ -39,7 +39,7 @@ export function CheckStatusForm({
     >
       <h3 className={`text--${headingColor}`}>Sprawdź status zlecenia</h3>
       <form action="" onSubmit={handleSubmit}>
-        <Temp
+        {/* <Temp
           placeholder="Podaj numer zlecenia"
           name="repair-code"
           value={orderNumber}
@@ -47,7 +47,7 @@ export function CheckStatusForm({
           additionalClasses="mt-3 mb-5"
           borderColor={inputBorderColor}
           fontTheme={inputFontTheme}
-        />
+        /> */}
         <Button
           text="Sprawdź"
           variant="primary"
