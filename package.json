@@ -25,7 +25,7 @@
     "build:apps:prod": "webpack --config webpack.prod.js",
     "build:prod": "run-p build:apps:prod build:server",
     "start": "node dist/server/server.js",
-    "heroku-postbuild": "run-p fil build:prod"
+    "heroku-postbuild": "run-p build:prod"
   },
   "repository": {
     "type": "git",
