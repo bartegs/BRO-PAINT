@@ -11,7 +11,7 @@ interface OwnProps {
   repairStage: number;
 }
 
-function handleAxisColoring(
+export function handleAxisColoring(
   stageId: number,
   stageColor: string,
   repairStage: number
