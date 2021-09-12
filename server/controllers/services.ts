@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import Service from "../models/service";
+import Service from "../models/Service";
 
 const ServicesController = {
   add_single: (req: Request, res: Response) => {

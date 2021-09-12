@@ -2,7 +2,7 @@
   "name": "bro-paint",
   "version": "1.0.0",
   "engines": {
-    "node": "16",
+    "node": "16.x",
     "npm": "7.x"
   },
   "description": "BSc Thesis - Tanski/Sadecki",
