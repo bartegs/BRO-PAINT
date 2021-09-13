@@ -117,7 +117,7 @@ const Contact = React.forwardRef<HTMLInputElement, ContactProps>(
         <form className="new-repair-page__form">
           <InputOutlined
             placeholder="Wpisz swoje imię i nazwisko"
-            labelText="imie i nazwisko*"
+            labelText="IMIE I NAZWISKO*"
             color={color}
             name="names"
             id="names"
@@ -130,7 +130,7 @@ const Contact = React.forwardRef<HTMLInputElement, ContactProps>(
           />
           <InputOutlined
             placeholder="Wpisz swój adres email"
-            labelText="email*"
+            labelText="EMAIL*"
             color={color}
             name="email"
             id="email"
@@ -142,7 +142,7 @@ const Contact = React.forwardRef<HTMLInputElement, ContactProps>(
           />
           <InputOutlined
             placeholder="Wpisz swój numer telefonu"
-            labelText="telefon*"
+            labelText="TELEFON*"
             color={color}
             name="phone"
             id="phone"
@@ -153,7 +153,7 @@ const Contact = React.forwardRef<HTMLInputElement, ContactProps>(
             required
           />
           <Select
-            labelText="rocznik*"
+            labelText="ROCZNIK*"
             color={color}
             selectName="year"
             id="year"
@@ -163,7 +163,7 @@ const Contact = React.forwardRef<HTMLInputElement, ContactProps>(
             optionsData={yearsData}
           />
           <Select
-            labelText="marka*"
+            labelText="MARKA*"
             color={color}
             selectName="make"
             id="make"
@@ -173,7 +173,7 @@ const Contact = React.forwardRef<HTMLInputElement, ContactProps>(
             optionsData={makesData}
           />
           <InputOutlined
-            labelText="model*"
+            labelText="MODEL*"
             color={color}
             placeholder="Wpisz model auta"
             name="model"
@@ -185,7 +185,7 @@ const Contact = React.forwardRef<HTMLInputElement, ContactProps>(
             required
           />
           <InputOutlined
-            labelText="rejestracja*"
+            labelText="REJESTRACJA*"
             color={color}
             placeholder="Wpisz numer rejestracyjny auta"
             name="plate"
@@ -203,7 +203,7 @@ const Contact = React.forwardRef<HTMLInputElement, ContactProps>(
               bo jeśli nie mamy akurat dostępu do tego lakieru, to sprowadzimy go za wczasu, 
               aby czas oczekiwania na auto był jak najkrótszy!
               Jeśli nie masz do tego kodu dostępu, nic się nie stało, poradzimy sobie."
-            labelText="kod lakieru"
+            labelText="KOD LAKIERU"
             color={color}
             placeholder="Wpisz kod lakieru auta"
             name="paint"
@@ -216,14 +216,14 @@ const Contact = React.forwardRef<HTMLInputElement, ContactProps>(
           <Radio
             name="repairType"
             id="repairType"
-            labelText="Usługa*"
+            labelText="USŁUGA*"
             value={repairType}
             setState={setRepairType}
             radioData={servicesData}
             color={color}
           />
           <TextArea
-            labelText="Usługa"
+            labelText="OPIS ZLECENIA"
             name="description"
             id="description"
             value={description}

@@ -141,7 +141,7 @@ const Calculator = React.forwardRef<HTMLInputElement, CalculatorProps>(
           <Radio
             name="repairType"
             id="repairType"
-            labelText="Usługa*"
+            labelText="USŁUGA*"
             value={repairType}
             setState={setRepairType}
             radioData={servicesData}
@@ -153,7 +153,7 @@ const Calculator = React.forwardRef<HTMLInputElement, CalculatorProps>(
               tooltipText="Wybierz zakres korekty. Wykonujemy wyłącznie korekty 3-etapowe, 
                 ponieważ one przynoszą najlepszy efekt co jest naszym priorytetem. 
                 Dajemy jednak możliwość wyboru, czy zabezpieczać lakier powłoką ceramiczną."
-              labelText="zakres korekty*"
+              labelText="ZAKRES KOREKTY*"
               color={color}
               selectName="paintCorrection"
               id="paintCorrection"
@@ -164,7 +164,7 @@ const Calculator = React.forwardRef<HTMLInputElement, CalculatorProps>(
             />
           )}
           <Select
-            labelText="rocznik*"
+            labelText="ROCZNIK*"
             color={color}
             selectName="year"
             id="year"
@@ -174,7 +174,7 @@ const Calculator = React.forwardRef<HTMLInputElement, CalculatorProps>(
             optionsData={yearsData}
           />
           <Select
-            labelText="marka*"
+            labelText="MARKA*"
             color={color}
             selectName="make"
             id="make"
@@ -186,7 +186,7 @@ const Calculator = React.forwardRef<HTMLInputElement, CalculatorProps>(
           <RadioCarSize
             name="carSize"
             id="carSize"
-            labelText="rozmiar auta*"
+            labelText="ROZMIAR AUTA*"
             value={carSize}
             setState={setCarSize}
             color={color}
@@ -194,7 +194,7 @@ const Calculator = React.forwardRef<HTMLInputElement, CalculatorProps>(
           />
           {repairType !== "Detailing" && (
             <Select
-              labelText="liczba elementów*"
+              labelText="LICZBA ELEMENTÓW*"
               color={color}
               selectName="panels"
               id="panels"
