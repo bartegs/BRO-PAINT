@@ -37,8 +37,6 @@ import {
   jetWashLg,
 } from "../assets/index";
 
-Modal.setAppElement("div");
-
 interface GalleryProps {
   finishedPhotos: boolean;
 }
@@ -167,6 +165,7 @@ export function Gallery({ finishedPhotos }: GalleryProps): JSX.Element {
         <Photos finishedPhotos={finishedPhotos} handleModal={handleModal} />
       </div>
       <Modal
+        ariaHideApp={false}
         isOpen={isModalOpen}
         onRequestClose={handleModal}
         className="gallery-page__modal"
