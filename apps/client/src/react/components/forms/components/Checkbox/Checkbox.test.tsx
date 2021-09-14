@@ -3,7 +3,7 @@ import { MemoryRouter } from "react-router-dom";
 import * as React from "react";
 import { Checkbox } from ".";
 
-describe("NewRepairPage", () => {
+describe("Checkbox", () => {
   let isChecked: boolean = true;
   const setState = () => !isChecked;
 
@@ -43,7 +43,7 @@ describe("NewRepairPage", () => {
     expect(checkbox).toBeInTheDocument();
   });
 
-  it(`should render checkbox input with a "chekbox" class`, () => {
+  it(`should render checkbox input with a "checkbox" class`, () => {
     const { container } = render(
       <MemoryRouter initialEntries={["/nowa-naprawa"]}>
         <Checkbox
@@ -57,8 +57,8 @@ describe("NewRepairPage", () => {
       </MemoryRouter>
     );
 
-    const checkbox = container.querySelector(`input.checkbox`);
-    expect(checkbox).toBeInTheDocument();
+    const checkboxClass = container.querySelector(`input.checkbox`);
+    expect(checkboxClass).toBeInTheDocument();
   });
 
   it(`should render checkbox with the color given in props`, () => {
