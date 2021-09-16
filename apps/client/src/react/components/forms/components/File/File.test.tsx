@@ -23,4 +23,32 @@ describe("File", () => {
     const fileClass = container.querySelector(`input.file`);
     expect(fileClass).toBeInTheDocument();
   });
+
+  it(`should take name in props and give it to the input element`, () => {
+    const { container } = render(<File name="test" id="test" />);
+
+    const name = container.querySelector(`input[name="test"]`);
+    expect(name).toBeInTheDocument();
+  });
+
+  it(`should take id in props and give it to the input element`, () => {
+    const { container } = render(<File name="test" id="test" />);
+
+    const id = container.querySelector(`input[id="test"]`);
+    expect(id).toBeInTheDocument();
+  });
+
+  it(`should not be required by default`, () => {
+    const { container } = render(<File name="test" id="test" />);
+
+    const notReq = container.querySelector(`input[required]`);
+    expect(notReq).not.toBeInTheDocument();
+  });
+
+  it(`should accept the optional prop that makes the input required`, () => {
+    const { container } = render(<File required name="test" id="test" />);
+
+    const req = container.querySelector(`input[required]`);
+    expect(req).toBeInTheDocument();
+  });
 });
