@@ -61,9 +61,9 @@ describe("InputOutlined", () => {
   });
 
   it(`should have the same value as the text typed into the input`, () => {
-    // render TestInput component which is just a container for Input component,
+    // render TestInputOutlined component which is just a container for InputOutlined component,
     // this allows to use proper useState because we are passing the state to
-    // Input component but that's not possible in testing environment
+    // InputOutlined component but that's not possible in testing environment
     const { container } = render(<TestInputOutlined />);
 
     // select input
