@@ -1,51 +1,63 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import * as React from "react";
-import { Radio } from ".";
+import { RadioCarSize } from ".";
+import { CarIconType, CarSizeType } from "../../../icons/CarIcon";
 
-const testData = [
-  { id: "test1 ", value: "test1" },
-  { id: "test2 ", value: "test2" },
-  { id: "test3 ", value: "test3" },
+interface CarSizesDataType {
+  id: string;
+  value: string;
+  icon: CarIconType;
+  iconSize: CarSizeType;
+}
+
+const carSizesData: CarSizesDataType[] = [
+  { id: "Małe ", value: "Małe", icon: "car-small", iconSize: "car-sm" },
+  {
+    id: "Średnie ",
+    value: "Średnie",
+    icon: "car-medium",
+    iconSize: "car-md",
+  },
+  { id: "Duże ", value: "Duże", icon: "car-big", iconSize: "car-lg" },
 ];
 
-// Empty component wrapping Radio component that is being tested
+// Empty component wrapping RadioCarSize component that is being tested
 // The purpose of this is to test useState changes
-function TestRadio() {
-  const [state, setState] = React.useState("test1");
+function TestRadioCarSize() {
+  const [state, setState] = React.useState("Małe");
   return (
     <>
-      <Radio
-        name="test"
-        id="test"
-        labelText="test label"
+      <RadioCarSize
+        name="carSize"
+        id="carSize"
+        labelText="ROZMIAR AUTA*"
         value={state}
         setState={setState}
-        radioData={testData}
         color="green"
+        radioData={carSizesData}
       />
-      ;
     </>
   );
 }
 
-describe("Radio", () => {
+describe("RadioCarSize", () => {
   // static data without the React State functionality
-  let value = "test1";
+  let value = "Małe";
   const setStates = (string: string) => {
     value = string;
   };
 
   it(`should render input with type radio`, () => {
     const { container } = render(
-      <Radio
-        name="test"
-        id="test"
-        labelText="test label"
+      <RadioCarSize
+        name="carSize"
+        id="carSize"
+        labelText="ROZMIAR AUTA*"
         value={value}
         setState={setStates}
-        radioData={testData}
         color="green"
+        radioData={carSizesData}
       />
     );
 
@@ -55,14 +67,14 @@ describe("Radio", () => {
 
   it(`should render the label for the radio inputs container with a class "radio-container__label"`, () => {
     const { container } = render(
-      <Radio
-        name="test"
-        id="test"
-        labelText="test label"
+      <RadioCarSize
+        name="carSize"
+        id="carSize"
+        labelText="ROZMIAR AUTA*"
         value={value}
         setState={setStates}
-        radioData={testData}
         color="green"
+        radioData={carSizesData}
       />
     );
 
@@ -74,31 +86,31 @@ describe("Radio", () => {
 
   it(`should render the label text for the radio inputs container`, () => {
     render(
-      <Radio
-        name="test"
-        id="test"
-        labelText="test label"
+      <RadioCarSize
+        name="carSize"
+        id="carSize"
+        labelText="ROZMIAR AUTA*"
         value={value}
         setState={setStates}
-        radioData={testData}
         color="green"
+        radioData={carSizesData}
       />
     );
 
-    const containerLabel = screen.getByText(`test label`);
+    const containerLabel = screen.getByText(`ROZMIAR AUTA*`);
     expect(containerLabel).toBeInTheDocument();
   });
 
   it(`should take the color in props and properly apply it to the label for the container`, () => {
     const { container } = render(
-      <Radio
-        name="test"
-        id="test"
-        labelText="test label"
+      <RadioCarSize
+        name="carSize"
+        id="carSize"
+        labelText="ROZMIAR AUTA*"
         value={value}
         setState={setStates}
-        radioData={testData}
         color="green"
+        radioData={carSizesData}
       />
     );
 
@@ -110,31 +122,33 @@ describe("Radio", () => {
 
   it(`should render a div which is a container for the radio inputs with a proper class`, () => {
     const { container } = render(
-      <Radio
-        name="test"
-        id="test"
-        labelText="test label"
+      <RadioCarSize
+        name="carSize"
+        id="carSize"
+        labelText="ROZMIAR AUTA*"
         value={value}
         setState={setStates}
-        radioData={testData}
         color="green"
+        radioData={carSizesData}
       />
     );
 
-    const containerDiv = container.querySelector(`div.radio-container`);
+    const containerDiv = container.querySelector(
+      `div.radio-container--car-size`
+    );
     expect(containerDiv).toBeInTheDocument();
   });
 
   it(`should apply the color from props to the div which is a container for the radio inputs`, () => {
     const { container } = render(
-      <Radio
-        name="test"
-        id="test"
-        labelText="test label"
+      <RadioCarSize
+        name="carSize"
+        id="carSize"
+        labelText="ROZMIAR AUTA*"
         value={value}
         setState={setStates}
-        radioData={testData}
         color="green"
+        radioData={carSizesData}
       />
     );
 
@@ -146,129 +160,149 @@ describe("Radio", () => {
 
   it(`should render a set of elements which are needed for the custom radio button to work and look correctly`, () => {
     const { container } = render(
-      <Radio
-        name="test"
-        id="test"
-        labelText="test label"
+      <RadioCarSize
+        name="carSize"
+        id="carSize"
+        labelText="ROZMIAR AUTA*"
         value={value}
         setState={setStates}
-        radioData={testData}
         color="green"
+        radioData={carSizesData}
       />
     );
 
-    const label = container.querySelector(`label.radio`);
-    const spanInput = container.querySelector(`span.radio__input`);
+    const label = container.querySelector(`label.radio--car-size`);
+    const spanInput = container.querySelector(`span.radio__input--car-size`);
     const input = container.querySelector(`input[type="radio"]`);
-    const spanControl = container.querySelector(`span.radio__control`);
-    const spanLabel = container.querySelector(`span.radio__label`);
+    const icon = container.querySelector(`span.car-icon`);
 
     expect(label).toBeInTheDocument();
     expect(spanInput).toBeInTheDocument();
     expect(input).toBeInTheDocument();
-    expect(spanControl).toBeInTheDocument();
-    expect(spanLabel).toBeInTheDocument();
+    expect(icon).toBeInTheDocument();
   });
 
-  it(`should take a color in props and properly apply it to every element that creates custom radio input`, () => {
+  it(`should render 3 car icons (small, medium, big)`, () => {
     const { container } = render(
-      <Radio
-        name="test"
-        id="test"
-        labelText="test label"
+      <RadioCarSize
+        name="carSize"
+        id="carSize"
+        labelText="ROZMIAR AUTA*"
         value={value}
         setState={setStates}
-        radioData={testData}
         color="green"
+        radioData={carSizesData}
       />
     );
 
-    const labelColor = container.querySelector(`label.radio--green`);
-    const spanControlColor = container.querySelector(
-      `span.radio__control--green`
-    );
+    const carSmall = container.querySelector(`span.car-icon--car-small`);
+    const carMedium = container.querySelector(`span.car-icon--car-medium`);
+    const carLarge = container.querySelector(`span.car-icon--car-big`);
 
-    expect(labelColor).toBeInTheDocument();
-    expect(spanControlColor).toBeInTheDocument();
+    expect(carSmall).toBeInTheDocument();
+    expect(carMedium).toBeInTheDocument();
+    expect(carLarge).toBeInTheDocument();
   });
 
   it(`should take name in props and give it to all of the input elements (3)`, () => {
     const { container } = render(
-      <Radio
-        name="test"
-        id="test"
-        labelText="test label"
+      <RadioCarSize
+        name="carSize"
+        id="carSize"
+        labelText="ROZMIAR AUTA*"
         value={value}
         setState={setStates}
-        radioData={testData}
         color="green"
+        radioData={carSizesData}
       />
     );
 
-    const name = container.querySelectorAll(`input[name="test"]`).length;
+    const name = container.querySelectorAll(`input[name="carSize"]`).length;
     expect(name === 3).toBeTruthy();
   });
 
   it(`should take id in props and give it to the radio buttons container and its label`, () => {
     const { container } = render(
-      <Radio
-        name="test"
-        id="test"
-        labelText="test label"
+      <RadioCarSize
+        name="carSize"
+        id="carSize"
+        labelText="ROZMIAR AUTA*"
         value={value}
         setState={setStates}
-        radioData={testData}
         color="green"
+        radioData={carSizesData}
       />
     );
 
-    const containerDivId = container.querySelector(`div[id="test"]`);
+    const containerDivId = container.querySelector(`div[id="carSize"]`);
     expect(containerDivId).toBeInTheDocument();
 
-    const containerLabelId = container.querySelector(`label[for="test"]`);
+    const containerLabelId = container.querySelector(`label[for="carSize"]`);
     expect(containerLabelId).toBeInTheDocument();
   });
 
   it(`should render the correct radio options given in the radioData prop`, () => {
     const { container } = render(
-      <Radio
-        name="test"
-        id="test"
-        labelText="test label"
+      <RadioCarSize
+        name="carSize"
+        id="carSize"
+        labelText="ROZMIAR AUTA*"
         value={value}
         setState={setStates}
-        radioData={testData}
         color="green"
+        radioData={carSizesData}
       />
     );
 
-    const option1 = container.querySelector(`input[value="test1"]`);
-    const option2 = container.querySelector(`input[value="test2"]`);
-    const option3 = container.querySelector(`input[value="test3"]`);
+    const option1 = container.querySelector(`input[value="Małe"]`);
+    const option2 = container.querySelector(`input[value="Średnie"]`);
+    const option3 = container.querySelector(`input[value="Duże"]`);
 
     expect(option1).toBeInTheDocument();
     expect(option2).toBeInTheDocument();
     expect(option3).toBeInTheDocument();
   });
 
+  it(`should apply the color from props to one of three car icons, the other two should be black`, () => {
+    const { container } = render(
+      <RadioCarSize
+        name="carSize"
+        id="carSize"
+        labelText="ROZMIAR AUTA*"
+        value={value}
+        setState={setStates}
+        color="green"
+        radioData={carSizesData}
+      />
+    );
+
+    const colouredIcon = container.querySelector(`span.car-icon--green`);
+    expect(colouredIcon).toBeInTheDocument();
+
+    const blackIcons = container.querySelectorAll(
+      `span.car-icon--black-light`
+    ).length;
+    expect(blackIcons === 2).toBeTruthy();
+  });
+
   it(`should have the correct input checked by default (specified in the state declaration - first option)`, () => {
     // render TestRadio component which is just a container for Radio component,
     // this allows to use proper useState because we are passing the state to
     // Radio component but that's not possible in testing environment
-    const { container } = render(<TestRadio />);
+    const { container } = render(<TestRadioCarSize />);
 
-    const defaultValue = container.querySelector(`input[value="test1"]`);
+    const defaultValue = container.querySelector(`input[value="Małe"]`);
     expect(defaultValue).toBeChecked();
   });
 
   it(`should make another radio checked on click (last option)`, () => {
-    // render TestRadio component which is just a container for Radio component,
+    // render TestRadioCarSize component which is just a container for RadioCarSize component,
     // this allows to use proper useState because we are passing the state to
-    // Radio component but that's not possible in testing environment
-    const { container } = render(<TestRadio />);
+    // RadioCarSize component but that's not possible in testing environment
+    const { container } = render(<TestRadioCarSize />);
 
     // check the input checked by default
-    const defaultValue = container.querySelector(`input[value="test1"]`);
+    const defaultValue = container.querySelector(`input[value="Małe"]`);
     expect(defaultValue).toBeChecked();
 
     // select last input
@@ -277,7 +311,7 @@ describe("Radio", () => {
     // // click the last input
     userEvent.click(lastInput);
     // // check if the last input is checked
-    const changedValue = container.querySelector(`input[value="test3"]`);
+    const changedValue = container.querySelector(`input[value="Duże"]`);
     expect(changedValue).toBeChecked();
   });
 });
