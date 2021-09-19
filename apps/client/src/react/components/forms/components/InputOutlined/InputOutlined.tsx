@@ -10,13 +10,11 @@ interface InputOutlinedProps {
   name: string;
   value: string;
   labelText: string;
-  checked?: boolean;
+  id: string;
+  color: Color;
   placeholder?: string;
-  id?: string;
   additionalClasses?: string;
-  type?: string;
   required?: boolean;
-  color?: Color;
   fontTheme?: "dark" | "light";
   hasTooltip?: boolean;
   tooltipText?: string;
@@ -31,7 +29,7 @@ const InputOutlined = React.forwardRef<HTMLInputElement, InputOutlinedProps>(
     return (
       <>
         <label
-          htmlFor="paint"
+          htmlFor={props.id}
           className={classnames(
             `input-outlined__label input-outlined__label--${props.color}`
           )}
@@ -51,9 +49,8 @@ const InputOutlined = React.forwardRef<HTMLInputElement, InputOutlinedProps>(
             name={props.name}
             placeholder={props.placeholder}
             value={props.value}
-            checked={props.checked}
             id={props.id}
-            type={props.type}
+            type="text"
             required={props.required}
           />
 

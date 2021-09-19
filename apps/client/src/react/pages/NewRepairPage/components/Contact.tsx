@@ -123,7 +123,6 @@ const Contact = React.forwardRef<HTMLInputElement, ContactProps>(
             id="names"
             value={names}
             setState={setNames}
-            type="text"
             fontTheme="dark"
             required
             ref={ref}
@@ -136,7 +135,6 @@ const Contact = React.forwardRef<HTMLInputElement, ContactProps>(
             id="email"
             value={email}
             setState={setEmail}
-            type="email"
             fontTheme="dark"
             required
           />
@@ -148,7 +146,6 @@ const Contact = React.forwardRef<HTMLInputElement, ContactProps>(
             id="phone"
             value={phone}
             setState={setPhone}
-            type="text"
             fontTheme="dark"
             required
           />
@@ -180,7 +177,6 @@ const Contact = React.forwardRef<HTMLInputElement, ContactProps>(
             id="model"
             value={model}
             setState={setModel}
-            type="text"
             fontTheme="dark"
             required
           />
@@ -192,7 +188,6 @@ const Contact = React.forwardRef<HTMLInputElement, ContactProps>(
             id="plate"
             value={plate}
             setState={setPlate}
-            type="text"
             fontTheme="dark"
             required
           />
@@ -210,7 +205,6 @@ const Contact = React.forwardRef<HTMLInputElement, ContactProps>(
             id="paint"
             value={paint}
             setState={setPaint}
-            type="text"
             fontTheme="dark"
           />
           <Radio
