@@ -4,7 +4,7 @@ import classnames from "classnames";
 import type { Color } from "../../../../../../common/utils/types";
 
 import { Button } from "../../../../../../common/react/components";
-import { Input } from "../components/Input";
+import { Input } from "../components";
 
 interface OwnProps {
   additionalClasses?: string;

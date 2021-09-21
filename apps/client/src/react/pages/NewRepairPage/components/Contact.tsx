@@ -2,12 +2,8 @@ import * as React from "react";
 import classnames from "classnames";
 import useWindowWidth from "../../../hooks/useWindowWidth";
 
-import { InputOutlined } from "../../../components/forms/components/InputOutlined";
-import { Select } from "../../../components/forms/components/Select";
-import { Radio } from "../../../components/forms/components/Radio";
-import { TextArea } from "../../../components/forms/components/TextArea";
-import { File } from "../../../components/forms/components/File";
-import { Checkbox } from "../../../components/forms/components/Checkbox";
+import { InputOutlined } from "../../../../../../common/react/components/InputOutlined";
+import { Select, Radio, TextArea, File, Checkbox } from "../../../components/forms/components";
 import { Button } from "../../../../../../common/react/components";
 import { Color } from "../../../../../../common/utils/types";
 
@@ -119,11 +115,11 @@ const Contact = React.forwardRef<HTMLInputElement, ContactProps>(
             placeholder="Wpisz swoje imię i nazwisko"
             labelText="IMIE I NAZWISKO*"
             color={color}
+            additionalClasses="mt-4"
             name="names"
             id="names"
             value={names}
             setState={setNames}
-            type="text"
             fontTheme="dark"
             required
             ref={ref}
@@ -131,24 +127,24 @@ const Contact = React.forwardRef<HTMLInputElement, ContactProps>(
           <InputOutlined
             placeholder="Wpisz swój adres email"
             labelText="EMAIL*"
+            additionalClasses="mt-4"
             color={color}
             name="email"
             id="email"
             value={email}
             setState={setEmail}
-            type="email"
             fontTheme="dark"
             required
           />
           <InputOutlined
             placeholder="Wpisz swój numer telefonu"
             labelText="TELEFON*"
+            additionalClasses="mt-4"
             color={color}
             name="phone"
             id="phone"
             value={phone}
             setState={setPhone}
-            type="text"
             fontTheme="dark"
             required
           />
@@ -175,24 +171,24 @@ const Contact = React.forwardRef<HTMLInputElement, ContactProps>(
           <InputOutlined
             labelText="MODEL*"
             color={color}
+            additionalClasses="mt-4"
             placeholder="Wpisz model auta"
             name="model"
             id="model"
             value={model}
             setState={setModel}
-            type="text"
             fontTheme="dark"
             required
           />
           <InputOutlined
             labelText="REJESTRACJA*"
             color={color}
+            additionalClasses="mt-4"
             placeholder="Wpisz numer rejestracyjny auta"
             name="plate"
             id="plate"
             value={plate}
             setState={setPlate}
-            type="text"
             fontTheme="dark"
             required
           />
@@ -205,12 +201,12 @@ const Contact = React.forwardRef<HTMLInputElement, ContactProps>(
               Jeśli nie masz do tego kodu dostępu, nic się nie stało, poradzimy sobie."
             labelText="KOD LAKIERU"
             color={color}
+            additionalClasses="mt-4"
             placeholder="Wpisz kod lakieru auta"
             name="paint"
             id="paint"
             value={paint}
             setState={setPaint}
-            type="text"
             fontTheme="dark"
           />
           <Radio

@@ -6,15 +6,15 @@ type TextAreaVariant = "outlined" | "underlined";
 
 interface TextAreaProps {
   labelText: string;
-  color?: Color;
   name: string;
   id: string;
   placeholder: string;
   value: string | number;
   setState: (arg: string) => void;
-  required?: boolean;
   variant: TextAreaVariant;
   additionalClasses?: string;
+  required?: boolean;
+  color?: Color;
 }
 
 export function TextArea({

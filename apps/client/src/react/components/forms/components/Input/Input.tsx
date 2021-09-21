@@ -8,11 +8,9 @@ interface InputProps {
   setState: React.Dispatch<React.SetStateAction<string>>;
   name: string;
   value: string;
-  checked?: boolean;
   placeholder?: string;
   id?: string;
   additionalClasses?: string;
-  type?: string;
   required?: boolean;
   borderColor?: Color;
   fontTheme?: "dark" | "light";
@@ -22,11 +20,9 @@ export function Input({
   setState,
   name,
   value,
-  checked,
   placeholder,
   id,
   additionalClasses,
-  type,
   required,
   borderColor,
   fontTheme,
@@ -46,9 +42,8 @@ export function Input({
       name={name}
       placeholder={placeholder}
       value={value}
-      checked={checked}
       id={id}
-      type={type}
+      type="text"
       required={required}
     />
   );

@@ -8,13 +8,17 @@
   font-size: $text-16;
   outline: none;
 
+  &__label-container {
+    position: relative;
+  }
+
   &__label {
     z-index: 1000;
     color: $black-light;
     font-size: $text-12;
     font-weight: bold;
     text-transform: uppercase;
-    position: relative;
+    position: absolute;
     bottom: -7px;
     left: $spacing-x2;
     background: $white;
@@ -30,6 +34,11 @@
 
     &--pink {
       color: $pink;
+    }
+
+    &--centered {
+      left: 50%;
+      transform: translateX(-50%);
     }
   }
 

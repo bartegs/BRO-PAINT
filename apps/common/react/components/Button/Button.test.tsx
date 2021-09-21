@@ -1,7 +1,7 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import * as React from "react";
 
-import { Color } from "../../../utils/types";
+import { ButtonColor } from "../../../utils/types";
 import { Button, ButtonProps } from "./Button";
 
 describe("Button", () => {
@@ -13,7 +13,7 @@ describe("Button", () => {
 
   it("should render correctly class", () => {
     // given
-    const color: Color = "green";
+    const color: ButtonColor = "green";
 
     // when
     const { container } = render(<Button {...defaultProps} color={color} />);

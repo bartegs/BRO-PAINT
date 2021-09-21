@@ -2,8 +2,8 @@ import * as React from "react";
 
 import { Card } from "../Card";
 import { Button } from "../../../../../../../../common/react/components";
-import { TextArea } from "../../../../../components/forms/components/TextArea";
-import { Input } from "../../../../../components/forms/components/Input";
+import { TextArea } from "../../../../../components/forms/components";
+import { Input } from "../../../../../components/forms/components";
 
 export function CardEmail(): JSX.Element {
   const [name, setName] = React.useState("");

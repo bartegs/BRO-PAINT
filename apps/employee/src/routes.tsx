@@ -1,11 +1,9 @@
 import * as React from "react";
 import { Route } from "react-router-dom";
 
-import { NewRepairs, RepairManagementPage } from "./react/pages";
+import { NewRepairs, RepairManagementPage, LoginPage } from "./react/pages";
 
 const Error = () => <div>Not found</div>;
-// const OrdersManagmentPage = () => <div>OrdersManagmentPage</div>;
-const LoginPage = () => <div>LoginPage</div>;
 
 const routes = [
   { id: 0, route: "/zaloguj-sie", component: LoginPage },

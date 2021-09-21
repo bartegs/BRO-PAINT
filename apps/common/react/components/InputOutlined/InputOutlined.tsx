@@ -2,21 +2,21 @@ import * as React from "react";
 
 import classnames from "classnames";
 
-import type { Color } from "../../../../../../../common/utils/types";
-import { Tooltip } from "../Tooltip/Tooltip";
+import { Color } from "../../../utils/types";
+import { Tooltip } from "../../../../client/src/react/components/forms/components/Tooltip";
 
 interface InputOutlinedProps {
   setState: React.Dispatch<React.SetStateAction<string>>;
   name: string;
   value: string;
   labelText: string;
-  checked?: boolean;
+  labelCentered?: boolean;
+  id: string;
+  color: Color;
+  password?: boolean;
   placeholder?: string;
-  id?: string;
   additionalClasses?: string;
-  type?: string;
   required?: boolean;
-  color?: Color;
   fontTheme?: "dark" | "light";
   hasTooltip?: boolean;
   tooltipText?: string;
@@ -30,30 +30,40 @@ const InputOutlined = React.forwardRef<HTMLInputElement, InputOutlinedProps>(
 
     return (
       <>
-        <label
-          htmlFor="paint"
+        <div
           className={classnames(
-            `input-outlined__label input-outlined__label--${props.color}`
+            `input-outlined__label-container`,
+            props.additionalClasses
           )}
         >
-          {props.labelText}
-        </label>
+          <label
+            htmlFor={props.id}
+            className={classnames(
+              `input-outlined__label input-outlined__label--${props.color}
+              `,
+              {
+                "input-outlined__label--centered": props.labelCentered,
+              }
+            )}
+          >
+            {props.labelText}
+          </label>
+        </div>
+
         <div className="input-outlined__container">
           <input
             onChange={handleValueChange}
             ref={ref}
             className={classnames(
               "input-outlined",
-              props.additionalClasses,
               `input-outlined--border-${props.color}`,
               `input-outlined--font-${props.fontTheme}`
             )}
             name={props.name}
             placeholder={props.placeholder}
             value={props.value}
-            checked={props.checked}
             id={props.id}
-            type={props.type}
+            type={props.password ? "password" : "text"}
             required={props.required}
           />
 

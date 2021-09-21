@@ -10,7 +10,7 @@
   "scripts": {
     "dev:watch": "webpack serve --open --config webpack.dev.js ",
     "dev:server": "nodemon",
-    "qc": "run-p lint:fix check-types",
+    "qc": "run-p lint:fix check-types test",
     "test": "jest",
     "lint:ts": "eslint --ext tsx --ext ts .",
     "lint:ts:fix": "eslint --fix --ext tsx --ext ts .",
@@ -95,6 +95,7 @@
     "webpack-merge": "^5.7.3"
   },
   "dependencies": {
+    "@testing-library/user-event": "^13.2.1",
     "bcrypt": "^5.0.1",
     "classnames": "^2.3.1",
     "dotenv": "^10.0.0",
