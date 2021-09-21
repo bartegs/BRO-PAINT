@@ -3,7 +3,13 @@ import classnames from "classnames";
 import useWindowWidth from "../../../hooks/useWindowWidth";
 
 import { InputOutlined } from "../../../../../../common/react/components/InputOutlined";
-import { Select, Radio, TextArea, File, Checkbox } from "../../../components/forms/components";
+import {
+  Select,
+  Radio,
+  TextArea,
+  File,
+  Checkbox,
+} from "../../../components/forms/components";
 import { Button } from "../../../../../../common/react/components";
 import { Color } from "../../../../../../common/utils/types";
 

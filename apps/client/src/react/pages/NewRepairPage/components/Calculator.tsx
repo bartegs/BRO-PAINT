@@ -4,7 +4,11 @@ import useWindowWidth from "../../../hooks/useWindowWidth";
 import { Color } from "../../../../../../common/utils/types";
 import { CarSizeType, CarIconType } from "../../../components/icons/CarIcon";
 
-import { Radio, Select, RadioCarSize,  } from "../../../components/forms/components";
+import {
+  Radio,
+  Select,
+  RadioCarSize,
+} from "../../../components/forms/components";
 import { Button } from "../../../../../../common/react/components";
 import { CalculatorCard } from "./CalculatorCard";
 
