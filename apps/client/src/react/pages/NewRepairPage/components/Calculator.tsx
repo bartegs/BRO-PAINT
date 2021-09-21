@@ -7,7 +7,7 @@ import { CarSizeType, CarIconType } from "../../../components/icons/CarIcon";
 import { Radio } from "../../../components/forms/components/Radio";
 import { Select } from "../../../components/forms/components/Select";
 import { RadioCarSize } from "../../../components/forms/components/RadioCarSize";
-import { Button } from "../../../components/Button/Button";
+import { Button } from "../../../../../../common/react/components/Button";
 
 import { CalculatorCard } from "./CalculatorCard";
 

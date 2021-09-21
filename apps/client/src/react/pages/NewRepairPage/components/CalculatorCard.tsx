@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Color } from "../../../../../../common/utils/types";
-import { Button } from "../../../components/Button";
+import { Button } from "../../../../../../common/react/components/Button";
 
 interface CalculatorCardProps {
   result: string;

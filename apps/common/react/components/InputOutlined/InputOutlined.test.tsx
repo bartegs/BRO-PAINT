@@ -28,7 +28,7 @@ describe("InputOutlined", () => {
     value = string;
   };
 
-  it(`should render input with type text`, () => {
+  it(`should render input with type text by default`, () => {
     const { container } = render(
       <InputOutlined
         labelText="test"
@@ -40,8 +40,25 @@ describe("InputOutlined", () => {
       />
     );
 
-    const type = container.querySelector(`input[type="text"]`);
-    expect(type).toBeInTheDocument();
+    const typeText = container.querySelector(`input[type="text"]`);
+    expect(typeText).toBeInTheDocument();
+  });
+
+  it(`should render input with type password if password prop is given`, () => {
+    const { container } = render(
+      <InputOutlined
+        labelText="test"
+        color="green"
+        name="test"
+        id="test"
+        value={value}
+        setState={setStates}
+        password
+      />
+    );
+
+    const typePassword = container.querySelector(`input[type="password"]`);
+    expect(typePassword).toBeInTheDocument();
   });
 
   it(`should render label with the text given in props`, () => {
@@ -141,7 +158,7 @@ describe("InputOutlined", () => {
       />
     );
 
-    const additionalClass = container.querySelector(`input.mx-2`);
+    const additionalClass = container.querySelector(`div.mx-2`);
     expect(additionalClass).toBeInTheDocument();
   });
 
