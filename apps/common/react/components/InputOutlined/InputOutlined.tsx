@@ -2,16 +2,18 @@ import * as React from "react";
 
 import classnames from "classnames";
 
-import type { Color } from "../../../../../../../common/utils/types";
-import { Tooltip } from "../Tooltip/Tooltip";
+import { Color } from "../../../utils/types";
+import { Tooltip } from "../../../../client/src/react/components/forms/components/Tooltip";
 
 interface InputOutlinedProps {
   setState: React.Dispatch<React.SetStateAction<string>>;
   name: string;
   value: string;
   labelText: string;
+  labelCentered?: boolean;
   id: string;
   color: Color;
+  password?: boolean;
   placeholder?: string;
   additionalClasses?: string;
   required?: boolean;
@@ -28,21 +30,32 @@ const InputOutlined = React.forwardRef<HTMLInputElement, InputOutlinedProps>(
 
     return (
       <>
-        <label
-          htmlFor={props.id}
+        <div
           className={classnames(
-            `input-outlined__label input-outlined__label--${props.color}`
+            `input-outlined__label-container`,
+            props.additionalClasses
           )}
         >
-          {props.labelText}
-        </label>
+          <label
+            htmlFor={props.id}
+            className={classnames(
+              `input-outlined__label input-outlined__label--${props.color}
+              `,
+              {
+                "input-outlined__label--centered": props.labelCentered,
+              }
+            )}
+          >
+            {props.labelText}
+          </label>
+        </div>
+
         <div className="input-outlined__container">
           <input
             onChange={handleValueChange}
             ref={ref}
             className={classnames(
               "input-outlined",
-              props.additionalClasses,
               `input-outlined--border-${props.color}`,
               `input-outlined--font-${props.fontTheme}`
             )}
@@ -50,7 +63,7 @@ const InputOutlined = React.forwardRef<HTMLInputElement, InputOutlinedProps>(
             placeholder={props.placeholder}
             value={props.value}
             id={props.id}
-            type="text"
+            type={props.password ? "password" : "text"}
             required={props.required}
           />
 

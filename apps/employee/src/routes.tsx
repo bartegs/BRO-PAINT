@@ -5,7 +5,7 @@ import { Route } from "react-router-dom";
 import { Navbar } from "../../common/react/components";
 import { NavPanel } from "./react/components/NavPanel";
 
-import { RepairManagementPage } from "./react/pages";
+import { RepairManagementPage, LoginPage } from "./react/pages";
 
 const Error = () => <div>Not found</div>;
 const NewOrdersPage = () => (
@@ -17,7 +17,6 @@ const NewOrdersPage = () => (
   </>
 );
 // const OrdersManagmentPage = () => <div>OrdersManagmentPage</div>;
-const LoginPage = () => <div>LoginPage</div>;
 
 const routes = [
   { id: 0, route: "/zaloguj-sie", component: LoginPage },
