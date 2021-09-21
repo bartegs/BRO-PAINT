@@ -1,5 +1,4 @@
 .task-card {
-  height: 115px;
   background: $white;
   padding: $spacing-x2;
   border-radius: $radius-x1;
@@ -28,5 +27,20 @@
   &__client {
     display: flex;
     align-items: center;
+  }
+
+  &__buttons {
+    display: flex;
+    height: 40px;
+    justify-content: center;
+    margin: $spacing-x3 0 $spacing-x2 0;
+  }
+
+  &__button {
+    width: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
   }
 }

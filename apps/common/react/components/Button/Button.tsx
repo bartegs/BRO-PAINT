@@ -2,7 +2,7 @@ import * as React from "react";
 
 import classnames from "classnames";
 
-import type { Color } from "../../../../../common/utils/types";
+import type { ButtonColor } from "../../../utils/types";
 
 export interface ButtonProps {
   type?: "submit" | "button" | "reset";
@@ -10,7 +10,7 @@ export interface ButtonProps {
   onClick?: () => void;
   text: string;
   additionalClasses?: string;
-  color: Color;
+  color: ButtonColor;
 }
 
 export function Button({

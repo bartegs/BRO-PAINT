@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Color } from "../../../../../../common/utils/types";
-import { Button } from "../../../components/Button";
+import { Button } from "../../../../../../common/react/components";
 
 interface CalculatorCardProps {
   result: string;
@@ -41,4 +41,3 @@ const CalculatorCard = React.forwardRef<HTMLInputElement, CalculatorCardProps>(
 );
 
 export { CalculatorCard };
-export default CalculatorCard;

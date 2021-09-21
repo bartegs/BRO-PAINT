@@ -8,7 +8,7 @@ import { Radio } from "../../../components/forms/components/Radio";
 import { TextArea } from "../../../components/forms/components/TextArea";
 import { File } from "../../../components/forms/components/File";
 import { Checkbox } from "../../../components/forms/components/Checkbox";
-import { Button } from "../../../components/Button/Button";
+import { Button } from "../../../../../../common/react/components";
 import { Color } from "../../../../../../common/utils/types";
 
 interface ContactProps {

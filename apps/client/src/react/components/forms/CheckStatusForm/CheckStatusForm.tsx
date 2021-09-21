@@ -3,7 +3,7 @@ import * as React from "react";
 import classnames from "classnames";
 import type { Color } from "../../../../../../common/utils/types";
 
-import { Button } from "../../Button";
+import { Button } from "../../../../../../common/react/components";
 import { Input } from "../components/Input";
 
 interface OwnProps {

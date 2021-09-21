@@ -1,3 +1,1 @@
-import { RepairManagementPage } from "./RepairManagementPage";
-
-export { RepairManagementPage };
+export * from "./RepairManagementPage";

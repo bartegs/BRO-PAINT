@@ -1,9 +1,8 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import * as React from "react";
 
-import { Color } from "../../../../../common/utils/types";
-
-import { Button, ButtonProps } from ".";
+import { Color } from "../../../utils/types";
+import { Button, ButtonProps } from "./Button";
 
 describe("Button", () => {
   const defaultProps: ButtonProps = {
