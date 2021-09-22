@@ -58,7 +58,7 @@ export function NavbarMenu({
             onClick={closeMenu}
             onKeyDown={handleMenuKeyboard}
           >
-            <a className="navbar-menu__link" href="/miki">
+            <a className="navbar-menu__link" href="/pracownik/">
               Pracownik
             </a>
           </li>

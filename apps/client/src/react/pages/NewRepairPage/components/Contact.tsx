@@ -3,12 +3,14 @@ import classnames from "classnames";
 import useWindowWidth from "../../../hooks/useWindowWidth";
 
 import { InputOutlined } from "../../../../../../common/react/components/InputOutlined";
-import { Select } from "../../../components/forms/components/Select";
-import { Radio } from "../../../components/forms/components/Radio";
-import { TextArea } from "../../../components/forms/components/TextArea";
-import { File } from "../../../components/forms/components/File";
-import { Checkbox } from "../../../components/forms/components/Checkbox";
-import { Button } from "../../../../../../common/react/components/Button";
+import {
+  Select,
+  Radio,
+  TextArea,
+  File,
+  Checkbox,
+} from "../../../components/forms/components";
+import { Button } from "../../../../../../common/react/components";
 import { Color } from "../../../../../../common/utils/types";
 
 interface ContactProps {

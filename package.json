@@ -10,7 +10,7 @@
   "scripts": {
     "dev:watch": "webpack serve --open --config webpack.dev.js ",
     "dev:server": "nodemon",
-    "qc": "run-p lint:fix check-types",
+    "qc": "run-p lint:fix check-types test",
     "test": "jest",
     "lint:ts": "eslint --ext tsx --ext ts .",
     "lint:ts:fix": "eslint --fix --ext tsx --ext ts .",

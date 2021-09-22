@@ -1,9 +1,9 @@
 import * as React from "react";
 
 import { DragDropContext, Droppable, DropResult } from "react-beautiful-dnd";
-import { insertToArrayAt } from "../../../../../../common/utils/functions";
-
-import { TaskCard } from "../../../components";
+import { insertToArrayAt } from "../../../../../common/utils/functions";
+import { TaskCard } from "../TaskCard";
+import type { Service, Stage } from "../../pages";
 
 export interface TaskType {
   id: string;
@@ -15,36 +15,7 @@ export interface TaskType {
   repairSubStage?: number;
 }
 
-type TasksType = { [key: number]: TaskType[] };
-
-const stages = [
-  {
-    id: 0,
-    color: "grey",
-    title: "ZLECENIA PRZYJĘTE",
-  },
-  {
-    id: 1,
-    color: "green",
-    title: "PRACE PRZYGOTOWAWCZO BlACHARSKIE",
-  },
-  {
-    id: 2,
-    color: "blue",
-    title: "PRACE LAKIERNICZE PRACE LAKIERNICZE",
-  },
-  {
-    id: 3,
-    color: "pink",
-    title: "PRACE DETAILINGOWE",
-  },
-  {
-    id: 4,
-    color: "grey-dark",
-    title: "ZLECENIA UKOŃCZONE",
-  },
-];
-
+export type TasksType = { [key: number]: TaskType[] };
 // tasks should be fetched in json
 // ??? sorted by backended by stages before fetching and send in separate object of arrays
 
@@ -124,7 +95,11 @@ const data: TasksType = {
   ],
 };
 
-export function Board(): JSX.Element {
+type OwnProps = {
+  stages: Service[] | Stage[];
+};
+
+export function Board({ stages }: OwnProps): JSX.Element {
   const [tasks, setTasks] = React.useState(data);
 
   function handleOnDragEnd(result: DropResult) {
@@ -189,6 +164,7 @@ export function Board(): JSX.Element {
                       licencePlate={licencePlate}
                       key={taskId}
                       index={i}
+                      stageColor={color}
                     />
                   )
                 )}

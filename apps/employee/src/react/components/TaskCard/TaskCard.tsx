@@ -1,12 +1,17 @@
 import * as React from "react";
 import { Draggable } from "react-beautiful-dnd";
 
-import { Icon } from "../../../../../client/src/react/components/icons/Icon";
+import { useLocation } from "react-router-dom";
 
-import type { TaskType } from "../../pages/RepairManagementPage/components";
+import type { TaskType } from "../Board";
+import { StageColor } from "../../../../../common/utils/types";
+
+import { Icon } from "../../../../../client/src/react/components/icons/Icon";
+import { Buttons } from "./components";
 
 interface OwnProps {
   index: number;
+  stageColor: StageColor;
 }
 
 type TaskCardType = TaskType & OwnProps;
@@ -17,7 +22,10 @@ export function TaskCard({
   clientName,
   licencePlate,
   index,
+  stageColor,
 }: TaskCardType): JSX.Element {
+  const { pathname } = useLocation();
+
   return (
     <Draggable draggableId={`${taskId}`} index={index}>
       {(provided) => (
@@ -40,6 +48,9 @@ export function TaskCard({
             <Icon icon="person" size="sm" />
             <span className="ml-2">{clientName}</span>
           </div>
+          {!pathname.includes("zarzadzanie-zleceniami") && (
+            <Buttons color={stageColor} />
+          )}
         </div>
       )}
     </Draggable>

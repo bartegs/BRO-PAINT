@@ -1,8 +1,10 @@
 import * as React from "react";
 
-import { Logo } from "../../../../../../common/react/components/Logo/Logo";
-import { Button } from "../../../../../../common/react/components/Button/Button";
-import { InputOutlined } from "../../../../../../common/react/components/InputOutlined";
+import {
+  Logo,
+  Button,
+  InputOutlined,
+} from "../../../../../../common/react/components";
 
 interface LoginFormProps {
   login: string;

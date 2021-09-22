@@ -128,4 +128,62 @@
       }
     }
   }
+
+  &--grey {
+    &-primary {
+      background-color: $grey;
+
+      &:hover {
+        outline: none;
+        background-color: $grey-light;
+      }
+
+      &:focus {
+        @include create-box-shadow($grey);
+      }
+    }
+
+    &-secondary {
+      color: $grey;
+      border-color: $grey;
+
+      &:hover {
+        color: $grey-light;
+        border-color: $grey-light;
+      }
+
+      &:focus {
+        @include create-box-shadow($grey);
+      }
+    }
+  }
+
+  &--grey-dark {
+    &-primary {
+      background-color: $grey-dark;
+
+      &:hover {
+        outline: none;
+        background-color: $grey-light;
+      }
+
+      &:focus {
+        @include create-box-shadow($grey-dark);
+      }
+    }
+
+    &-secondary {
+      color: $grey-dark;
+      border-color: $grey-dark;
+
+      &:hover {
+        color: $grey;
+        border-color: $grey;
+      }
+
+      &:focus {
+        @include create-box-shadow($grey-dark);
+      }
+    }
+  }
 }
