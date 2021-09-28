@@ -1,10 +1,12 @@
 import * as React from "react";
-
 import classnames from "classnames";
+
+import { useHistory } from "react-router-dom";
 import type { Color } from "../../../../../../common/utils/types";
 
 import { Button } from "../../../../../../common/react/components";
 import { Input } from "../components";
+import { AppContext } from "../../../contexts/AppContext";
 
 interface OwnProps {
   additionalClasses?: string;
@@ -24,9 +26,33 @@ export function CheckStatusForm({
   background = "light",
 }: OwnProps): JSX.Element {
   const [orderNumber, setOrderNumber] = React.useState("");
+  const [isLoading, setIsLoading] = React.useState(false);
+  const { repair, setRepair } = React.useContext(AppContext);
+  const [hasError, setHasError] = React.useState(false);
+  const history = useHistory();
 
-  function handleSubmit(event: React.FormEvent) {
+  async function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
+
+    setIsLoading(true);
+    fetch(`http://localhost:3000/repairs/${orderNumber}`)
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+
+        throw new Error("miki z tym");
+      })
+      .then((data) => {
+        setRepair(data);
+        setIsLoading(false);
+        history.push("/stan-naprawy");
+      })
+      .catch(({ message }) => {
+        setRepair({});
+        setHasError(message);
+        setIsLoading(false);
+      });
   }
 
   return (
@@ -53,6 +79,7 @@ export function CheckStatusForm({
           variant="primary"
           color={buttonColor}
           type="submit"
+          isLoading={isLoading}
         />
       </form>
     </div>

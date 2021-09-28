@@ -1,6 +1,7 @@
 import * as mongoose from "mongoose";
 
-const awaitingOrderSchema = new mongoose.Schema({
+// change to Order
+export const awaitingOrderSchema = new mongoose.Schema({
   customerInfo: {
     firstName: {
       type: String,

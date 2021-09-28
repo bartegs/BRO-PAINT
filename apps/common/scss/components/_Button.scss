@@ -4,9 +4,12 @@
   color: $white;
   font-size: $text-16;
   font-weight: bold;
-  padding: $spacing-x2 $spacing-x5 $spacing-x3 $spacing-x5;
+  padding: $spacing-x2 0 $spacing-x3 0;
   cursor: pointer;
   transition: 0.2s;
+  position: relative;
+  width: 108px;
+  height: 43px;
 
   &--secondary {
     background: $white;
@@ -185,5 +188,36 @@
         @include create-box-shadow($grey-dark);
       }
     }
+  }
+
+  &__throbber {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #fff6;
+    height: 100%;
+    border-radius: $radius-x1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__circle {
+    width: 15px;
+    height: 15px;
+    animation: spin 0.6s infinite linear;
+    border-top: 3px solid $white;
+    border-radius: 100%;
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
   }
 }

@@ -1,21 +1,24 @@
 import * as React from "react";
+import { useContext, useEffect } from "react";
 import { Color } from "../../../../../common/utils/types";
 
 import { CheckStatusForm } from "../../components/forms/CheckStatusForm";
 import { Axis } from "./components";
+import { AppContext } from "../../contexts/AppContext";
 
 type RepairMainStageId = 0 | 1 | 2 | 3 | 4;
+
 interface RepairMainStage {
   id: RepairMainStageId;
   title: string;
-  descrption: string;
+  description: string;
   color: Color;
 }
 
 export type RepairMainStages = RepairMainStage[];
 
 interface Repair {
-  id: number;
+  id: string;
   repairStage: RepairMainStageId;
 }
 
@@ -25,34 +28,34 @@ export const repairMainStages: RepairMainStages = [
     id: 0,
     color: "black-light",
     title: "Zlecenie przyjęte Zaczynamy!",
-    descrption: "",
+    description: "",
   },
   {
     id: 1,
     color: "green",
     title: "Prace przygotowawcze",
-    descrption:
+    description:
       "Aktualnie zajmujemy się przygotowaniem Twojego auta, na tym etapie czekamy na części, naprawiamy to, czego nie trzeba wymieniać oraz maskujemy auto do malowania.",
   },
   {
     id: 2,
     color: "blue",
     title: "Prace lakiernicze",
-    descrption:
+    description:
       "W tym momencie Twoje auto jest lakierowane, począwszy od lakieru podkładowego, przez lakier bazowy (kolor) oraz na lakierze bezbarwnym kończąc. ",
   },
   {
     id: 3,
     color: "pink",
     title: "Detailing i kontrola jakości",
-    descrption:
+    description:
       "Twoje auto zostalo już polakierowane i teraz wykonujemy prace wykończeniowe - polerujemy lakier aby wydobyć z niego perfekcyjny błysk, oraz dokonujemy oceny jakości wykonanej usługi.",
   },
   {
     id: 4,
     color: "pink",
     title: "Zlecenie ukończone. Możesz odebrać auto!",
-    descrption: "",
+    description: "",
   },
 ];
 
@@ -60,10 +63,27 @@ function handleFormColoring(repairStage: number, stages: RepairMainStages) {
   return stages.find(({ id }) => id === repairStage)?.color || "black-light";
 }
 
+function isObjectEmpty(object: {}): boolean {
+  return Object.keys(object).length && true;
+}
+
 export function RepairStatusPage(): JSX.Element {
-  const [repair] = React.useState<Repair>({ id: 1, repairStage: 2 });
+  const { repair: repairData } = useContext(AppContext);
+
+  function getRepairData(): Repair | undefined {
+    return isObjectEmpty(repairData)
+      ? {
+          id: repairData._id,
+          repairStage: repairData?.repairDetails.stage.main.id,
+        }
+      : undefined;
+  }
+
+  const [repair, setRepair] = React.useState<Repair>(getRepairData());
   const { repairStage } = repair || {};
   const formElementColor = handleFormColoring(repairStage, repairMainStages);
+
+  useEffect(() => setRepair(getRepairData()), [repairData]);
 
   return (
     <div className="container repair-status-page">
@@ -73,6 +93,7 @@ export function RepairStatusPage(): JSX.Element {
           inputBorderColor={formElementColor}
           buttonColor={formElementColor}
           headingColor={formElementColor}
+          // value={id}
         />
       </section>
       <Axis repairStage={repairStage} stages={repairMainStages} />
