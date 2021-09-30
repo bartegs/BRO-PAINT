@@ -14,6 +14,7 @@ interface InputProps {
   required?: boolean;
   borderColor?: Color;
   fontTheme?: "dark" | "light";
+  hasError?: boolean;
 }
 
 export function Input({
@@ -26,6 +27,7 @@ export function Input({
   required,
   borderColor,
   fontTheme,
+  hasError = false,
 }: InputProps) {
   function handleValueChange(event: React.ChangeEvent<HTMLInputElement>) {
     setState(event.currentTarget.value);
@@ -37,7 +39,8 @@ export function Input({
         "input",
         additionalClasses,
         `input--border-${borderColor}`,
-        `input--font-${fontTheme}`
+        `input--font-${fontTheme}`,
+        { "input--with-error": hasError }
       )}
       name={name}
       placeholder={placeholder}

@@ -15,6 +15,7 @@ interface OwnProps {
   inputFontTheme?: "dark" | "light";
   inputBorderColor?: Color;
   background?: "light" | "dark";
+  inputInitialValue: string;
 }
 
 export function CheckStatusForm({
@@ -24,10 +25,13 @@ export function CheckStatusForm({
   inputFontTheme = "light",
   inputBorderColor = "pink",
   background = "light",
+  inputInitialValue,
 }: OwnProps): JSX.Element {
-  const [orderNumber, setOrderNumber] = React.useState("");
+  const [repairNumber, setRepairNumber] = React.useState(
+    inputInitialValue || ""
+  );
   const [isLoading, setIsLoading] = React.useState(false);
-  const { repair, setRepair } = React.useContext(AppContext);
+  const { setRepair } = React.useContext(AppContext);
   const [hasError, setHasError] = React.useState(false);
   const history = useHistory();
 
@@ -35,7 +39,7 @@ export function CheckStatusForm({
     event.preventDefault();
 
     setIsLoading(true);
-    fetch(`http://localhost:3000/repairs/${orderNumber}`)
+    fetch(`http://localhost:3000/repairs/${repairNumber}`)
       .then((response) => {
         if (response.ok) {
           return response.json();
@@ -46,11 +50,12 @@ export function CheckStatusForm({
       .then((data) => {
         setRepair(data);
         setIsLoading(false);
+        setHasError(false);
         history.push("/stan-naprawy");
       })
-      .catch(({ message }) => {
+      .catch(() => {
         setRepair({});
-        setHasError(message);
+        setHasError(true);
         setIsLoading(false);
       });
   }
@@ -63,16 +68,17 @@ export function CheckStatusForm({
         `check-status-form--background-${background}`
       )}
     >
-      <h3 className={`text--${headingColor}`}>Sprawdź status zlecenia</h3>
+      <h3 className={`text--${headingColor}`}>Sprawdź status naprawy</h3>
       <form action="" onSubmit={handleSubmit}>
         <Input
-          placeholder="Podaj numer zlecenia"
+          placeholder="Podaj id naprawy"
           name="repair-code"
-          value={orderNumber}
-          setState={setOrderNumber}
+          value={repairNumber}
+          setState={setRepairNumber}
           additionalClasses="mt-3 mb-5"
           borderColor={inputBorderColor}
           fontTheme={inputFontTheme}
+          hasError={hasError}
         />
         <Button
           text="Sprawdź"
@@ -80,6 +86,7 @@ export function CheckStatusForm({
           color={buttonColor}
           type="submit"
           isLoading={isLoading}
+          isDisabled={inputInitialValue === repairNumber}
         />
       </form>
     </div>

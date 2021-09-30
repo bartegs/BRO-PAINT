@@ -63,7 +63,7 @@ function handleFormColoring(repairStage: number, stages: RepairMainStages) {
   return stages.find(({ id }) => id === repairStage)?.color || "black-light";
 }
 
-function isObjectEmpty(object: {}): boolean {
+function isNotObjectEmpty(object: {}): boolean {
   return Object.keys(object).length && true;
 }
 
@@ -71,7 +71,7 @@ export function RepairStatusPage(): JSX.Element {
   const { repair: repairData } = useContext(AppContext);
 
   function getRepairData(): Repair | undefined {
-    return isObjectEmpty(repairData)
+    return isNotObjectEmpty(repairData)
       ? {
           id: repairData._id,
           repairStage: repairData?.repairDetails.stage.main.id,
@@ -93,7 +93,7 @@ export function RepairStatusPage(): JSX.Element {
           inputBorderColor={formElementColor}
           buttonColor={formElementColor}
           headingColor={formElementColor}
-          // value={id}
+          inputInitialValue={isNotObjectEmpty(repairData) && repairData._id}
         />
       </section>
       <Axis repairStage={repairStage} stages={repairMainStages} />

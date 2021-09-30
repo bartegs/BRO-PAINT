@@ -63,4 +63,12 @@
       border-color: $grey-dark-a-80;
     }
   }
+
+  &--with-error {
+    border-color: crimson;
+
+    &:focus {
+      border-color: crimson;
+    }
+  }
 }
