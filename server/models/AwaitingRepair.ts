@@ -1,7 +1,6 @@
 import * as mongoose from "mongoose";
 
-// change to Order
-export const awaitingOrderSchema = new mongoose.Schema({
+export const awaitingRepairSchema = new mongoose.Schema({
   customerInfo: {
     firstName: {
       type: String,
@@ -67,4 +66,4 @@ export const awaitingOrderSchema = new mongoose.Schema({
   },
 });
 
-export default mongoose.model("AwaitingOrder", awaitingOrderSchema);
+export default mongoose.model("AwaitingRepair", awaitingRepairSchema);

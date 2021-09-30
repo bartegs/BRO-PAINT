@@ -35,7 +35,7 @@ export function CheckStatusForm({
   const [hasError, setHasError] = React.useState(false);
   const history = useHistory();
 
-  async function handleSubmit(event: React.FormEvent) {
+  function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
 
     setIsLoading(true);

@@ -1,8 +1,8 @@
 import * as mongoose from "mongoose";
-import { awaitingOrderSchema } from "./AwaitingOrder";
+import { awaitingRepairSchema } from "./AwaitingRepair";
 
 const RepairSchema = new mongoose.Schema({
-  repair: awaitingOrderSchema,
+  repair: awaitingRepairSchema,
   repairDetails: {
     repairer: {
       type: mongoose.Schema.Types.ObjectId,
