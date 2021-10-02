@@ -28,7 +28,7 @@ export function handleAxisColoring(
 export function Axis({ stages, repairStage }: OwnProps): JSX.Element {
   return (
     <section className="repair-status-page__axis-container axis">
-      {stages.map(({ color, title, descrption, id }, i) => {
+      {stages.map(({ color, title, description, id }, i) => {
         const isFirstElement = i === 0;
         const isLastElement = i === stages.length - 1;
 
@@ -63,7 +63,7 @@ export function Axis({ stages, repairStage }: OwnProps): JSX.Element {
                 "card--inactive":
                   typeof repairStage === "undefined" || i > repairStage,
               })}
-              desc={descrption}
+              desc={description}
               title={title}
               isFirst={isFirstElement}
               isLast={isLastElement}

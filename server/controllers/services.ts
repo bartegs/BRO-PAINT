@@ -34,6 +34,7 @@ const ServicesController = {
 
   get_single: (req: Request, res: Response) => {
     const id = req.params.serviceId;
+
     Service.findById(id)
       .then((result: any) => {
         res.status(200).send(result);

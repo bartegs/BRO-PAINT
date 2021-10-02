@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
-import AwaitingOrder from "../models/AwaitingOrder";
+import AwaitingRepair from "../models/AwaitingRepair";
 
-const AwaitingOrdersController = {
+const AwaitingRepairsController = {
   get_all: (req: Request, res: Response) => {
-    AwaitingOrder.find({})
+    AwaitingRepair.find({})
       .then((result: any) => {
         res.status(200).send(result);
       })
@@ -14,7 +14,7 @@ const AwaitingOrdersController = {
 
   get_single: (req: Request, res: Response) => {
     const id = req.params.awaitingOrderId;
-    AwaitingOrder.findById(id)
+    AwaitingRepair.findById(id)
       .then((result: any) => {
         res.status(200).send(result);
       })
@@ -28,7 +28,7 @@ const AwaitingOrdersController = {
   add_single: (req: Request, res: Response) => {
     const { customerInfo, carInfo, orderInfo } = req.body;
 
-    const awaitingOrder = new AwaitingOrder({
+    const awaitingRepair = new AwaitingRepair({
       customerInfo: {
         firstName: customerInfo.firstName,
         lastName: customerInfo.lastName,
@@ -49,7 +49,7 @@ const AwaitingOrdersController = {
       },
     });
 
-    awaitingOrder
+    awaitingRepair
       .save()
       .then((result) => {
         res.status(201).json({
@@ -66,7 +66,7 @@ const AwaitingOrdersController = {
     const id = req.params.awaitingOrderId;
     const { customerInfo, carInfo, orderInfo } = req.body;
 
-    AwaitingOrder.findByIdAndUpdate(
+    AwaitingRepair.findByIdAndUpdate(
       id,
       {
         customerInfo: {
@@ -92,21 +92,21 @@ const AwaitingOrdersController = {
     )
       .then((result: any) => {
         res.status(200).json({
-          wiadomosc: "Zmodyfikowano oczekujące zlecenie",
+          message: "Zmodyfikowano oczekujące zlecenie",
           info: result,
         });
       })
       .catch(() =>
         res
           .status(500)
-          .json({ wiadomosc: "Nie zmodyfikowano - wystąpił błąd serwera" })
+          .json({ message: "Nie zmodyfikowano - wystąpił błąd serwera" })
       );
   },
 
   delete_single: (req: Request, res: Response) => {
     const id = req.params.awaitingOrderId;
 
-    AwaitingOrder.findByIdAndRemove(id)
+    AwaitingRepair.findByIdAndRemove(id)
       .then(() => {
         res.status(200).json({ message: "Usunięto oczekujące zlecenie" });
       })
@@ -116,4 +116,4 @@ const AwaitingOrdersController = {
   },
 };
 
-export default AwaitingOrdersController;
+export default AwaitingRepairsController;

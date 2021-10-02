@@ -11,6 +11,8 @@ export interface ButtonProps {
   text: string;
   additionalClasses?: string;
   color: ButtonColor;
+  isLoading?: boolean;
+  isDisabled?: boolean;
 }
 
 export function Button({
@@ -20,6 +22,8 @@ export function Button({
   text,
   additionalClasses,
   color = "pink",
+  isLoading = false,
+  isDisabled = false,
 }: ButtonProps): JSX.Element {
   return (
     <button
@@ -31,8 +35,18 @@ export function Button({
         additionalClasses
       )}
       type={type}
+      disabled={isDisabled}
     >
-      {text}
+      {type === "submit" && isLoading ? (
+        <>
+          <div className="button__throbber ">
+            <div className="button__circle" />
+          </div>
+          {!isLoading && text}
+        </>
+      ) : (
+        text
+      )}
     </button>
   );
 }

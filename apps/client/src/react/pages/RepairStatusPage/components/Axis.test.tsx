@@ -10,34 +10,34 @@ describe("Axis", () => {
       id: 0,
       color: "black-light",
       title: "Zlecenie przyjęte Zaczynamy!",
-      descrption: "",
+      description: "",
     },
     {
       id: 1,
       color: "green",
       title: "Prace przygotowawcze",
-      descrption:
+      description:
         "Aktualnie zajmujemy się przygotowaniem Twojego auta, na tym etapie czekamy na części, naprawiamy to, czego nie trzeba wymieniać oraz maskujemy auto do malowania.",
     },
     {
       id: 2,
       color: "blue",
       title: "Prace lakiernicze",
-      descrption:
+      description:
         "W tym momencie Twoje auto jest lakierowane, począwszy od lakieru podkładowego, przez lakier bazowy (kolor) oraz na lakierze bezbarwnym kończąc. ",
     },
     {
       id: 3,
       color: "pink",
       title: "Detailing i kontrola jakości",
-      descrption:
+      description:
         "Twoje auto zostalo już polakierowane i teraz wykonujemy prace wykończeniowe - polerujemy lakier aby wydobyć z niego perfekcyjny błysk, oraz dokonujemy oceny jakości wykonanej usługi.",
     },
     {
       id: 4,
       color: "pink",
       title: "Zlecenie ukończone. Możesz odebrać auto!",
-      descrption: "",
+      description: "",
     },
   ];
 
