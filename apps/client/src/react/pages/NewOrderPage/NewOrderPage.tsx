@@ -4,9 +4,9 @@ import { Color } from "../../../../../common/utils/types";
 import { Calculator } from "./components/Calculator";
 import { Contact } from "./components/Contact";
 
-export function NewRepairPage(): JSX.Element {
+export function NewOrderPage(): JSX.Element {
   // common
-  const [repairType, setRepairType] = React.useState("Naprawa");
+  const [serviceType, setServiceType] = React.useState("Naprawa");
   const [year, setYear] = React.useState("");
   const [make, setMake] = React.useState("");
   // calculator
@@ -19,20 +19,20 @@ export function NewRepairPage(): JSX.Element {
   const [email, setEmail] = React.useState("");
   const [phone, setPhone] = React.useState("");
   const [model, setModel] = React.useState("");
-  const [plate, setPlate] = React.useState("");
-  const [paint, setPaint] = React.useState("");
+  const [licencePlate, setLicencePlate] = React.useState("");
+  const [paintCode, setPaintCode] = React.useState("");
   const [description, setDescription] = React.useState("");
   const [privacy, setPrivacy] = React.useState(false);
 
   const calculatorState = {
-    repairType,
+    serviceType,
     year,
     make,
     carSize,
     panels,
     paintCorrection,
     result,
-    setRepairType,
+    setServiceType,
     setYear,
     setMake,
     setCarSize,
@@ -48,9 +48,9 @@ export function NewRepairPage(): JSX.Element {
     year,
     make,
     model,
-    plate,
-    paint,
-    repairType,
+    licencePlate,
+    paintCode,
+    serviceType,
     description,
     privacy,
     setNames,
@@ -59,9 +59,9 @@ export function NewRepairPage(): JSX.Element {
     setYear,
     setMake,
     setModel,
-    setPlate,
-    setPaint,
-    setRepairType,
+    setLicencePlate,
+    setPaintCode,
+    setServiceType,
     setDescription,
     setPrivacy,
   };
@@ -69,21 +69,21 @@ export function NewRepairPage(): JSX.Element {
   const [color, setColor] = React.useState<Color>("green");
 
   React.useEffect(() => {
-    if (repairType === "Naprawa") {
+    if (serviceType === "Naprawa") {
       setColor("green");
-    } else if (repairType === "Lakierowanie") {
+    } else if (serviceType === "Lakierowanie") {
       setColor("blue");
     } else {
       setColor("pink");
     }
-  }, [repairType]);
+  }, [serviceType]);
 
   const inputRef = React.createRef<HTMLInputElement>();
 
   return (
-    <div className="container new-repair-page">
+    <div className="container new-order-page">
       <Calculator ref={inputRef} {...calculatorState} color={color} />
-      <div role="presentation" className="new-repair-page__line" />
+      <div role="presentation" className="new-order-page__line" />
       <Contact ref={inputRef} {...contactState} color={color} />
     </div>
   );

@@ -1,6 +1,6 @@
 import { screen, render } from "@testing-library/react";
 import * as React from "react";
-import { CardWithText } from ".";
+import { CardWithText } from "./CardWithText";
 
 const data = {
   color: "green",

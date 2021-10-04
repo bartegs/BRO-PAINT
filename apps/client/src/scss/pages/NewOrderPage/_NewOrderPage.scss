@@ -1,4 +1,4 @@
-.new-repair-page {
+.new-order-page {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -57,5 +57,6 @@
 
   &__buttons {
     display: flex;
+    justify-content: center;
   }
 }

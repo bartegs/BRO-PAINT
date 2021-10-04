@@ -15,7 +15,7 @@ interface OwnProps {
   inputFontTheme?: "dark" | "light";
   inputBorderColor?: Color;
   background?: "light" | "dark";
-  inputInitialValue: string;
+  inputInitialValue?: string;
 }
 
 export function CheckStatusForm({

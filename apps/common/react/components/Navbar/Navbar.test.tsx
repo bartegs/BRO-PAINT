@@ -1,7 +1,7 @@
 import { render } from "@testing-library/react";
 import * as React from "react";
 import { MemoryRouter } from "react-router-dom";
-import { Navbar } from ".";
+import { Navbar } from "./Navbar";
 
 describe("Navbar", () => {
   it(`should render correctly to the page`, () => {

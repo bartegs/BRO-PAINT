@@ -2,21 +2,21 @@ import * as React from "react";
 
 import classnames from "classnames";
 
-import type { RepairMainStages } from "../RepairStatusPage";
+import type { OrderMainStages } from "../OrderStatusPage";
 
 import { Card } from "./Card";
 
 interface OwnProps {
-  stages: RepairMainStages;
-  repairStage: number;
+  stages: OrderMainStages;
+  orderStage: number;
 }
 
 export function handleAxisColoring(
   stageId: number,
   stageColor: string,
-  repairStage: number
+  orderStage: number
 ): { segmentColor: string; pointColor: string } {
-  if (stageId <= repairStage) {
+  if (stageId <= orderStage) {
     return { segmentColor: stageColor, pointColor: stageColor };
   }
   return {
@@ -25,9 +25,9 @@ export function handleAxisColoring(
   };
 }
 
-export function Axis({ stages, repairStage }: OwnProps): JSX.Element {
+export function Axis({ stages, orderStage }: OwnProps): JSX.Element {
   return (
-    <section className="repair-status-page__axis-container axis">
+    <section className="order-status-page__axis-container axis">
       {stages.map(({ color, title, description, id }, i) => {
         const isFirstElement = i === 0;
         const isLastElement = i === stages.length - 1;
@@ -35,7 +35,7 @@ export function Axis({ stages, repairStage }: OwnProps): JSX.Element {
         const { segmentColor, pointColor } = handleAxisColoring(
           i,
           color,
-          repairStage
+          orderStage
         );
 
         return (
@@ -61,7 +61,7 @@ export function Axis({ stages, repairStage }: OwnProps): JSX.Element {
                 "card--first": isFirstElement,
                 "card--last": isLastElement,
                 "card--inactive":
-                  typeof repairStage === "undefined" || i > repairStage,
+                  typeof orderStage === "undefined" || i > orderStage,
               })}
               desc={description}
               title={title}

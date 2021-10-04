@@ -1,7 +1,7 @@
 import { render } from "@testing-library/react";
 import * as React from "react";
 
-import { Gallery } from ".";
+import { Gallery } from "./Gallery";
 
 describe("Gallery", () => {
   const finishedPhotos = true;

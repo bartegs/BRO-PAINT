@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import * as React from "react";
-import { Radio } from ".";
+import { Radio } from "./Radio";
 
 const testData = [
   { id: "test1 ", value: "test1" },

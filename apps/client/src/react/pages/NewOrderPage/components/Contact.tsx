@@ -19,11 +19,11 @@ interface ContactProps {
   email: string;
   phone: string;
   model: string;
-  plate: string;
-  paint: string;
+  licencePlate: string;
+  paintCode: string;
   description: string;
   privacy: boolean;
-  repairType: string;
+  serviceType: string;
   year: string;
   make: string;
   setNames: React.Dispatch<React.SetStateAction<string>>;
@@ -32,9 +32,9 @@ interface ContactProps {
   setYear: React.Dispatch<React.SetStateAction<string>>;
   setMake: React.Dispatch<React.SetStateAction<string>>;
   setModel: React.Dispatch<React.SetStateAction<string>>;
-  setPlate: React.Dispatch<React.SetStateAction<string>>;
-  setPaint: React.Dispatch<React.SetStateAction<string>>;
-  setRepairType: React.Dispatch<React.SetStateAction<string>>;
+  setLicencePlate: React.Dispatch<React.SetStateAction<string>>;
+  setPaintCode: React.Dispatch<React.SetStateAction<string>>;
+  setServiceType: React.Dispatch<React.SetStateAction<string>>;
   setDescription: React.Dispatch<React.SetStateAction<string>>;
   setPrivacy: React.Dispatch<React.SetStateAction<boolean>>;
 }
@@ -47,11 +47,11 @@ const Contact = React.forwardRef<HTMLInputElement, ContactProps>(
       email,
       phone,
       model,
-      plate,
-      paint,
+      licencePlate,
+      paintCode,
       description,
       privacy,
-      repairType,
+      serviceType,
       year,
       make,
       setNames,
@@ -60,9 +60,9 @@ const Contact = React.forwardRef<HTMLInputElement, ContactProps>(
       setYear,
       setMake,
       setModel,
-      setPlate,
-      setPaint,
-      setRepairType,
+      setLicencePlate,
+      setPaintCode,
+      setServiceType,
       setDescription,
       setPrivacy,
     }: ContactProps,
@@ -77,9 +77,9 @@ const Contact = React.forwardRef<HTMLInputElement, ContactProps>(
       setYear("");
       setMake("");
       setModel("");
-      setPlate("");
-      setPaint("");
-      setRepairType("Naprawa");
+      setLicencePlate("");
+      setPaintCode("");
+      setServiceType("Naprawa");
       setDescription("");
       setPrivacy(false);
     }
@@ -105,18 +105,51 @@ const Contact = React.forwardRef<HTMLInputElement, ContactProps>(
       { id: "Lakierowanie ", value: "Lakierowanie", additionalClasses: "my-2" },
       { id: "Detailing ", value: "Detailing" },
     ];
+    function handleSubmit(event: React.FormEvent) {
+      event.preventDefault();
+
+      fetch("http://localhost:3000/awaiting-repairs", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          customerInfo: {
+            names,
+            email,
+            phone,
+          },
+
+          carInfo: {
+            productionYear: year,
+            make,
+            model,
+            licencePlate,
+            paintCode,
+          },
+
+          orderInfo: {
+            serviceType,
+            comment: description,
+          },
+        }),
+      })
+        .then((response) => response.json())
+        .then((data) => console.log(data))
+        .catch((error) => console.log(error));
+    }
 
     return (
-      <section className="new-repair-page__section">
+      <section className="new-order-page__section">
         <h2
-          className={classnames("new-repair-page__heading", {
+          className={classnames("new-order-page__heading", {
             "mt-10": width < 1366,
           })}
         >
           Lub po prostu zostaw nam dane o {width >= 768 && <br />}
           zleceniu, a my zajmiemy się resztą!
         </h2>
-        <form className="new-repair-page__form">
+        <form className="new-order-page__form" onSubmit={handleSubmit}>
           <InputOutlined
             placeholder="Wpisz swoje imię i nazwisko"
             labelText="IMIE I NAZWISKO*"
@@ -193,8 +226,8 @@ const Contact = React.forwardRef<HTMLInputElement, ContactProps>(
             placeholder="Wpisz numer rejestracyjny auta"
             name="plate"
             id="plate"
-            value={plate}
-            setState={setPlate}
+            value={licencePlate}
+            setState={setLicencePlate}
             fontTheme="dark"
             required
           />
@@ -211,16 +244,16 @@ const Contact = React.forwardRef<HTMLInputElement, ContactProps>(
             placeholder="Wpisz kod lakieru auta"
             name="paint"
             id="paint"
-            value={paint}
-            setState={setPaint}
+            value={paintCode}
+            setState={setPaintCode}
             fontTheme="dark"
           />
           <Radio
             name="repairType"
             id="repairType"
             labelText="USŁUGA*"
-            value={repairType}
-            setState={setRepairType}
+            value={serviceType}
+            setState={setServiceType}
             radioData={servicesData}
             color={color}
           />
@@ -249,7 +282,7 @@ const Contact = React.forwardRef<HTMLInputElement, ContactProps>(
             required
             color={color}
           />
-          <div className="new-repair-page__buttons">
+          <div className="new-order-page__buttons">
             <Button
               text="Wyślij"
               color={color}
@@ -273,4 +306,3 @@ const Contact = React.forwardRef<HTMLInputElement, ContactProps>(
 );
 
 export { Contact };
-export default Contact;

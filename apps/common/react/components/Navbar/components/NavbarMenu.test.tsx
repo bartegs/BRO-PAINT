@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import * as React from "react";
 import { MemoryRouter } from "react-router-dom";
-import { NavbarMenu } from ".";
+import { NavbarMenu } from "./NavbarMenu";
 
 describe("NavbarMenu", () => {
   // props mock

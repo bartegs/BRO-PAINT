@@ -1,6 +1,6 @@
 import { screen, render } from "@testing-library/react";
 import * as React from "react";
-import { ContactPage } from ".";
+import { ContactPage } from "./ContactPage";
 
 describe("ContactPage", () => {
   it(`should render correctly to the page`, () => {

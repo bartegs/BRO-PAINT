@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import * as React from "react";
-import { Tooltip } from ".";
+import { Tooltip } from "./Tooltip";
 
 describe("Tooltip", () => {
   it(`should render correctly to the page`, () => {

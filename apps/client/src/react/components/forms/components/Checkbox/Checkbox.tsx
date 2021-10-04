@@ -35,11 +35,11 @@ export function Checkbox({
           required={required}
           className={classnames("checkbox", `checkbox--${color}`)}
         />
-        <p className="new-repair-page__checkbox-paragraph">
+        <p className="new-order-page__checkbox-paragraph">
           Zapoznałem/am się z
           <NavLink
             to="/polityka-prywatnosci"
-            className="new-repair-page__checkbox-paragraph--privacy"
+            className="new-order-page__checkbox-paragraph--privacy"
           >
             &nbsp;Polityką Prywatności&nbsp;
           </NavLink>

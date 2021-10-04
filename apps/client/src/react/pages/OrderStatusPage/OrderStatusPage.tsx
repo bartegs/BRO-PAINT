@@ -6,24 +6,24 @@ import { CheckStatusForm } from "../../components/forms/CheckStatusForm";
 import { Axis } from "./components";
 import { AppContext } from "../../contexts/AppContext";
 
-type RepairMainStageId = 0 | 1 | 2 | 3 | 4;
+type OrderMainStageId = 0 | 1 | 2 | 3 | 4;
 
-interface RepairMainStage {
-  id: RepairMainStageId;
+interface OrderMainStage {
+  id: OrderMainStageId;
   title: string;
   description: string;
   color: Color;
 }
 
-export type RepairMainStages = RepairMainStage[];
+export type OrderMainStages = OrderMainStage[];
 
-interface Repair {
+interface OrderStatus {
   id: string;
-  repairStage: RepairMainStageId;
+  repairStage: OrderMainStageId;
 }
 
 // this should be app state fetched from db
-export const repairMainStages: RepairMainStages = [
+export const serviceMainStages: OrderMainStages = [
   {
     id: 0,
     color: "black-light",
@@ -59,7 +59,7 @@ export const repairMainStages: RepairMainStages = [
   },
 ];
 
-function handleFormColoring(repairStage: number, stages: RepairMainStages) {
+function handleFormColoring(repairStage: number, stages: OrderMainStages) {
   return stages.find(({ id }) => id === repairStage)?.color || "black-light";
 }
 
@@ -67,10 +67,10 @@ function isNotObjectEmpty(object: {}): boolean {
   return Object.keys(object).length && true;
 }
 
-export function RepairStatusPage(): JSX.Element {
+export function OrderStatusPage(): JSX.Element {
   const { repair: repairData } = useContext(AppContext);
 
-  function getRepairData(): Repair | undefined {
+  function getRepairData(): OrderStatus | undefined {
     return isNotObjectEmpty(repairData)
       ? {
           id: repairData._id,
@@ -79,15 +79,15 @@ export function RepairStatusPage(): JSX.Element {
       : undefined;
   }
 
-  const [repair, setRepair] = React.useState<Repair>(getRepairData());
+  const [repair, setRepair] = React.useState<OrderStatus>(getRepairData());
   const { repairStage } = repair || {};
-  const formElementColor = handleFormColoring(repairStage, repairMainStages);
+  const formElementColor = handleFormColoring(repairStage, serviceMainStages);
 
   useEffect(() => setRepair(getRepairData()), [repairData]);
 
   return (
-    <div className="container repair-status-page">
-      <section className="repair-status-page__form-container">
+    <div className="container order-status-page">
+      <section className="order-status-page__form-container">
         <CheckStatusForm
           inputFontTheme="dark"
           inputBorderColor={formElementColor}
@@ -96,7 +96,7 @@ export function RepairStatusPage(): JSX.Element {
           inputInitialValue={isNotObjectEmpty(repairData) && repairData._id}
         />
       </section>
-      <Axis repairStage={repairStage} stages={repairMainStages} />
+      <Axis orderStage={repairStage} stages={serviceMainStages} />
     </div>
   );
 }

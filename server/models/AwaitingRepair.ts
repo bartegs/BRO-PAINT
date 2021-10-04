@@ -2,17 +2,11 @@ import * as mongoose from "mongoose";
 
 export const awaitingRepairSchema = new mongoose.Schema({
   customerInfo: {
-    firstName: {
+    names: {
       type: String,
       required: true,
-      min: 2,
-      max: 50,
-    },
-    lastName: {
-      type: String,
-      required: true,
-      min: 2,
-      max: 50,
+      min: 5,
+      max: 100,
     },
     email: {
       type: String,
@@ -20,7 +14,7 @@ export const awaitingRepairSchema = new mongoose.Schema({
       min: 3,
       max: 254,
     },
-    telephone: {
+    phone: {
       type: String,
       required: true,
       min: 9,
@@ -32,13 +26,19 @@ export const awaitingRepairSchema = new mongoose.Schema({
       type: Date,
       required: true,
     },
+    make: {
+      type: String,
+      required: true,
+      min: 1,
+      max: 100,
+    },
     model: {
       type: String,
       required: true,
       min: 1,
       max: 100,
     },
-    licensePlate: {
+    licencePlate: {
       type: String,
       required: true,
       min: 4,
@@ -52,12 +52,12 @@ export const awaitingRepairSchema = new mongoose.Schema({
     },
   },
   orderInfo: {
-    serviceType: {
+    service: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Service",
       required: true,
     },
-    comments: {
+    comment: {
       type: String,
       required: false,
       min: 1,

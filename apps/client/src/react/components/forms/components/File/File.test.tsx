@@ -1,6 +1,6 @@
 import { render } from "@testing-library/react";
 import * as React from "react";
-import { File } from ".";
+import { File } from "./File";
 
 describe("File", () => {
   it(`should render label with "file__label" class`, () => {

@@ -1,11 +1,11 @@
 import { render } from "@testing-library/react";
 import * as React from "react";
 
-import { handleAxisColoring, Axis } from ".";
-import { RepairMainStages } from "../RepairStatusPage";
+import { handleAxisColoring, Axis } from "./Axis";
+import { OrderMainStages } from "../OrderStatusPage";
 
 describe("Axis", () => {
-  const repairMainStages: RepairMainStages = [
+  const repairMainStages: OrderMainStages = [
     {
       id: 0,
       color: "black-light",
@@ -43,18 +43,18 @@ describe("Axis", () => {
 
   it(`should render correctly to the page`, () => {
     const { container } = render(
-      <Axis stages={repairMainStages} repairStage={1} />
+      <Axis stages={repairMainStages} orderStage={1} />
     );
 
     const axis = container.querySelector(
-      "section.repair-status-page__axis-container"
+      "section.order-status-page__axis-container"
     );
     expect(axis).toBeInTheDocument();
   });
 
   it(`should render an axis segment`, () => {
     const { container } = render(
-      <Axis stages={repairMainStages} repairStage={1} />
+      <Axis stages={repairMainStages} orderStage={1} />
     );
 
     const axisSegment = container.querySelector("div.axis__segment");
@@ -63,7 +63,7 @@ describe("Axis", () => {
 
   it(`should render an axis point`, () => {
     const { container } = render(
-      <Axis stages={repairMainStages} repairStage={1} />
+      <Axis stages={repairMainStages} orderStage={1} />
     );
 
     const axisPoint = container.querySelector("div.segment__point");
@@ -72,7 +72,7 @@ describe("Axis", () => {
 
   it(`should render a card with stages descriptions`, () => {
     const { container } = render(
-      <Axis stages={repairMainStages} repairStage={1} />
+      <Axis stages={repairMainStages} orderStage={1} />
     );
 
     const axisCard = container.querySelector("div.axis__card");
@@ -81,7 +81,7 @@ describe("Axis", () => {
 
   it(`should render 5 axis points`, () => {
     const { container } = render(
-      <Axis stages={repairMainStages} repairStage={1} />
+      <Axis stages={repairMainStages} orderStage={1} />
     );
 
     const axisPoints = container.querySelectorAll("div.segment__point").length;
@@ -90,7 +90,7 @@ describe("Axis", () => {
 
   it(`should render 5 axis segments`, () => {
     const { container } = render(
-      <Axis stages={repairMainStages} repairStage={1} />
+      <Axis stages={repairMainStages} orderStage={1} />
     );
 
     const axisSegments = container.querySelectorAll("div.axis__segment").length;
@@ -99,7 +99,7 @@ describe("Axis", () => {
 
   it(`should render 5 axis cards`, () => {
     const { container } = render(
-      <Axis stages={repairMainStages} repairStage={1} />
+      <Axis stages={repairMainStages} orderStage={1} />
     );
 
     const axisCards = container.querySelectorAll("div.axis__card").length;

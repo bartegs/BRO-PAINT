@@ -1,6 +1,6 @@
 import { HomePage } from "./HomePage";
-import { NewRepairPage } from "./NewRepairPage";
-import { RepairStatusPage } from "./RepairStatusPage";
+import { NewOrderPage } from "./NewOrderPage";
+import { OrderStatusPage } from "./OrderStatusPage";
 import { GalleryPage } from "./GalleryPage";
 import { AboutUsPage } from "./AboutUsPage";
 import { ContactPage } from "./ContactPage";
@@ -9,8 +9,8 @@ import { PrivacyPage } from "./PrivacyPage";
 
 export {
   HomePage,
-  NewRepairPage,
-  RepairStatusPage,
+  NewOrderPage,
+  OrderStatusPage,
   GalleryPage,
   AboutUsPage,
   ContactPage,

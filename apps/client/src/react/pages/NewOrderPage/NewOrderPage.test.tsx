@@ -1,25 +1,25 @@
 import { screen, render, fireEvent } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import * as React from "react";
-import { NewRepairPage } from ".";
+import { NewOrderPage } from "./NewOrderPage";
 
-describe("NewRepairPage", () => {
+describe("NewOrderPage", () => {
   it(`should render correctly to the page`, () => {
     const { container } = render(
       <MemoryRouter initialEntries={["/nowa-naprawa"]}>
-        <NewRepairPage />
+        <NewOrderPage />
       </MemoryRouter>
     );
 
-    const newRepairPage = container.querySelector("div.new-repair-page");
-    expect(newRepairPage).toBeInTheDocument();
+    const newOrderPage = container.querySelector("div.new-order-page");
+    expect(newOrderPage).toBeInTheDocument();
   });
 
   // CALCULATOR
   it(`Should render a calculator heading`, () => {
     render(
       <MemoryRouter initialEntries={["/nowa-naprawa"]}>
-        <NewRepairPage />
+        <NewOrderPage />
       </MemoryRouter>
     );
 
@@ -32,7 +32,7 @@ describe("NewRepairPage", () => {
   it(`Should render set of radio buttons for choosing repair type (calculator)`, () => {
     render(
       <MemoryRouter initialEntries={["/nowa-naprawa"]}>
-        <NewRepairPage />
+        <NewOrderPage />
       </MemoryRouter>
     );
 
@@ -43,7 +43,7 @@ describe("NewRepairPage", () => {
   it(`Should render a select for choosing year (calculator)`, () => {
     render(
       <MemoryRouter initialEntries={["/nowa-naprawa"]}>
-        <NewRepairPage />
+        <NewOrderPage />
       </MemoryRouter>
     );
 
@@ -54,7 +54,7 @@ describe("NewRepairPage", () => {
   it(`Should render a select for choosing make(calculator)`, () => {
     render(
       <MemoryRouter initialEntries={["/nowa-naprawa"]}>
-        <NewRepairPage />
+        <NewOrderPage />
       </MemoryRouter>
     );
 
@@ -65,7 +65,7 @@ describe("NewRepairPage", () => {
   it(`Should render a set of radio buttons for choosing car Size`, () => {
     render(
       <MemoryRouter initialEntries={["/nowa-naprawa"]}>
-        <NewRepairPage />
+        <NewOrderPage />
       </MemoryRouter>
     );
 
@@ -76,7 +76,7 @@ describe("NewRepairPage", () => {
   it(`Should render a select for choosing amount of panels when "Naprawa" repair type is selected`, () => {
     render(
       <MemoryRouter initialEntries={["/nowa-naprawa"]}>
-        <NewRepairPage />
+        <NewOrderPage />
       </MemoryRouter>
     );
 
@@ -90,7 +90,7 @@ describe("NewRepairPage", () => {
   it(`Should render a tooltip for panels amount select when "Naprawa" repair type is selected`, () => {
     render(
       <MemoryRouter initialEntries={["/nowa-naprawa"]}>
-        <NewRepairPage />
+        <NewOrderPage />
       </MemoryRouter>
     );
 
@@ -106,7 +106,7 @@ describe("NewRepairPage", () => {
   it(`Should render a select for choosing amount of panels when "Lakierowanie" repair type is selected`, () => {
     render(
       <MemoryRouter initialEntries={["/nowa-naprawa"]}>
-        <NewRepairPage />
+        <NewOrderPage />
       </MemoryRouter>
     );
 
@@ -120,7 +120,7 @@ describe("NewRepairPage", () => {
   it(`Should render a tooltip for panels amount select when "Lakierowanie" repair type is selected`, () => {
     render(
       <MemoryRouter initialEntries={["/nowa-naprawa"]}>
-        <NewRepairPage />
+        <NewOrderPage />
       </MemoryRouter>
     );
 
@@ -136,7 +136,7 @@ describe("NewRepairPage", () => {
   it(`Should render a select for choosing correction type when "Detailing" repair type is selected`, () => {
     render(
       <MemoryRouter initialEntries={["/nowa-naprawa"]}>
-        <NewRepairPage />
+        <NewOrderPage />
       </MemoryRouter>
     );
 
@@ -150,7 +150,7 @@ describe("NewRepairPage", () => {
   it(`Should render a tooltip for correction type select`, () => {
     render(
       <MemoryRouter initialEntries={["/nowa-naprawa"]}>
-        <NewRepairPage />
+        <NewOrderPage />
       </MemoryRouter>
     );
 
@@ -166,7 +166,7 @@ describe("NewRepairPage", () => {
   it(`Should render a calculate button`, () => {
     render(
       <MemoryRouter initialEntries={["/nowa-naprawa"]}>
-        <NewRepairPage />
+        <NewOrderPage />
       </MemoryRouter>
     );
 
@@ -177,7 +177,7 @@ describe("NewRepairPage", () => {
   it(`Should render a reset button (calculator)`, () => {
     render(
       <MemoryRouter initialEntries={["/nowa-naprawa"]}>
-        <NewRepairPage />
+        <NewOrderPage />
       </MemoryRouter>
     );
 
@@ -189,11 +189,11 @@ describe("NewRepairPage", () => {
   it(`should render a vertical line which separates the two forms`, () => {
     const { container } = render(
       <MemoryRouter initialEntries={["/nowa-naprawa"]}>
-        <NewRepairPage />
+        <NewOrderPage />
       </MemoryRouter>
     );
 
-    const line = container.querySelector("div.new-repair-page__line");
+    const line = container.querySelector("div.new-order-page__line");
     expect(line).toBeInTheDocument();
   });
 
@@ -201,7 +201,7 @@ describe("NewRepairPage", () => {
   it(`Should render a contact heading`, () => {
     render(
       <MemoryRouter initialEntries={["/nowa-naprawa"]}>
-        <NewRepairPage />
+        <NewOrderPage />
       </MemoryRouter>
     );
 
@@ -214,7 +214,7 @@ describe("NewRepairPage", () => {
   it(`Should render an input for names`, () => {
     render(
       <MemoryRouter initialEntries={["/nowa-naprawa"]}>
-        <NewRepairPage />
+        <NewOrderPage />
       </MemoryRouter>
     );
 
@@ -225,7 +225,7 @@ describe("NewRepairPage", () => {
   it(`Should render an input for email`, () => {
     render(
       <MemoryRouter initialEntries={["/nowa-naprawa"]}>
-        <NewRepairPage />
+        <NewOrderPage />
       </MemoryRouter>
     );
 
@@ -236,7 +236,7 @@ describe("NewRepairPage", () => {
   it(`Should render an input for phone`, () => {
     render(
       <MemoryRouter initialEntries={["/nowa-naprawa"]}>
-        <NewRepairPage />
+        <NewOrderPage />
       </MemoryRouter>
     );
 
@@ -247,7 +247,7 @@ describe("NewRepairPage", () => {
   it(`Should render a select for choosing year (contact)`, () => {
     render(
       <MemoryRouter initialEntries={["/nowa-naprawa"]}>
-        <NewRepairPage />
+        <NewOrderPage />
       </MemoryRouter>
     );
 
@@ -258,7 +258,7 @@ describe("NewRepairPage", () => {
   it(`Should render a select for choosing make(contact)`, () => {
     render(
       <MemoryRouter initialEntries={["/nowa-naprawa"]}>
-        <NewRepairPage />
+        <NewOrderPage />
       </MemoryRouter>
     );
 
@@ -269,7 +269,7 @@ describe("NewRepairPage", () => {
   it(`Should render an input for car model`, () => {
     render(
       <MemoryRouter initialEntries={["/nowa-naprawa"]}>
-        <NewRepairPage />
+        <NewOrderPage />
       </MemoryRouter>
     );
 
@@ -280,7 +280,7 @@ describe("NewRepairPage", () => {
   it(`Should render an input for car plate`, () => {
     render(
       <MemoryRouter initialEntries={["/nowa-naprawa"]}>
-        <NewRepairPage />
+        <NewOrderPage />
       </MemoryRouter>
     );
 
@@ -291,7 +291,7 @@ describe("NewRepairPage", () => {
   it(`Should render an input for car paint code`, () => {
     render(
       <MemoryRouter initialEntries={["/nowa-naprawa"]}>
-        <NewRepairPage />
+        <NewOrderPage />
       </MemoryRouter>
     );
 
@@ -302,7 +302,7 @@ describe("NewRepairPage", () => {
   it(`Should render a tooltip for car paint code`, () => {
     render(
       <MemoryRouter initialEntries={["/nowa-naprawa"]}>
-        <NewRepairPage />
+        <NewOrderPage />
       </MemoryRouter>
     );
 
@@ -315,7 +315,7 @@ describe("NewRepairPage", () => {
   it(`Should render set of radio buttons for choosing repair type (contact)`, () => {
     render(
       <MemoryRouter initialEntries={["/nowa-naprawa"]}>
-        <NewRepairPage />
+        <NewOrderPage />
       </MemoryRouter>
     );
 
@@ -326,7 +326,7 @@ describe("NewRepairPage", () => {
   it(`Should render a textarea for order details`, () => {
     render(
       <MemoryRouter initialEntries={["/nowa-naprawa"]}>
-        <NewRepairPage />
+        <NewOrderPage />
       </MemoryRouter>
     );
 
@@ -337,7 +337,7 @@ describe("NewRepairPage", () => {
   it(`Should render a label for file upload button`, () => {
     render(
       <MemoryRouter initialEntries={["/nowa-naprawa"]}>
-        <NewRepairPage />
+        <NewOrderPage />
       </MemoryRouter>
     );
 
@@ -350,7 +350,7 @@ describe("NewRepairPage", () => {
   it(`Should render a file upload input`, () => {
     const { container } = render(
       <MemoryRouter initialEntries={["/nowa-naprawa"]}>
-        <NewRepairPage />
+        <NewOrderPage />
       </MemoryRouter>
     );
 
@@ -361,12 +361,12 @@ describe("NewRepairPage", () => {
   it(`Should render a description paragraph for checkbox`, () => {
     const { container } = render(
       <MemoryRouter initialEntries={["/nowa-naprawa"]}>
-        <NewRepairPage />
+        <NewOrderPage />
       </MemoryRouter>
     );
 
     const checkboxText = container.querySelector(
-      "p.new-repair-page__checkbox-paragraph"
+      "p.new-order-page__checkbox-paragraph"
     );
     expect(checkboxText).toBeInTheDocument();
   });
@@ -374,7 +374,7 @@ describe("NewRepairPage", () => {
   it(`Should render a checkbox`, () => {
     const { container } = render(
       <MemoryRouter initialEntries={["/nowa-naprawa"]}>
-        <NewRepairPage />
+        <NewOrderPage />
       </MemoryRouter>
     );
 
@@ -385,7 +385,7 @@ describe("NewRepairPage", () => {
   it(`Should render a send button`, () => {
     render(
       <MemoryRouter initialEntries={["/nowa-naprawa"]}>
-        <NewRepairPage />
+        <NewOrderPage />
       </MemoryRouter>
     );
 
@@ -396,7 +396,7 @@ describe("NewRepairPage", () => {
   it(`Should render a reset button (contact)`, () => {
     render(
       <MemoryRouter initialEntries={["/nowa-naprawa"]}>
-        <NewRepairPage />
+        <NewOrderPage />
       </MemoryRouter>
     );
 

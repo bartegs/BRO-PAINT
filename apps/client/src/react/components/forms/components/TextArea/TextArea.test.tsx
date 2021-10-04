@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import * as React from "react";
-import { TextArea } from ".";
+import { TextArea } from "./TextArea";
 
 // Empty component wrapping TextArea component that is being tested
 // The purpose of this is to test useState changes

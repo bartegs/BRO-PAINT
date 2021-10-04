@@ -14,14 +14,14 @@ import { CalculatorCard } from "./CalculatorCard";
 
 interface CalculatorProps {
   color: Color;
-  repairType: string;
+  serviceType: string;
   year: string;
   make: string;
   carSize: string;
   panels: string;
   paintCorrection: string;
   result: string;
-  setRepairType: (arg: string) => void;
+  setServiceType: (arg: string) => void;
   setYear: (arg: string) => void;
   setMake: (arg: string) => void;
   setCarSize: (arg: string) => void;
@@ -34,14 +34,14 @@ const Calculator = React.forwardRef<HTMLInputElement, CalculatorProps>(
   (
     {
       color,
-      repairType,
+      serviceType,
       year,
       make,
       carSize,
       panels,
       paintCorrection,
       result,
-      setRepairType,
+      setServiceType,
       setYear,
       setMake,
       setCarSize,
@@ -56,7 +56,7 @@ const Calculator = React.forwardRef<HTMLInputElement, CalculatorProps>(
     const [isCardVisible, setisCardVisible] = React.useState(false);
 
     function handleCalculatorReset() {
-      setRepairType("Naprawa");
+      setServiceType("Naprawa");
       setYear("");
       setMake("");
       setCarSize("Małe");
@@ -133,22 +133,22 @@ const Calculator = React.forwardRef<HTMLInputElement, CalculatorProps>(
     ];
 
     return (
-      <section className="new-repair-page__section">
-        <h2 className="new-repair-page__heading">
+      <section className="new-order-page__section">
+        <h2 className="new-order-page__heading">
           Wylicz szacunkowy koszt naprawy {width >= 768 && <br />}
           za pomocą naszego kalkulatora
         </h2>
-        <form className="new-repair-page__form" onSubmit={calculate}>
+        <form className="new-order-page__form" onSubmit={calculate}>
           <Radio
             name="repairType"
             id="repairType"
             labelText="USŁUGA*"
-            value={repairType}
-            setState={setRepairType}
+            value={serviceType}
+            setState={setServiceType}
             radioData={servicesData}
             color={color}
           />
-          {repairType === "Detailing" && (
+          {serviceType === "Detailing" && (
             <Select
               hasTooltip
               tooltipText="Wybierz zakres korekty. Wykonujemy wyłącznie korekty 3-etapowe, 
@@ -193,7 +193,7 @@ const Calculator = React.forwardRef<HTMLInputElement, CalculatorProps>(
             color={color}
             radioData={carSizesData}
           />
-          {repairType !== "Detailing" && (
+          {serviceType !== "Detailing" && (
             <Select
               labelText="LICZBA ELEMENTÓW*"
               color={color}
@@ -205,13 +205,13 @@ const Calculator = React.forwardRef<HTMLInputElement, CalculatorProps>(
               optionsData={panelsData}
               hasTooltip
               tooltipText={
-                repairType === "Naprawa"
+                serviceType === "Naprawa"
                   ? "Podaj ilość elementów, które wymagają naprawy. Przy szacunkowej kalkulacji uszkodzone elementy liczymy jako wymagające wymiany"
                   : "Podaj ilość elementów, które wymagają lakierowania. Możesz też wybrac lakierowanie całego auta w dwóch wariantach - pomalowanie auta w ten samo kolor, lub pomalowanie auta na zupełnie nowy, wybrany przez Ciebie kolor."
               }
             />
           )}
-          <div className="new-repair-page__buttons mt-4">
+          <div className="new-order-page__buttons mt-4">
             <Button
               text="Wylicz"
               color={color}

@@ -2,7 +2,7 @@ import { render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { MemoryRouter } from "react-router-dom";
 import * as React from "react";
-import { Checkbox } from ".";
+import { Checkbox } from "./Checkbox";
 
 // Empty component wrapping Checkbox component that is being tested
 // The purpose of this is to test useState changes
@@ -151,7 +151,7 @@ describe("Checkbox", () => {
     );
 
     const checkboxText = container.querySelector(
-      "p.new-repair-page__checkbox-paragraph"
+      "p.new-order-page__checkbox-paragraph"
     );
     expect(checkboxText).toBeInTheDocument();
   });

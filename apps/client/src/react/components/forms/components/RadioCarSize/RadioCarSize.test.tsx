@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import * as React from "react";
-import { RadioCarSize } from ".";
+import { RadioCarSize } from "./RadioCarSize";
 import { CarIconType, CarSizeType } from "../../../icons/CarIcon";
 
 interface CarSizesDataType {

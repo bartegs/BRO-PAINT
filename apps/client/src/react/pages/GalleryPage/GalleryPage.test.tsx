@@ -1,6 +1,6 @@
 import { screen, render } from "@testing-library/react";
 import * as React from "react";
-import { GalleryPage } from ".";
+import { GalleryPage } from "./GalleryPage";
 
 describe("GalleryPage", () => {
   it(`should render correctly to the page`, () => {
