@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import Order from "../models/Order";
 import Position from "../models/Position";
 
-const ordersController = {
+const OrdersController = {
   get_all: (req: Request, res: Response) => {
     Position.find({})
       .then((result: any) => {
@@ -75,4 +75,4 @@ const ordersController = {
   },
 };
 
-export default ordersController;
+export default OrdersController;
