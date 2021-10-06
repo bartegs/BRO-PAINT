@@ -13,17 +13,16 @@ import {
 import { Button } from "../../../../../../common/react/components";
 import { Color } from "../../../../../../common/utils/types";
 
-interface ContactProps {
-  color: Color;
+export interface ContactProps {
   names: string;
   email: string;
   phone: string;
   model: string;
   licencePlate: string;
   paintCode: string;
-  description: string;
+  comment: string;
   privacy: boolean;
-  serviceType: string;
+  serviceName: string;
   year: string;
   make: string;
   setNames: React.Dispatch<React.SetStateAction<string>>;
@@ -34,12 +33,16 @@ interface ContactProps {
   setModel: React.Dispatch<React.SetStateAction<string>>;
   setLicencePlate: React.Dispatch<React.SetStateAction<string>>;
   setPaintCode: React.Dispatch<React.SetStateAction<string>>;
-  setServiceType: React.Dispatch<React.SetStateAction<string>>;
-  setDescription: React.Dispatch<React.SetStateAction<string>>;
+  setServiceName: React.Dispatch<React.SetStateAction<string>>;
+  setComment: React.Dispatch<React.SetStateAction<string>>;
   setPrivacy: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const Contact = React.forwardRef<HTMLInputElement, ContactProps>(
+type OwnProps = ContactProps & {
+  color: Color;
+};
+
+const Contact = React.forwardRef<HTMLInputElement, OwnProps>(
   (
     {
       color,
@@ -49,9 +52,9 @@ const Contact = React.forwardRef<HTMLInputElement, ContactProps>(
       model,
       licencePlate,
       paintCode,
-      description,
+      comment,
       privacy,
-      serviceType,
+      serviceName,
       year,
       make,
       setNames,
@@ -62,10 +65,10 @@ const Contact = React.forwardRef<HTMLInputElement, ContactProps>(
       setModel,
       setLicencePlate,
       setPaintCode,
-      setServiceType,
-      setDescription,
+      setServiceName,
+      setComment,
       setPrivacy,
-    }: ContactProps,
+    }: OwnProps,
     ref
   ) => {
     const { width } = useWindowWidth();
@@ -79,8 +82,8 @@ const Contact = React.forwardRef<HTMLInputElement, ContactProps>(
       setModel("");
       setLicencePlate("");
       setPaintCode("");
-      setServiceType("Naprawa");
-      setDescription("");
+      setServiceName("Naprawa");
+      setComment("");
       setPrivacy(false);
     }
 
@@ -108,7 +111,7 @@ const Contact = React.forwardRef<HTMLInputElement, ContactProps>(
     function handleSubmit(event: React.FormEvent) {
       event.preventDefault();
 
-      fetch("http://localhost:3000/awaiting-repairs", {
+      fetch("http://localhost:3000/awaiting-orders", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -129,8 +132,8 @@ const Contact = React.forwardRef<HTMLInputElement, ContactProps>(
           },
 
           orderInfo: {
-            serviceType,
-            comment: description,
+            serviceName,
+            comment,
           },
         }),
       })
@@ -249,11 +252,11 @@ const Contact = React.forwardRef<HTMLInputElement, ContactProps>(
             fontTheme="dark"
           />
           <Radio
-            name="repairType"
-            id="repairType"
+            name="orderType"
+            id="orderType"
             labelText="USŁUGA*"
-            value={serviceType}
-            setState={setServiceType}
+            value={serviceName}
+            setState={setServiceName}
             radioData={servicesData}
             color={color}
           />
@@ -261,9 +264,9 @@ const Contact = React.forwardRef<HTMLInputElement, ContactProps>(
             labelText="OPIS ZLECENIA"
             name="description"
             id="description"
-            value={description}
+            value={comment}
             placeholder="Opisz swoje zlecenie i podziel się swoimi uwagami."
-            setState={setDescription}
+            setState={setComment}
             color={color}
             variant="outlined"
             additionalClasses="mb-3"

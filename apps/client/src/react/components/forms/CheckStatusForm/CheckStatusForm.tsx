@@ -18,6 +18,8 @@ interface OwnProps {
   inputInitialValue?: string;
 }
 
+export const formTitle = "Sprawdź status zlecenia";
+
 export function CheckStatusForm({
   additionalClasses,
   buttonColor = "pink",
@@ -27,11 +29,9 @@ export function CheckStatusForm({
   background = "light",
   inputInitialValue,
 }: OwnProps): JSX.Element {
-  const [repairNumber, setRepairNumber] = React.useState(
-    inputInitialValue || ""
-  );
+  const [orderNumber, setOrderNumber] = React.useState(inputInitialValue || "");
   const [isLoading, setIsLoading] = React.useState(false);
-  const { setRepair } = React.useContext(AppContext);
+  const { setOrder } = React.useContext(AppContext);
   const [hasError, setHasError] = React.useState(false);
   const history = useHistory();
 
@@ -39,7 +39,7 @@ export function CheckStatusForm({
     event.preventDefault();
 
     setIsLoading(true);
-    fetch(`http://localhost:3000/repairs/${repairNumber}`)
+    fetch(`http://localhost:3000/orders/${orderNumber}`)
       .then((response) => {
         if (response.ok) {
           return response.json();
@@ -48,13 +48,13 @@ export function CheckStatusForm({
         throw new Error("miki z tym");
       })
       .then((data) => {
-        setRepair(data);
+        setOrder(data);
         setIsLoading(false);
         setHasError(false);
-        history.push("/stan-naprawy");
+        history.push("/status-zlecenia");
       })
       .catch(() => {
-        setRepair({});
+        setOrder({});
         setHasError(true);
         setIsLoading(false);
       });
@@ -68,13 +68,13 @@ export function CheckStatusForm({
         `check-status-form--background-${background}`
       )}
     >
-      <h3 className={`text--${headingColor}`}>Sprawdź status naprawy</h3>
+      <h3 className={`text--${headingColor}`}>{formTitle}</h3>
       <form action="" onSubmit={handleSubmit}>
         <Input
-          placeholder="Podaj id naprawy"
-          name="repair-code"
-          value={repairNumber}
-          setState={setRepairNumber}
+          placeholder="Podaj id zlecenia"
+          name="order-code"
+          value={orderNumber}
+          setState={setOrderNumber}
           additionalClasses="mt-3 mb-5"
           borderColor={inputBorderColor}
           fontTheme={inputFontTheme}
@@ -86,7 +86,7 @@ export function CheckStatusForm({
           color={buttonColor}
           type="submit"
           isLoading={isLoading}
-          isDisabled={inputInitialValue === repairNumber}
+          isDisabled={inputInitialValue === orderNumber}
         />
       </form>
     </div>

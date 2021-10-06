@@ -14,8 +14,8 @@ import {
 const Error = () => <div>Not found</div>;
 
 const routes = [
-  { id: 0, route: "/nowa-naprawa", component: NewOrderPage },
-  { id: 1, route: "/stan-naprawy", component: OrderStatusPage },
+  { id: 0, route: "/nowe-zlecenie", component: NewOrderPage },
+  { id: 1, route: "/status-zlecenia", component: OrderStatusPage },
   { id: 2, route: "/o-nas", component: AboutUsPage },
   { id: 3, route: "/galeria", component: GalleryPage },
   { id: 4, route: "/kontakt", component: ContactPage },

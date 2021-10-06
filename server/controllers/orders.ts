@@ -1,22 +1,22 @@
 import { Request, Response } from "express";
-import Repair from "../models/Repair";
+import Order from "../models/Order";
 import Position from "../models/Position";
 
-const RepairsController = {
+const ordersController = {
   get_all: (req: Request, res: Response) => {
     Position.find({})
       .then((result: any) => {
         res.status(200).send(result);
       })
       .catch(() => {
-        res.status(404).json({ message: "Nie znaleziono napraw" });
+        res.status(404).json({ message: "Nie znaleziono zleceń" });
       });
   },
 
   get_single: (req: Request, res: Response) => {
-    const id = req.params.repairId;
+    const id = req.params.orderId;
 
-    Repair.findById(id)
+    Order.findById(id)
       .then((result: any) => {
         // console.log(result);
         res.status(200).send(result);
@@ -30,9 +30,9 @@ const RepairsController = {
   },
 
   add_single: (req: Request, res: Response) => {
-    const { customerInfo, carInfo, orderInfo, repairDetails } = req.body;
+    const { customerInfo, carInfo, orderInfo, orderDetails } = req.body;
 
-    const repair = new Repair({
+    const order = new Order({
       customerInfo: {
         firstName: customerInfo.firstName,
         lastName: customerInfo.lastName,
@@ -52,20 +52,20 @@ const RepairsController = {
         comments: orderInfo.comments,
       },
 
-      repairDetails: {
-        repairer: repairDetails.repairer,
+      orderDetails: {
+        repairer: orderDetails.repairer,
         stage: {
-          main: repairDetails.repairMainStage,
-          sub: repairDetails.repairSubStage,
+          main: orderDetails.orderMainStage,
+          sub: orderDetails.orderSubStage,
         },
       },
     });
 
-    repair
+    order
       .save()
       .then((result) => {
         res.status(201).json({
-          message: "Naprawa utworzona",
+          message: "Zlecenie utworzono",
           info: result,
         });
       })
@@ -75,4 +75,4 @@ const RepairsController = {
   },
 };
 
-export default RepairsController;
+export default ordersController;

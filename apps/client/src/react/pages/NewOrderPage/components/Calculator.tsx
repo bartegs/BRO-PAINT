@@ -14,14 +14,14 @@ import { CalculatorCard } from "./CalculatorCard";
 
 interface CalculatorProps {
   color: Color;
-  serviceType: string;
+  serviceName: string;
+  setServiceName: (arg: string) => void;
   year: string;
   make: string;
   carSize: string;
   panels: string;
   paintCorrection: string;
   result: string;
-  setServiceType: (arg: string) => void;
   setYear: (arg: string) => void;
   setMake: (arg: string) => void;
   setCarSize: (arg: string) => void;
@@ -34,14 +34,14 @@ const Calculator = React.forwardRef<HTMLInputElement, CalculatorProps>(
   (
     {
       color,
-      serviceType,
+      serviceName,
       year,
       make,
       carSize,
       panels,
       paintCorrection,
       result,
-      setServiceType,
+      setServiceName,
       setYear,
       setMake,
       setCarSize,
@@ -56,7 +56,7 @@ const Calculator = React.forwardRef<HTMLInputElement, CalculatorProps>(
     const [isCardVisible, setisCardVisible] = React.useState(false);
 
     function handleCalculatorReset() {
-      setServiceType("Naprawa");
+      setServiceName("Naprawa");
       setYear("");
       setMake("");
       setCarSize("Małe");
@@ -140,15 +140,15 @@ const Calculator = React.forwardRef<HTMLInputElement, CalculatorProps>(
         </h2>
         <form className="new-order-page__form" onSubmit={calculate}>
           <Radio
-            name="repairType"
-            id="repairType"
+            name="orderType"
+            id="orderType"
             labelText="USŁUGA*"
-            value={serviceType}
-            setState={setServiceType}
+            value={serviceName}
+            setState={setServiceName}
             radioData={servicesData}
             color={color}
           />
-          {serviceType === "Detailing" && (
+          {serviceName === "Detailing" && (
             <Select
               hasTooltip
               tooltipText="Wybierz zakres korekty. Wykonujemy wyłącznie korekty 3-etapowe, 
@@ -193,7 +193,7 @@ const Calculator = React.forwardRef<HTMLInputElement, CalculatorProps>(
             color={color}
             radioData={carSizesData}
           />
-          {serviceType !== "Detailing" && (
+          {serviceName !== "Detailing" && (
             <Select
               labelText="LICZBA ELEMENTÓW*"
               color={color}
@@ -205,7 +205,7 @@ const Calculator = React.forwardRef<HTMLInputElement, CalculatorProps>(
               optionsData={panelsData}
               hasTooltip
               tooltipText={
-                serviceType === "Naprawa"
+                serviceName === "Naprawa"
                   ? "Podaj ilość elementów, które wymagają naprawy. Przy szacunkowej kalkulacji uszkodzone elementy liczymy jako wymagające wymiany"
                   : "Podaj ilość elementów, które wymagają lakierowania. Możesz też wybrac lakierowanie całego auta w dwóch wariantach - pomalowanie auta w ten samo kolor, lub pomalowanie auta na zupełnie nowy, wybrany przez Ciebie kolor."
               }

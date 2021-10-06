@@ -1,3 +1,3 @@
-export * from "./RepairManagementPage";
-export * from "./NewRepairs";
+export * from "./OrderManagementPage";
+export * from "./NewOrders";
 export * from "./LoginPage";

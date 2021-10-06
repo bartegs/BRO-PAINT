@@ -29,15 +29,15 @@ describe("NewOrderPage", () => {
     expect(calculatorHeading).toBeInTheDocument();
   });
 
-  it(`Should render set of radio buttons for choosing repair type (calculator)`, () => {
+  it(`Should render set of radio buttons for choosing order type (calculator)`, () => {
     render(
       <MemoryRouter initialEntries={["/nowa-naprawa"]}>
         <NewOrderPage />
       </MemoryRouter>
     );
 
-    const calculatorRepairType = screen.getAllByText("USŁUGA*")[0];
-    expect(calculatorRepairType).toBeInTheDocument();
+    const calculatorOrderType = screen.getAllByText("USŁUGA*")[0];
+    expect(calculatorOrderType).toBeInTheDocument();
   });
 
   it(`Should render a select for choosing year (calculator)`, () => {
@@ -73,37 +73,37 @@ describe("NewOrderPage", () => {
     expect(carSize).toBeInTheDocument();
   });
 
-  it(`Should render a select for choosing amount of panels when "Naprawa" repair type is selected`, () => {
+  it(`Should render a select for choosing amount of panels when "Naprawa" order type is selected`, () => {
     render(
       <MemoryRouter initialEntries={["/nowa-naprawa"]}>
         <NewOrderPage />
       </MemoryRouter>
     );
 
-    const repair = screen.getAllByText("Naprawa")[0];
-    fireEvent.click(repair);
+    const order = screen.getAllByText("Naprawa")[0];
+    fireEvent.click(order);
 
-    const repairPanels = screen.getByLabelText("LICZBA ELEMENTÓW*");
-    expect(repairPanels).toBeInTheDocument();
+    const orderPanels = screen.getByLabelText("LICZBA ELEMENTÓW*");
+    expect(orderPanels).toBeInTheDocument();
   });
 
-  it(`Should render a tooltip for panels amount select when "Naprawa" repair type is selected`, () => {
+  it(`Should render a tooltip for panels amount select when "Naprawa" order type is selected`, () => {
     render(
       <MemoryRouter initialEntries={["/nowa-naprawa"]}>
         <NewOrderPage />
       </MemoryRouter>
     );
 
-    const repair = screen.getAllByText("Naprawa")[0];
-    fireEvent.click(repair);
+    const order = screen.getAllByText("Naprawa")[0];
+    fireEvent.click(order);
 
-    const repairTooltip = screen.getByText(
+    const orderTooltip = screen.getByText(
       "Podaj ilość elementów, które wymagają naprawy. Przy szacunkowej kalkulacji uszkodzone elementy liczymy jako wymagające wymiany"
     );
-    expect(repairTooltip).toBeInTheDocument();
+    expect(orderTooltip).toBeInTheDocument();
   });
 
-  it(`Should render a select for choosing amount of panels when "Lakierowanie" repair type is selected`, () => {
+  it(`Should render a select for choosing amount of panels when "Lakierowanie" order type is selected`, () => {
     render(
       <MemoryRouter initialEntries={["/nowa-naprawa"]}>
         <NewOrderPage />
@@ -117,7 +117,7 @@ describe("NewOrderPage", () => {
     expect(paintingPanels).toBeInTheDocument();
   });
 
-  it(`Should render a tooltip for panels amount select when "Lakierowanie" repair type is selected`, () => {
+  it(`Should render a tooltip for panels amount select when "Lakierowanie" order type is selected`, () => {
     render(
       <MemoryRouter initialEntries={["/nowa-naprawa"]}>
         <NewOrderPage />
@@ -133,7 +133,7 @@ describe("NewOrderPage", () => {
     expect(paintingTooltip).toBeInTheDocument();
   });
 
-  it(`Should render a select for choosing correction type when "Detailing" repair type is selected`, () => {
+  it(`Should render a select for choosing correction type when "Detailing" order type is selected`, () => {
     render(
       <MemoryRouter initialEntries={["/nowa-naprawa"]}>
         <NewOrderPage />
@@ -312,15 +312,15 @@ describe("NewOrderPage", () => {
     expect(paintTooltip).toBeInTheDocument();
   });
 
-  it(`Should render set of radio buttons for choosing repair type (contact)`, () => {
+  it(`Should render set of radio buttons for choosing order type (contact)`, () => {
     render(
       <MemoryRouter initialEntries={["/nowa-naprawa"]}>
         <NewOrderPage />
       </MemoryRouter>
     );
 
-    const contactRepairType = screen.getAllByText("USŁUGA*")[1];
-    expect(contactRepairType).toBeInTheDocument();
+    const contactOrderType = screen.getAllByText("USŁUGA*")[1];
+    expect(contactOrderType).toBeInTheDocument();
   });
 
   it(`Should render a textarea for order details`, () => {

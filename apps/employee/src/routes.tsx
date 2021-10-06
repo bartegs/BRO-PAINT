@@ -1,14 +1,14 @@
 import * as React from "react";
 import { Route } from "react-router-dom";
 
-import { NewRepairs, RepairManagementPage, LoginPage } from "./react/pages";
+import { NewOrders, OrderManagementPage, LoginPage } from "./react/pages";
 
 const Error = () => <div>Not found</div>;
 
 const routes = [
   { id: 0, route: "/zaloguj-sie", component: LoginPage },
-  { id: 1, route: "/zarzadzanie-zleceniami", component: RepairManagementPage },
-  { id: 2, route: "/", component: NewRepairs },
+  { id: 1, route: "/zarzadzanie-zleceniami", component: OrderManagementPage },
+  { id: 2, route: "/", component: NewOrders },
   { id: 3, route: "*", component: Error },
 ];
 

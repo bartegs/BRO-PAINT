@@ -38,7 +38,7 @@ const stages: Stage[] = [
   },
 ];
 
-export function RepairManagementPage(): JSX.Element {
+export function OrderManagementPage(): JSX.Element {
   return (
     <>
       <Navbar />

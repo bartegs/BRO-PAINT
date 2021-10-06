@@ -1,6 +1,7 @@
 import { screen, render } from "@testing-library/react";
 import * as React from "react";
 import { HomePage } from "./HomePage";
+import { formTitle } from "../../components/forms/CheckStatusForm";
 
 // walkaround for a useEffect console warning
 // eslint-disable-next-line no-console
@@ -25,7 +26,7 @@ describe("HomePage", () => {
       </div>
     );
 
-    const form = screen.getByText("Sprawdź status naprawy");
+    const form = screen.getByText(formTitle);
     expect(form).toBeInTheDocument();
   });
 

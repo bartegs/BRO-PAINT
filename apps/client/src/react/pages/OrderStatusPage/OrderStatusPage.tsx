@@ -19,11 +19,11 @@ export type OrderMainStages = OrderMainStage[];
 
 interface OrderStatus {
   id: string;
-  repairStage: OrderMainStageId;
+  orderStage: OrderMainStageId;
 }
 
 // this should be app state fetched from db
-export const serviceMainStages: OrderMainStages = [
+export const orderMainStages: OrderMainStages = [
   {
     id: 0,
     color: "black-light",
@@ -59,8 +59,8 @@ export const serviceMainStages: OrderMainStages = [
   },
 ];
 
-function handleFormColoring(repairStage: number, stages: OrderMainStages) {
-  return stages.find(({ id }) => id === repairStage)?.color || "black-light";
+function handleFormColoring(orderStage: number, stages: OrderMainStages) {
+  return stages.find(({ id }) => id === orderStage)?.color || "black-light";
 }
 
 function isNotObjectEmpty(object: {}): boolean {
@@ -68,22 +68,22 @@ function isNotObjectEmpty(object: {}): boolean {
 }
 
 export function OrderStatusPage(): JSX.Element {
-  const { repair: repairData } = useContext(AppContext);
+  const { order: orderData } = useContext(AppContext);
 
-  function getRepairData(): OrderStatus | undefined {
-    return isNotObjectEmpty(repairData)
+  function getOrderData(): OrderStatus | undefined {
+    return isNotObjectEmpty(orderData)
       ? {
-          id: repairData._id,
-          repairStage: repairData?.repairDetails.stage.main.id,
+          id: orderData._id,
+          orderStage: orderData?.orderDetails.stage.main.id,
         }
       : undefined;
   }
 
-  const [repair, setRepair] = React.useState<OrderStatus>(getRepairData());
-  const { repairStage } = repair || {};
-  const formElementColor = handleFormColoring(repairStage, serviceMainStages);
+  const [order, setOrder] = React.useState<OrderStatus>(getOrderData());
+  const { orderStage } = order || {};
+  const formElementColor = handleFormColoring(orderStage, orderMainStages);
 
-  useEffect(() => setRepair(getRepairData()), [repairData]);
+  useEffect(() => setOrder(getOrderData()), [orderData]);
 
   return (
     <div className="container order-status-page">
@@ -93,10 +93,10 @@ export function OrderStatusPage(): JSX.Element {
           inputBorderColor={formElementColor}
           buttonColor={formElementColor}
           headingColor={formElementColor}
-          inputInitialValue={isNotObjectEmpty(repairData) && repairData._id}
+          inputInitialValue={isNotObjectEmpty(orderData) && orderData._id}
         />
       </section>
-      <Axis orderStage={repairStage} stages={serviceMainStages} />
+      <Axis orderStage={orderStage} stages={orderMainStages} />
     </div>
   );
 }

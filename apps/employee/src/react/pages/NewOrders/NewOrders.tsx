@@ -10,7 +10,7 @@ export interface Service {
   title: string;
 }
 
-export function NewRepairs() {
+export function NewOrders() {
   const stages: Service[] = [
     {
       id: 0,

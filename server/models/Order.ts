@@ -1,9 +1,9 @@
 import * as mongoose from "mongoose";
-import { awaitingRepairSchema } from "./AwaitingRepair";
+import { awaitingOrderSchema } from "./AwaitingOrder";
 
-const RepairSchema = new mongoose.Schema({
-  repair: awaitingRepairSchema,
-  repairDetails: {
+const OrderSchema = new mongoose.Schema({
+  order: awaitingOrderSchema,
+  orderDetails: {
     repairer: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Employee",
@@ -30,4 +30,4 @@ const RepairSchema = new mongoose.Schema({
 });
 
 // model
-export default mongoose.model("Repair", RepairSchema);
+export default mongoose.model("Order", OrderSchema);

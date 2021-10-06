@@ -11,21 +11,21 @@ interface OwnProps {
   closeMenu: () => void;
 }
 
+export const menuItems = [
+  { id: 0, text: "Strona główna", href: "/" },
+  { id: 1, text: "Nowe zlecenie", href: "/nowe-zlecenie" },
+  { id: 2, text: "Status zlecenia", href: "/status-zlecenia" },
+  { id: 3, text: "O nas", href: "/o-nas" },
+  { id: 4, text: "Galeria", href: "/galeria" },
+  { id: 5, text: "Kontakt", href: "/kontakt" },
+];
+
 export function NavbarMenu({
   isMenuOpen,
   handleMenuKeyboard,
   closeMenu,
 }: OwnProps): JSX.Element {
   const isEmployee = isGivenLocation("pracownik");
-
-  const menuItems = [
-    { id: 0, text: "Strona główna", href: "/" },
-    { id: 1, text: "Zleć naprawę", href: "/nowa-naprawa" },
-    { id: 2, text: "Stan naprawy", href: "/stan-naprawy" },
-    { id: 3, text: "O nas", href: "/o-nas" },
-    { id: 4, text: "Galeria", href: "/galeria" },
-    { id: 5, text: "Kontakt", href: "/kontakt" },
-  ];
 
   return (
     <ul

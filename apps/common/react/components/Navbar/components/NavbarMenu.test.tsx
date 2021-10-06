@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import * as React from "react";
 import { MemoryRouter } from "react-router-dom";
-import { NavbarMenu } from "./NavbarMenu";
+import { menuItems, NavbarMenu } from "./NavbarMenu";
 
 describe("NavbarMenu", () => {
   // props mock
@@ -80,7 +80,7 @@ describe("NavbarMenu", () => {
     expect(menu).toBeInTheDocument();
   });
 
-  it(`should have the following menu options: Strona główna, Zleć naprawę, Stan naprawy, O nas, Galeria, Kontakt, Pracownik`, () => {
+  it(`should have the following menu options: Strona główna, Nowe zlecenie, Stan zlecenia, O nas, Galeria, Kontakt, Pracownik`, () => {
     render(
       <MemoryRouter initialEntries={["/"]}>
         <NavbarMenu
@@ -91,20 +91,10 @@ describe("NavbarMenu", () => {
       </MemoryRouter>
     );
 
-    const HomePage = screen.getByText("Strona główna");
-    const NewRepairPage = screen.getByText("Zleć naprawę");
-    const RepairStatusPage = screen.getByText("Stan naprawy");
-    const AboutUsPage = screen.getByText("O nas");
-    const GalleryPage = screen.getByText("Galeria");
-    const ContactPage = screen.getByText("Kontakt");
-    const Employee = screen.getByText("Pracownik");
+    menuItems.forEach(({ text }) => {
+      const item = screen.getByText(text);
 
-    expect(HomePage).toBeInTheDocument();
-    expect(NewRepairPage).toBeInTheDocument();
-    expect(RepairStatusPage).toBeInTheDocument();
-    expect(AboutUsPage).toBeInTheDocument();
-    expect(GalleryPage).toBeInTheDocument();
-    expect(ContactPage).toBeInTheDocument();
-    expect(Employee).toBeInTheDocument();
+      expect(item).toBeInTheDocument();
+    });
   });
 });

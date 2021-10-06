@@ -1,29 +1,29 @@
 import { Router } from "express";
-import AwaitingRepairsController from "../controllers/awaitingRepairs";
+import AwaitingOrdersController from "../controllers/awaitingOrders";
 import checkAuthorization from "../middlewares/checkAuthorization";
 
 const router = Router();
 
-router.post("/", AwaitingRepairsController.add_single);
+router.post("/", AwaitingOrdersController.add_single);
 
-router.get("/", checkAuthorization, AwaitingRepairsController.get_all);
+router.get("/", checkAuthorization, AwaitingOrdersController.get_all);
 
 router.get(
   "/:awaitingOrderId",
   checkAuthorization,
-  AwaitingRepairsController.get_single
+  AwaitingOrdersController.get_single
 );
 
 router.put(
   "/:awaitingOrderId",
   checkAuthorization,
-  AwaitingRepairsController.modify_single
+  AwaitingOrdersController.modify_single
 );
 
 router.delete(
   "/:awaitingOrderId",
   checkAuthorization,
-  AwaitingRepairsController.delete_single
+  AwaitingOrdersController.delete_single
 );
 
 export { router };

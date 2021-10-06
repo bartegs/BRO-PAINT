@@ -1,10 +1,10 @@
 import { Request, Response } from "express";
-import AwaitingRepair from "../models/AwaitingRepair";
+import AwaitingOrder from "../models/AwaitingOrder";
 import Service from "../models/Service";
 
-const AwaitingRepairsController = {
+const AwaitingOrdersController = {
   get_all: (req: Request, res: Response) => {
-    AwaitingRepair.find({})
+    AwaitingOrder.find({})
       .then((result: any) => {
         res.status(200).send(result);
       })
@@ -15,7 +15,7 @@ const AwaitingRepairsController = {
 
   get_single: (req: Request, res: Response) => {
     const id = req.params.awaitingOrderId;
-    AwaitingRepair.findById(id)
+    AwaitingOrder.findById(id)
       .then((result: any) => {
         res.status(200).send(result);
       })
@@ -28,13 +28,13 @@ const AwaitingRepairsController = {
 
   add_single: (req: Request, res: Response) => {
     const { customerInfo, carInfo, orderInfo } = req.body;
-    const { repairType: repairName } = orderInfo;
+    const { serviceName } = orderInfo;
 
-    Service.findOne({ name: repairName })
-      .then((repairType: any) => {
-        if (repairType) {
-          const repairTypeId = repairType.id;
-          const awaitingRepair = new AwaitingRepair({
+    Service.findOne({ name: serviceName })
+      .then((orderType: any) => {
+        if (orderType) {
+          const orderTypeId = orderType.id;
+          const awaitingOrder = new AwaitingOrder({
             customerInfo: {
               names: customerInfo.names,
               email: customerInfo.email,
@@ -50,12 +50,12 @@ const AwaitingRepairsController = {
             },
 
             orderInfo: {
-              service: repairTypeId,
+              service: orderTypeId,
               comment: orderInfo.comment,
             },
           });
 
-          awaitingRepair
+          awaitingOrder
             .save()
             .then((result) => {
               res.status(201).json({
@@ -75,7 +75,7 @@ const AwaitingRepairsController = {
     const id = req.params.awaitingOrderId;
     const { customerInfo, carInfo, orderInfo } = req.body;
 
-    AwaitingRepair.findByIdAndUpdate(
+    AwaitingOrder.findByIdAndUpdate(
       id,
       {
         customerInfo: {
@@ -93,7 +93,7 @@ const AwaitingRepairsController = {
         },
 
         orderInfo: {
-          serviceType: orderInfo.serviceType,
+          serviceType: orderInfo.serviceName,
           comments: orderInfo.comments,
         },
       },
@@ -115,7 +115,7 @@ const AwaitingRepairsController = {
   delete_single: (req: Request, res: Response) => {
     const id = req.params.awaitingOrderId;
 
-    AwaitingRepair.findByIdAndRemove(id)
+    AwaitingOrder.findByIdAndRemove(id)
       .then(() => {
         res.status(200).json({ message: "Usunięto oczekujące zlecenie" });
       })
@@ -125,4 +125,4 @@ const AwaitingRepairsController = {
   },
 };
 
-export default AwaitingRepairsController;
+export default AwaitingOrdersController;

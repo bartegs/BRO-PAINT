@@ -8,13 +8,13 @@ module.exports = merge(common, {
   devtool: "source-map",
 
   devServer: {
-    contentBase: path.join(__dirname, "dist/apps/client/"),
+    contentBase: path.join(__dirname, "dist/apps/employee/"),
     historyApiFallback: true,
     writeToDisk: true,
     compress: true,
     open: true,
     port: 9000,
-    // openPage: 'pracownik',
+    openPage: "pracownik",
   },
 
   plugins: [new webpack.HotModuleReplacementPlugin()],
