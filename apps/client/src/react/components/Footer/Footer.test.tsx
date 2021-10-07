@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import * as React from "react";
 import { MemoryRouter } from "react-router-dom";
-import { Footer } from ".";
+import { Footer } from "./Footer";
 
 describe("Footer", () => {
   it(`should render correctly to the page`, () => {

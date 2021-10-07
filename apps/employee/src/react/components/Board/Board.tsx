@@ -11,8 +11,8 @@ export interface TaskType {
   carModel: string;
   clientName: string;
   licencePlate: string;
-  repairMainStage?: 0 | 1 | 2 | 3 | 4;
-  repairSubStage?: number;
+  orderMainStage?: 0 | 1 | 2 | 3 | 4;
+  orderSubStage?: number;
 }
 
 export type TasksType = { [key: number]: TaskType[] };
@@ -27,8 +27,8 @@ const data: TasksType = {
       carModel: "Fiat 126p",
       clientName: "Pekinczyk Bartka",
       licencePlate: "NLI2137",
-      repairMainStage: 0, // ??? for colums
-      repairSubStage: 3, // ?? for labels
+      orderMainStage: 0, // ??? for colums
+      orderSubStage: 3, // ?? for labels
     },
     {
       id: "ec328808998",
@@ -36,8 +36,8 @@ const data: TasksType = {
       carModel: "Fiat 000p",
       clientName: "Kot Bartka",
       licencePlate: "NLI0000",
-      repairMainStage: 0, // ??? for colums
-      repairSubStage: 3, // ?? for labels
+      orderMainStage: 0, // ??? for colums
+      orderSubStage: 3, // ?? for labels
     },
   ],
   1: [
@@ -47,8 +47,8 @@ const data: TasksType = {
       carModel: "Fiat 126p",
       clientName: "Pekinczyk Bartka",
       licencePlate: "NLI2137",
-      repairMainStage: 1, // ??? for colums
-      repairSubStage: 3, // ?? for labels
+      orderMainStage: 1, // ??? for colums
+      orderSubStage: 3, // ?? for labels
     },
     {
       id: "ec324552555",
@@ -56,8 +56,8 @@ const data: TasksType = {
       carModel: "Audi Bartka",
       clientName: "Kot Barka",
       licencePlate: "NLI0000",
-      repairMainStage: 1,
-      repairSubStage: 4,
+      orderMainStage: 1,
+      orderSubStage: 4,
     },
   ],
   2: [
@@ -67,8 +67,8 @@ const data: TasksType = {
       carModel: "Fiat Bartka",
       clientName: "Testowy Test",
       licencePlate: "NLI1111",
-      repairMainStage: 2,
-      repairSubStage: 1,
+      orderMainStage: 2,
+      orderSubStage: 1,
     },
   ],
   3: [
@@ -78,8 +78,8 @@ const data: TasksType = {
       carModel: "Syrena Bartka",
       clientName: "Fifi Kowalski",
       licencePlate: "NLI1111",
-      repairMainStage: 2,
-      repairSubStage: 1,
+      orderMainStage: 2,
+      orderSubStage: 1,
     },
   ],
   4: [
@@ -89,8 +89,8 @@ const data: TasksType = {
       carModel: "Nowe Audi Bartka",
       clientName: "Kasia Kowalska",
       licencePlate: "NLI1111",
-      repairMainStage: 2,
-      repairSubStage: 1,
+      orderMainStage: 2,
+      orderSubStage: 1,
     },
   ],
 };
@@ -114,11 +114,11 @@ export function Board({ stages }: OwnProps): JSX.Element {
     const { droppableId: columnIdTo, index: positionInTargetColum } =
       destination;
     const parsedDraggableTaskId = Number(draggableTaskId);
-    const parsedColumIdFrom = Number(columnIdFrom);
-    const parsedColumIdTo = Number(columnIdTo);
+    const parsedColumnIdFrom = Number(columnIdFrom);
+    const parsedColumnIdTo = Number(columnIdTo);
 
-    const tasksWithMatchingStageFrom = tasksCopy[parsedColumIdFrom];
-    const tasksWithMatchingStageTo = tasksCopy[parsedColumIdTo];
+    const tasksWithMatchingStageFrom = tasksCopy[parsedColumnIdFrom];
+    const tasksWithMatchingStageTo = tasksCopy[parsedColumnIdTo];
 
     const draggingTaskIndex = tasksWithMatchingStageFrom.findIndex(
       ({ taskId }) => taskId === parsedDraggableTaskId
@@ -137,8 +137,8 @@ export function Board({ stages }: OwnProps): JSX.Element {
 
     setTasks((prevState) => ({
       ...prevState,
-      [parsedColumIdFrom]: tasksWithMatchingStageFrom,
-      [parsedColumIdTo]: tasksWithMatchingStageTo,
+      [parsedColumnIdFrom]: tasksWithMatchingStageFrom,
+      [parsedColumnIdTo]: tasksWithMatchingStageTo,
     }));
   }
 

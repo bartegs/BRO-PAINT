@@ -1,8 +1,6 @@
 import * as React from "react";
 
-import { Card } from "./components/Card/Card";
-import { CardEmail } from "./components/Card/variants/CardEmail";
-import { Map } from "./components/Map";
+import { Card, CardEmail, Map } from "./components";
 
 export function ContactPage(): JSX.Element {
   return (

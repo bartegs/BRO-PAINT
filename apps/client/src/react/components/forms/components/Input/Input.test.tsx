@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import * as React from "react";
-import { Input } from ".";
+import { Input } from "./Input";
 
 // Empty component wrapping Input component that is being tested
 // The purpose of this is to test useState changes

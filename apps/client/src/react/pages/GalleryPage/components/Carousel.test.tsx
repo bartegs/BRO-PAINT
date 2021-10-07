@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import * as React from "react";
 
-import { Carousel } from ".";
+import { Carousel } from "./Carousel";
 
 describe("Carousel", () => {
   let finishedPhotos = true;

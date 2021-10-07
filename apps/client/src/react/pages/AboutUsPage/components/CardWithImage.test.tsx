@@ -1,6 +1,6 @@
 import { screen, render } from "@testing-library/react";
 import * as React from "react";
-import { CardWithImage } from ".";
+import { CardWithImage } from "./CardWithImage";
 import { detailing } from "../assets";
 
 const data = {

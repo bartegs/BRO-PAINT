@@ -11,6 +11,10 @@
   width: 108px;
   height: 43px;
 
+  &--stretchable {
+    width: 100%;
+  }
+
   &--secondary {
     background: $white;
     color: $black-light;

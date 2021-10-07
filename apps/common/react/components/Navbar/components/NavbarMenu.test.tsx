@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import * as React from "react";
 import { MemoryRouter } from "react-router-dom";
-import { NavbarMenu } from ".";
+import { NavbarMenu } from "./NavbarMenu";
 
 describe("NavbarMenu", () => {
   // props mock
@@ -80,7 +80,7 @@ describe("NavbarMenu", () => {
     expect(menu).toBeInTheDocument();
   });
 
-  it(`should have the following menu options: Strona główna, Zleć naprawę, Stan naprawy, O nas, Galeria, Kontakt, Pracownik`, () => {
+  it(`should have the following menu options: Strona główna, Nowe zlecenie, Stan zlecenia, O nas, Galeria, Kontakt, Pracownik`, () => {
     render(
       <MemoryRouter initialEntries={["/"]}>
         <NavbarMenu
@@ -92,8 +92,8 @@ describe("NavbarMenu", () => {
     );
 
     const HomePage = screen.getByText("Strona główna");
-    const NewRepairPage = screen.getByText("Zleć naprawę");
-    const RepairStatusPage = screen.getByText("Stan naprawy");
+    const NewRepairPage = screen.getByText("Nowe zlecenie");
+    const RepairStatusPage = screen.getByText("Status zlecenia");
     const AboutUsPage = screen.getByText("O nas");
     const GalleryPage = screen.getByText("Galeria");
     const ContactPage = screen.getByText("Kontakt");

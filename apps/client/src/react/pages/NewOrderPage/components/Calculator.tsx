@@ -1,0 +1,243 @@
+import * as React from "react";
+import useWindowWidth from "../../../hooks/useWindowWidth";
+
+import { Color } from "../../../../../../common/utils/types";
+import { CarSizeType, CarIconType } from "../../../components/icons/CarIcon";
+
+import {
+  Radio,
+  Select,
+  RadioCarSize,
+} from "../../../components/forms/components";
+import { Button } from "../../../../../../common/react/components";
+import { CalculatorCard } from "./CalculatorCard";
+
+interface CalculatorProps {
+  color: Color;
+  serviceName: string;
+  setServiceName: (arg: string) => void;
+  year: string;
+  make: string;
+  carSize: string;
+  panels: string;
+  paintCorrection: string;
+  result: string;
+  setYear: (arg: string) => void;
+  setMake: (arg: string) => void;
+  setCarSize: (arg: string) => void;
+  setPanels?: (arg: string) => void;
+  setPaintCorrection?: (arg: string) => void;
+  setResult: (arg: string) => void;
+}
+
+const Calculator = React.forwardRef<HTMLInputElement, CalculatorProps>(
+  (
+    {
+      color,
+      serviceName,
+      year,
+      make,
+      carSize,
+      panels,
+      paintCorrection,
+      result,
+      setServiceName,
+      setYear,
+      setMake,
+      setCarSize,
+      setPanels,
+      setPaintCorrection,
+      setResult,
+    }: CalculatorProps,
+    ref
+  ) => {
+    const { width } = useWindowWidth();
+
+    const [isCardVisible, setisCardVisible] = React.useState(false);
+
+    function handleCalculatorReset() {
+      setServiceName("Naprawa");
+      setYear("");
+      setMake("");
+      setCarSize("Małe");
+      setPanels("");
+      setPaintCorrection("");
+      setResult("");
+      setisCardVisible(false);
+    }
+
+    function showCalculatorCard() {
+      setisCardVisible((prevIsCardVisible) => !prevIsCardVisible);
+    }
+
+    function calculate(e: React.FormEvent) {
+      e.preventDefault();
+      showCalculatorCard();
+      setResult("2137");
+    }
+
+    const paintCorrectionsData = [
+      { id: 0, value: "", text: "Wybierz rodzaj korekty lakieru" },
+      { id: 1, value: "3in1", text: "Korekta 3w1" },
+      { id: 2, value: "3in1ceramic", text: "Korekta 3w1 + ceramika" },
+      { id: 3, value: "3stage", text: "Korekta 3 etapowa" },
+      { id: 4, value: "3stage+ceramic", text: "Korekta 3 etapowa + ceramika" },
+    ];
+
+    const yearsData = [
+      { id: 0, value: "", text: "Wybierz rocznik auta" },
+      { id: 1, value: "1999", text: "1999" },
+      { id: 2, value: "2000", text: "2000" },
+      { id: 3, value: "2001", text: "2001" },
+      { id: 4, value: "2002", text: "2002" },
+    ];
+
+    const makesData = [
+      { id: 0, value: "", text: "Wybierz markę auta" },
+      { id: 1, value: "audi", text: "Audi" },
+      { id: 2, value: "bmw", text: "BMW" },
+      { id: 3, value: "mercedes", text: "Mercedes" },
+      { id: 4, value: "volvo", text: "Volvo" },
+    ];
+
+    const panelsData = [
+      { id: 0, value: "", text: "Wybierz liczbę elementów" },
+      { id: 1, value: 1, text: "1" },
+      { id: 2, value: 2, text: "2" },
+      { id: 3, value: 3, text: "3" },
+      { id: 4, value: 4, text: "4" },
+    ];
+
+    const servicesData = [
+      { id: "Naprawa ", value: "Naprawa" },
+      { id: "Lakierowanie ", value: "Lakierowanie", additionalClasses: "my-2" },
+      { id: "Detailing ", value: "Detailing" },
+    ];
+
+    interface CarSizesDataType {
+      id: string;
+      value: string;
+      icon: CarIconType;
+      iconSize: CarSizeType;
+    }
+
+    const carSizesData: CarSizesDataType[] = [
+      { id: "Małe ", value: "Małe", icon: "car-small", iconSize: "car-sm" },
+      {
+        id: "Średnie ",
+        value: "Średnie",
+        icon: "car-medium",
+        iconSize: "car-md",
+      },
+      { id: "Duże ", value: "Duże", icon: "car-big", iconSize: "car-lg" },
+    ];
+
+    return (
+      <section className="new-order-page__section">
+        <h2 className="new-order-page__heading">
+          Wylicz szacunkowy koszt naprawy {width >= 768 && <br />}
+          za pomocą naszego kalkulatora
+        </h2>
+        <form className="new-order-page__form" onSubmit={calculate}>
+          <Radio
+            name="orderType"
+            id="orderType"
+            labelText="USŁUGA*"
+            value={serviceName}
+            setState={setServiceName}
+            radioData={servicesData}
+            color={color}
+          />
+          {serviceName === "Detailing" && (
+            <Select
+              hasTooltip
+              tooltipText="Wybierz zakres korekty. Wykonujemy wyłącznie korekty 3-etapowe, 
+                ponieważ one przynoszą najlepszy efekt co jest naszym priorytetem. 
+                Dajemy jednak możliwość wyboru, czy zabezpieczać lakier powłoką ceramiczną."
+              labelText="ZAKRES KOREKTY*"
+              color={color}
+              selectName="paintCorrection"
+              id="paintCorrection"
+              value={paintCorrection}
+              setState={setPaintCorrection}
+              required
+              optionsData={paintCorrectionsData}
+            />
+          )}
+          <Select
+            labelText="ROCZNIK*"
+            color={color}
+            selectName="year"
+            id="year"
+            value={year}
+            setState={setYear}
+            required
+            optionsData={yearsData}
+          />
+          <Select
+            labelText="MARKA*"
+            color={color}
+            selectName="make"
+            id="make"
+            value={make}
+            setState={setMake}
+            required
+            optionsData={makesData}
+          />
+          <RadioCarSize
+            name="carSize"
+            id="carSize"
+            labelText="ROZMIAR AUTA*"
+            value={carSize}
+            setState={setCarSize}
+            color={color}
+            radioData={carSizesData}
+          />
+          {serviceName !== "Detailing" && (
+            <Select
+              labelText="LICZBA ELEMENTÓW*"
+              color={color}
+              selectName="panels"
+              id="panels"
+              value={panels}
+              setState={setPanels}
+              required
+              optionsData={panelsData}
+              hasTooltip
+              tooltipText={
+                serviceName === "Naprawa"
+                  ? "Podaj ilość elementów, które wymagają naprawy. Przy szacunkowej kalkulacji uszkodzone elementy liczymy jako wymagające wymiany"
+                  : "Podaj ilość elementów, które wymagają lakierowania. Możesz też wybrac lakierowanie całego auta w dwóch wariantach - pomalowanie auta w ten samo kolor, lub pomalowanie auta na zupełnie nowy, wybrany przez Ciebie kolor."
+              }
+            />
+          )}
+          <div className="new-order-page__buttons mt-4">
+            <Button
+              text="Wylicz"
+              color={color}
+              type="submit"
+              variant="primary"
+              additionalClasses="button--centered mr-3 w-100"
+              hasFixedWidth={false}
+            />
+            <Button
+              text="Resetuj"
+              color={color}
+              type="reset"
+              variant="secondary"
+              additionalClasses="button--centered w-100"
+              onClick={handleCalculatorReset}
+              hasFixedWidth={false}
+            />
+          </div>
+        </form>
+        {isCardVisible && (
+          <CalculatorCard ref={ref} color={color} result={result} />
+        )}
+      </section>
+    );
+  }
+);
+
+export { Calculator };
+export default Calculator;

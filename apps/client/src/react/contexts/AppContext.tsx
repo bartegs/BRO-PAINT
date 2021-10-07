@@ -1,8 +1,8 @@
 import * as React from "react";
 
 interface AppContextProps {
-  repair: {};
-  setRepair: React.Dispatch<React.SetStateAction<{}>>;
+  order: {};
+  setOrder: React.Dispatch<React.SetStateAction<{}>>;
 }
 export const AppContext = React.createContext<Partial<AppContextProps>>({});
 
@@ -11,10 +11,10 @@ interface OwnProps {
 }
 
 export default function AppContextProvider({ children }: OwnProps) {
-  const [repair, setRepair] = React.useState({});
+  const [order, setOrder] = React.useState({});
 
   return (
-    <AppContext.Provider value={{ repair, setRepair }}>
+    <AppContext.Provider value={{ order, setOrder }}>
       {children}
     </AppContext.Provider>
   );

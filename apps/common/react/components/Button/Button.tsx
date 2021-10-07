@@ -13,6 +13,7 @@ export interface ButtonProps {
   color: ButtonColor;
   isLoading?: boolean;
   isDisabled?: boolean;
+  hasFixedWidth?: boolean;
 }
 
 export function Button({
@@ -24,6 +25,7 @@ export function Button({
   color = "pink",
   isLoading = false,
   isDisabled = false,
+  hasFixedWidth = true,
 }: ButtonProps): JSX.Element {
   return (
     <button
@@ -32,7 +34,8 @@ export function Button({
         "button",
         `button--${variant}`,
         `button--${color}-${variant}`,
-        additionalClasses
+        additionalClasses,
+        { "button--stretchable": !hasFixedWidth }
       )}
       type={type}
       disabled={isDisabled}
