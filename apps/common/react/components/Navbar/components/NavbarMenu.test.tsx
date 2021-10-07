@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import * as React from "react";
 import { MemoryRouter } from "react-router-dom";
-import { menuItems, NavbarMenu } from "./NavbarMenu";
+import { NavbarMenu } from "./NavbarMenu";
 
 describe("NavbarMenu", () => {
   // props mock
@@ -91,10 +91,20 @@ describe("NavbarMenu", () => {
       </MemoryRouter>
     );
 
-    menuItems.forEach(({ text }) => {
-      const item = screen.getByText(text);
+    const HomePage = screen.getByText("Strona główna");
+    const NewRepairPage = screen.getByText("Nowe zlecenie");
+    const RepairStatusPage = screen.getByText("Status zlecenia");
+    const AboutUsPage = screen.getByText("O nas");
+    const GalleryPage = screen.getByText("Galeria");
+    const ContactPage = screen.getByText("Kontakt");
+    const Employee = screen.getByText("Pracownik");
 
-      expect(item).toBeInTheDocument();
-    });
+    expect(HomePage).toBeInTheDocument();
+    expect(NewRepairPage).toBeInTheDocument();
+    expect(RepairStatusPage).toBeInTheDocument();
+    expect(AboutUsPage).toBeInTheDocument();
+    expect(GalleryPage).toBeInTheDocument();
+    expect(ContactPage).toBeInTheDocument();
+    expect(Employee).toBeInTheDocument();
   });
 });

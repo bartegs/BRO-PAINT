@@ -218,6 +218,7 @@ const Calculator = React.forwardRef<HTMLInputElement, CalculatorProps>(
               type="submit"
               variant="primary"
               additionalClasses="button--centered mr-3 w-100"
+              hasFixedWidth={false}
             />
             <Button
               text="Resetuj"
@@ -226,6 +227,7 @@ const Calculator = React.forwardRef<HTMLInputElement, CalculatorProps>(
               variant="secondary"
               additionalClasses="button--centered w-100"
               onClick={handleCalculatorReset}
+              hasFixedWidth={false}
             />
           </div>
         </form>

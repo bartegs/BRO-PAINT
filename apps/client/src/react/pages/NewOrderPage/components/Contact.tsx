@@ -291,7 +291,8 @@ const Contact = React.forwardRef<HTMLInputElement, OwnProps>(
               color={color}
               type="submit"
               variant="primary"
-              additionalClasses="mr-3 w-100"
+              additionalClasses="mr-3"
+              hasFixedWidth={false}
             />
             <Button
               text="Resetuj"
@@ -299,7 +300,7 @@ const Contact = React.forwardRef<HTMLInputElement, OwnProps>(
               type="reset"
               variant="secondary"
               onClick={handleContactReset}
-              additionalClasses="w-100"
+              hasFixedWidth={false}
             />
           </div>
         </form>

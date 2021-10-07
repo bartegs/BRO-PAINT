@@ -1,5 +1,5 @@
 import * as React from "react";
-import { CheckStatusForm } from "../../components/forms/CheckStatusForm/CheckStatusForm";
+import { CheckStatusForm } from "../../components/forms/CheckStatusForm";
 
 export function HomePage(): JSX.Element {
   React.useEffect(() => {
