@@ -11,7 +11,7 @@ import {
   PrivacyPage,
 } from "./react/pages";
 
-const Error = () => <div>Not found</div>;
+const Error = () => <div>U mnie nie działa</div>;
 
 const routes = [
   { id: 0, route: "/nowe-zlecenie", component: NewOrderPage },

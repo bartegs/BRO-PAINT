@@ -18,7 +18,6 @@ const OrdersController = {
 
     Order.findById(id)
       .then((result: any) => {
-        // console.log(result);
         res.status(200).send(result);
       })
       .catch(() => {
