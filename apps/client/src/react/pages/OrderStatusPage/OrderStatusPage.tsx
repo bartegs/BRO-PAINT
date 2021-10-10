@@ -74,7 +74,7 @@ export function OrderStatusPage(): JSX.Element {
     return isNotObjectEmpty(orderData)
       ? {
           id: orderData._id,
-          orderStage: orderData?.orderDetails.stage.main.id,
+          orderStage: orderData?.orderDetails.stage.main,
         }
       : undefined;
   }

@@ -1,144 +1,142 @@
 import * as React from "react";
 
 import { DragDropContext, Droppable, DropResult } from "react-beautiful-dnd";
+import { useContext, useEffect } from "react";
 import { insertToArrayAt } from "../../../../../common/utils/functions";
-import { TaskCard } from "../TaskCard";
+import { OrderCard } from "../OrderCard";
 import type { Service, Stage } from "../../pages";
+import { AppContext } from "../../contexts/AppContext";
+import { SortedOrdersType } from "../../../../../../server/controllers/orders";
 
-export interface TaskType {
-  id: string;
-  taskId?: number;
-  carModel: string;
-  clientName: string;
-  licencePlate: string;
-  orderMainStage?: 0 | 1 | 2 | 3 | 4;
-  orderSubStage?: number;
-}
-
-export type TasksType = { [key: number]: TaskType[] };
-// tasks should be fetched in json
 // ??? sorted by backended by stages before fetching and send in separate object of arrays
 
-const data: TasksType = {
-  0: [
-    {
-      id: "ec323888997",
-      taskId: 1,
-      carModel: "Fiat 126p",
-      clientName: "Pekinczyk Bartka",
-      licencePlate: "NLI2137",
-      orderMainStage: 0, // ??? for colums
-      orderSubStage: 3, // ?? for labels
-    },
-    {
-      id: "ec328808998",
-      taskId: 2,
-      carModel: "Fiat 000p",
-      clientName: "Kot Bartka",
-      licencePlate: "NLI0000",
-      orderMainStage: 0, // ??? for colums
-      orderSubStage: 3, // ?? for labels
-    },
-  ],
-  1: [
-    {
-      id: "ec328888997",
-      taskId: 3,
-      carModel: "Fiat 126p",
-      clientName: "Pekinczyk Bartka",
-      licencePlate: "NLI2137",
-      orderMainStage: 1, // ??? for colums
-      orderSubStage: 3, // ?? for labels
-    },
-    {
-      id: "ec324552555",
-      taskId: 4,
-      carModel: "Audi Bartka",
-      clientName: "Kot Barka",
-      licencePlate: "NLI0000",
-      orderMainStage: 1,
-      orderSubStage: 4,
-    },
-  ],
-  2: [
-    {
-      id: "ec32814444444",
-      taskId: 5,
-      carModel: "Fiat Bartka",
-      clientName: "Testowy Test",
-      licencePlate: "NLI1111",
-      orderMainStage: 2,
-      orderSubStage: 1,
-    },
-  ],
-  3: [
-    {
-      id: "ec32844484444",
-      taskId: 6,
-      carModel: "Syrena Bartka",
-      clientName: "Fifi Kowalski",
-      licencePlate: "NLI1111",
-      orderMainStage: 2,
-      orderSubStage: 1,
-    },
-  ],
-  4: [
-    {
-      id: "ec32844444444",
-      taskId: 7,
-      carModel: "Nowe Audi Bartka",
-      clientName: "Kasia Kowalska",
-      licencePlate: "NLI1111",
-      orderMainStage: 2,
-      orderSubStage: 1,
-    },
-  ],
-};
+// const data: TasksType = {
+//   0: [
+//     {
+//       id: "ec323888997",
+//       orderNumber: 1,
+//       carModel: "Fiat 126p",
+//       clientName: "Pekinczyk Bartka",
+//       licencePlate: "NLI2137",
+//       orderMainStage: 0, // ??? for colums
+//       orderSubStage: 3, // ?? for labels
+//     },
+//     {
+//       id: "ec328808998",
+//       orderNumber: 2,
+//       carModel: "Fiat 000p",
+//       clientName: "Kot Bartka",
+//       licencePlate: "NLI0000",
+//       orderMainStage: 0, // ??? for colums
+//       orderSubStage: 3, // ?? for labels
+//     },
+//   ],
+//   1: [
+//     {
+//       id: "ec328888997",
+//       orderNumber: 3,
+//       carModel: "Fiat 126p",
+//       clientName: "Pekinczyk Bartka",
+//       licencePlate: "NLI2137",
+//       orderMainStage: 1, // ??? for colums
+//       orderSubStage: 3, // ?? for labels
+//     },
+//     {
+//       id: "ec324552555",
+//       orderNumber: 4,
+//       carModel: "Audi Bartka",
+//       clientName: "Kot Barka",
+//       licencePlate: "NLI0000",
+//       orderMainStage: 1,
+//       orderSubStage: 4,
+//     },
+//   ],
+//   2: [
+//     {
+//       id: "ec32814444444",
+//       orderNumber: 5,
+//       carModel: "Fiat Bartka",
+//       clientName: "Testowy Test",
+//       licencePlate: "NLI1111",
+//       orderMainStage: 2,
+//       orderSubStage: 1,
+//     },
+//   ],
+//   3: [
+//     {
+//       id: "ec32844484444",
+//       orderNumber: 6,
+//       carModel: "Syrena Bartka",
+//       clientName: "Fifi Kowalski",
+//       licencePlate: "NLI1111",
+//       orderMainStage: 2,
+//       orderSubStage: 1,
+//     },
+//   ],
+//   4: [
+//     {
+//       id: "ec32844444444",
+//       orderNumber: 7,
+//       carModel: "Nowe Audi Bartka",
+//       clientName: "Kasia Kowalska",
+//       licencePlate: "NLI1111",
+//       orderMainStage: 2,
+//       orderSubStage: 1,
+//     },
+//   ],
+// };
 
 type OwnProps = {
   stages: Service[] | Stage[];
 };
-
+//
 export function Board({ stages }: OwnProps): JSX.Element {
-  const [tasks, setTasks] = React.useState(data);
+  const data = useContext(AppContext);
+
+  const [orders, setOrders] = React.useState<SortedOrdersType>([]);
+
+  useEffect(() => {
+    setOrders(data);
+  }, [data]);
 
   function handleOnDragEnd(result: DropResult) {
     if (!result.destination) {
       return;
     }
 
-    const tasksCopy: TasksType = JSON.parse(JSON.stringify(tasks));
+    const ordersCopy: SortedOrdersType = JSON.parse(JSON.stringify(orders));
 
-    const { source, destination, draggableId: draggableTaskId } = result;
+    const { source, destination, draggableId: draggableOrderNumber } = result;
     const { droppableId: columnIdFrom } = source;
-    const { droppableId: columnIdTo, index: positionInTargetColum } =
+    const { droppableId: columnIdTo, index: positionInTargetColumn } =
       destination;
-    const parsedDraggableTaskId = Number(draggableTaskId);
+    const parsedDraggableOrderNumber = Number(draggableOrderNumber);
     const parsedColumnIdFrom = Number(columnIdFrom);
     const parsedColumnIdTo = Number(columnIdTo);
 
-    const tasksWithMatchingStageFrom = tasksCopy[parsedColumnIdFrom];
-    const tasksWithMatchingStageTo = tasksCopy[parsedColumnIdTo];
+    const ordersWithMatchingStageFrom = ordersCopy[parsedColumnIdFrom];
 
-    const draggingTaskIndex = tasksWithMatchingStageFrom.findIndex(
-      ({ taskId }) => taskId === parsedDraggableTaskId
+    const ordersWithMatchingStageTo = ordersCopy[parsedColumnIdTo];
+    const draggingOrderIndex = ordersWithMatchingStageFrom.findIndex(
+      ({ orderDetails }) =>
+        orderDetails.orderNumber === parsedDraggableOrderNumber
     );
 
-    const [splicedTask] = tasksWithMatchingStageFrom.splice(
-      draggingTaskIndex,
+    const [splicedOrder] = ordersWithMatchingStageFrom.splice(
+      draggingOrderIndex,
       1
     );
 
     insertToArrayAt(
-      tasksWithMatchingStageTo,
-      positionInTargetColum,
-      splicedTask
+      ordersWithMatchingStageTo,
+      positionInTargetColumn,
+      splicedOrder
     );
 
-    setTasks((prevState) => ({
+    setOrders((prevState) => ({
       ...prevState,
-      [parsedColumnIdFrom]: tasksWithMatchingStageFrom,
-      [parsedColumnIdTo]: tasksWithMatchingStageTo,
+      [parsedColumnIdFrom]: ordersWithMatchingStageFrom,
+      [parsedColumnIdTo]: ordersWithMatchingStageTo,
     }));
   }
 
@@ -154,20 +152,29 @@ export function Board({ stages }: OwnProps): JSX.Element {
                 ref={provided.innerRef}
               >
                 <div className="board__column-title">{title}</div>
-                {tasks[columnId].map(
-                  ({ id, taskId, carModel, clientName, licencePlate }, i) => (
-                    <TaskCard
-                      taskId={taskId}
-                      id={id}
-                      carModel={carModel}
-                      clientName={clientName}
+                {orders[columnId]?.map((order, index) => {
+                  const {
+                    customerInfo,
+                    carInfo,
+                    orderDetails,
+                    _id: id,
+                  } = order;
+                  const { names } = customerInfo;
+                  const { licencePlate, model, make } = carInfo;
+                  const { orderNumber } = orderDetails;
+                  return (
+                    <OrderCard
+                      orderNumber={orderNumber}
+                      carModel={model}
+                      names={names}
                       licencePlate={licencePlate}
-                      key={taskId}
-                      index={i}
+                      key={id}
+                      make={make}
+                      index={index}
                       stageColor={color}
                     />
-                  )
-                )}
+                  );
+                })}
                 {provided.placeholder}
               </div>
             )}

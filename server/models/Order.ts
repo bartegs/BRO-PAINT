@@ -1,33 +1,31 @@
 import * as mongoose from "mongoose";
-import { awaitingOrderSchema } from "./AwaitingOrder";
+import { awaitingOrderSchema, AwaitingOrderType } from "./AwaitingOrder";
 
-const OrderSchema = new mongoose.Schema({
+export type OrderType = AwaitingOrderType & {
+  _id: string;
+  orderDetails: {
+    orderNumber: number;
+    repairer: {};
+    stage: {
+      main: number;
+      sub: number;
+    };
+  };
+};
+
+const OrderSchema = new mongoose.Schema<OrderType>({
   order: awaitingOrderSchema,
   orderDetails: {
+    orderNumber: Number,
     repairer: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Employee",
     },
     stage: {
-      main: {
-        id: {
-          type: Number,
-        },
-        name: {
-          type: String,
-        },
-      },
-      sub: {
-        id: {
-          type: Number,
-        },
-        name: {
-          type: String,
-        },
-      },
+      main: Number,
+      sub: Number,
     },
   },
 });
 
-// model
 export default mongoose.model("Order", OrderSchema);

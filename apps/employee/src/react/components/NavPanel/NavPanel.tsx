@@ -5,7 +5,7 @@ import { Icon } from "../../../../../common/react/components";
 import { Menu } from "./components";
 
 export function NavPanel() {
-  const [isToggled, setIsToggled] = React.useState(false);
+  const [isToggled, setIsToggled] = React.useState(true);
 
   return (
     <nav className={classnames("board-page__nav-panel nav-panel")}>

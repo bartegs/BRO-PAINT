@@ -1,12 +1,29 @@
 import { Request, Response } from "express";
-import Order from "../models/Order";
-import Position from "../models/Position";
+import Order, { OrderType } from "../models/Order";
+
+export type SortedOrdersType = { [key: number]: OrderType[] };
 
 const OrdersController = {
   get_all: (req: Request, res: Response) => {
-    Position.find({})
-      .then((result: any) => {
-        res.status(200).send(result);
+    Order.find({})
+      .then((result: OrderType[]) => {
+        function getSortedOrdersByStage() {
+          const sortedData: SortedOrdersType = {
+            0: [],
+            1: [],
+            2: [],
+            3: [],
+            4: [],
+          };
+          result.forEach((item) => {
+            const stage = item.orderDetails.stage.main;
+            sortedData[stage].push(item);
+          });
+
+          return sortedData;
+        }
+
+        res.status(200).send(getSortedOrdersByStage());
       })
       .catch(() => {
         res.status(404).json({ message: "Nie znaleziono zleceń" });
@@ -17,7 +34,7 @@ const OrdersController = {
     const id = req.params.orderId;
 
     Order.findById(id)
-      .then((result: any) => {
+      .then((result: OrderType) => {
         res.status(200).send(result);
       })
       .catch(() => {
@@ -48,7 +65,7 @@ const OrdersController = {
 
       orderInfo: {
         serviceType: orderInfo.serviceType,
-        comments: orderInfo.comments,
+        comment: orderInfo.comment,
       },
 
       orderDetails: {
@@ -62,7 +79,7 @@ const OrdersController = {
 
     order
       .save()
-      .then((result) => {
+      .then((result: OrderType) => {
         res.status(201).json({
           message: "Zlecenie utworzono",
           info: result,

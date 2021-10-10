@@ -1,11 +1,11 @@
 import { Request, Response } from "express";
-import AwaitingOrder from "../models/AwaitingOrder";
+import AwaitingOrder, { AwaitingOrderType } from "../models/AwaitingOrder";
 import Service from "../models/Service";
 
 const AwaitingOrdersController = {
   get_all: (req: Request, res: Response) => {
     AwaitingOrder.find({})
-      .then((result: any) => {
+      .then((result: AwaitingOrderType[]) => {
         res.status(200).send(result);
       })
       .catch(() => {
@@ -16,7 +16,7 @@ const AwaitingOrdersController = {
   get_single: (req: Request, res: Response) => {
     const id = req.params.awaitingOrderId;
     AwaitingOrder.findById(id)
-      .then((result: any) => {
+      .then((result: AwaitingOrderType) => {
         res.status(200).send(result);
       })
       .catch(() => {
@@ -57,13 +57,13 @@ const AwaitingOrdersController = {
 
           awaitingOrder
             .save()
-            .then((result) => {
+            .then((result: AwaitingOrderType) => {
               res.status(201).json({
                 message: "Zlecenie przyjęte do oczekujących.",
                 info: result,
               });
             })
-            .catch((error) => res.status(500).json({ message: error }));
+            .catch((error: Error) => res.status(500).json({ message: error }));
         } else {
           throw Error("Zlecenie nieprzyjęte");
         }
@@ -79,27 +79,27 @@ const AwaitingOrdersController = {
       id,
       {
         customerInfo: {
-          firstName: customerInfo.firstName,
-          lastName: customerInfo.lastName,
+          names: customerInfo.names,
           email: customerInfo.email,
-          telephone: customerInfo.telephone,
+          phone: customerInfo.phone,
         },
 
         carInfo: {
           productionYear: carInfo.productionYear,
+          make: carInfo.make,
           model: carInfo.model,
-          licensePlate: carInfo.licensePlate,
+          licencePlate: carInfo.licencePlate,
           paintCode: carInfo.paintCode,
         },
 
         orderInfo: {
-          serviceType: orderInfo.serviceName,
-          comments: orderInfo.comments,
+          service: orderInfo.serviceName,
+          comment: orderInfo.comment,
         },
       },
       { new: true }
     )
-      .then((result: any) => {
+      .then((result: AwaitingOrderType) => {
         res.status(200).json({
           message: "Zmodyfikowano oczekujące zlecenie",
           info: result,

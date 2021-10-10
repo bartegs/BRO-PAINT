@@ -3,50 +3,55 @@ import { Draggable } from "react-beautiful-dnd";
 
 import { useLocation } from "react-router-dom";
 
-import type { TaskType } from "../Board";
 import { StageColor } from "../../../../../common/utils/types";
 
 import { Icon } from "../../../../../client/src/react/components/icons/Icon";
 import { Buttons } from "./components";
 
 interface OwnProps {
+  orderNumber: number;
+  make: string;
+  carModel: string;
+  names: string;
+  licencePlate: string;
   index: number;
   stageColor: StageColor;
 }
 
-type TaskCardType = TaskType & OwnProps;
-
-export function TaskCard({
-  taskId,
+export function OrderCard({
+  orderNumber,
+  make,
   carModel,
-  clientName,
+  names,
   licencePlate,
   index,
   stageColor,
-}: TaskCardType): JSX.Element {
+}: OwnProps): JSX.Element {
   const { pathname } = useLocation();
 
   return (
-    <Draggable draggableId={`${taskId}`} index={index}>
+    <Draggable draggableId={`${orderNumber}`} index={index}>
       {(provided) => (
         <div
-          className="board__task task-card"
+          className="board__order order-card"
           {...provided.draggableProps}
           {...provided.dragHandleProps}
           ref={provided.innerRef}
         >
-          <div className="task-card__heading">
-            <strong className="task-card__id">#{taskId}</strong>
-            <span className="task-card__label label">Kolor</span>
+          <div className="order-card__heading">
+            <strong className="order-card__id">#{orderNumber}</strong>
+            <span className="order-card__label label">Kolor</span>
           </div>
-          <div className="task-card__car">
+          <div className="order-card__car">
             <Icon icon="car" size="sm" />
-            <span className="ml-2 mr-1">{carModel}</span>
+            <span className="ml-2 mr-1">
+              {make} {carModel}
+            </span>
             <span>{licencePlate}</span>
           </div>
-          <div className="task-card__client">
+          <div className="order-card__client">
             <Icon icon="person" size="sm" />
-            <span className="ml-2">{clientName}</span>
+            <span className="ml-2">{names}</span>
           </div>
           {!pathname.includes("zarzadzanie-zleceniami") && (
             <Buttons color={stageColor} />

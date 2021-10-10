@@ -1,6 +1,25 @@
 import * as mongoose from "mongoose";
 
-export const awaitingOrderSchema = new mongoose.Schema({
+export interface AwaitingOrderType {
+  customerInfo: {
+    names: string;
+    email: string;
+    phone: string;
+  };
+  carInfo: {
+    productionYear: Date;
+    make: string;
+    model: string;
+    licencePlate: string;
+    paintCode: string;
+  };
+  orderInfo: {
+    service: string;
+    comment: string;
+  };
+}
+
+export const awaitingOrderSchema = new mongoose.Schema<AwaitingOrderType>({
   customerInfo: {
     names: {
       type: String,

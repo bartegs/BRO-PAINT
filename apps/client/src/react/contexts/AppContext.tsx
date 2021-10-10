@@ -1,7 +1,8 @@
 import * as React from "react";
+import { OrderType } from "../../../../../server/models/Order";
 
 interface AppContextProps {
-  order: {};
+  order: OrderType | {};
   setOrder: React.Dispatch<React.SetStateAction<{}>>;
 }
 export const AppContext = React.createContext<Partial<AppContextProps>>({});
