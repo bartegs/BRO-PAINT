@@ -89,6 +89,20 @@ const OrdersController = {
         res.status(500).json({ message: "Nie dodano - bład serwera" })
       );
   },
+
+  modify_single: (req: Request, res: Response) => {
+    const id = req.params.orderId;
+    const { orderDetails } = req.body;
+
+    Order.findByIdAndUpdate(id, { orderDetails }, { new: true })
+      .then((result: OrderType) => {
+        res.status(200).json({
+          message: "Zmodyfikowano zlecenie",
+          info: result,
+        });
+      })
+      .catch((e: Error) => res.status(500).send(e));
+  },
 };
 
 export default OrdersController;

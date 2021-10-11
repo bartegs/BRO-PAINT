@@ -6,7 +6,7 @@ import type { Color } from "../../../../../../common/utils/types";
 
 import { Button } from "../../../../../../common/react/components";
 import { Input } from "../components";
-import { AppContext } from "../../../contexts/AppContext";
+import { ClientContext } from "../../../contexts/ClientContext";
 
 interface OwnProps {
   additionalClasses?: string;
@@ -31,7 +31,7 @@ export function CheckStatusForm({
 }: OwnProps): JSX.Element {
   const [orderNumber, setOrderNumber] = React.useState(inputInitialValue || "");
   const [isLoading, setIsLoading] = React.useState(false);
-  const { setOrder } = React.useContext(AppContext);
+  const { setOrder } = React.useContext(ClientContext);
   const [hasError, setHasError] = React.useState(false);
   const history = useHistory();
 

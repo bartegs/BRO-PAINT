@@ -4,12 +4,10 @@ import { Color } from "../../../../../common/utils/types";
 
 import { CheckStatusForm } from "../../components/forms/CheckStatusForm";
 import { Axis } from "./components";
-import { AppContext } from "../../contexts/AppContext";
-
-type OrderMainStageId = 0 | 1 | 2 | 3 | 4;
+import { ClientContext } from "../../contexts/ClientContext";
 
 interface OrderMainStage {
-  id: OrderMainStageId;
+  id: number;
   title: string;
   description: string;
   color: Color;
@@ -19,10 +17,9 @@ export type OrderMainStages = OrderMainStage[];
 
 interface OrderStatus {
   id: string;
-  orderStage: OrderMainStageId;
+  orderStage: number;
 }
 
-// this should be app state fetched from db
 export const orderMainStages: OrderMainStages = [
   {
     id: 0,
@@ -68,15 +65,13 @@ function isNotObjectEmpty(object: {}): boolean {
 }
 
 export function OrderStatusPage(): JSX.Element {
-  const { order: orderData } = useContext(AppContext);
+  const { order: orderData } = useContext(ClientContext);
 
-  function getOrderData(): OrderStatus | undefined {
-    return isNotObjectEmpty(orderData)
-      ? {
-          id: orderData._id,
-          orderStage: orderData?.orderDetails.stage.main,
-        }
-      : undefined;
+  function getOrderData(): OrderStatus {
+    return {
+      id: orderData._id,
+      orderStage: orderData?.orderDetails.stage.main,
+    };
   }
 
   const [order, setOrder] = React.useState<OrderStatus>(getOrderData());

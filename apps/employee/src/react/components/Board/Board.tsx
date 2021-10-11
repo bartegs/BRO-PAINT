@@ -5,7 +5,7 @@ import { useContext, useEffect } from "react";
 import { insertToArrayAt } from "../../../../../common/utils/functions";
 import { OrderCard } from "../OrderCard";
 import type { Service, Stage } from "../../pages";
-import { AppContext } from "../../contexts/AppContext";
+import { EmployeeContext } from "../../contexts/EmployeeContext";
 import { SortedOrdersType } from "../../../../../../server/controllers/orders";
 
 // ??? sorted by backended by stages before fetching and send in separate object of arrays
@@ -89,9 +89,9 @@ import { SortedOrdersType } from "../../../../../../server/controllers/orders";
 type OwnProps = {
   stages: Service[] | Stage[];
 };
-//
+
 export function Board({ stages }: OwnProps): JSX.Element {
-  const data = useContext(AppContext);
+  const { orders: data } = useContext(EmployeeContext);
 
   const [orders, setOrders] = React.useState<SortedOrdersType>([]);
 
@@ -115,8 +115,8 @@ export function Board({ stages }: OwnProps): JSX.Element {
     const parsedColumnIdTo = Number(columnIdTo);
 
     const ordersWithMatchingStageFrom = ordersCopy[parsedColumnIdFrom];
-
     const ordersWithMatchingStageTo = ordersCopy[parsedColumnIdTo];
+
     const draggingOrderIndex = ordersWithMatchingStageFrom.findIndex(
       ({ orderDetails }) =>
         orderDetails.orderNumber === parsedDraggableOrderNumber
@@ -126,11 +126,39 @@ export function Board({ stages }: OwnProps): JSX.Element {
       draggingOrderIndex,
       1
     );
+    console.log(splicedOrder);
+
+    // update main stage
+    const updatedSplicedOrder = {
+      ...splicedOrder,
+      orderDetails: {
+        ...splicedOrder.orderDetails,
+        stage: {
+          ...splicedOrder.orderDetails.stage,
+          main: parsedColumnIdTo,
+        },
+      },
+    };
+
+    const updatedSplicedOrderId = updatedSplicedOrder._id;
+
+    fetch(`http://localhost:3000/orders/${updatedSplicedOrderId}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        ...updatedSplicedOrder,
+      }),
+    })
+      .then((response) => response.json())
+      .then((test) => console.log(test))
+      .catch((error) => console.log(error));
 
     insertToArrayAt(
       ordersWithMatchingStageTo,
       positionInTargetColumn,
-      splicedOrder
+      updatedSplicedOrder
     );
 
     setOrders((prevState) => ({
