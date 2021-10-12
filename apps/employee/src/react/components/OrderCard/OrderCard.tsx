@@ -3,31 +3,63 @@ import { Draggable } from "react-beautiful-dnd";
 
 import { useLocation } from "react-router-dom";
 
+import { FormEvent, useState } from "react";
+import Select from "react-select";
 import { StageColor } from "../../../../../common/utils/types";
 
 import { Icon } from "../../../../../client/src/react/components/icons/Icon";
 import { Buttons } from "./components";
+import { sendUpdatedData } from "../Board/utils";
+import { OrderType } from "../../../../../../server/models/Order";
 
 interface OwnProps {
-  orderNumber: number;
-  make: string;
-  carModel: string;
-  names: string;
-  licencePlate: string;
+  order: OrderType;
   index: number;
   stageColor: StageColor;
+  stage: {};
 }
 
 export function OrderCard({
-  orderNumber,
-  make,
-  carModel,
-  names,
-  licencePlate,
+  order,
   index,
   stageColor,
+  stage,
 }: OwnProps): JSX.Element {
+  const [selectedSubStage, setSelectedSubStage] = useState(null);
   const { pathname } = useLocation();
+
+  const selectOptions = Object.values(stage).map((item, i) => ({
+    value: i,
+    label: item,
+  }));
+
+  const { customerInfo, carInfo, orderDetails } = order;
+  const { names } = customerInfo;
+  const { licencePlate, model, make } = carInfo;
+  const { orderNumber } = orderDetails;
+
+  function handleSelectChange(currentSellected) {
+    setSelectedSubStage(currentSellected);
+  }
+
+  function handleSubmit(e: FormEvent) {
+    e.preventDefault();
+    sendUpdatedData(
+      {
+        ...order,
+        orderDetails: {
+          ...orderDetails,
+          stage: {
+            ...orderDetails.stage,
+            sub: selectedSubStage,
+          },
+        },
+      },
+
+      "orders",
+      order._id
+    );
+  }
 
   return (
     <Draggable draggableId={`${orderNumber}`} index={index}>
@@ -45,7 +77,7 @@ export function OrderCard({
           <div className="order-card__car">
             <Icon icon="car" size="sm" />
             <span className="ml-2 mr-1">
-              {make} {carModel}
+              {make} {model}
             </span>
             <span>{licencePlate}</span>
           </div>
@@ -53,9 +85,17 @@ export function OrderCard({
             <Icon icon="person" size="sm" />
             <span className="ml-2">{names}</span>
           </div>
-          {!pathname.includes("zarzadzanie-zleceniami") && (
-            <Buttons color={stageColor} />
-          )}
+          <form onSubmit={handleSubmit}>
+            <Select
+              placeholder="wybierz sub-etap"
+              options={selectOptions}
+              value={selectedSubStage}
+              onChange={handleSelectChange}
+            />
+          </form>
+          {/* {!pathname.includes("zarzadzanie-zleceniami") && ( */}
+          <Buttons color={stageColor} />
+          {/* )} */}
         </div>
       )}
     </Draggable>

@@ -1,103 +1,21 @@
 import * as React from "react";
 
 import { DragDropContext, Droppable, DropResult } from "react-beautiful-dnd";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { insertToArrayAt } from "../../../../../common/utils/functions";
 import { OrderCard } from "../OrderCard";
 import type { Service, Stage } from "../../pages";
 import { EmployeeContext } from "../../contexts/EmployeeContext";
 import { SortedOrdersType } from "../../../../../../server/controllers/orders";
-
-// ??? sorted by backended by stages before fetching and send in separate object of arrays
-
-// const data: TasksType = {
-//   0: [
-//     {
-//       id: "ec323888997",
-//       orderNumber: 1,
-//       carModel: "Fiat 126p",
-//       clientName: "Pekinczyk Bartka",
-//       licencePlate: "NLI2137",
-//       orderMainStage: 0, // ??? for colums
-//       orderSubStage: 3, // ?? for labels
-//     },
-//     {
-//       id: "ec328808998",
-//       orderNumber: 2,
-//       carModel: "Fiat 000p",
-//       clientName: "Kot Bartka",
-//       licencePlate: "NLI0000",
-//       orderMainStage: 0, // ??? for colums
-//       orderSubStage: 3, // ?? for labels
-//     },
-//   ],
-//   1: [
-//     {
-//       id: "ec328888997",
-//       orderNumber: 3,
-//       carModel: "Fiat 126p",
-//       clientName: "Pekinczyk Bartka",
-//       licencePlate: "NLI2137",
-//       orderMainStage: 1, // ??? for colums
-//       orderSubStage: 3, // ?? for labels
-//     },
-//     {
-//       id: "ec324552555",
-//       orderNumber: 4,
-//       carModel: "Audi Bartka",
-//       clientName: "Kot Barka",
-//       licencePlate: "NLI0000",
-//       orderMainStage: 1,
-//       orderSubStage: 4,
-//     },
-//   ],
-//   2: [
-//     {
-//       id: "ec32814444444",
-//       orderNumber: 5,
-//       carModel: "Fiat Bartka",
-//       clientName: "Testowy Test",
-//       licencePlate: "NLI1111",
-//       orderMainStage: 2,
-//       orderSubStage: 1,
-//     },
-//   ],
-//   3: [
-//     {
-//       id: "ec32844484444",
-//       orderNumber: 6,
-//       carModel: "Syrena Bartka",
-//       clientName: "Fifi Kowalski",
-//       licencePlate: "NLI1111",
-//       orderMainStage: 2,
-//       orderSubStage: 1,
-//     },
-//   ],
-//   4: [
-//     {
-//       id: "ec32844444444",
-//       orderNumber: 7,
-//       carModel: "Nowe Audi Bartka",
-//       clientName: "Kasia Kowalska",
-//       licencePlate: "NLI1111",
-//       orderMainStage: 2,
-//       orderSubStage: 1,
-//     },
-//   ],
-// };
+import { sendUpdatedData } from "./utils";
+import { stageList } from "../../../../../assets/stages";
 
 type OwnProps = {
   stages: Service[] | Stage[];
 };
 
 export function Board({ stages }: OwnProps): JSX.Element {
-  const { orders: data } = useContext(EmployeeContext);
-
-  const [orders, setOrders] = React.useState<SortedOrdersType>([]);
-
-  useEffect(() => {
-    setOrders(data);
-  }, [data]);
+  const { orders, ordersDispatch } = useContext(EmployeeContext);
 
   function handleOnDragEnd(result: DropResult) {
     if (!result.destination) {
@@ -139,21 +57,7 @@ export function Board({ stages }: OwnProps): JSX.Element {
         },
       },
     };
-
     const updatedSplicedOrderId = updatedSplicedOrder._id;
-
-    fetch(`http://localhost:3000/orders/${updatedSplicedOrderId}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        ...updatedSplicedOrder,
-      }),
-    })
-      .then((response) => response.json())
-      .then((test) => console.log(test))
-      .catch((error) => console.log(error));
 
     insertToArrayAt(
       ordersWithMatchingStageTo,
@@ -161,11 +65,15 @@ export function Board({ stages }: OwnProps): JSX.Element {
       updatedSplicedOrder
     );
 
-    setOrders((prevState) => ({
-      ...prevState,
-      [parsedColumnIdFrom]: ordersWithMatchingStageFrom,
-      [parsedColumnIdTo]: ordersWithMatchingStageTo,
-    }));
+    ordersDispatch({
+      type: "UPDATE_ORDER_STAGE",
+      stageFrom: parsedColumnIdFrom,
+      ordersWithMatchingStageFrom,
+      stageTo: parsedColumnIdTo,
+      ordersWithMatchingStageTo,
+    });
+
+    sendUpdatedData(updatedSplicedOrder, "orders", updatedSplicedOrderId);
   }
 
   return (
@@ -181,25 +89,15 @@ export function Board({ stages }: OwnProps): JSX.Element {
               >
                 <div className="board__column-title">{title}</div>
                 {orders[columnId]?.map((order, index) => {
-                  const {
-                    customerInfo,
-                    carInfo,
-                    orderDetails,
-                    _id: id,
-                  } = order;
-                  const { names } = customerInfo;
-                  const { licencePlate, model, make } = carInfo;
-                  const { orderNumber } = orderDetails;
+                  // console.log(columnId);
+
                   return (
                     <OrderCard
-                      orderNumber={orderNumber}
-                      carModel={model}
-                      names={names}
-                      licencePlate={licencePlate}
-                      key={id}
-                      make={make}
+                      order={order}
+                      key={order._id}
                       index={index}
                       stageColor={color}
+                      stage={stageList[columnId]}
                     />
                   );
                 })}
