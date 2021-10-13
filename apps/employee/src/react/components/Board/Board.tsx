@@ -51,7 +51,7 @@ export function Board({ stages }: OwnProps): JSX.Element {
       orderDetails: {
         ...splicedOrder.orderDetails,
         stage: {
-          ...splicedOrder.orderDetails.stage,
+          sub: 0,
           main: parsedColumnIdTo,
         },
       },
@@ -94,7 +94,7 @@ export function Board({ stages }: OwnProps): JSX.Element {
                       key={order._id}
                       index={index}
                       stageColor={color}
-                      stage={stageList[columnId]}
+                      substageList={stageList[columnId]}
                     />
                   );
                 })}

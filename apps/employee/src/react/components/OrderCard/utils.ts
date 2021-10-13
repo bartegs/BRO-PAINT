@@ -1,5 +1,6 @@
 import * as React from "react";
-import type { SelectItemType } from "./OrderCard";
+
+import type { SelectItemType } from "./components";
 
 export function getEmployeeList(
   setEmployees: React.Dispatch<React.SetStateAction<SelectItemType[]>>

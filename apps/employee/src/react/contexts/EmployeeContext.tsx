@@ -1,9 +1,8 @@
-// methods modify main stage / sub stage useReducer
 // as long as task isn't submitted dragging is disable
 
 import * as React from "react";
 import { SortedOrdersType } from "../../../../../server/controllers/orders";
-import { orderReducer } from "../reducers/orderReducer";
+import { orderReducer } from "../reducers";
 
 const emptyOrders: SortedOrdersType = {
   0: [],
