@@ -1,4 +1,4 @@
-export const stageList = {
+export const stageList: { [key: number]: { [key: number]: string } } = {
   0: {
     0: "zlecenie złożone",
   },

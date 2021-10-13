@@ -18,9 +18,8 @@ const OrderSchema = new mongoose.Schema<OrderType>({
   orderDetails: {
     orderNumber: Number,
     repairer: {
-      type: String,
-      // type: mongoose.Schema.Types.ObjectId,
-      // ref: "Employee",
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Employee",
     },
     stage: {
       main: Number,

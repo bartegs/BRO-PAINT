@@ -44,7 +44,6 @@ export function Board({ stages }: OwnProps): JSX.Element {
       draggingOrderIndex,
       1
     );
-    console.log(splicedOrder);
 
     // update main stage
     const updatedSplicedOrder = {
@@ -89,8 +88,6 @@ export function Board({ stages }: OwnProps): JSX.Element {
               >
                 <div className="board__column-title">{title}</div>
                 {orders[columnId]?.map((order, index) => {
-                  // console.log(columnId);
-
                   return (
                     <OrderCard
                       order={order}
