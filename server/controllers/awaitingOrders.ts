@@ -1,20 +1,42 @@
 import { Request, Response } from "express";
 import AwaitingOrder, { AwaitingOrderType } from "../models/AwaitingOrder";
-import Service from "../models/Service";
+import Service, { ServiceType } from "../models/Service";
+
+export type SortedAwaitingOrdersType = {
+  [key: string]: AwaitingOrderType[];
+};
 
 const AwaitingOrdersController = {
   get_all: (req: Request, res: Response) => {
-    AwaitingOrder.find({})
-      .then((result: AwaitingOrderType[]) => {
-        res.status(200).send(result);
-      })
-      .catch(() => {
-        res.status(404).json({ message: "Brak oczekujących zleceń" });
-      });
+    AwaitingOrder.find({}).then((result: AwaitingOrderType[]) => {
+      Service.find({})
+        .then((services: ServiceType[]) => {
+          function getSortedAwaitingOrders() {
+            const sortedAwaitingOrdersByService: SortedAwaitingOrdersType = {};
+
+            services.forEach((service) => {
+              sortedAwaitingOrdersByService[service._id] = [];
+            });
+
+            result.forEach((item) => {
+              const serviceId = item.orderInfo.service;
+              sortedAwaitingOrdersByService[serviceId].push(item);
+            });
+
+            return sortedAwaitingOrdersByService;
+          }
+
+          res.status(200).send(getSortedAwaitingOrders());
+        })
+        .catch(() => {
+          res.status(404).json({ message: "Brak oczekujących zleceń" });
+        });
+    });
   },
 
   get_single: (req: Request, res: Response) => {
     const id = req.params.awaitingOrderId;
+
     AwaitingOrder.findById(id)
       .then((result: AwaitingOrderType) => {
         res.status(200).send(result);

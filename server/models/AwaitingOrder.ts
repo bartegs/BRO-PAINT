@@ -17,6 +17,10 @@ export interface AwaitingOrderType {
     service: string;
     comment: string;
   };
+
+  orderDetails: {
+    orderNumber: number;
+  };
 }
 
 export const awaitingOrderSchema = new mongoose.Schema<AwaitingOrderType>({

@@ -1,8 +1,12 @@
 import * as React from "react";
 
+import { useContext } from "react";
+
+import type { StageColor } from "../../../../../common/utils/types";
+
 import { Navbar } from "../../../../../common/react/components";
 import { Board, NavPanel } from "../../components";
-import { StageColor } from "../../../../../common/utils/types";
+import { EmployeeContext } from "../../contexts";
 
 export interface Stage {
   id: number;
@@ -38,13 +42,15 @@ const stages: Stage[] = [
   },
 ];
 
-export function OrderManagementPage(): JSX.Element {
+export function OrdersManagementPage(): JSX.Element {
+  const { orders } = useContext(EmployeeContext);
+
   return (
     <>
       <Navbar />
       <div className="content">
         <NavPanel />
-        <Board stages={stages} />
+        <Board stages={stages} elements={orders} />
       </div>
     </>
   );

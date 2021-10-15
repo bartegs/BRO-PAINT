@@ -1,6 +1,12 @@
 import Select from "react-select";
 import * as React from "react";
-import { FormEvent, useContext, useEffect, useState } from "react";
+import {
+  FormEvent,
+  SetStateAction,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import { Buttons } from "./Buttons";
 import { sendUpdatedData } from "../../Board/utils";
 import { EmployeeContext } from "../../../contexts";
@@ -12,13 +18,19 @@ interface OwnProps {
   color: StageColor;
   order: OrderType;
   substageList: {};
+  setIsFormSubmitted: React.Dispatch<SetStateAction<boolean>>;
 }
 export interface SelectItemType {
   label: string;
   value: string | number;
 }
 
-export function Form({ color, order, substageList }: OwnProps): JSX.Element {
+export function Form({
+  color,
+  order,
+  substageList,
+  setIsFormSubmitted,
+}: OwnProps): JSX.Element {
   const [selectedSubstage, setSelectedSubstage] = useState(null);
   const [selectedEmployee, setSelectedEmployee] = useState(null);
   const [employees, setEmployees] = useState<SelectItemType[]>([
@@ -36,10 +48,12 @@ export function Form({ color, order, substageList }: OwnProps): JSX.Element {
 
   function handleSelectedSubstageChange(currentSelected: SelectItemType) {
     setSelectedSubstage(currentSelected);
+    setIsFormSubmitted(false);
   }
 
   function handleSelectedEmployeeChange(currentSelected: SelectItemType) {
     setSelectedEmployee(currentSelected);
+    setIsFormSubmitted(false);
   }
 
   function handleSubmit(e: FormEvent) {
@@ -70,6 +84,8 @@ export function Form({ color, order, substageList }: OwnProps): JSX.Element {
         "orders",
         order._id
       );
+
+      setIsFormSubmitted(true);
     }
   }
 

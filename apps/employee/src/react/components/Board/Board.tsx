@@ -1,108 +1,106 @@
 import * as React from "react";
 
 import { DragDropContext, Droppable, DropResult } from "react-beautiful-dnd";
-import { useContext } from "react";
-import { insertToArrayAt } from "../../../../../common/utils/functions";
-import { OrderCard } from "../OrderCard";
-import type { Service, Stage } from "../../pages";
-import { EmployeeContext } from "../../contexts/EmployeeContext";
-import { SortedOrdersType } from "../../../../../../server/controllers/orders";
-import { sendUpdatedData } from "./utils";
+import { useLocation } from "react-router-dom";
+import { EmployeeContext } from "../../contexts";
+
 import { stageList } from "../../../../../assets/stages";
+import { updateAwaitingOrders, updateOrders } from "./utils";
+
+import type { Service, Stage } from "../../pages";
+import type { SortedAwaitingOrdersType } from "../../../../../../server/controllers/awaitingOrders";
+
+import { OrderCard } from "../OrderCard";
+import { SortedOrdersType } from "../../../../../../server/controllers/orders";
+import { AwaitingOrderCard } from "../AwaitingOrderCard";
 
 type OwnProps = {
   stages: Service[] | Stage[];
+  elements: SortedOrdersType | SortedAwaitingOrdersType;
 };
 
-export function Board({ stages }: OwnProps): JSX.Element {
-  const { orders, ordersDispatch } = useContext(EmployeeContext);
+export function Board({ stages, elements }: OwnProps): JSX.Element {
+  const { ordersDispatch, awaitingOrdersDispatch } =
+    React.useContext(EmployeeContext);
+  const [isFormSubmitted, setIsFormSubmitted] = React.useState<boolean>(true);
+
+  const { pathname } = useLocation();
+  const isManagementOrderPage = pathname.includes("zarzadzanie-zleceniami");
 
   function handleOnDragEnd(result: DropResult) {
-    if (!result.destination) {
+    if (!result.destination || !isFormSubmitted) {
       return;
     }
 
-    const ordersCopy: SortedOrdersType = JSON.parse(JSON.stringify(orders));
+    const ordersCopy: SortedOrdersType = JSON.parse(JSON.stringify(elements));
 
-    const { source, destination, draggableId: draggableOrderNumber } = result;
-    const { droppableId: columnIdFrom } = source;
-    const { droppableId: columnIdTo, index: positionInTargetColumn } =
+    const { source, destination, draggableId } = result;
+    const { droppableId: droppableIdFrom } = source;
+    const { droppableId: droppableIdTo, index: positionInTargetColumn } =
       destination;
-    const parsedDraggableOrderNumber = Number(draggableOrderNumber);
-    const parsedColumnIdFrom = Number(columnIdFrom);
-    const parsedColumnIdTo = Number(columnIdTo);
 
-    const ordersWithMatchingStageFrom = ordersCopy[parsedColumnIdFrom];
-    const ordersWithMatchingStageTo = ordersCopy[parsedColumnIdTo];
+    const parsedDraggableId = Number(draggableId);
+    const parsedDroppableIdFrom = Number(droppableIdFrom);
+    const parsedDroppableIdTo = Number(droppableIdTo);
 
-    const draggingOrderIndex = ordersWithMatchingStageFrom.findIndex(
-      ({ orderDetails }) =>
-        orderDetails.orderNumber === parsedDraggableOrderNumber
-    );
-
-    const [splicedOrder] = ordersWithMatchingStageFrom.splice(
-      draggingOrderIndex,
-      1
-    );
-
-    // update main stage
-    const updatedSplicedOrder = {
-      ...splicedOrder,
-      orderDetails: {
-        ...splicedOrder.orderDetails,
-        stage: {
-          sub: 0,
-          main: parsedColumnIdTo,
-        },
-      },
-    };
-    const updatedSplicedOrderId = updatedSplicedOrder._id;
-
-    insertToArrayAt(
-      ordersWithMatchingStageTo,
-      positionInTargetColumn,
-      updatedSplicedOrder
-    );
-
-    ordersDispatch({
-      type: "UPDATE_ORDER_STAGE",
-      stageFrom: parsedColumnIdFrom,
-      ordersWithMatchingStageFrom,
-      stageTo: parsedColumnIdTo,
-      ordersWithMatchingStageTo,
-    });
-
-    sendUpdatedData(updatedSplicedOrder, "orders", updatedSplicedOrderId);
+    if (isManagementOrderPage) {
+      updateOrders(
+        ordersDispatch,
+        ordersCopy,
+        parsedDroppableIdFrom,
+        parsedDroppableIdTo,
+        parsedDraggableId,
+        positionInTargetColumn
+      );
+    } else {
+      updateAwaitingOrders(
+        awaitingOrdersDispatch,
+        ordersCopy,
+        droppableIdFrom,
+        droppableIdTo,
+        parsedDraggableId,
+        positionInTargetColumn
+      );
+    }
   }
 
   return (
     <section className="board-page__board board">
       <DragDropContext onDragEnd={handleOnDragEnd}>
-        {stages.map(({ id: columnId, title, color }) => (
-          <Droppable key={columnId} droppableId={String(columnId)}>
-            {(provided) => (
-              <div
-                className={`board__column board__column--${color}`}
-                {...provided.droppableProps}
-                ref={provided.innerRef}
-              >
-                <div className="board__column-title">{title}</div>
-                {orders[columnId]?.map((order, index) => {
-                  return (
-                    <OrderCard
-                      order={order}
-                      key={order._id}
-                      index={index}
-                      stageColor={color}
-                      substageList={stageList[columnId]}
-                    />
-                  );
-                })}
-                {provided.placeholder}
-              </div>
-            )}
-          </Droppable>
-        ))}
+        {stages.map(({ id: columnId, title, color }) => {
+          return (
+            <Droppable key={columnId} droppableId={String(columnId)}>
+              {(provided) => (
+                <div
+                  className={`board__column board__column--${color}`}
+                  {...provided.droppableProps}
+                  ref={provided.innerRef}
+                >
+                  <div className="board__column-title">{title}</div>
+                  {elements[columnId]?.map((order, index) => {
+                    return isManagementOrderPage ? (
+                      <OrderCard
+                        order={order}
+                        key={order._id}
+                        index={index}
+                        stageColor={color}
+                        substageList={stageList[columnId as number]}
+                        setIsFormSubmitted={setIsFormSubmitted}
+                      />
+                    ) : (
+                      <AwaitingOrderCard
+                        key={order._id}
+                        order={order}
+                        index={index}
+                      />
+                    );
+                  })}
+                  {provided.placeholder}
+                </div>
+              )}
+            </Droppable>
+          );
+        })}
       </DragDropContext>
     </section>
   );
