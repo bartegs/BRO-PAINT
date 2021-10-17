@@ -1,10 +1,12 @@
 import * as React from "react";
 
 import type { StageColor } from "../../../../../../common/utils/types";
+import { host } from "../../../utils";
 
 import { EmployeeContext } from "../../../contexts";
 
 import { Buttons } from "../../OrderCard/components";
+import { handleDeletingAwaitingOrders } from "./utils";
 
 interface OwnProps {
   color: StageColor;
@@ -13,7 +15,6 @@ interface OwnProps {
 }
 
 export function Form({ color, cardId, columnId }: OwnProps): JSX.Element {
-  // delete from awaitingOrdersState / api and move to orders
   const { awaitingOrdersDispatch } = React.useContext(EmployeeContext);
 
   function handleSubmit(e: React.FormEvent) {
@@ -25,11 +26,9 @@ export function Form({ color, cardId, columnId }: OwnProps): JSX.Element {
       columnId,
     });
 
-    fetch(`http://localhost:3000/awaiting-orders/${cardId}?moveToOrders=true`, {
-      method: "DELETE",
-    })
-      .then((resp) => console.log(resp))
-      .catch((error) => console.log(error));
+    handleDeletingAwaitingOrders(
+      `${host}/awaiting-orders/${cardId}?moveToOrders=true`
+    );
   }
 
   function handleReset(e: React.FormEvent) {
@@ -41,11 +40,7 @@ export function Form({ color, cardId, columnId }: OwnProps): JSX.Element {
       columnId,
     });
 
-    fetch(`http://localhost:3000/awaiting-orders/${cardId}`, {
-      method: "DELETE",
-    })
-      .then((resp) => console.log(resp))
-      .catch((error) => console.log(error));
+    handleDeletingAwaitingOrders(`${host}/awaiting-orders/${cardId}`);
   }
 
   return (

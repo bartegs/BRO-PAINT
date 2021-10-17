@@ -5,7 +5,7 @@ import Select from "react-select";
 import type { OrderType } from "../../../../../../../server/models/Order";
 import type { StageColor } from "../../../../../../common/utils/types";
 
-import { getEmployeeList } from "../utils";
+import { getEmployeeList } from "./utils";
 import { sendUpdatedData } from "../../Board/utils";
 
 import { Buttons } from "./Buttons";
@@ -86,6 +86,12 @@ export function Form({
     }
   }
 
+  function handleReset() {
+    setSelectedEmployee(null);
+    setSelectedSubstage(null);
+    setIsFormSubmitted(true);
+  }
+
   const processedSubstageList = Object.values(substageList).map(
     ({ name }, i) => ({
       value: i,
@@ -94,7 +100,7 @@ export function Form({
   );
 
   return (
-    <form onSubmit={handleSubmit} className="mt-2">
+    <form onSubmit={handleSubmit} onReset={handleReset} className="mt-2">
       <Select
         className="mb-1"
         placeholder="przydziel sub-etap"

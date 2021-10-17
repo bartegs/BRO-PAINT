@@ -20,7 +20,7 @@ export function AwaitingOrderCard({
   color,
   columnId,
 }: OwnProps): JSX.Element {
-  const { customerInfo, carInfo, orderDetails, _id } = order;
+  const { customerInfo, carInfo, orderDetails, _id: id } = order;
   const { names } = customerInfo;
   const { licencePlate, model, make } = carInfo;
   const { orderNumber } = orderDetails;
@@ -48,7 +48,7 @@ export function AwaitingOrderCard({
             <Icon icon="person" size="sm" />
             <span className="ml-2">{names}</span>
           </div>
-          <Form color={color} cardId={_id} columnId={columnId} />
+          <Form color={color} cardId={id} columnId={columnId} />
         </div>
       )}
     </Draggable>

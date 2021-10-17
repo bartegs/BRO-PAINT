@@ -1,11 +1,13 @@
 import * as React from "react";
 
-import type { SelectItemType } from "./components";
+import { host } from "../../../utils";
+
+import type { SelectItemType } from "./Form";
 
 export function getEmployeeList(
   setEmployees: React.Dispatch<React.SetStateAction<SelectItemType[]>>
 ) {
-  fetch("http://localhost:3000/employees/test")
+  fetch(`${host}/employees/test`)
     .then((resp) => resp.json())
     .then((result) =>
       result.map(
@@ -13,11 +15,11 @@ export function getEmployeeList(
           _id: string;
           employeeInfo: { firstName: string; lastName: string };
         }) => {
-          const { _id, employeeInfo } = item;
+          const { _id: id, employeeInfo } = item;
           const { firstName, lastName } = employeeInfo;
 
           return {
-            value: _id,
+            value: id,
             label: `${firstName} ${lastName}`,
           };
         }
