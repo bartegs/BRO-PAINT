@@ -1,6 +1,7 @@
 import * as mongoose from "mongoose";
 
 export interface AwaitingOrderType {
+  _id: string;
   customerInfo: {
     names: string;
     email: string;
@@ -85,6 +86,13 @@ export const awaitingOrderSchema = new mongoose.Schema<AwaitingOrderType>({
       required: false,
       min: 1,
       max: 1000,
+    },
+  },
+
+  orderDetails: {
+    orderNumber: {
+      type: Number,
+      required: true,
     },
   },
 });

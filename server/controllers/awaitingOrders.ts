@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import AwaitingOrder, { AwaitingOrderType } from "../models/AwaitingOrder";
 import Service, { ServiceType } from "../models/Service";
+import Order, { OrderType } from "../models/Order";
 
 export type SortedAwaitingOrdersType = {
   [key: string]: AwaitingOrderType[];
@@ -52,45 +53,52 @@ const AwaitingOrdersController = {
     const { customerInfo, carInfo, orderInfo } = req.body;
     const { serviceName } = orderInfo;
 
-    Service.findOne({ name: serviceName })
-      .then((orderType: any) => {
-        if (orderType) {
-          const orderTypeId = orderType.id;
-          const awaitingOrder = new AwaitingOrder({
-            customerInfo: {
-              names: customerInfo.names,
-              email: customerInfo.email,
-              phone: customerInfo.phone,
-            },
+    AwaitingOrder.countDocuments({}).then((count: number) => {
+      Service.findOne({ name: serviceName })
+        .then((orderType: any) => {
+          if (orderType) {
+            const orderTypeId = orderType.id;
+            const awaitingOrder = new AwaitingOrder({
+              customerInfo: {
+                names: customerInfo.names,
+                email: customerInfo.email,
+                phone: customerInfo.phone,
+              },
 
-            carInfo: {
-              productionYear: carInfo.productionYear,
-              make: carInfo.make,
-              model: carInfo.model,
-              licencePlate: carInfo.licencePlate,
-              paintCode: carInfo.paintCode,
-            },
+              carInfo: {
+                productionYear: carInfo.productionYear,
+                make: carInfo.make,
+                model: carInfo.model,
+                licencePlate: carInfo.licencePlate,
+                paintCode: carInfo.paintCode,
+              },
 
-            orderInfo: {
-              service: orderTypeId,
-              comment: orderInfo.comment,
-            },
-          });
+              orderInfo: {
+                service: orderTypeId,
+                comment: orderInfo.comment,
+              },
+              orderDetails: {
+                orderNumber: count + 1,
+              },
+            });
 
-          awaitingOrder
-            .save()
-            .then((result: AwaitingOrderType) => {
-              res.status(201).json({
-                message: "Zlecenie przyjęte do oczekujących.",
-                info: result,
-              });
-            })
-            .catch((error: Error) => res.status(500).json({ message: error }));
-        } else {
-          throw Error("Zlecenie nieprzyjęte");
-        }
-      })
-      .catch((error: Error) => res.status(500).json({ message: error }));
+            awaitingOrder
+              .save()
+              .then((result: AwaitingOrderType) => {
+                res.status(201).json({
+                  message: "Zlecenie przyjęte do oczekujących.",
+                  info: result,
+                });
+              })
+              .catch((error: Error) =>
+                res.status(500).json({ message: error })
+              );
+          } else {
+            throw Error("Zlecenie nieprzyjęte");
+          }
+        })
+        .catch((error: Error) => res.status(500).json({ message: error }));
+    });
   },
 
   modify_single: (req: Request, res: Response) => {
@@ -136,10 +144,31 @@ const AwaitingOrdersController = {
 
   delete_single: (req: Request, res: Response) => {
     const id = req.params.awaitingOrderId;
+    const shouldMoveToOrders = req.query.moveToOrders;
 
     AwaitingOrder.findByIdAndRemove(id)
-      .then(() => {
+      .then((result: any) => {
         res.status(200).json({ message: "Usunięto oczekujące zlecenie" });
+
+        if (shouldMoveToOrders) {
+          const newOrder = {
+            ...result._doc,
+            orderDetails: {
+              ...result._doc.orderDetails,
+              stage: {
+                main: 0,
+                sub: 0,
+              },
+            },
+          };
+
+          const order = new Order(newOrder);
+
+          order
+            .save()
+            .then((added: OrderType) => console.log("added", added))
+            .catch((error: Error) => console.log(error));
+        }
       })
       .catch(() => {
         res.status(500).json({ message: "Nie usunięto - błąd serwera" });

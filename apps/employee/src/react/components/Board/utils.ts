@@ -97,7 +97,7 @@ export function updateAwaitingOrders(
   );
 
   awaitingOrdersDispatch({
-    type: "UPDATE_ORDER_OF_ORDERS",
+    type: "UPDATE_ORDER_OF_AWAITING_ORDERS",
     columnId: columnIdFrom,
     awaitingOrders: ordersWithMatchingStage,
   });

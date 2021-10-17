@@ -1,24 +1,21 @@
-import Select from "react-select";
 import * as React from "react";
-import {
-  FormEvent,
-  SetStateAction,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
-import { Buttons } from "./Buttons";
-import { sendUpdatedData } from "../../Board/utils";
-import { EmployeeContext } from "../../../contexts";
+
+import Select from "react-select";
+
+import type { OrderType } from "../../../../../../../server/models/Order";
+import type { StageColor } from "../../../../../../common/utils/types";
+
 import { getEmployeeList } from "../utils";
-import { OrderType } from "../../../../../../../server/models/Order";
-import { StageColor } from "../../../../../../common/utils/types";
+import { sendUpdatedData } from "../../Board/utils";
+
+import { Buttons } from "./Buttons";
+import { EmployeeContext } from "../../../contexts";
 
 interface OwnProps {
   color: StageColor;
   order: OrderType;
   substageList: {};
-  setIsFormSubmitted: React.Dispatch<SetStateAction<boolean>>;
+  setIsFormSubmitted: React.Dispatch<React.SetStateAction<boolean>>;
 }
 export interface SelectItemType {
   label: string;
@@ -31,18 +28,18 @@ export function Form({
   substageList,
   setIsFormSubmitted,
 }: OwnProps): JSX.Element {
-  const [selectedSubstage, setSelectedSubstage] = useState(null);
-  const [selectedEmployee, setSelectedEmployee] = useState(null);
-  const [employees, setEmployees] = useState<SelectItemType[]>([
+  const [selectedSubstage, setSelectedSubstage] = React.useState(null);
+  const [selectedEmployee, setSelectedEmployee] = React.useState(null);
+  const [employees, setEmployees] = React.useState<SelectItemType[]>([
     { value: "", label: "" },
   ]);
 
   const { orderDetails } = order;
   const { main } = orderDetails.stage;
 
-  const { ordersDispatch } = useContext(EmployeeContext);
+  const { ordersDispatch } = React.useContext(EmployeeContext);
 
-  useEffect(() => {
+  React.useEffect(() => {
     getEmployeeList(setEmployees);
   }, []);
 
@@ -56,7 +53,7 @@ export function Form({
     setIsFormSubmitted(false);
   }
 
-  function handleSubmit(e: FormEvent) {
+  function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
 
     if (selectedEmployee && selectedSubstage) {
@@ -89,7 +86,7 @@ export function Form({
     }
   }
 
-  const procesedSubstageList = Object.values(substageList).map(
+  const processedSubstageList = Object.values(substageList).map(
     ({ name }, i) => ({
       value: i,
       label: name,
@@ -101,7 +98,7 @@ export function Form({
       <Select
         className="mb-1"
         placeholder="przydziel sub-etap"
-        options={procesedSubstageList}
+        options={processedSubstageList}
         value={selectedSubstage}
         onChange={handleSelectedSubstageChange}
       />

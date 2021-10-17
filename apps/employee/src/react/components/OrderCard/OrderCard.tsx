@@ -25,8 +25,6 @@ export function OrderCard({
   substageList,
   setIsFormSubmitted,
 }: OwnProps): JSX.Element {
-  // const { pathname } = useLocation();
-
   const { customerInfo, carInfo, orderDetails } = order;
   const { names } = customerInfo;
   const { licencePlate, model, make } = carInfo;
@@ -69,9 +67,6 @@ export function OrderCard({
             order={order}
             substageList={substageList}
           />
-
-          {/* {!pathname.includes("zarzadzanie-zleceniami") && ( */}
-          {/* )} */}
         </div>
       )}
     </Draggable>

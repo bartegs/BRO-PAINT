@@ -89,9 +89,11 @@ export function Board({ stages, elements }: OwnProps): JSX.Element {
                       />
                     ) : (
                       <AwaitingOrderCard
+                        color={color}
                         key={order._id}
                         order={order}
                         index={index}
+                        columnId={columnId as string}
                       />
                     );
                   })}

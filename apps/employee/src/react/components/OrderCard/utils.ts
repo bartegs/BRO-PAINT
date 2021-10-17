@@ -10,14 +10,14 @@ export function getEmployeeList(
     .then((result) =>
       result.map(
         (item: {
-          id: string;
+          _id: string;
           employeeInfo: { firstName: string; lastName: string };
         }) => {
-          const { id, employeeInfo } = item;
+          const { _id, employeeInfo } = item;
           const { firstName, lastName } = employeeInfo;
 
           return {
-            value: id,
+            value: _id,
             label: `${firstName} ${lastName}`,
           };
         }

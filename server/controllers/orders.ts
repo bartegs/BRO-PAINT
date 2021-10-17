@@ -50,16 +50,15 @@ const OrdersController = {
 
     const order = new Order({
       customerInfo: {
-        firstName: customerInfo.firstName,
-        lastName: customerInfo.lastName,
+        names: customerInfo.names,
         email: customerInfo.email,
-        telephone: customerInfo.telephone,
+        phone: customerInfo.telephone,
       },
 
       carInfo: {
         productionYear: carInfo.productionYear,
         model: carInfo.model,
-        licensePlate: carInfo.licensePlate,
+        licencePlate: carInfo.licensePlate,
         paintCode: carInfo.paintCode,
       },
 

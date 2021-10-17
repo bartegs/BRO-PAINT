@@ -3,7 +3,7 @@ import * as React from "react";
 import type { SortedOrdersType } from "../../../../../server/controllers/orders";
 import type { SortedAwaitingOrdersType } from "../../../../../server/controllers/awaitingOrders";
 
-import { orderReducer } from "../reducers";
+import { awaitingOrdersReducer, orderReducer } from "../reducers";
 
 const emptyOrders: SortedOrdersType = {
   0: [],
@@ -19,30 +19,6 @@ const emptyAwaitingOrders: SortedOrdersType = {
   2: [],
   3: [],
 };
-
-function awaitingOrdersReducer(state: Partial<any>, action: any) {
-  switch (action.type) {
-    case "SET_AWAITING_ORDERS":
-      return action.awaitingOrders;
-    case "UPDATE_ORDER_OF_ORDERS":
-      return { ...state, [action.columnId]: action.awaitingOrders };
-    default:
-      return state;
-    // case "UPDATE_AWAITING_ORDER_SERVICE": {
-    //   const {
-    //     prevService,
-    //     awaitingOrdersWithPrevService,
-    //     followingService,
-    //     awaitingWithFollowingService,
-    //   } = action;
-    //   return {
-    //     ...state,
-    //     []: awaitingOrdersWithMatchingStageFrom,
-    //     [stageTo]: awaitingWithMatchingStageTo,
-    //   };
-    // }
-  }
-}
 
 export const EmployeeContext = React.createContext<
   Partial<{

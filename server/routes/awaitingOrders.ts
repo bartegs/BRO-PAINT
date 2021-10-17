@@ -18,9 +18,10 @@ router.get(
 //  add auth
 router.put("/:awaitingOrderId", AwaitingOrdersController.modify_single);
 
+//  add auth
 router.delete(
   "/:awaitingOrderId",
-  checkAuthorization,
+  // checkAuthorization,
   AwaitingOrdersController.delete_single
 );
 

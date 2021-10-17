@@ -14,16 +14,16 @@ export type OrderType = AwaitingOrderType & {
 };
 
 const OrderSchema = new mongoose.Schema<OrderType>({
-  order: awaitingOrderSchema,
+  ...awaitingOrderSchema.obj,
   orderDetails: {
-    orderNumber: Number,
+    ...awaitingOrderSchema.obj.orderDetails,
+    stage: {
+      main: { type: Number, required: true },
+      sub: { type: Number, required: true },
+    },
     repairer: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Employee",
-    },
-    stage: {
-      main: Number,
-      sub: Number,
     },
   },
 });

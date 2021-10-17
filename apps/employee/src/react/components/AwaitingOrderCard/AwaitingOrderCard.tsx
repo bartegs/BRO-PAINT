@@ -3,15 +3,24 @@ import { Draggable } from "react-beautiful-dnd";
 
 import { Icon } from "../../../../../client/src/react/components/icons/Icon";
 
+import type { StageColor } from "../../../../../common/utils/types";
 import type { OrderType } from "../../../../../../server/models/Order";
+import { Form } from "./components";
 
 interface OwnProps {
   order: OrderType;
   index: number;
+  color: StageColor;
+  columnId: string;
 }
 
-export function AwaitingOrderCard({ order, index }: OwnProps): JSX.Element {
-  const { customerInfo, carInfo, orderDetails } = order;
+export function AwaitingOrderCard({
+  order,
+  index,
+  color,
+  columnId,
+}: OwnProps): JSX.Element {
+  const { customerInfo, carInfo, orderDetails, _id } = order;
   const { names } = customerInfo;
   const { licencePlate, model, make } = carInfo;
   const { orderNumber } = orderDetails;
@@ -39,6 +48,7 @@ export function AwaitingOrderCard({ order, index }: OwnProps): JSX.Element {
             <Icon icon="person" size="sm" />
             <span className="ml-2">{names}</span>
           </div>
+          <Form color={color} cardId={_id} columnId={columnId} />
         </div>
       )}
     </Draggable>
