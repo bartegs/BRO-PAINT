@@ -60,8 +60,7 @@ export function Axis({ stages, orderStage }: OwnProps): JSX.Element {
               additionalClasses={classnames({
                 "card--first": isFirstElement,
                 "card--last": isLastElement,
-                "card--inactive":
-                  typeof orderStage === "undefined" || i > orderStage,
+                "card--inactive": orderStage < -1 || i > orderStage,
               })}
               desc={description}
               title={title}

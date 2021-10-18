@@ -1,7 +1,7 @@
 import * as React from "react";
 import { OrderType } from "../../../../../server/models/Order";
 
-const emptyOrder: OrderType = {
+export const emptyOrder: OrderType = {
   _id: "",
   carInfo: {
     licencePlate: "",
@@ -11,7 +11,11 @@ const emptyOrder: OrderType = {
     productionYear: undefined,
   },
   customerInfo: { email: "", names: "", phone: "" },
-  orderDetails: { orderNumber: 0, repairer: {}, stage: { main: 0, sub: 0 } },
+  orderDetails: {
+    orderNumber: 0,
+    repairer: {},
+    stage: { main: -1, sub: 0 },
+  },
   orderInfo: { comment: "", service: "" },
 };
 

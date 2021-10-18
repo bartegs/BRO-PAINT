@@ -6,7 +6,7 @@ import type { Color } from "../../../../../../common/utils/types";
 
 import { Button } from "../../../../../../common/react/components";
 import { Input } from "../components";
-import { ClientContext } from "../../../contexts/ClientContext";
+import { ClientContext, emptyOrder } from "../../../contexts/ClientContext";
 
 interface OwnProps {
   additionalClasses?: string;
@@ -54,7 +54,7 @@ export function CheckStatusForm({
         history.push("/status-zlecenia");
       })
       .catch(() => {
-        setOrder({});
+        setOrder(emptyOrder);
         setHasError(true);
         setIsLoading(false);
       });
