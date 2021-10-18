@@ -5,7 +5,8 @@ import { useContext } from "react";
 import type { StageColor } from "../../../../../common/utils/types";
 
 import { Navbar } from "../../../../../common/react/components";
-import { Board, NavPanel } from "../../components";
+import { NavPanel, OrdersBoard } from "../../components";
+
 import { EmployeeContext } from "../../contexts";
 
 export interface Stage {
@@ -50,7 +51,7 @@ export function OrdersManagementPage(): JSX.Element {
       <Navbar />
       <div className="content">
         <NavPanel />
-        <Board stages={stages} elements={orders} />
+        <OrdersBoard stages={stages} orders={orders} />
       </div>
     </>
   );

@@ -1,3 +1,2 @@
-export * from "./OrderCard";
-export * from "./Board";
+export * from "./boards";
 export * from "./NavPanel";
