@@ -53,51 +53,53 @@ const AwaitingOrdersController = {
     const { customerInfo, carInfo, orderInfo } = req.body;
     const { serviceName } = orderInfo;
 
-    AwaitingOrder.countDocuments({}).then((count: number) => {
-      Service.findOne({ name: serviceName })
-        .then((orderType: any) => {
-          if (orderType) {
-            const orderTypeId = orderType.id;
-            const awaitingOrder = new AwaitingOrder({
-              customerInfo: {
-                names: customerInfo.names,
-                email: customerInfo.email,
-                phone: customerInfo.phone,
-              },
+    Order.countDocuments({}).then((orderNumber: number) => {
+      AwaitingOrder.countDocuments({}).then((awaitingOrderNumber: number) => {
+        Service.findOne({ name: serviceName })
+          .then((orderType: OrderType) => {
+            if (orderType) {
+              const orderTypeId = orderType._id;
+              const awaitingOrder = new AwaitingOrder({
+                customerInfo: {
+                  names: customerInfo.names,
+                  email: customerInfo.email,
+                  phone: customerInfo.phone,
+                },
 
-              carInfo: {
-                productionYear: carInfo.productionYear,
-                make: carInfo.make,
-                model: carInfo.model,
-                licencePlate: carInfo.licencePlate,
-                paintCode: carInfo.paintCode,
-              },
+                carInfo: {
+                  productionYear: carInfo.productionYear,
+                  make: carInfo.make,
+                  model: carInfo.model,
+                  licencePlate: carInfo.licencePlate,
+                  paintCode: carInfo.paintCode,
+                },
 
-              orderInfo: {
-                service: orderTypeId,
-                comment: orderInfo.comment,
-              },
-              orderDetails: {
-                orderNumber: count + 1,
-              },
-            });
+                orderInfo: {
+                  service: orderTypeId,
+                  comment: orderInfo.comment,
+                },
+                orderDetails: {
+                  orderNumber: orderNumber + awaitingOrderNumber + 1,
+                },
+              });
 
-            awaitingOrder
-              .save()
-              .then((result: AwaitingOrderType) => {
-                res.status(201).json({
-                  message: "Zlecenie przyjęte do oczekujących.",
-                  info: result,
-                });
-              })
-              .catch((error: Error) =>
-                res.status(500).json({ message: error })
-              );
-          } else {
-            throw Error("Zlecenie nieprzyjęte");
-          }
-        })
-        .catch((error: Error) => res.status(500).json({ message: error }));
+              awaitingOrder
+                .save()
+                .then((result: AwaitingOrderType) => {
+                  res.status(201).json({
+                    message: "Zlecenie przyjęte do oczekujących.",
+                    info: result,
+                  });
+                })
+                .catch((error: Error) =>
+                  res.status(500).json({ message: error })
+                );
+            } else {
+              throw Error("Zlecenie nieprzyjęte");
+            }
+          })
+          .catch((error: Error) => res.status(500).json({ message: error }));
+      });
     });
   },
 
@@ -148,8 +150,6 @@ const AwaitingOrdersController = {
 
     AwaitingOrder.findByIdAndRemove(id)
       .then((result: any) => {
-        res.status(200).json({ message: "Usunięto oczekujące zlecenie" });
-
         if (shouldMoveToOrders) {
           const newOrder = {
             ...result._doc,
@@ -166,8 +166,16 @@ const AwaitingOrdersController = {
 
           order
             .save()
-            .then((added: OrderType) => console.log("added", added))
-            .catch((error: Error) => console.log(error));
+            .then(() =>
+              res.status(200).json({ message: "Przeniesiono do zleceń" })
+            )
+            .catch(() => {
+              res
+                .status(500)
+                .json({ message: "Nie przeniesiono błąd serwera" });
+            });
+        } else {
+          res.status(200).json({ message: "Usunięto oczekujące zlecenie" });
         }
       })
       .catch(() => {

@@ -4,6 +4,7 @@ export function handleDeletingAwaitingOrders(url: string) {
   fetch(url, {
     method: "DELETE",
   })
-    .then((resp) => console.log(resp))
+    .then((resp) => resp.json())
+    .then((data) => console.log(data))
     .catch((error) => console.log(error));
 }
