@@ -1,36 +1,29 @@
 import * as React from "react";
-
-import { SetStateAction } from "react";
-
 import { Draggable } from "react-beautiful-dnd";
-import { Form } from "./components";
-import { Icon } from "../../../../../client/src/react/components/icons/Icon";
 
-import type { StageColor } from "../../../../../common/utils/types";
-import type { OrderType } from "../../../../../../server/models/Order";
-import type { StageListItem } from "../../../../../assets/stages";
+import type { StageColor } from "../../../../../../../common/utils/types";
+import { AwaitingOrderType } from "../../../../../../../../server/models/AwaitingOrder";
+
+import { Icon } from "../../../../../../../client/src/react/components/icons/Icon";
+import { Form } from "./components";
 
 interface OwnProps {
-  order: OrderType;
+  order: AwaitingOrderType;
   index: number;
-  stageColor: StageColor;
-  substageList: StageListItem;
-  setIsFormSubmitted: React.Dispatch<SetStateAction<boolean>>;
+  color: StageColor;
+  columnId: string;
 }
 
-export function OrderCard({
+export function AwaitingOrderCard({
   order,
   index,
-  stageColor,
-  substageList,
-  setIsFormSubmitted,
+  color,
+  columnId,
 }: OwnProps): JSX.Element {
-  const { customerInfo, carInfo, orderDetails } = order;
+  const { customerInfo, carInfo, orderDetails, _id: id } = order;
   const { names } = customerInfo;
   const { licencePlate, model, make } = carInfo;
   const { orderNumber } = orderDetails;
-  const { stage } = orderDetails;
-  const { sub: subId } = stage;
 
   return (
     <Draggable draggableId={`${orderNumber}`} index={index}>
@@ -43,12 +36,6 @@ export function OrderCard({
         >
           <div className="order-card__heading">
             <strong className="order-card__id">#{orderNumber}</strong>
-            <span
-              className="order-card__label label"
-              style={{ backgroundColor: substageList[subId].color }}
-            >
-              {substageList[subId].name}
-            </span>
           </div>
           <div className="order-card__car">
             <Icon icon="car" size="sm" />
@@ -61,12 +48,7 @@ export function OrderCard({
             <Icon icon="person" size="sm" />
             <span className="ml-2">{names}</span>
           </div>
-          <Form
-            setIsFormSubmitted={setIsFormSubmitted}
-            color={stageColor}
-            order={order}
-            substageList={substageList}
-          />
+          <Form color={color} cardId={id} columnId={columnId} />
         </div>
       )}
     </Draggable>

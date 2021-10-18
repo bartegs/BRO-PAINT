@@ -1,11 +1,11 @@
 import * as React from "react";
 
-import type { StageColor } from "../../../../../../common/utils/types";
-import { host } from "../../../../../../common/utils/contants";
+import type { StageColor } from "../../../../../../../../common/utils/types";
+import { host } from "../../../../../../../../common/utils/contants";
 
-import { EmployeeContext } from "../../../contexts";
+import { EmployeeContext } from "../../../../../contexts";
 
-import { Buttons } from "../../OrderCard/components";
+import { Buttons } from "../../Buttons";
 import { handleDeletingAwaitingOrders } from "./utils";
 
 interface OwnProps {
