@@ -5,11 +5,11 @@ import { useContext } from "react";
 import type { BrandColor } from "../../../../../common/utils/types";
 
 import { Navbar } from "../../../../../common/react/components";
-import { Board, NavPanel } from "../../components";
+import { NavPanel, AwaitingOrdersBoard } from "../../components";
 import { EmployeeContext } from "../../contexts";
 
 export interface Service {
-  id: number | string;
+  id: string;
   color: BrandColor;
   title: string;
 }
@@ -40,7 +40,7 @@ export function AwaitingOrdersPage() {
       <Navbar />
       <div className="content">
         <NavPanel />
-        <Board stages={stages} elements={awaitingOrders} />
+        <AwaitingOrdersBoard stages={stages} awaitingOrders={awaitingOrders} />
       </div>
     </>
   );

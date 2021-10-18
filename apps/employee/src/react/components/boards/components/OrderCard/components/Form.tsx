@@ -2,14 +2,14 @@ import * as React from "react";
 
 import Select from "react-select";
 
-import type { OrderType } from "../../../../../../../server/models/Order";
-import type { StageColor } from "../../../../../../common/utils/types";
+import type { OrderType } from "../../../../../../../../../server/models/Order";
+import type { StageColor } from "../../../../../../../../common/utils/types";
 
 import { getEmployeeList } from "./utils";
-import { sendUpdatedData } from "../../Board/utils";
 
-import { Buttons } from "./Buttons";
-import { EmployeeContext } from "../../../contexts";
+import { Buttons } from "../../Buttons";
+import { EmployeeContext } from "../../../../../contexts";
+import { sendUpdatedData } from "../../../utils";
 
 interface OwnProps {
   color: StageColor;
