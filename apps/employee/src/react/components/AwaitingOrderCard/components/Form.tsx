@@ -1,7 +1,7 @@
 import * as React from "react";
 
 import type { StageColor } from "../../../../../../common/utils/types";
-import { host } from "../../../utils";
+import { host } from "../../../../../../common/utils/contants";
 
 import { EmployeeContext } from "../../../contexts";
 

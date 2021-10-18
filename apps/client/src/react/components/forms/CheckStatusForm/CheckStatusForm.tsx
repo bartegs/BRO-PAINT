@@ -7,6 +7,7 @@ import type { Color } from "../../../../../../common/utils/types";
 import { Button } from "../../../../../../common/react/components";
 import { Input } from "../components";
 import { ClientContext, emptyOrder } from "../../../contexts/ClientContext";
+import { host } from "../../../../../../common/utils/contants";
 
 interface OwnProps {
   additionalClasses?: string;
@@ -39,7 +40,7 @@ export function CheckStatusForm({
     event.preventDefault();
 
     setIsLoading(true);
-    fetch(`http://localhost:3000/orders/${orderNumber}`)
+    fetch(`${host}/orders/${orderNumber}`)
       .then((response) => {
         if (response.ok) {
           return response.json();

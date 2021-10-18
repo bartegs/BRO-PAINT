@@ -2,6 +2,7 @@ import * as React from "react";
 
 import type { SortedOrdersType } from "../../../../../server/controllers/orders";
 import type { SortedAwaitingOrdersType } from "../../../../../server/controllers/awaitingOrders";
+import { host } from "../../../../common/utils/contants";
 
 import { awaitingOrdersReducer, orderReducer } from "../reducers";
 
@@ -41,7 +42,7 @@ export default function EmployeeContextProvider({ children }: OwnProps) {
   );
 
   function getAwaitingOrders() {
-    fetch("http://localhost:3000/awaiting-orders").then((resp) =>
+    fetch(`${host}/awaiting-orders`).then((resp) =>
       resp
         .json()
         .then((data) =>
@@ -55,7 +56,7 @@ export default function EmployeeContextProvider({ children }: OwnProps) {
   }
 
   function getOrders() {
-    fetch("http://localhost:3000/orders").then((resp) =>
+    fetch(`${host}/orders`).then((resp) =>
       resp
         .json()
         .then((data) => {

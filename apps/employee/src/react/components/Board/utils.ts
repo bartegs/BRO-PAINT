@@ -4,13 +4,14 @@ import type { SortedOrdersType } from "../../../../../../server/controllers/orde
 import type { SortedAwaitingOrdersType } from "../../../../../../server/controllers/awaitingOrders";
 
 import { insertToArrayAt } from "../../../../../common/utils/functions";
+import { host } from "../../../../../common/utils/contants";
 
 export function sendUpdatedData(
   updatedData: {},
   collection: string,
   id: string
 ) {
-  fetch(`http://localhost:3000/${collection}/${id}`, {
+  fetch(`${host}/${collection}/${id}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",

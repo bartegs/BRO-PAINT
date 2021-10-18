@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { host } from "../../../utils";
+import { host } from "../../../../../../common/utils/contants";
 
 import type { SelectItemType } from "./Form";
 

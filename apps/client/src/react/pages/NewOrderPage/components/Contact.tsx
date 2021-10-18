@@ -11,7 +11,8 @@ import {
   Checkbox,
 } from "../../../components/forms/components";
 import { Button } from "../../../../../../common/react/components";
-import { Color } from "../../../../../../common/utils/types";
+import type { Color } from "../../../../../../common/utils/types";
+import { host } from "../../../../../../common/utils/contants";
 
 export interface ContactProps {
   names: string;
@@ -111,7 +112,7 @@ const Contact = React.forwardRef<HTMLInputElement, OwnProps>(
     function handleSubmit(event: React.FormEvent) {
       event.preventDefault();
 
-      fetch("http://localhost:3000/awaiting-orders", {
+      fetch(`${host}/awaiting-orders`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
