@@ -6,7 +6,8 @@ import type { Color } from "../../../../../../common/utils/types";
 
 import { Button } from "../../../../../../common/react/components";
 import { Input } from "../components";
-import { AppContext } from "../../../contexts/AppContext";
+import { ClientContext, emptyOrder } from "../../../contexts/ClientContext";
+import { host } from "../../../../../../common/utils/contants";
 
 interface OwnProps {
   additionalClasses?: string;
@@ -31,7 +32,7 @@ export function CheckStatusForm({
 }: OwnProps): JSX.Element {
   const [orderNumber, setOrderNumber] = React.useState(inputInitialValue || "");
   const [isLoading, setIsLoading] = React.useState(false);
-  const { setOrder } = React.useContext(AppContext);
+  const { setOrder } = React.useContext(ClientContext);
   const [hasError, setHasError] = React.useState(false);
   const history = useHistory();
 
@@ -39,7 +40,7 @@ export function CheckStatusForm({
     event.preventDefault();
 
     setIsLoading(true);
-    fetch(`http://localhost:3000/orders/${orderNumber}`)
+    fetch(`${host}/orders/${orderNumber}`)
       .then((response) => {
         if (response.ok) {
           return response.json();
@@ -54,7 +55,7 @@ export function CheckStatusForm({
         history.push("/status-zlecenia");
       })
       .catch(() => {
-        setOrder({});
+        setOrder(emptyOrder);
         setHasError(true);
         setIsLoading(false);
       });

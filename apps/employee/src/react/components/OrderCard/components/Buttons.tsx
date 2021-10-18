@@ -8,15 +8,17 @@ interface OwnProps {
 
 export function Buttons({ color }: OwnProps) {
   return (
-    <div className="task-card__buttons">
+    <div className="order-card__buttons">
       <Button
+        type="submit"
         text="Zatwierdź"
-        additionalClasses="task-card__button mr-1"
+        additionalClasses="order-card__button mr-1"
         color={color}
       />
       <Button
+        type="reset"
         text="Odrzuć"
-        additionalClasses="task-card__button ml-1"
+        additionalClasses="order-card__button ml-1"
         variant="secondary"
         color={color}
       />

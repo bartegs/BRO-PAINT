@@ -58,6 +58,23 @@ const EmployeesController = {
       });
   },
 
+  get_general_list: (req: Request, res: Response) => {
+    Employee.find(
+      {},
+      {
+        employeeInfo: {
+          firstName: 1,
+          lastName: 1,
+          email: 1,
+          phone: 1,
+          position: 1,
+        },
+      }
+    ).then((result) => {
+      res.status(200).send(result);
+    });
+  },
+
   get_single: (req: Request, res: Response) => {
     const id = req.params.employeeId;
     Employee.findById(id)

@@ -8,6 +8,9 @@ router.post("/", checkAuthorization, EmployeesController.add_single);
 
 router.get("/", checkAuthorization, EmployeesController.get_all);
 
+// add auth
+router.get("/test", EmployeesController.get_general_list);
+
 router.get("/:employeeId", checkAuthorization, EmployeesController.get_single);
 
 router.put(

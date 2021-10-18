@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
-import Service from "../models/Service";
+
+import Service, { ServiceType } from "../models/Service";
 
 const ServicesController = {
   add_single: (req: Request, res: Response) => {
@@ -11,7 +12,7 @@ const ServicesController = {
 
     service
       .save()
-      .then((result) => {
+      .then((result: ServiceType) => {
         res.status(201).json({
           message: "Usługa dodana",
           info: result,
@@ -24,7 +25,7 @@ const ServicesController = {
 
   get_all: (req: Request, res: Response) => {
     Service.find({})
-      .then((result: any) => {
+      .then((result: ServiceType[]) => {
         res.status(200).send(result);
       })
       .catch(() => {

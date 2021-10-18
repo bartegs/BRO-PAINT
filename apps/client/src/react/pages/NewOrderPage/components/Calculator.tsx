@@ -240,4 +240,3 @@ const Calculator = React.forwardRef<HTMLInputElement, CalculatorProps>(
 );
 
 export { Calculator };
-export default Calculator;

@@ -6,7 +6,8 @@ const router = Router();
 
 router.post("/", AwaitingOrdersController.add_single);
 
-router.get("/", checkAuthorization, AwaitingOrdersController.get_all);
+//  add auth
+router.get("/", AwaitingOrdersController.get_all);
 
 router.get(
   "/:awaitingOrderId",
@@ -14,15 +15,13 @@ router.get(
   AwaitingOrdersController.get_single
 );
 
-router.put(
-  "/:awaitingOrderId",
-  checkAuthorization,
-  AwaitingOrdersController.modify_single
-);
+//  add auth
+router.put("/:awaitingOrderId", AwaitingOrdersController.modify_single);
 
+//  add auth
 router.delete(
   "/:awaitingOrderId",
-  checkAuthorization,
+  // checkAuthorization,
   AwaitingOrdersController.delete_single
 );
 

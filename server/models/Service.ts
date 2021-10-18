@@ -1,6 +1,11 @@
 import * as mongoose from "mongoose";
 
-const serviceSchema = new mongoose.Schema({
+export interface ServiceType {
+  _id: string;
+  name: string;
+}
+
+const serviceSchema = new mongoose.Schema<ServiceType>({
   name: {
     type: String,
     required: true,
