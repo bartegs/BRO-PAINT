@@ -7,7 +7,11 @@ import type { SelectItemType } from "./Form";
 export function getEmployeeList(
   setEmployees: React.Dispatch<React.SetStateAction<SelectItemType[]>>
 ) {
-  fetch(`${host}/employees/test`)
+  fetch(`${host}/employees/test`, {
+    headers: {
+      authorization: `Bearer ${sessionStorage.getItem("token")}`,
+    },
+  })
     .then((resp) => resp.json())
     .then((result) =>
       result.map(

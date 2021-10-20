@@ -3,6 +3,9 @@ export function handleDeletingAwaitingOrders(url: string) {
 
   fetch(url, {
     method: "DELETE",
+    headers: {
+      authorization: `Bearer ${sessionStorage.getItem("token")}`,
+    },
   })
     .then((resp) => resp.json())
     .then((data) => console.log(data))

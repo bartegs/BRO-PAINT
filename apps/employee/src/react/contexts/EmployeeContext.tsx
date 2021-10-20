@@ -1,10 +1,12 @@
 import * as React from "react";
 
+import { useContext } from "react";
 import type { SortedOrdersType } from "../../../../../server/controllers/orders";
 import type { SortedAwaitingOrdersType } from "../../../../../server/controllers/awaitingOrders";
 import { host } from "../../../../common/utils/contants";
 
 import { awaitingOrdersReducer, orderReducer } from "../reducers";
+import { LoginContext } from "./LoginContext";
 
 const emptyOrders: SortedOrdersType = {
   0: [],
@@ -41,8 +43,14 @@ export default function EmployeeContextProvider({ children }: OwnProps) {
     emptyAwaitingOrders
   );
 
+  const { isLogged } = useContext(LoginContext);
+
   function getAwaitingOrders() {
-    fetch(`${host}/awaiting-orders`).then((resp) =>
+    fetch(`${host}/awaiting-orders`, {
+      headers: {
+        authorization: `Bearer ${sessionStorage.getItem("token")}`,
+      },
+    }).then((resp) =>
       resp
         .json()
         .then((data) =>
@@ -56,7 +64,11 @@ export default function EmployeeContextProvider({ children }: OwnProps) {
   }
 
   function getOrders() {
-    fetch(`${host}/orders`).then((resp) =>
+    fetch(`${host}/orders`, {
+      headers: {
+        authorization: `Bearer ${sessionStorage.getItem("token")}`,
+      },
+    }).then((resp) =>
       resp
         .json()
         .then((data) => {
@@ -67,13 +79,20 @@ export default function EmployeeContextProvider({ children }: OwnProps) {
   }
 
   React.useEffect(() => {
-    getOrders();
-    getAwaitingOrders();
-  }, []);
+    if (isLogged) {
+      getOrders();
+      getAwaitingOrders();
+    }
+  }, [isLogged]);
 
   return (
     <EmployeeContext.Provider
-      value={{ orders, awaitingOrders, ordersDispatch, awaitingOrdersDispatch }}
+      value={{
+        orders,
+        awaitingOrders,
+        ordersDispatch,
+        awaitingOrdersDispatch,
+      }}
     >
       {children}
     </EmployeeContext.Provider>

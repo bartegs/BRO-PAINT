@@ -15,6 +15,7 @@ export function sendUpdatedData(
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
+      authorization: `Bearer ${sessionStorage.getItem("token")}`,
     },
     body: JSON.stringify({
       ...updatedData,

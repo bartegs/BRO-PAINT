@@ -1,29 +1,20 @@
 import { Router } from "express";
 import EmployeesController from "../controllers/employees";
-import checkAuthorization from "../middlewares/checkAuthorization";
+import authenticate from "../middlewares/authenticate";
 
 const router = Router();
 
-router.post("/", checkAuthorization, EmployeesController.add_single);
+router.post("/", authenticate, EmployeesController.add_single);
 
-router.get("/", checkAuthorization, EmployeesController.get_all);
+router.get("/", authenticate, EmployeesController.get_all);
 
-// add auth
-router.get("/test", EmployeesController.get_general_list);
+router.get("/test", authenticate, EmployeesController.get_general_list);
 
-router.get("/:employeeId", checkAuthorization, EmployeesController.get_single);
+router.get("/:employeeId", authenticate, EmployeesController.get_single);
 
-router.put(
-  "/:employeeId",
-  checkAuthorization,
-  EmployeesController.modify_single
-);
+router.put("/:employeeId", authenticate, EmployeesController.modify_single);
 
-router.delete(
-  "/:employeeId",
-  checkAuthorization,
-  EmployeesController.delete_single
-);
+router.delete("/:employeeId", authenticate, EmployeesController.delete_single);
 
 router.post("/login", EmployeesController.login);
 
