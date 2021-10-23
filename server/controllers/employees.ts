@@ -5,10 +5,11 @@ import Employee from "../models/Employee";
 
 const EmployeesController = {
   add_single: async (req: Request, res: Response) => {
-    const { login, employeeInfo } = req.body;
+    const { login, employeeInfo, role } = req.body;
 
     const hashed = await bcrypt.hash(login.password, 10);
     const employee = new Employee({
+      role,
       login: {
         nickName: login.nickName,
         password: hashed,
@@ -102,7 +103,7 @@ const EmployeesController = {
           firstName: employeeInfo.firstName,
           lastName: employeeInfo.lastName,
           position: employeeInfo.position,
-          telephone: employeeInfo.telephone,
+          phone: employeeInfo.phone,
           email: employeeInfo.email,
           pesel: employeeInfo.pesel,
           birthDate: employeeInfo.birthDate,
@@ -156,12 +157,13 @@ const EmployeesController = {
               const token = jwt.sign(
                 { nickName: employee.login.nickName },
                 process.env.SECRET,
-                { expiresIn: "8h" }
+                { expiresIn: "1h" }
               );
 
               res.status(200).json({
                 message: "Zalogowano pomyślnie",
                 token,
+                role: employee.role,
               });
             } else {
               res.status(401).json({ message: "Niepoprawne dane logowania" });

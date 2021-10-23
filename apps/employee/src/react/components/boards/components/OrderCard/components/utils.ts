@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { host } from "../../../../../../../../common/utils/contants";
+import { host, token } from "../../../../../../../../common/utils/contants";
 
 import type { SelectItemType } from "./Form";
 
@@ -9,7 +9,7 @@ export function getEmployeeList(
 ) {
   fetch(`${host}/employees/test`, {
     headers: {
-      authorization: `Bearer ${sessionStorage.getItem("token")}`,
+      authorization: `Bearer ${token}`,
     },
   })
     .then((resp) => resp.json())

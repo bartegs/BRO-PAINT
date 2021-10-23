@@ -9,9 +9,16 @@ import {
   LoginPage,
 } from "../react/pages";
 
+interface RouteType {
+  id: number;
+  route: string;
+  component: () => JSX.Element;
+  isProtected: boolean;
+}
+
 const Error = () => <div>Not found</div>;
 
-const routes = [
+export const managerRoutes = [
   { id: 0, route: "/logowanie", component: LoginPage, isProtected: false },
   {
     id: 1,
@@ -23,10 +30,23 @@ const routes = [
   { id: 3, route: "*", component: Error, isProtected: false },
 ];
 
-export default routes.map(({ route, component, id, isProtected }) =>
-  isProtected ? (
-    <ProtectedRoute exact path={route} component={component} key={id} />
-  ) : (
-    <Route exact path={route} component={component} key={id} />
-  )
-);
+export const workmanRoutes = [
+  { id: 0, route: "/logowanie", component: LoginPage, isProtected: false },
+  {
+    id: 1,
+    route: "/",
+    component: () => <div>workman board</div>,
+    isProtected: true,
+  },
+  { id: 3, route: "*", component: Error, isProtected: false },
+];
+
+export default function createRoutes(routes: RouteType[]) {
+  return routes.map(({ route, component, id, isProtected }) =>
+    isProtected ? (
+      <ProtectedRoute exact path={route} component={component} key={id} />
+    ) : (
+      <Route exact path={route} component={component} key={id} />
+    )
+  );
+}

@@ -29,10 +29,12 @@ export function LoginForm(): JSX.Element {
         if (resp.ok) {
           return resp.json();
         }
+
         throw new Error("jednak u mnie nie działa");
       })
       .then((data) => {
         sessionStorage.setItem("token", data.token);
+        sessionStorage.setItem("role", data.role);
 
         setIsLogged(true);
 
@@ -40,8 +42,8 @@ export function LoginForm(): JSX.Element {
       })
       .catch((error: Error) => console.log(error.message));
 
-    // setLogin("");
-    // setPassword("");
+    setNickName("");
+    setPassword("");
   }
 
   return (
