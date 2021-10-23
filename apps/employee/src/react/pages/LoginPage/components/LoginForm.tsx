@@ -1,27 +1,48 @@
 import * as React from "react";
 
+import { useHistory } from "react-router-dom";
 import {
   Logo,
   Button,
   InputOutlined,
 } from "../../../../../../common/react/components";
+import { LoginContext } from "../../../contexts";
 
-interface LoginFormProps {
-  login: string;
-  password: string;
-  setLogin: React.Dispatch<React.SetStateAction<string>>;
-  setPassword: React.Dispatch<React.SetStateAction<string>>;
-}
+export function LoginForm(): JSX.Element {
+  const [nickName, setNickName] = React.useState("");
+  const [password, setPassword] = React.useState("");
+  const { setIsLogged } = React.useContext(LoginContext);
 
-export function LoginForm({
-  login,
-  password,
-  setLogin,
-  setPassword,
-}: LoginFormProps): JSX.Element {
+  const history = useHistory();
+
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    setLogin("");
+
+    fetch(`http://localhost:3000/employees/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ login: { nickName, password } }),
+    })
+      .then((resp) => {
+        if (resp.ok) {
+          return resp.json();
+        }
+
+        throw new Error("jednak u mnie nie działa");
+      })
+      .then((data) => {
+        sessionStorage.setItem("token", data.token);
+        sessionStorage.setItem("role", data.role);
+
+        setIsLogged(true);
+
+        history.push("");
+      })
+      .catch((error: Error) => console.log(error.message));
+
+    setNickName("");
     setPassword("");
   }
 
@@ -38,8 +59,8 @@ export function LoginForm({
           id="login"
           labelText="Login"
           labelCentered
-          value={login}
-          setState={setLogin}
+          value={nickName}
+          setState={setNickName}
           color="pink"
           fontTheme="dark"
           required

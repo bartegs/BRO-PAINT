@@ -1,13 +1,32 @@
 import * as mongoose from "mongoose";
 
-export interface IEmployee extends mongoose.Document {
+export interface EmployeeType extends mongoose.Document {
+  role: string;
   login: {
     nickName: string;
     password: string;
   };
+  employeeInfo: {
+    firstName: string;
+    lastName: string;
+    position: string;
+    phone: string;
+    email: string;
+    pesel: string;
+    birthDate: Date;
+    accountNumber: string;
+
+    address: {
+      street: string;
+      apartment: string;
+      city: string;
+      postalCode: string;
+    };
+  };
 }
 
-const employeeSchema = new mongoose.Schema({
+const employeeSchema = new mongoose.Schema<EmployeeType>({
+  role: { type: String, required: true },
   login: {
     nickName: {
       type: String,
@@ -40,7 +59,7 @@ const employeeSchema = new mongoose.Schema({
       ref: "Position",
       required: true,
     },
-    telephone: {
+    phone: {
       type: String,
       required: true,
       min: 9,
@@ -98,4 +117,4 @@ const employeeSchema = new mongoose.Schema({
   },
 });
 
-export default mongoose.model<IEmployee>("Employee", employeeSchema);
+export default mongoose.model<EmployeeType>("Employee", employeeSchema);

@@ -1,21 +1,17 @@
 import { Router } from "express";
 import ServicesController from "../controllers/services";
-import checkAuthorization from "../middlewares/checkAuthorization";
+import authenticate from "../middlewares/authenticate";
 
 const router = Router();
 
-router.post("/", checkAuthorization, ServicesController.add_single);
+router.post("/", authenticate, ServicesController.add_single);
 
-router.get("/", ServicesController.get_all);
+router.get("/", authenticate, ServicesController.get_all);
 
-router.get("/:serviceId", ServicesController.get_single);
+router.get("/:serviceId", authenticate, ServicesController.get_single);
 
-router.put("/:serviceId", checkAuthorization, ServicesController.modify_single);
+router.put("/:serviceId", authenticate, ServicesController.modify_single);
 
-router.delete(
-  "/:serviceId",
-  checkAuthorization,
-  ServicesController.delete_single
-);
+router.delete("/:serviceId", authenticate, ServicesController.delete_single);
 
 export { router };

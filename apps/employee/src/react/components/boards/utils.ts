@@ -4,7 +4,7 @@ import type { SortedOrdersType } from "../../../../../../server/controllers/orde
 import type { SortedAwaitingOrdersType } from "../../../../../../server/controllers/awaitingOrders";
 
 import { insertToArrayAt } from "../../../../../common/utils/functions";
-import { host } from "../../../../../common/utils/contants";
+import { host, token } from "../../../../../common/utils/contants";
 
 export function sendUpdatedData(
   updatedData: {},
@@ -15,13 +15,14 @@ export function sendUpdatedData(
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
     },
     body: JSON.stringify({
       ...updatedData,
     }),
   })
     .then((response) => response.json())
-    .then((test) => console.log(test))
+    .then((data) => console.log(data))
     .catch((error) => console.log(error));
 }
 

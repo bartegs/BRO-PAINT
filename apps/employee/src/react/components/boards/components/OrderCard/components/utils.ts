@@ -1,13 +1,17 @@
 import * as React from "react";
 
-import { host } from "../../../../../../../../common/utils/contants";
+import { host, token } from "../../../../../../../../common/utils/contants";
 
 import type { SelectItemType } from "./Form";
 
 export function getEmployeeList(
   setEmployees: React.Dispatch<React.SetStateAction<SelectItemType[]>>
 ) {
-  fetch(`${host}/employees/test`)
+  fetch(`${host}/employees/test`, {
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
+  })
     .then((resp) => resp.json())
     .then((result) =>
       result.map(

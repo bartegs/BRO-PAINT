@@ -5,10 +5,11 @@ import Employee from "../models/Employee";
 
 const EmployeesController = {
   add_single: async (req: Request, res: Response) => {
-    const { login, employeeInfo } = req.body;
+    const { login, employeeInfo, role } = req.body;
 
     const hashed = await bcrypt.hash(login.password, 10);
     const employee = new Employee({
+      role,
       login: {
         nickName: login.nickName,
         password: hashed,
@@ -102,7 +103,7 @@ const EmployeesController = {
           firstName: employeeInfo.firstName,
           lastName: employeeInfo.lastName,
           position: employeeInfo.position,
-          telephone: employeeInfo.telephone,
+          phone: employeeInfo.phone,
           email: employeeInfo.email,
           pesel: employeeInfo.pesel,
           birthDate: employeeInfo.birthDate,
@@ -120,14 +121,14 @@ const EmployeesController = {
     )
       .then((result) => {
         res.status(200).json({
-          wiadomosc: "Zmodyfikowano dane pracownika",
+          message: "Zmodyfikowano dane pracownika",
           info: result,
         });
       })
       .catch(() =>
         res
           .status(500)
-          .json({ wiadomosc: "Nie zmodyfikowano - wystąpił błąd serwera" })
+          .json({ message: "Nie zmodyfikowano - wystąpił błąd serwera" })
       );
   },
 
@@ -139,40 +140,52 @@ const EmployeesController = {
         res.status(200).json({ message: "Usunięto pracownika" });
       })
       .catch(() => {
-        res.status(500).json({ message: "Nie usunięto - błąd serwera" });
+        res.status(400).json({ message: "Nie usunięto - błąd serwera" });
       });
   },
 
   login: (req: Request, res: Response) => {
-    const { nickName, password } = req.body.login;
+    if (req.body.login) {
+      const { nickName, password } = req.body.login;
 
-    // searching for matching employee
-    Employee.findOne({ "login.nickName": nickName })
-      .then((employee) => {
-        if (!employee) {
-          res.status(401).json({ message: "Brak autoryzacji" });
+      // searching for matching employee
+      Employee.findOne({ "login.nickName": nickName }).then((employee) => {
+        if (employee) {
+          bcrypt.compare(password, employee.login.password).then((result) => {
+            if (result) {
+              // generate JWT if user exists
+              const token = jwt.sign(
+                { nickName: employee.login.nickName },
+                process.env.SECRET,
+                { expiresIn: "1h" }
+              );
+
+              res.status(200).json({
+                message: "Zalogowano pomyślnie",
+                token,
+                role: employee.role,
+              });
+            } else {
+              res.status(401).json({ message: "Niepoprawne dane logowania" });
+            }
+          });
+        } else {
+          res.status(403).json({ message: "Niepoprawne dane logowania" });
+        }
+      });
+    } else if (req.headers.authorization) {
+      const token = req.headers.authorization.split(" ")[1];
+
+      jwt.verify(token, process.env.SECRET, (error) => {
+        if (error) {
+          return res.status(403).json({ message: "Brak autoryzacji" });
         }
 
-        // password check
-        bcrypt.compare(password, employee.login.password).then((result) => {
-          if (!result) {
-            res.status(401).json({ message: "Brak autoryzacji" });
-          }
-
-          // generate JWT
-          const token = jwt.sign(
-            { nickName: employee.login.nickName },
-            process.env.SECRET,
-            { expiresIn: "8h" }
-          );
-
-          return res.status(200).json({
-            message: "Zalogowano pomyślnie",
-            token,
-          });
-        });
-      })
-      .catch(() => res.status(500).json({ message: "Błąd serwera" }));
+        return res.status(200).json({ message: "Autoryzacja powiodła się" });
+      });
+    } else {
+      res.status(400).json({ message: "nie podano danych" });
+    }
   },
 };
 

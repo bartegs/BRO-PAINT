@@ -65,10 +65,16 @@ export function NavbarMenu({
         </>
       )}
       {isEmployee && (
-        <li role="menuitem" onClick={closeMenu} onKeyDown={handleMenuKeyboard}>
+        <li
+          role="menuitem"
+          onClick={() => {
+            sessionStorage.clear();
+          }}
+          onKeyDown={handleMenuKeyboard}
+        >
           <a
             className="navbar-menu__link navbar-menu__link--logout"
-            href="/pracownik/zaloguj-sie"
+            href="/pracownik/logowanie"
           >
             {/* <Icon additionalClasses="mr-2" size="sm" icon="logout" /> */}
             Wyloguj się

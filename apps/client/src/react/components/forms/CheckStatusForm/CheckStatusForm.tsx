@@ -40,6 +40,7 @@ export function CheckStatusForm({
     event.preventDefault();
 
     setIsLoading(true);
+
     fetch(`${host}/orders/${orderNumber}`)
       .then((response) => {
         if (response.ok) {
@@ -52,6 +53,7 @@ export function CheckStatusForm({
         setOrder(data);
         setIsLoading(false);
         setHasError(false);
+
         history.push("/status-zlecenia");
       })
       .catch(() => {

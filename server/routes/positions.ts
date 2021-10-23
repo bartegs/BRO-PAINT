@@ -1,25 +1,17 @@
 import { Router } from "express";
 import PositionsController from "../controllers/positions";
-import checkAuthorization from "../middlewares/checkAuthorization";
+import authenticate from "../middlewares/authenticate";
 
 const router = Router();
 
-router.post("/", checkAuthorization, PositionsController.add_single);
+router.post("/", authenticate, PositionsController.add_single);
 
-router.get("/", checkAuthorization, PositionsController.get_all);
+router.get("/", authenticate, PositionsController.get_all);
 
-router.get("/:positionId", checkAuthorization, PositionsController.get_single);
+router.get("/:positionId", authenticate, PositionsController.get_single);
 
-router.put(
-  "/:positionId",
-  checkAuthorization,
-  PositionsController.modify_single
-);
+router.put("/:positionId", authenticate, PositionsController.modify_single);
 
-router.delete(
-  "/:positionId",
-  checkAuthorization,
-  PositionsController.delete_single
-);
+router.delete("/:positionId", authenticate, PositionsController.delete_single);
 
 export { router };
