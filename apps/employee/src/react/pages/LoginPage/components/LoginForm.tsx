@@ -7,6 +7,7 @@ import {
   InputOutlined,
 } from "../../../../../../common/react/components";
 import { LoginContext } from "../../../contexts";
+import { host } from "../../../../../../common/utils/contants";
 
 export function LoginForm(): JSX.Element {
   const [nickName, setNickName] = React.useState("");
@@ -18,7 +19,7 @@ export function LoginForm(): JSX.Element {
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
 
-    fetch(`http://localhost:3000/employees/login`, {
+    fetch(`${host}/employees/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

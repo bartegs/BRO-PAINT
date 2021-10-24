@@ -1,6 +1,7 @@
 import * as React from "react";
 
-import { host, token } from "../../../../../../../../common/utils/contants";
+import { host } from "../../../../../../../../common/utils/contants";
+import { getToken } from "../../../../../../../../common/utils/functions";
 
 import type { SelectItemType } from "./Form";
 
@@ -9,7 +10,7 @@ export function getEmployeeList(
 ) {
   fetch(`${host}/employees/test`, {
     headers: {
-      authorization: `Bearer ${token}`,
+      authorization: `Bearer ${getToken()}`,
     },
   })
     .then((resp) => resp.json())

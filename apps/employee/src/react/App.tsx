@@ -6,10 +6,11 @@ import { LoginContext } from "./contexts";
 import EmployeeContextProvider from "./contexts/EmployeeContext";
 
 import history from "../routes/history";
-import { token } from "../../../common/utils/contants";
+import { host } from "../../../common/utils/contants";
+import { getToken } from "../../../common/utils/functions";
 
 export default function App(): JSX.Element {
-  const { setIsLogged } = React.useContext(LoginContext);
+  const { isLogged, setIsLogged } = React.useContext(LoginContext);
 
   const routeList =
     sessionStorage.getItem("role") === "workman"
@@ -17,11 +18,11 @@ export default function App(): JSX.Element {
       : managerRoutes;
 
   useEffect(() => {
-    if (token) {
-      fetch(`http://localhost:3000/employees/login`, {
+    if (getToken()) {
+      fetch(`${host}/employees/login`, {
         method: "POST",
         headers: {
-          authorization: `Bearer ${token}`,
+          authorization: `Bearer ${getToken()}`,
         },
       })
         .then((resp) => {
@@ -37,7 +38,7 @@ export default function App(): JSX.Element {
         })
         .catch((error: Error) => console.log(error.message));
     }
-  }, []);
+  }, [isLogged]);
 
   return (
     <Router history={history}>
