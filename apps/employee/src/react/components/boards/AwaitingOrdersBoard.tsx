@@ -53,7 +53,11 @@ export function AwaitingOrdersBoard({
       <DragDropContext onDragEnd={handleOnDragEnd}>
         {stages.map(({ id: columnId, title, color }) => {
           return (
-            <Droppable key={columnId} droppableId={String(columnId)}>
+            <Droppable
+              isDropDisabled
+              key={columnId}
+              droppableId={String(columnId)}
+            >
               {(provided) => (
                 <div
                   className={`board__column board__column--${color}`}

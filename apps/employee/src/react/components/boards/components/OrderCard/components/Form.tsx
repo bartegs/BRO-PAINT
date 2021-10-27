@@ -61,7 +61,7 @@ export function Form({
         type: "UPDATE_ORDER_DETAILS",
         orderId: order._id,
         mainStage: main,
-        substage: selectedSubstage.value,
+        substage: { id: selectedSubstage.value, isFinished: false },
         employee: selectedEmployee.value,
       });
 
@@ -72,7 +72,7 @@ export function Form({
             ...orderDetails,
             stage: {
               ...orderDetails.stage,
-              sub: selectedSubstage.value,
+              sub: { id: selectedSubstage.value, isFinished: false },
             },
             repairer: selectedEmployee.value,
           },

@@ -55,8 +55,8 @@ export function updateOrders(
     orderDetails: {
       ...splicedOrder.orderDetails,
       stage: {
-        sub: 0,
-        main: columnIdTo,
+        sub: { id: 0, isFinished: false },
+        main: { id: columnIdTo, isFinished: false },
       },
     },
   };

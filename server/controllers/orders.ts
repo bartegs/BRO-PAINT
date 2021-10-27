@@ -16,7 +16,7 @@ const OrdersController = {
             4: [],
           };
           result.forEach((item) => {
-            const stage = item.orderDetails.stage.main;
+            const stage = item.orderDetails.stage.main.id;
             sortedData[stage].push(item);
           });
 
@@ -70,8 +70,14 @@ const OrdersController = {
       orderDetails: {
         repairer: orderDetails.repairer,
         stage: {
-          main: orderDetails.orderMainStage,
-          sub: orderDetails.orderSubStage,
+          main: {
+            id: orderDetails.orderMainStage,
+            isFinished: orderDetails.orderMainStageIsFinished,
+          },
+          sub: {
+            id: orderDetails.orderSubStage,
+            isFished: orderDetails.orderSubStageIsFinished,
+          },
         },
       },
     });

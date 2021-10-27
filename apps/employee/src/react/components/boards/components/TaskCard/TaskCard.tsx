@@ -1,10 +1,9 @@
 import * as React from "react";
 
-import { SetStateAction } from "react";
-
 import { Draggable } from "react-beautiful-dnd";
-import { Form } from "./components";
 import { Icon } from "../../../../../../../client/src/react/components/icons/Icon";
+
+import { Form } from "./components";
 
 import type { StageColor } from "../../../../../../../common/utils/types";
 import type { OrderType } from "../../../../../../../../server/models/Order";
@@ -15,15 +14,13 @@ interface OwnProps {
   index: number;
   stageColor: StageColor;
   substageList: StageListItem;
-  setIsFormSubmitted: React.Dispatch<SetStateAction<boolean>>;
 }
 
-export function OrderCard({
+export function TaskCard({
   order,
   index,
   stageColor,
   substageList,
-  setIsFormSubmitted,
 }: OwnProps): JSX.Element {
   const { customerInfo, carInfo, orderDetails } = order;
   const { names } = customerInfo;
@@ -62,12 +59,7 @@ export function OrderCard({
               <Icon icon="person" size="sm" />
               <span className="ml-2">{names}</span>
             </div>
-            <Form
-              setIsFormSubmitted={setIsFormSubmitted}
-              color={stageColor}
-              order={order}
-              substageList={substageList}
-            />
+            <Form color={stageColor} order={order} />
           </div>
         );
       }}
