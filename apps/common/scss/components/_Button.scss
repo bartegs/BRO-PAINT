@@ -11,6 +11,11 @@
   width: 108px;
   height: 43px;
 
+  &--disable {
+    background: $grey-light;
+    color: $white;
+  }
+
   &--stretchable {
     width: 100%;
   }

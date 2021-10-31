@@ -12,6 +12,7 @@ interface ActionType {
   substage?: { id: number; isFinished: boolean };
   mainStage?: { id: number; isFinished: boolean };
   employee?: string;
+  isSubstageFinished?: boolean;
 }
 
 export function orderReducer(
@@ -33,6 +34,33 @@ export function orderReducer(
         ...state,
         [stageFrom]: ordersWithMatchingStageFrom,
         [stageTo]: ordersWithMatchingStageTo,
+      };
+    }
+    case "UPDATE_ORDER_SUBSTAGE": {
+      const { mainStage, isSubstageFinished, orderId } = action;
+      const { id: mainStageId } = mainStage;
+      const matchingIndex = state[mainStage.id].findIndex(
+        ({ _id }) => _id === orderId
+      );
+      const ordersWithMatchingStage = [...state[mainStageId]];
+
+      ordersWithMatchingStage[matchingIndex] = {
+        ...state[mainStageId][matchingIndex],
+        orderDetails: {
+          ...state[mainStageId][matchingIndex].orderDetails,
+          stage: {
+            ...state[mainStageId][matchingIndex].orderDetails.stage,
+            sub: {
+              ...state[mainStageId][matchingIndex].orderDetails.stage.sub,
+              isFinished: isSubstageFinished,
+            },
+          },
+        },
+      };
+
+      return {
+        ...state,
+        [mainStageId]: ordersWithMatchingStage,
       };
     }
 

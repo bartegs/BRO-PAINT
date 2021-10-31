@@ -4,9 +4,10 @@ import { ButtonColor } from "../../../../../../common/utils/types";
 
 interface OwnProps {
   color: ButtonColor;
+  isSubmitDisabled?: boolean;
 }
 
-export function Buttons({ color }: OwnProps) {
+export function Buttons({ color, isSubmitDisabled }: OwnProps) {
   return (
     <div className="order-card__buttons">
       <Button
@@ -14,6 +15,7 @@ export function Buttons({ color }: OwnProps) {
         text="Zatwierdź"
         additionalClasses="order-card__button mr-1"
         color={color}
+        isDisabled={isSubmitDisabled}
       />
       <Button
         type="reset"

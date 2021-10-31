@@ -70,7 +70,7 @@ export function OrderStatusPage(): JSX.Element {
   function getOrderData(): OrderStatus {
     return {
       id: orderData._id,
-      orderStage: orderData?.orderDetails.stage.main,
+      orderStage: orderData?.orderDetails.stage.main.id,
     };
   }
 

@@ -1,6 +1,7 @@
 import * as React from "react";
 
 import { Draggable } from "react-beautiful-dnd";
+import classnames from "classnames";
 import { Icon } from "../../../../../../../client/src/react/components/icons/Icon";
 
 import { Form } from "./components";
@@ -25,16 +26,18 @@ export function TaskCard({
   const { customerInfo, carInfo, orderDetails } = order;
   const { names } = customerInfo;
   const { licencePlate, model, make } = carInfo;
-  const { orderNumber } = orderDetails;
-  const { stage } = orderDetails;
-  const { id: subId } = stage.sub;
+  const { orderNumber, stage } = orderDetails;
+  const { sub } = stage;
+  const { id: subId } = sub;
 
   return (
-    <Draggable draggableId={`${orderNumber}`} index={index}>
+    <Draggable isDragDisabled draggableId={`${orderNumber}`} index={index}>
       {(provided) => {
         return (
           <div
-            className="board__order order-card"
+            className={classnames("board__order order-card", {
+              "order-card--inactive": sub.isFinished,
+            })}
             {...provided.draggableProps}
             {...provided.dragHandleProps}
             ref={provided.innerRef}

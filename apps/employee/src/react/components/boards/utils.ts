@@ -35,7 +35,8 @@ export function updateOrders(
   columnIdFrom: number,
   columnIdTo: number,
   parsedDraggableOrderNumber: number,
-  positionInTargetColumn: number
+  positionInTargetColumn: number,
+  isWorkman: boolean = false
 ) {
   const ordersWithMatchingStageFrom = ordersCopy[columnIdFrom];
   const ordersWithMatchingStageTo = ordersCopy[columnIdTo];
@@ -55,7 +56,7 @@ export function updateOrders(
     orderDetails: {
       ...splicedOrder.orderDetails,
       stage: {
-        sub: { id: 0, isFinished: false },
+        sub: { id: 0, isFinished: isWorkman && true },
         main: { id: columnIdTo, isFinished: false },
       },
     },

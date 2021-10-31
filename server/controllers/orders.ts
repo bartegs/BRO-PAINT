@@ -5,7 +5,12 @@ export type SortedOrdersType = { [key: number]: OrderType[] };
 
 const OrdersController = {
   get_all: (req: Request, res: Response) => {
-    Order.find({})
+    const { headers } = req;
+    const { role, id } = headers;
+
+    const filter = role === "workman" ? { "orderDetails.repairer": id } : {};
+
+    Order.find(filter)
       .then((result: OrderType[]) => {
         function getSortedOrdersByStage() {
           const sortedData: SortedOrdersType = {
@@ -15,9 +20,11 @@ const OrdersController = {
             3: [],
             4: [],
           };
-          result.forEach((item) => {
-            const stage = item.orderDetails.stage.main.id;
-            sortedData[stage].push(item);
+
+          result.forEach((order) => {
+            const stage = order.orderDetails.stage.main.id;
+
+            sortedData[stage].push(order);
           });
 
           return sortedData;

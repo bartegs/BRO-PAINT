@@ -1,8 +1,9 @@
 import * as React from "react";
 
-import { SetStateAction } from "react";
+import classnames from "classnames";
 
 import { Draggable } from "react-beautiful-dnd";
+
 import { Form } from "./components";
 import { Icon } from "../../../../../../../client/src/react/components/icons/Icon";
 
@@ -15,7 +16,6 @@ interface OwnProps {
   index: number;
   stageColor: StageColor;
   substageList: StageListItem;
-  setIsFormSubmitted: React.Dispatch<SetStateAction<boolean>>;
 }
 
 export function OrderCard({
@@ -23,21 +23,21 @@ export function OrderCard({
   index,
   stageColor,
   substageList,
-  setIsFormSubmitted,
 }: OwnProps): JSX.Element {
   const { customerInfo, carInfo, orderDetails } = order;
   const { names } = customerInfo;
   const { licencePlate, model, make } = carInfo;
-  const { orderNumber } = orderDetails;
-  const { stage } = orderDetails;
-  const { id: subId } = stage.sub;
+  const { orderNumber, stage } = orderDetails;
+  const { id: subId, isFinished } = stage.sub;
 
   return (
     <Draggable draggableId={`${orderNumber}`} index={index}>
       {(provided) => {
         return (
           <div
-            className="board__order order-card"
+            className={classnames("board__order order-card", {
+              "order-card--awaiting": isFinished,
+            })}
             {...provided.draggableProps}
             {...provided.dragHandleProps}
             ref={provided.innerRef}
@@ -63,7 +63,6 @@ export function OrderCard({
               <span className="ml-2">{names}</span>
             </div>
             <Form
-              setIsFormSubmitted={setIsFormSubmitted}
               color={stageColor}
               order={order}
               substageList={substageList}

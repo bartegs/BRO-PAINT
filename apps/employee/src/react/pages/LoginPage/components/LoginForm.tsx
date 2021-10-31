@@ -36,6 +36,7 @@ export function LoginForm(): JSX.Element {
       .then((data) => {
         sessionStorage.setItem("token", data.token);
         sessionStorage.setItem("role", data.role);
+        sessionStorage.setItem("userId", data.id);
 
         setIsLogged(true);
 

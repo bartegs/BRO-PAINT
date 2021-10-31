@@ -14,7 +14,10 @@ export const emptyOrder: OrderType = {
   orderDetails: {
     orderNumber: 0,
     repairer: {},
-    stage: { main: -1, sub: 0 },
+    stage: {
+      main: { id: -1, isFinished: false },
+      sub: { id: 0, isFinished: true },
+    },
   },
   orderInfo: { comment: "", service: "" },
 };

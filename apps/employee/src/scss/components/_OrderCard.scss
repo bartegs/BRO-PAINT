@@ -4,6 +4,14 @@
   border-radius: $radius-x1;
   margin-bottom: $spacing-x2;
 
+  &--inactive {
+    filter: opacity(0.7);
+  }
+
+  &--awaiting {
+    filter: grayscale(80%);
+  }
+
   &__label {
     font-size: $text-12;
     padding: $spacing-x1 $spacing-x2;
@@ -34,6 +42,10 @@
     height: 40px;
     justify-content: center;
     margin: $spacing-x3 0 $spacing-x2 0;
+
+    &--odd {
+      justify-content: left;
+    }
   }
 
   &__button {

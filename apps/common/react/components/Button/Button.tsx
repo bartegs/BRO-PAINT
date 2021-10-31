@@ -30,13 +30,11 @@ export function Button({
   return (
     <button
       onClick={onClick}
-      className={classnames(
-        "button",
-        `button--${variant}`,
-        `button--${color}-${variant}`,
-        additionalClasses,
-        { "button--stretchable": !hasFixedWidth }
-      )}
+      className={classnames("button", additionalClasses, {
+        "button--stretchable": !hasFixedWidth,
+        [`button--${variant} button--${color}-${variant}`]: !isDisabled,
+        "button--disable": isDisabled,
+      })}
       type={type}
       disabled={isDisabled}
     >

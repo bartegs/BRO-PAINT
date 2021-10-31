@@ -15,19 +15,13 @@ interface OwnProps {
   color: StageColor;
   order: OrderType;
   substageList: {};
-  setIsFormSubmitted: React.Dispatch<React.SetStateAction<boolean>>;
 }
 export interface SelectItemType {
   label: string;
   value: string | number;
 }
 
-export function Form({
-  color,
-  order,
-  substageList,
-  setIsFormSubmitted,
-}: OwnProps): JSX.Element {
+export function Form({ color, order, substageList }: OwnProps): JSX.Element {
   const [selectedSubstage, setSelectedSubstage] = React.useState(null);
   const [selectedEmployee, setSelectedEmployee] = React.useState(null);
   const [employees, setEmployees] = React.useState<SelectItemType[]>([
@@ -45,12 +39,10 @@ export function Form({
 
   function handleSelectedSubstageChange(currentSelected: SelectItemType) {
     setSelectedSubstage(currentSelected);
-    setIsFormSubmitted(false);
   }
 
   function handleSelectedEmployeeChange(currentSelected: SelectItemType) {
     setSelectedEmployee(currentSelected);
-    setIsFormSubmitted(false);
   }
 
   function handleSubmit(e: React.FormEvent) {
@@ -81,15 +73,12 @@ export function Form({
         "orders",
         order._id
       );
-
-      setIsFormSubmitted(true);
     }
   }
 
   function handleReset() {
     setSelectedEmployee(null);
     setSelectedSubstage(null);
-    setIsFormSubmitted(true);
   }
 
   const processedSubstageList = Object.values(substageList).map(
@@ -114,7 +103,10 @@ export function Form({
         value={selectedEmployee}
         onChange={handleSelectedEmployeeChange}
       />
-      <Buttons color={color} />
+      <Buttons
+        isSubmitDisabled={!(selectedEmployee && selectedSubstage)}
+        color={color}
+      />
     </form>
   );
 }

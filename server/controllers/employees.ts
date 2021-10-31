@@ -164,6 +164,7 @@ const EmployeesController = {
                 message: "Zalogowano pomyślnie",
                 token,
                 role: employee.role,
+                id: employee.id,
               });
             } else {
               res.status(401).json({ message: "Niepoprawne dane logowania" });

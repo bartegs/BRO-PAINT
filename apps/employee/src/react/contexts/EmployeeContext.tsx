@@ -68,6 +68,8 @@ export default function EmployeeContextProvider({ children }: OwnProps) {
     fetch(`${host}/orders`, {
       headers: {
         authorization: `Bearer ${getToken()}`,
+        role: sessionStorage.getItem("role"),
+        id: sessionStorage.getItem("userId"),
       },
     }).then((resp) =>
       resp
