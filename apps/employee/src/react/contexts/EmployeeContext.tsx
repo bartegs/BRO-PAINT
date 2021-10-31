@@ -3,7 +3,8 @@ import * as React from "react";
 import { useContext } from "react";
 import type { SortedOrdersType } from "../../../../../server/controllers/orders";
 import type { SortedAwaitingOrdersType } from "../../../../../server/controllers/awaitingOrders";
-import { host, token } from "../../../../common/utils/contants";
+import { host } from "../../../../common/utils/contants";
+import { getToken } from "../../../../common/utils/functions";
 
 import { awaitingOrdersReducer, orderReducer } from "../reducers";
 import { LoginContext } from "./LoginContext";
@@ -48,7 +49,7 @@ export default function EmployeeContextProvider({ children }: OwnProps) {
   function getAwaitingOrders() {
     fetch(`${host}/awaiting-orders`, {
       headers: {
-        authorization: `Bearer ${token}`,
+        authorization: `Bearer ${getToken()}`,
       },
     }).then((resp) =>
       resp
@@ -66,7 +67,9 @@ export default function EmployeeContextProvider({ children }: OwnProps) {
   function getOrders() {
     fetch(`${host}/orders`, {
       headers: {
-        authorization: `Bearer ${token}`,
+        authorization: `Bearer ${getToken()}`,
+        role: sessionStorage.getItem("role"),
+        id: sessionStorage.getItem("userId"),
       },
     }).then((resp) =>
       resp

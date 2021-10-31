@@ -7,6 +7,7 @@ import {
   AwaitingOrdersPage,
   OrdersManagementPage,
   LoginPage,
+  WorkmanPage,
 } from "../react/pages";
 
 interface RouteType {
@@ -35,7 +36,7 @@ export const workmanRoutes = [
   {
     id: 1,
     route: "/",
-    component: () => <div>workman board</div>,
+    component: WorkmanPage,
     isProtected: true,
   },
   { id: 3, route: "*", component: Error, isProtected: false },

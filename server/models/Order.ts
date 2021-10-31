@@ -7,8 +7,8 @@ export type OrderType = AwaitingOrderType & {
     orderNumber: number;
     repairer: {};
     stage: {
-      main: number;
-      sub: number;
+      main: { id: number; isFinished: boolean };
+      sub: { id: number; isFinished: boolean };
     };
   };
 };
@@ -18,8 +18,14 @@ const OrderSchema = new mongoose.Schema<OrderType>({
   orderDetails: {
     ...awaitingOrderSchema.obj.orderDetails,
     stage: {
-      main: { type: Number, required: true },
-      sub: { type: Number, required: true },
+      main: {
+        id: { type: Number, required: true },
+        isFinished: { type: Boolean, required: true },
+      },
+      sub: {
+        id: { type: Number, required: true },
+        isFinished: { type: Boolean, required: true },
+      },
     },
     repairer: {
       type: mongoose.Schema.Types.ObjectId,

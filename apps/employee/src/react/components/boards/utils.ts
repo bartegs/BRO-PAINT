@@ -3,8 +3,11 @@ import * as React from "react";
 import type { SortedOrdersType } from "../../../../../../server/controllers/orders";
 import type { SortedAwaitingOrdersType } from "../../../../../../server/controllers/awaitingOrders";
 
-import { insertToArrayAt } from "../../../../../common/utils/functions";
-import { host, token } from "../../../../../common/utils/contants";
+import {
+  getToken,
+  insertToArrayAt,
+} from "../../../../../common/utils/functions";
+import { host } from "../../../../../common/utils/contants";
 
 export function sendUpdatedData(
   updatedData: {},
@@ -15,7 +18,7 @@ export function sendUpdatedData(
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
-      authorization: `Bearer ${token}`,
+      authorization: `Bearer ${getToken()}`,
     },
     body: JSON.stringify({
       ...updatedData,
@@ -32,7 +35,8 @@ export function updateOrders(
   columnIdFrom: number,
   columnIdTo: number,
   parsedDraggableOrderNumber: number,
-  positionInTargetColumn: number
+  positionInTargetColumn: number,
+  isWorkman: boolean = false
 ) {
   const ordersWithMatchingStageFrom = ordersCopy[columnIdFrom];
   const ordersWithMatchingStageTo = ordersCopy[columnIdTo];
@@ -52,8 +56,8 @@ export function updateOrders(
     orderDetails: {
       ...splicedOrder.orderDetails,
       stage: {
-        sub: 0,
-        main: columnIdTo,
+        sub: { id: 0, isFinished: isWorkman && true },
+        main: { id: columnIdTo, isFinished: false },
       },
     },
   };

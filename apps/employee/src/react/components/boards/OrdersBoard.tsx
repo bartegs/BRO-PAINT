@@ -18,10 +18,9 @@ type OwnProps = {
 
 export function OrdersBoard({ stages, orders }: OwnProps): JSX.Element {
   const { ordersDispatch } = React.useContext(EmployeeContext);
-  const [isFormSubmitted, setIsFormSubmitted] = React.useState<boolean>(true);
 
   function handleOnDragEnd(result: DropResult) {
-    if (!result.destination || !isFormSubmitted) {
+    if (!result.destination) {
       return;
     }
 
@@ -66,7 +65,6 @@ export function OrdersBoard({ stages, orders }: OwnProps): JSX.Element {
                       index={index}
                       stageColor={color}
                       substageList={stageList[columnId as number]}
-                      setIsFormSubmitted={setIsFormSubmitted}
                     />
                   ))}
                   {provided.placeholder}

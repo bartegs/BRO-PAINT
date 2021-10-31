@@ -1,4 +1,4 @@
-import { token } from "../../../../../../../../common/utils/contants";
+import { getToken } from "../../../../../../../../common/utils/functions";
 
 export function handleDeletingAwaitingOrders(url: string) {
   // this should be useFetch hook which returns data, and errors
@@ -6,7 +6,7 @@ export function handleDeletingAwaitingOrders(url: string) {
   fetch(url, {
     method: "DELETE",
     headers: {
-      authorization: `Bearer ${token}`,
+      authorization: `Bearer ${getToken()}`,
     },
   })
     .then((resp) => resp.json())

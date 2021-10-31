@@ -1,11 +1,10 @@
 import * as React from "react";
 
-import classnames from "classnames";
-
 import { Draggable } from "react-beautiful-dnd";
+import classnames from "classnames";
+import { Icon } from "../../../../../../../client/src/react/components/icons/Icon";
 
 import { Form } from "./components";
-import { Icon } from "../../../../../../../client/src/react/components/icons/Icon";
 
 import type { StageColor } from "../../../../../../../common/utils/types";
 import type { OrderType } from "../../../../../../../../server/models/Order";
@@ -18,7 +17,7 @@ interface OwnProps {
   substageList: StageListItem;
 }
 
-export function OrderCard({
+export function TaskCard({
   order,
   index,
   stageColor,
@@ -28,15 +27,16 @@ export function OrderCard({
   const { names } = customerInfo;
   const { licencePlate, model, make } = carInfo;
   const { orderNumber, stage } = orderDetails;
-  const { id: subId, isFinished } = stage.sub;
+  const { sub } = stage;
+  const { id: subId } = sub;
 
   return (
-    <Draggable draggableId={`${orderNumber}`} index={index}>
+    <Draggable isDragDisabled draggableId={`${orderNumber}`} index={index}>
       {(provided) => {
         return (
           <div
             className={classnames("board__order order-card", {
-              "order-card--awaiting": isFinished,
+              "order-card--inactive": sub.isFinished,
             })}
             {...provided.draggableProps}
             {...provided.dragHandleProps}
@@ -62,11 +62,7 @@ export function OrderCard({
               <Icon icon="person" size="sm" />
               <span className="ml-2">{names}</span>
             </div>
-            <Form
-              color={stageColor}
-              order={order}
-              substageList={substageList}
-            />
+            <Form color={stageColor} order={order} />
           </div>
         );
       }}

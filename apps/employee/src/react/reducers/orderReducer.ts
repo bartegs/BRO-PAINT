@@ -9,9 +9,10 @@ interface ActionType {
   stageTo?: number;
   ordersWithMatchingStageTo?: OrderType[];
   orderId?: string;
-  substage?: number;
-  mainStage?: number;
+  substage?: { id: number; isFinished: boolean };
+  mainStage?: { id: number; isFinished: boolean };
   employee?: string;
+  isSubstageFinished?: boolean;
 }
 
 export function orderReducer(
@@ -35,21 +36,49 @@ export function orderReducer(
         [stageTo]: ordersWithMatchingStageTo,
       };
     }
+    case "UPDATE_ORDER_SUBSTAGE": {
+      const { mainStage, isSubstageFinished, orderId } = action;
+      const { id: mainStageId } = mainStage;
+      const matchingIndex = state[mainStage.id].findIndex(
+        ({ _id }) => _id === orderId
+      );
+      const ordersWithMatchingStage = [...state[mainStageId]];
+
+      ordersWithMatchingStage[matchingIndex] = {
+        ...state[mainStageId][matchingIndex],
+        orderDetails: {
+          ...state[mainStageId][matchingIndex].orderDetails,
+          stage: {
+            ...state[mainStageId][matchingIndex].orderDetails.stage,
+            sub: {
+              ...state[mainStageId][matchingIndex].orderDetails.stage.sub,
+              isFinished: isSubstageFinished,
+            },
+          },
+        },
+      };
+
+      return {
+        ...state,
+        [mainStageId]: ordersWithMatchingStage,
+      };
+    }
 
     case "UPDATE_ORDER_DETAILS": {
       const { orderId, substage, mainStage, employee } = action;
-      const matchingIndex = state[mainStage].findIndex(
+      const { id: mainStageId } = mainStage;
+      const matchingIndex = state[mainStage.id].findIndex(
         ({ _id }) => _id === orderId
       );
 
-      const ordersWithMatchingStage = [...state[mainStage]];
+      const ordersWithMatchingStage = [...state[mainStageId]];
 
       ordersWithMatchingStage[matchingIndex] = {
-        ...state[mainStage][matchingIndex],
+        ...state[mainStageId][matchingIndex],
         orderDetails: {
-          ...state[mainStage][matchingIndex].orderDetails,
+          ...state[mainStageId][matchingIndex].orderDetails,
           stage: {
-            ...state[mainStage][matchingIndex].orderDetails.stage,
+            ...state[mainStageId][matchingIndex].orderDetails.stage,
             sub: substage,
           },
           repairer: employee,
@@ -58,7 +87,7 @@ export function orderReducer(
 
       return {
         ...state,
-        [mainStage]: ordersWithMatchingStage,
+        [mainStageId]: ordersWithMatchingStage,
       };
     }
 

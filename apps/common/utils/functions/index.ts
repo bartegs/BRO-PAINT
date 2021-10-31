@@ -11,3 +11,7 @@ export function isGivenLocation(location: string): boolean {
 
   return pathname.includes(location);
 }
+
+export function getToken() {
+  return sessionStorage.getItem("token");
+}

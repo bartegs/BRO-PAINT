@@ -1,50 +1,48 @@
 import * as React from "react";
 
 import { DragDropContext, Droppable, DropResult } from "react-beautiful-dnd";
+
+import type { Stage } from "../../pages";
+import type { SortedOrdersType } from "../../../../../../server/controllers/orders";
+import { stageList } from "../../../../../assets/stages";
+import { TaskCard } from "./components";
 import { EmployeeContext } from "../../contexts";
 
-import { updateAwaitingOrders } from "./utils";
-
-import type { Service } from "../../pages";
-import type { SortedAwaitingOrdersType } from "../../../../../../server/controllers/awaitingOrders";
-
-import { SortedOrdersType } from "../../../../../../server/controllers/orders";
-import { AwaitingOrderCard } from "./components";
+import { updateOrders } from "./utils";
 
 type OwnProps = {
-  stages: Service[];
-  awaitingOrders: SortedAwaitingOrdersType;
+  stages: Stage[];
+  orders: SortedOrdersType;
 };
 
-export function AwaitingOrdersBoard({
-  stages,
-  awaitingOrders,
-}: OwnProps): JSX.Element {
-  const { awaitingOrdersDispatch } = React.useContext(EmployeeContext);
+export function WorkmanBoard({ stages, orders }: OwnProps): JSX.Element {
+  const { ordersDispatch } = React.useContext(EmployeeContext);
 
   function handleOnDragEnd(result: DropResult) {
     if (!result.destination) {
       return;
     }
 
-    const ordersCopy: SortedOrdersType = JSON.parse(
-      JSON.stringify(awaitingOrders)
-    );
+    const ordersCopy: SortedOrdersType = JSON.parse(JSON.stringify(orders));
 
     const { source, destination, draggableId } = result;
+
     const { droppableId: droppableIdFrom } = source;
     const { droppableId: droppableIdTo, index: positionInTargetColumn } =
       destination;
 
     const parsedDraggableId = Number(draggableId);
+    const parsedDroppableIdFrom = Number(droppableIdFrom);
+    const parsedDroppableIdTo = Number(droppableIdTo);
 
-    updateAwaitingOrders(
-      awaitingOrdersDispatch,
+    updateOrders(
+      ordersDispatch,
       ordersCopy,
-      droppableIdFrom,
-      droppableIdTo,
+      parsedDroppableIdFrom,
+      parsedDroppableIdTo,
       parsedDraggableId,
-      positionInTargetColumn
+      positionInTargetColumn,
+      true
     );
   }
 
@@ -53,11 +51,7 @@ export function AwaitingOrdersBoard({
       <DragDropContext onDragEnd={handleOnDragEnd}>
         {stages.map(({ id: columnId, title, color }) => {
           return (
-            <Droppable
-              isDropDisabled
-              key={columnId}
-              droppableId={String(columnId)}
-            >
+            <Droppable key={columnId} droppableId={String(columnId)}>
               {(provided) => (
                 <div
                   className={`board__column board__column--${color}`}
@@ -65,13 +59,13 @@ export function AwaitingOrdersBoard({
                   ref={provided.innerRef}
                 >
                   <div className="board__column-title">{title}</div>
-                  {awaitingOrders[columnId]?.map((order, index) => (
-                    <AwaitingOrderCard
-                      color={color}
+                  {orders[columnId].map((order, index) => (
+                    <TaskCard
                       key={order._id}
                       order={order}
                       index={index}
-                      columnId={columnId as string}
+                      stageColor={color}
+                      substageList={stageList[columnId]}
                     />
                   ))}
                   {provided.placeholder}
