@@ -1,13 +1,14 @@
 import * as React from "react";
 import * as ReactModal from "react-modal";
 import { OrderType } from "../../../../../../../../server/models/Order";
+import { AwaitingOrderType } from "../../../../../../../../server/models/AwaitingOrder";
 
 interface OwnProps {
   isOpen: boolean;
   closeModal: () => void;
-  labelColor: string;
-  substageName: string;
-  order: OrderType;
+  labelColor?: string;
+  substageName?: string;
+  order: OrderType | AwaitingOrderType;
 }
 
 export function CardModal({
@@ -40,16 +41,20 @@ export function CardModal({
       onRequestClose={closeModal}
       isOpen={isOpen}
       overlayClassName="modal-overlay"
+      bodyOpenClassName="modal-body"
     >
       <div className="card-modal__content">
         <div className="card-modal__heading">
           <strong className="card-modal__id">#{orderNumber}</strong>
-          <span
-            className="card-modal__label"
-            style={{ backgroundColor: labelColor }}
-          >
-            {substageName}
-          </span>
+          {substageName && (
+            <span
+              className="card-modal__label"
+              style={{ backgroundColor: labelColor }}
+            >
+              {substageName}
+            </span>
+          )}
+
           <div
             tabIndex={0}
             onKeyDown={(event) => event.code !== "Tab" && closeModal()}
@@ -64,7 +69,7 @@ export function CardModal({
         <div className="card-modal__text-wrapper">
           <div className="card-modal__details details">
             {details.map(({ key, value }) => (
-              <div className="details__item">
+              <div className="details__item" key={key}>
                 <div className="details__key">{key}:</div>
                 <div className="details__value">{value}</div>
               </div>
