@@ -18,7 +18,8 @@ export type IconType =
   | "notifications"
   | "groups"
   | "fact-check"
-  | "logout";
+  | "logout"
+  | "show-more";
 
 export type IconColorType =
   | "white"

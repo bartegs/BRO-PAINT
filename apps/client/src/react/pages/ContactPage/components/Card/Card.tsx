@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { Icon } from "../../../../components/icons/Icon";
+import { Icon } from "../../../../../../../common/react/components";
 
 interface CardProps {
   icon: "phone" | "email" | "location";

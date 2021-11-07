@@ -1,7 +1,6 @@
 import * as React from "react";
 
-import { Carousel } from "./components/Carousel";
-import { Gallery } from "./components/Gallery";
+import { Carousel, Gallery } from "./components";
 
 export function GalleryPage(): JSX.Element {
   const [finishedPhotos, setFinishedPhotos] = React.useState(true);

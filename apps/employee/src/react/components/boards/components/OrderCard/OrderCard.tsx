@@ -5,11 +5,12 @@ import classnames from "classnames";
 import { Draggable } from "react-beautiful-dnd";
 
 import { Form } from "./components";
-import { Icon } from "../../../../../../../client/src/react/components/icons/Icon";
 
 import type { StageColor } from "../../../../../../../common/utils/types";
 import type { OrderType } from "../../../../../../../../server/models/Order";
 import type { StageListItem } from "../../../../../../../assets/stages";
+import { CardModal } from "../CardModal/CardModal";
+import { Icon } from "../../../../../../../common/react/components";
 
 interface OwnProps {
   order: OrderType;
@@ -24,11 +25,23 @@ export function OrderCard({
   stageColor,
   substageList,
 }: OwnProps): JSX.Element {
+  const [isModalOpen, setIsModalOpen] = React.useState(false);
+
   const { customerInfo, carInfo, orderDetails } = order;
   const { names } = customerInfo;
   const { licencePlate, model, make } = carInfo;
   const { orderNumber, stage } = orderDetails;
   const { id: subId, isFinished } = stage.sub;
+
+  const labelColor = substageList[subId].color;
+  const substageName = substageList[subId].name;
+
+  function closeModal() {
+    setIsModalOpen(false);
+  }
+  function openModal() {
+    setIsModalOpen(true);
+  }
 
   return (
     <Draggable draggableId={`${orderNumber}`} index={index}>
@@ -46,9 +59,9 @@ export function OrderCard({
               <strong className="order-card__id">#{orderNumber}</strong>
               <span
                 className="order-card__label label"
-                style={{ backgroundColor: substageList[subId].color }}
+                style={{ backgroundColor: labelColor }}
               >
-                {substageList[subId].name}
+                {substageName}
               </span>
             </div>
             <div className="order-card__car">
@@ -62,10 +75,35 @@ export function OrderCard({
               <Icon icon="person" size="sm" />
               <span className="ml-2">{names}</span>
             </div>
+            <div className="order-card__show-more-button-wrapper">
+              <span
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (!isModalOpen && e.code !== "Tab") {
+                    openModal();
+                  }
+                }}
+                onClick={() => {
+                  if (!isModalOpen) {
+                    openModal();
+                  }
+                }}
+              >
+                <Icon icon="show-more" />
+              </span>
+            </div>
             <Form
               color={stageColor}
               order={order}
               substageList={substageList}
+            />
+            <CardModal
+              labelColor={labelColor}
+              substageName={substageName}
+              closeModal={closeModal}
+              isOpen={isModalOpen}
+              order={order}
             />
           </div>
         );
