@@ -2,13 +2,13 @@ import * as React from "react";
 
 import { Draggable } from "react-beautiful-dnd";
 import classnames from "classnames";
-import { Icon } from "../../../../../../../client/src/react/components/icons/Icon";
 
 import { Form } from "./components";
 
 import type { StageColor } from "../../../../../../../common/utils/types";
 import type { OrderType } from "../../../../../../../../server/models/Order";
 import type { StageListItem } from "../../../../../../../assets/stages";
+import { Icon } from "../../../../../../../common/react/components";
 
 interface OwnProps {
   order: OrderType;

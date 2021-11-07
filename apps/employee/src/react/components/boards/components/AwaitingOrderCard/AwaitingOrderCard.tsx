@@ -4,8 +4,8 @@ import { Draggable } from "react-beautiful-dnd";
 import type { StageColor } from "../../../../../../../common/utils/types";
 import { AwaitingOrderType } from "../../../../../../../../server/models/AwaitingOrder";
 
-import { Icon } from "../../../../../../../client/src/react/components/icons/Icon";
 import { Form } from "./components";
+import { Icon } from "../../../../../../../common/react/components";
 
 interface OwnProps {
   order: AwaitingOrderType;
