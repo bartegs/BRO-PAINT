@@ -12,11 +12,21 @@ export function CardEmail(): JSX.Element {
 
   function sendMessage(e: React.FormEvent) {
     e.preventDefault();
+
+    fetch("emails", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ name, email, message }),
+    });
+
     setName("");
     setEmail("");
     setMessage("");
     setIsMessageSent(true);
   }
+
   return (
     <Card category="email" icon="email" color="pink">
       {!isMessageSent ? (

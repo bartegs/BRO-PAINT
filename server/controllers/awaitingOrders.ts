@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import AwaitingOrder, { AwaitingOrderType } from "../models/AwaitingOrder";
 import Service, { ServiceType } from "../models/Service";
 import Order, { OrderType } from "../models/Order";
+import { sendEmail } from "../utils/email";
 
 export type SortedAwaitingOrdersType = {
   [key: string]: AwaitingOrderType[];
@@ -156,8 +157,8 @@ const AwaitingOrdersController = {
             orderDetails: {
               ...result._doc.orderDetails,
               stage: {
-                main: 0,
-                sub: 0,
+                main: { id: 0, isFinished: false },
+                sub: { id: 0, isFinished: false },
               },
             },
           };
@@ -166,9 +167,16 @@ const AwaitingOrdersController = {
 
           order
             .save()
-            .then(() =>
-              res.status(200).json({ message: "Przeniesiono do zleceń" })
-            )
+            .then((addedOrder: OrderType) => {
+              const { _id: addedOrderId, customerInfo } = addedOrder;
+              const { email, names } = customerInfo;
+
+              res.status(200).json({ message: "Przeniesiono do zleceń" });
+
+              sendEmail(names, email, "", addedOrderId).catch((error) =>
+                console.log(error)
+              );
+            })
             .catch(() => {
               res
                 .status(500)
