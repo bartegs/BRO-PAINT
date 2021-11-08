@@ -31,7 +31,7 @@ export function Form({ color, cardId, columnId }: OwnProps): JSX.Element {
     );
   }
 
-  function handleReset(e: React.FormEvent) {
+  function handleRejection(e: React.FormEvent) {
     e.preventDefault();
 
     awaitingOrdersDispatch({
@@ -44,7 +44,7 @@ export function Form({ color, cardId, columnId }: OwnProps): JSX.Element {
   }
 
   return (
-    <form onSubmit={handleSubmit} onReset={handleReset} className="mt-2">
+    <form onSubmit={handleSubmit} onReset={handleRejection} className="mt-2">
       <Buttons color={color} />
     </form>
   );

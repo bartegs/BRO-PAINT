@@ -5,8 +5,11 @@ import { router as employeesRouter } from "./employees";
 import { router as servicesRouter } from "./services";
 import { router as awaitingOrdersRouter } from "./awaitingOrders";
 import { router as commonsRouter } from "./commons";
+import { router as emailsRouter } from "./emails";
 
 const router = Router();
+
+router.use("/emails", emailsRouter);
 
 router.use("/orders", ordersRouter);
 

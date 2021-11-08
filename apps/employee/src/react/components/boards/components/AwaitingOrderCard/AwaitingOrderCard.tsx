@@ -32,6 +32,7 @@ export function AwaitingOrderCard({
   function closeModal() {
     setIsModalOpen(false);
   }
+
   function openModal() {
     setIsModalOpen(true);
   }
