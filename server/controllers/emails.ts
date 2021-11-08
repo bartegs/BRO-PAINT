@@ -1,11 +1,11 @@
 import { Request } from "express";
-import { sendMail } from "../utils/mail";
+import { sendEmail } from "../utils/email";
 
 const EmailsController = {
   handle_email_sending: async (req: Request) => {
     const { email, name, message } = req.body;
 
-    sendMail(email, name, message).catch((error) => console.log(error));
+    sendEmail(email, name, message).catch((error) => console.log(error));
   },
 };
 
