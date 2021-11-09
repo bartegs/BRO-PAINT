@@ -2,7 +2,7 @@ import * as React from "react";
 
 import { isGivenLocation } from "../../../utils/functions";
 
-import { NavbarMenu, NavbarToggler } from "./components";
+import { NavbarMenu, NavbarToggler, NavbarMenuEmployee } from "./components";
 import { Logo } from "../Logo";
 
 export function Navbar(): JSX.Element {
@@ -31,18 +31,22 @@ export function Navbar(): JSX.Element {
         <a className="navbar__logo" href="/">
           <Logo />
         </a>
-        {isEmployee ? null : (
-          <NavbarToggler
-            handleMenuKeyboard={handleMenuKeyboard}
-            isClicked={isMenuOpen}
-            onClick={toggleMenu}
-          />
+        {isEmployee ? (
+          <NavbarMenuEmployee />
+        ) : (
+          <>
+            <NavbarToggler
+              handleMenuKeyboard={handleMenuKeyboard}
+              isClicked={isMenuOpen}
+              onClick={toggleMenu}
+            />
+            <NavbarMenu
+              isMenuOpen={isMenuOpen}
+              handleMenuKeyboard={handleMenuKeyboard}
+              closeMenu={closeMenu}
+            />
+          </>
         )}
-        <NavbarMenu
-          isMenuOpen={isMenuOpen}
-          handleMenuKeyboard={handleMenuKeyboard}
-          closeMenu={closeMenu}
-        />
       </div>
     </nav>
   );
