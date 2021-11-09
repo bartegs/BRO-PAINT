@@ -45,10 +45,6 @@
       }
     }
 
-    &--logout {
-      display: flex;
-    }
-
     &::after {
       margin-top: $spacing-x2;
       border-radius: 5px;
