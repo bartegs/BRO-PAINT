@@ -88,14 +88,6 @@ const Contact = React.forwardRef<HTMLInputElement, OwnProps>(
       setPrivacy(false);
     }
 
-    const yearsData = [
-      { id: 0, value: "", text: "Wybierz rocznik auta" },
-      { id: 1, value: "1999", text: "1999" },
-      { id: 2, value: "2000", text: "2000" },
-      { id: 3, value: "2001", text: "2001" },
-      { id: 4, value: "2002", text: "2002" },
-    ];
-
     const makesData = [
       { id: 0, value: "", text: "Wybierz markę auta" },
       { id: 1, value: "audi", text: "Audi" },
@@ -109,6 +101,19 @@ const Contact = React.forwardRef<HTMLInputElement, OwnProps>(
       { id: "Lakierowanie ", value: "Lakierowanie", additionalClasses: "my-2" },
       { id: "Detailing ", value: "Detailing" },
     ];
+
+    function getYearData(scope: number) {
+      const currentYear = new Date().getFullYear();
+      const yearsData: [{ id: number; value: string | number; text: string }] =
+        [{ id: 0, value: "", text: "Wybierz rocznik auta" }];
+
+      for (let i = currentYear; i > currentYear - scope; i -= 1) {
+        yearsData.push({ id: i, value: i, text: String(i) });
+      }
+
+      return yearsData;
+    }
+
     function handleSubmit(event: React.FormEvent) {
       event.preventDefault();
 
@@ -199,7 +204,7 @@ const Contact = React.forwardRef<HTMLInputElement, OwnProps>(
             value={year}
             setState={setYear}
             required
-            optionsData={yearsData}
+            optionsData={getYearData(100)}
           />
           <Select
             labelText="MARKA*"
