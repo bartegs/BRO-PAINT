@@ -97,6 +97,7 @@
   },
   "dependencies": {
     "@testing-library/user-event": "^13.2.1",
+    "@types/multer": "^1.4.7",
     "@types/nodemailer": "^6.4.4",
     "bcrypt": "^5.0.1",
     "classnames": "^2.3.1",

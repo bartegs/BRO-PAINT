@@ -82,7 +82,7 @@ export function CardModal({
         </div>
         {images && (
           <img
-            alt="car image"
+            alt="car"
             className="card-modal__image"
             src={`/userImages/${images}`}
           />
