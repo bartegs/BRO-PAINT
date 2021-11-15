@@ -8,10 +8,14 @@ import router from "./routes";
 config();
 
 const app: express.Express = express();
+const serverRoot = resolve(process.cwd(), "dist/server");
 const appsRoot = resolve(process.cwd(), "dist/apps/");
 
 app.use(express.json());
 app.use(express.static(appsRoot));
+app.use(express.static(serverRoot));
+
+// to be removed
 app.use(cors());
 
 app.use("/", express.static(join(appsRoot, "client")));

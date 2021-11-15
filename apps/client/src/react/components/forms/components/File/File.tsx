@@ -7,6 +7,7 @@ interface FileProps {
   fileAdditionalClasses?: string;
   labelAdditionalClasses?: string;
   required?: boolean;
+  setState: React.Dispatch<React.SetStateAction<Blob>>;
 }
 
 export function File({
@@ -15,6 +16,7 @@ export function File({
   fileAdditionalClasses,
   labelAdditionalClasses,
   required,
+  setState,
 }: FileProps): JSX.Element {
   return (
     <>
@@ -32,6 +34,7 @@ export function File({
         id={id}
         name={name}
         required={required}
+        onChange={(event) => setState(event.target.files[0])}
       />
     </>
   );

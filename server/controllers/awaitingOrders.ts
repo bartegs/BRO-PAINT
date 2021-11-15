@@ -51,8 +51,18 @@ const AwaitingOrdersController = {
   },
 
   add_single: (req: Request, res: Response) => {
-    const { customerInfo, carInfo, orderInfo } = req.body;
-    const { serviceName } = orderInfo;
+    const {
+      names,
+      email,
+      phone,
+      productionYear,
+      make,
+      model,
+      licencePlate,
+      paintCode,
+      serviceName,
+      comment,
+    } = req.body;
 
     Order.countDocuments({}).then((orderNumber: number) => {
       AwaitingOrder.countDocuments({}).then((awaitingOrderNumber: number) => {
@@ -62,22 +72,23 @@ const AwaitingOrdersController = {
               const orderTypeId = orderType._id;
               const awaitingOrder = new AwaitingOrder({
                 customerInfo: {
-                  names: customerInfo.names,
-                  email: customerInfo.email,
-                  phone: customerInfo.phone,
+                  names,
+                  email,
+                  phone,
                 },
 
                 carInfo: {
-                  productionYear: carInfo.productionYear,
-                  make: carInfo.make,
-                  model: carInfo.model,
-                  licencePlate: carInfo.licencePlate,
-                  paintCode: carInfo.paintCode,
+                  productionYear,
+                  make,
+                  model,
+                  licencePlate,
+                  paintCode,
                 },
 
                 orderInfo: {
                   service: orderTypeId,
-                  comment: orderInfo.comment,
+                  comment,
+                  images: req.file?.filename,
                 },
                 orderDetails: {
                   orderNumber: orderNumber + awaitingOrderNumber + 1,
@@ -128,6 +139,7 @@ const AwaitingOrdersController = {
         orderInfo: {
           service: orderInfo.serviceName,
           comment: orderInfo.comment,
+          images: orderInfo.images,
         },
       },
       { new: true }

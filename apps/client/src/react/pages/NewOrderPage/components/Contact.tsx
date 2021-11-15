@@ -26,6 +26,7 @@ export interface ContactProps {
   serviceName: string;
   year: string;
   make: string;
+  files: Blob & { name: string };
   setNames: React.Dispatch<React.SetStateAction<string>>;
   setEmail: React.Dispatch<React.SetStateAction<string>>;
   setPhone: React.Dispatch<React.SetStateAction<string>>;
@@ -37,6 +38,7 @@ export interface ContactProps {
   setServiceName: React.Dispatch<React.SetStateAction<string>>;
   setComment: React.Dispatch<React.SetStateAction<string>>;
   setPrivacy: React.Dispatch<React.SetStateAction<boolean>>;
+  setFiles: React.Dispatch<React.SetStateAction<Blob>>;
 }
 
 type OwnProps = ContactProps & {
@@ -46,6 +48,7 @@ type OwnProps = ContactProps & {
 const Contact = React.forwardRef<HTMLInputElement, OwnProps>(
   (
     {
+      files,
       color,
       names,
       email,
@@ -69,6 +72,7 @@ const Contact = React.forwardRef<HTMLInputElement, OwnProps>(
       setServiceName,
       setComment,
       setPrivacy,
+      setFiles,
     }: OwnProps,
     ref
   ) => {
@@ -88,14 +92,6 @@ const Contact = React.forwardRef<HTMLInputElement, OwnProps>(
       setPrivacy(false);
     }
 
-    const yearsData = [
-      { id: 0, value: "", text: "Wybierz rocznik auta" },
-      { id: 1, value: "1999", text: "1999" },
-      { id: 2, value: "2000", text: "2000" },
-      { id: 3, value: "2001", text: "2001" },
-      { id: 4, value: "2002", text: "2002" },
-    ];
-
     const makesData = [
       { id: 0, value: "", text: "Wybierz markę auta" },
       { id: 1, value: "audi", text: "Audi" },
@@ -109,38 +105,55 @@ const Contact = React.forwardRef<HTMLInputElement, OwnProps>(
       { id: "Lakierowanie ", value: "Lakierowanie", additionalClasses: "my-2" },
       { id: "Detailing ", value: "Detailing" },
     ];
+
+    function getYearData(scope: number) {
+      const currentYear = new Date().getFullYear();
+      const yearsData: [{ id: number; value: string | number; text: string }] =
+        [{ id: 0, value: "", text: "Wybierz rocznik auta" }];
+
+      for (let i = currentYear; i > currentYear - scope; i -= 1) {
+        yearsData.push({ id: i, value: i, text: String(i) });
+      }
+
+      return yearsData;
+    }
+
     function handleSubmit(event: React.FormEvent) {
       event.preventDefault();
 
+      const fd = new FormData();
+
+      if (files) {
+        fd.append("image", files, files.name);
+      }
+
+      const formValues = [
+        { key: "color", value: color },
+        { key: "names", value: names },
+        { key: "email", value: email },
+        { key: "phone", value: phone },
+        { key: "model", value: model },
+        { key: "licencePlate", value: licencePlate },
+        { key: "paintCode", value: paintCode },
+        { key: "comment", value: comment },
+        { key: "serviceName", value: serviceName },
+        { key: "productionYear", value: year },
+        { key: "make", value: make },
+      ];
+
+      formValues.forEach(({ key, value }) => {
+        fd.append(key, value);
+      });
+
       fetch(`${host}/awaiting-orders`, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          customerInfo: {
-            names,
-            email,
-            phone,
-          },
-
-          carInfo: {
-            productionYear: year,
-            make,
-            model,
-            licencePlate,
-            paintCode,
-          },
-
-          orderInfo: {
-            serviceName,
-            comment,
-          },
-        }),
+        body: fd,
       })
         .then((response) => response.json())
         .then((data) => console.log(data))
         .catch((error) => console.log(error));
+
+      return false;
     }
 
     return (
@@ -199,7 +212,7 @@ const Contact = React.forwardRef<HTMLInputElement, OwnProps>(
             value={year}
             setState={setYear}
             required
-            optionsData={yearsData}
+            optionsData={getYearData(100)}
           />
           <Select
             labelText="MARKA*"
@@ -237,9 +250,9 @@ const Contact = React.forwardRef<HTMLInputElement, OwnProps>(
           />
           <InputOutlined
             hasTooltip
-            tooltipText="Podaj kod lakieru auta. Zazwyczaj znajdziesz go na naklejce na przednim błotniku 
-              oraz na naklejce we wnęce koła zapasowego. Prosimy o to, żeby przyśpieszyć realizację zlecenia, 
-              bo jeśli nie mamy akurat dostępu do tego lakieru, to sprowadzimy go za wczasu, 
+            tooltipText="Podaj kod lakieru auta. Zazwyczaj znajdziesz go na naklejce na przednim błotniku
+              oraz na naklejce we wnęce koła zapasowego. Prosimy o to, żeby przyśpieszyć realizację zlecenia,
+              bo jeśli nie mamy akurat dostępu do tego lakieru, to sprowadzimy go za wczasu,
               aby czas oczekiwania na auto był jak najkrótszy!
               Jeśli nie masz do tego kodu dostępu, nic się nie stało, poradzimy sobie."
             labelText="KOD LAKIERU"
@@ -277,6 +290,7 @@ const Contact = React.forwardRef<HTMLInputElement, OwnProps>(
             id="photo"
             labelAdditionalClasses="file__label--centered"
             fileAdditionalClasses="my-3"
+            setState={setFiles}
           />
           <Checkbox
             name="privacy"
