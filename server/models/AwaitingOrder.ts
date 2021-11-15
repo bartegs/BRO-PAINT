@@ -17,6 +17,7 @@ export interface AwaitingOrderType {
   orderInfo: {
     service: string;
     comment: string;
+    images?: string;
   };
 
   orderDetails: {
@@ -82,6 +83,12 @@ export const awaitingOrderSchema = new mongoose.Schema<AwaitingOrderType>({
       required: true,
     },
     comment: {
+      type: String,
+      required: false,
+      min: 1,
+      max: 1000,
+    },
+    images: {
       type: String,
       required: false,
       min: 1,

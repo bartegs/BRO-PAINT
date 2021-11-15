@@ -57,7 +57,13 @@
 
   &__image {
     height: 270px;
+    width: 100%;
+    overflow: hidden;
     background: purple;
+
+    @media (min-width: $screen-md) {
+      height: 320px;
+    }
   }
 
   &__text-wrapper {
@@ -71,24 +77,9 @@
 }
 
 .details {
-  &__item {
-    display: flex;
-    margin-bottom: $spacing-x2;
-    flex: 1;
-  }
-
-  &__key {
-    font-weight: bold;
-    flex-basis: 50%;
-    overflow: hidden;
-  }
-
-  &__value {
-    flex-basis: 50%;
-    padding-left: $spacing-x1;
-    display: flex;
-    align-items: flex-end;
-  }
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 10px;
 
   &__form {
     height: 200px;

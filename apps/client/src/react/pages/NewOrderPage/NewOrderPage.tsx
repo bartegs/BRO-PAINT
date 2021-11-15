@@ -23,6 +23,7 @@ export function NewOrderPage(): JSX.Element {
   const [paintCode, setPaintCode] = React.useState("");
   const [comment, setComment] = React.useState("");
   const [privacy, setPrivacy] = React.useState(false);
+  const [files, setFiles] = React.useState<Blob & { name: string }>();
 
   const calculatorState = {
     serviceName,
@@ -42,6 +43,7 @@ export function NewOrderPage(): JSX.Element {
   };
 
   const contactState: ContactProps = {
+    files,
     names,
     email,
     phone,
@@ -64,6 +66,7 @@ export function NewOrderPage(): JSX.Element {
     setModel,
     setComment,
     setPrivacy,
+    setFiles,
   };
 
   const [color, setColor] = React.useState<Color>("green");

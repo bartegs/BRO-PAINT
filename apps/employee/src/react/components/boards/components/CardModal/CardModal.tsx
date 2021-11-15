@@ -22,7 +22,7 @@ export function CardModal({
   const { names, phone, email } = customerInfo;
   const { licencePlate, model, make, productionYear, paintCode } = carInfo;
   const { orderNumber } = orderDetails;
-  const { comment } = orderInfo;
+  const { comment, images } = orderInfo;
 
   const details = [
     { key: "AUTO", value: `${model} ${make}` },
@@ -69,10 +69,10 @@ export function CardModal({
         <div className="card-modal__text-wrapper">
           <div className="card-modal__details details">
             {details.map(({ key, value }) => (
-              <div className="details__item" key={key}>
+              <>
                 <div className="details__key">{key}:</div>
                 <div className="details__value">{value}</div>
-              </div>
+              </>
             ))}
           </div>
           <div className="card-modal__comment comment">
@@ -80,7 +80,13 @@ export function CardModal({
             <p className="comment__text">{comment || "Brak"}</p>
           </div>
         </div>
-        <div className="card-modal__image" />
+        {images && (
+          <img
+            alt="car image"
+            className="card-modal__image"
+            src={`/userImages/${images}`}
+          />
+        )}
       </div>
     </ReactModal>
   );
