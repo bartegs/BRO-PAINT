@@ -63,6 +63,8 @@ const AwaitingOrdersController = {
       serviceName,
       comment,
     } = req.body;
+    // @ts-ignore
+    const savedImageLocation = req.file?.location;
 
     Order.countDocuments({}).then((orderNumber: number) => {
       AwaitingOrder.countDocuments({}).then((awaitingOrderNumber: number) => {
@@ -88,7 +90,7 @@ const AwaitingOrdersController = {
                 orderInfo: {
                   service: orderTypeId,
                   comment,
-                  images: req.file?.filename,
+                  images: savedImageLocation,
                 },
                 orderDetails: {
                   orderNumber: orderNumber + awaitingOrderNumber + 1,

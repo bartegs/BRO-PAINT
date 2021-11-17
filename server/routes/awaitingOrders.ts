@@ -1,41 +1,35 @@
-import { Request, Router } from "express";
+import { Router } from "express";
 import * as multer from "multer";
-import * as fs from "fs";
-import AwaitingOrdersController from "../controllers/awaitingOrders";
+import * as aws from "aws-sdk";
+import * as dotenv from "dotenv";
+import * as multerS3 from "multer-s3";
 import authenticate from "../middlewares/authenticate";
+import AwaitingOrdersController from "../controllers/awaitingOrders";
+
+dotenv.config();
 
 const router = Router();
 
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    const imageDirectoryPath = "server/userImages/";
+const region = "eu-central-1";
+const bucket = "bro-paint";
+const accessKeyId = process.env.AWS_ACCESS_KEY;
+const secretAccessKey = process.env.AWS_SECRET_ACCESS_KEY;
 
-    if (!fs.existsSync(imageDirectoryPath)) {
-      fs.mkdirSync(imageDirectoryPath);
-    }
-
-    cb(null, imageDirectoryPath);
-  },
-
-  filename: (req, file, cb) => {
-    const uniqueSuffix = Date.now();
-
-    cb(null, `${uniqueSuffix}-${file.originalname}`);
-  },
+const s3 = new aws.S3({
+  region,
+  accessKeyId,
+  secretAccessKey,
 });
 
-function fileFilter(
-  req: Request,
-  file: Express.Multer.File,
-  cb: multer.FileFilterCallback
-) {
-  if (file.mimetype === "image/jpeg" || file.mimetype === "image/png") {
-    cb(null, true);
-  }
-  cb(null, false);
-}
-
-const upload = multer({ storage, fileFilter });
+const upload = multer({
+  storage: multerS3({
+    s3,
+    bucket,
+    key(req, file, cb) {
+      cb(null, `${Date.now()}-${file.originalname}`);
+    },
+  }),
+});
 
 router.post("/", upload.single("image"), AwaitingOrdersController.add_single);
 
