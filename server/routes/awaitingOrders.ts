@@ -44,7 +44,7 @@ router.get(
 router.put(
   "/:awaitingOrderId",
   authenticate,
-  // upload.single("image"),
+  upload.single("image"),
   AwaitingOrdersController.modify_single
 );
 
