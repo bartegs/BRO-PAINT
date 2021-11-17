@@ -10,6 +10,7 @@ import {
   CopyrightPage,
   PrivacyPage,
 } from "./react/pages";
+import { ThankYouPage } from "./react/pages/ThankYouPage/ThankYouPage";
 
 const Error = () => <div>U mnie nie działa</div>;
 
@@ -21,6 +22,7 @@ const routes = [
   { id: 4, route: "/kontakt", component: ContactPage },
   { id: 5, route: "/polityka-prywatnosci", component: PrivacyPage },
   { id: 6, route: "/prawa-autorskie", component: CopyrightPage },
+  { id: 6, route: "/podziekowania", component: ThankYouPage },
   { id: 7, route: "/", component: HomePage },
   { id: 8, route: "*", component: Error },
 ];
