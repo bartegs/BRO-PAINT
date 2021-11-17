@@ -80,13 +80,7 @@ export function CardModal({
             <p className="comment__text">{comment || "Brak"}</p>
           </div>
         </div>
-        {images && (
-          <img
-            alt="car"
-            className="card-modal__image"
-            src={`/userImages/${images}`}
-          />
-        )}
+        {images && <img alt="car" className="card-modal__image" src={images} />}
       </div>
     </ReactModal>
   );
