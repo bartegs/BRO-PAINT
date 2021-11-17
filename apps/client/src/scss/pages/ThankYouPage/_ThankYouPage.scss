@@ -1,0 +1,44 @@
+.thank-you-page {
+  &__card {
+    margin: auto;
+    width: 100%;
+    max-width: 600px;
+    padding: $spacing-x3 $spacing-x5 $spacing-x4 $spacing-x5;
+    box-shadow: 0 1px 2px 0 #00000040;
+    border-radius: $radius-x1;
+
+    @media (min-width: $screen-lg) {
+      max-width: 900px;
+    }
+  }
+
+  &__heading {
+    font-weight: $text-medium;
+    text-align: center;
+    font-size: $text-48;
+  }
+
+  &__text {
+    margin-top: $spacing-x8;
+    font-size: $text-32;
+  }
+
+  &__signature {
+    margin-top: $spacing-x4;
+    font-size: $text-32;
+  }
+}
+
+.signature {
+  &__first-word {
+    color: $green;
+  }
+
+  &__second-word {
+    color: $blue;
+  }
+
+  &__third-word {
+    color: $pink;
+  }
+}

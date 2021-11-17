@@ -1,5 +1,6 @@
 import * as React from "react";
 import classnames from "classnames";
+import { useHistory } from "react-router-dom";
 import useWindowWidth from "../../../hooks/useWindowWidth";
 
 import { InputOutlined } from "../../../../../../common/react/components/InputOutlined";
@@ -77,6 +78,7 @@ const Contact = React.forwardRef<HTMLInputElement, OwnProps>(
     ref
   ) => {
     const { width } = useWindowWidth();
+    const { push } = useHistory();
 
     function handleContactReset() {
       setNames("");
@@ -153,7 +155,7 @@ const Contact = React.forwardRef<HTMLInputElement, OwnProps>(
         .then((data) => console.log(data))
         .catch((error) => console.log(error));
 
-      return false;
+      push("/podziekowania");
     }
 
     return (
