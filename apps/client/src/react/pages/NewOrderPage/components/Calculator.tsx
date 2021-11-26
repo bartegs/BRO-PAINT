@@ -167,7 +167,7 @@ const Calculator = React.forwardRef<HTMLInputElement, CalculatorProps>(
           <Select
             labelText="ROCZNIK*"
             color={color}
-            selectName="year"
+            selectName="calculatorYear"
             id="year"
             value={year}
             setState={setYear}
@@ -177,7 +177,7 @@ const Calculator = React.forwardRef<HTMLInputElement, CalculatorProps>(
           <Select
             labelText="MARKA*"
             color={color}
-            selectName="make"
+            selectName="calculatorMake"
             id="make"
             value={make}
             setState={setMake}
@@ -217,7 +217,7 @@ const Calculator = React.forwardRef<HTMLInputElement, CalculatorProps>(
               color={color}
               type="submit"
               variant="primary"
-              additionalClasses="button--centered mr-3 w-100"
+              additionalClasses="button--centered mr-3 w-100 calculator-submit-button"
               hasFixedWidth={false}
             />
             <Button

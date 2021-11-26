@@ -209,7 +209,7 @@ const Contact = React.forwardRef<HTMLInputElement, OwnProps>(
           <Select
             labelText="ROCZNIK*"
             color={color}
-            selectName="year"
+            selectName="yearContact"
             id="year"
             value={year}
             setState={setYear}
@@ -219,7 +219,7 @@ const Contact = React.forwardRef<HTMLInputElement, OwnProps>(
           <Select
             labelText="MARKA*"
             color={color}
-            selectName="make"
+            selectName="makeContact"
             id="make"
             value={make}
             setState={setMake}
@@ -308,7 +308,7 @@ const Contact = React.forwardRef<HTMLInputElement, OwnProps>(
               color={color}
               type="submit"
               variant="primary"
-              additionalClasses="mr-3"
+              additionalClasses="mr-3 contact-submit-button"
               hasFixedWidth={false}
             />
             <Button
