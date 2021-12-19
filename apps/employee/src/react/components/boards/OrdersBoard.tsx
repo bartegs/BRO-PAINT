@@ -65,6 +65,7 @@ export function OrdersBoard({ stages, orders }: OwnProps): JSX.Element {
                       index={index}
                       stageColor={color}
                       substageList={stageList[columnId as number]}
+                      hasForm={columnId !== 0 && columnId !== stages.length - 1}
                     />
                   ))}
                   {provided.placeholder}

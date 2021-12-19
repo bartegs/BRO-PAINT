@@ -2,6 +2,7 @@
 node_modules
 dist
 .idea
+.DS_Store
 
 cypress/videos/
 cypress/images
