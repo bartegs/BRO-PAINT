@@ -1,23 +1,6 @@
 import "cypress-file-upload";
 
 describe("NewOrderPage", () => {
-  it("Should check Calculator", () => {
-    cy.visit("/");
-    cy.get("nav").contains("Nowe zlecenie").click();
-
-    cy.get(`select[name="calculatorYear"]`).select("2000");
-    cy.get(`select[name="calculatorMake"]`).select("BMW");
-
-    cy.get(`input[value="Lakierowanie"]`).check();
-    cy.get(`input[value="Średnie"]`).check();
-
-    cy.get(`select[name="panels"]`).select("1");
-
-    cy.get(`.calculator-submit-button`).click();
-
-    cy.get(".calculator-card").should("contain", "koszt");
-  });
-
   it("Should check ContactForm", () => {
     cy.visit("/");
     cy.get("nav").contains("Nowe zlecenie").click();
@@ -49,5 +32,22 @@ describe("NewOrderPage", () => {
     cy.get(".contact-submit-button").click();
 
     cy.location("pathname").should("equal", "/podziekowania");
+  });
+
+  it("Should check Calculator", () => {
+    cy.visit("/");
+    cy.get("nav").contains("Nowe zlecenie").click();
+
+    cy.get(`select[name="calculatorYear"]`).select("2000");
+    cy.get(`select[name="calculatorMake"]`).select("BMW");
+
+    cy.get(`input[value="Lakierowanie"]`).check();
+    cy.get(`input[value="Średnie"]`).check();
+
+    cy.get(`select[name="panels"]`).select("1");
+
+    cy.get(`.calculator-submit-button`).click();
+
+    cy.get(".calculator-card").should("contain", "koszt");
   });
 });

@@ -16,6 +16,7 @@ interface OwnProps {
   order: OrderType;
   substageList: {};
 }
+
 export interface SelectItemType {
   label: string;
   value: string | number;
@@ -96,12 +97,14 @@ export function Form({ color, order, substageList }: OwnProps): JSX.Element {
         options={processedSubstageList}
         value={selectedSubstage}
         onChange={handleSelectedSubstageChange}
+        name="przydziel sub-etap"
       />
       <Select
         placeholder="przydziel pracownika"
         options={employees}
         value={selectedEmployee}
         onChange={handleSelectedEmployeeChange}
+        name="przydziel pracownika"
       />
       <Buttons
         isSubmitDisabled={!(selectedEmployee && selectedSubstage)}

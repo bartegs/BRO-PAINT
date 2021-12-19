@@ -104,4 +104,7 @@ export const awaitingOrderSchema = new mongoose.Schema<AwaitingOrderType>({
   },
 });
 
-export default mongoose.model("AwaitingOrder", awaitingOrderSchema);
+export default mongoose.model<AwaitingOrderType>(
+  "AwaitingOrder",
+  awaitingOrderSchema
+);
