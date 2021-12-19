@@ -167,7 +167,7 @@ const EmployeesController = {
                 id: employee.id,
               });
             } else {
-              res.status(401).json({ message: "Niepoprawne dane logowania" });
+              res.status(403).json({ message: "Niepoprawne dane logowania" });
             }
           });
         } else {

@@ -82,7 +82,7 @@ export function Carousel({
         onMouseOut={handleRightArrowsColor}
         onFocus={handleRightArrowsColorHover}
         onBlur={handleRightArrowsColor}
-        className="gallery-page__arrows-container"
+        className="gallery-page__arrows-container gallery-page__arrows-container--right"
       >
         <ArrowIcon color={isHoveredRight ? "pink-light" : "pink"} />
         <ArrowIcon color={isHoveredRight ? "blue-light" : "blue"} />

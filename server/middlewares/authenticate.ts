@@ -7,12 +7,14 @@ const authenticate = (req: Request, res: Response, next: NextFunction) => {
 
   if (!token) {
     res.sendStatus(401);
+
     return;
   }
 
   jwt.verify(token, process.env.SECRET, (error) => {
     if (error) {
-      res.status(403).json({ message: "Brak autentyfikacji" });
+      res.status(401).json({ message: "Brak autentyfikacji" });
+
       return;
     }
 

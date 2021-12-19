@@ -8,8 +8,6 @@ import AwaitingOrdersController from "../controllers/awaitingOrders";
 
 dotenv.config();
 
-const router = Router();
-
 const region = "eu-central-1";
 const bucket = "bro-paint";
 const accessKeyId = process.env.AWS_ACCESS_KEY;
@@ -30,6 +28,8 @@ const upload = multer({
     },
   }),
 });
+
+const router = Router();
 
 router.post("/", upload.single("image"), AwaitingOrdersController.add_single);
 

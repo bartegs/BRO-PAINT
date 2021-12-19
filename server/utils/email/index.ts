@@ -1,6 +1,6 @@
 import * as nodemailer from "nodemailer";
 
-export async function sendEmail(
+export function sendEmail(
   name: string,
   clientEmail: string,
   message: string,
@@ -29,7 +29,7 @@ export async function sendEmail(
     },
   });
 
-  await transporter.sendMail({
+  return transporter.sendMail({
     from: "BroPaint <bropaint@wp.pl>",
     to: orderId ? clientEmail : "bropaint@wp.pl",
     subject: `${name} kontakt`,
