@@ -52,13 +52,7 @@ export function OrderCard({
         return (
           <div
             className={classnames("board__order order-card", {
-              "order-card--awaiting":
-                (sessionStorage.getItem("role") === "manager" &&
-                  !isFinished &&
-                  hasForm) ||
-                (sessionStorage.getItem("role") === "workman" &&
-                  isFinished &&
-                  hasForm),
+              "order-card--inactive": !isFinished && hasForm,
             })}
             {...provided.draggableProps}
             {...provided.dragHandleProps}

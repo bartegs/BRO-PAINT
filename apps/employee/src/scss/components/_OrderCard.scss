@@ -8,10 +8,6 @@
     filter: opacity(0.7);
   }
 
-  &--awaiting {
-    filter: grayscale(100);
-  }
-
   &__label {
     font-size: $text-12;
     padding: $spacing-x1 $spacing-x2;
