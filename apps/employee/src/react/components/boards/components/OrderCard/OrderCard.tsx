@@ -17,6 +17,7 @@ interface OwnProps {
   index: number;
   stageColor: StageColor;
   substageList: StageListItem;
+  hasForm: boolean;
 }
 
 export function OrderCard({
@@ -24,6 +25,7 @@ export function OrderCard({
   index,
   stageColor,
   substageList,
+  hasForm,
 }: OwnProps): JSX.Element {
   const [isModalOpen, setIsModalOpen] = React.useState(false);
 
@@ -39,6 +41,7 @@ export function OrderCard({
   function closeModal() {
     setIsModalOpen(false);
   }
+
   function openModal() {
     setIsModalOpen(true);
   }
@@ -49,7 +52,13 @@ export function OrderCard({
         return (
           <div
             className={classnames("board__order order-card", {
-              "order-card--awaiting": isFinished,
+              "order-card--awaiting":
+                (sessionStorage.getItem("role") === "manager" &&
+                  !isFinished &&
+                  hasForm) ||
+                (sessionStorage.getItem("role") === "workman" &&
+                  isFinished &&
+                  hasForm),
             })}
             {...provided.draggableProps}
             {...provided.dragHandleProps}
@@ -93,11 +102,14 @@ export function OrderCard({
                 <Icon icon="show-more" />
               </span>
             </div>
-            <Form
-              color={stageColor}
-              order={order}
-              substageList={substageList}
-            />
+            {hasForm && (
+              <Form
+                color={stageColor}
+                order={order}
+                substageList={substageList}
+              />
+            )}
+
             <CardModal
               labelColor={labelColor}
               substageName={substageName}

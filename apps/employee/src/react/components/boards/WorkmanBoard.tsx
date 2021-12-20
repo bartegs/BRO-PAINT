@@ -51,27 +51,30 @@ export function WorkmanBoard({ stages, orders }: OwnProps): JSX.Element {
       <DragDropContext onDragEnd={handleOnDragEnd}>
         {stages.map(({ id: columnId, title, color }) => {
           return (
-            <Droppable key={columnId} droppableId={String(columnId)}>
-              {(provided) => (
-                <div
-                  className={`board__column board__column--${color}`}
-                  {...provided.droppableProps}
-                  ref={provided.innerRef}
-                >
-                  <div className="board__column-title">{title}</div>
-                  {orders[columnId].map((order, index) => (
-                    <TaskCard
-                      key={order._id}
-                      order={order}
-                      index={index}
-                      stageColor={color}
-                      substageList={stageList[columnId]}
-                    />
-                  ))}
-                  {provided.placeholder}
-                </div>
-              )}
-            </Droppable>
+            columnId !== 0 &&
+            columnId !== stages.length - 1 && (
+              <Droppable key={columnId} droppableId={String(columnId)}>
+                {(provided) => (
+                  <div
+                    className={`board__column board__column--${color}`}
+                    {...provided.droppableProps}
+                    ref={provided.innerRef}
+                  >
+                    <div className="board__column-title">{title}</div>
+                    {orders[columnId].map((order, index) => (
+                      <TaskCard
+                        key={order._id}
+                        order={order}
+                        index={index}
+                        stageColor={color}
+                        substageList={stageList[columnId]}
+                      />
+                    ))}
+                    {provided.placeholder}
+                  </div>
+                )}
+              </Droppable>
+            )
           );
         })}
       </DragDropContext>
