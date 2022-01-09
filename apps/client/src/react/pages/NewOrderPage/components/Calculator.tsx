@@ -70,11 +70,244 @@ const Calculator = React.forwardRef<HTMLInputElement, CalculatorProps>(
       setisCardVisible((prevIsCardVisible) => !prevIsCardVisible);
     }
 
+    // function calculate(e: React.FormEvent) {
+    //   e.preventDefault();
+    //   showCalculatorCard();
+    //   // setResult("2137");
+    // }
+
     function calculate(e: React.FormEvent) {
       e.preventDefault();
       showCalculatorCard();
-      setResult("2137");
+
+      let yearMultiplier;
+      const parsedYear = Number(year);
+
+      if (parsedYear <= 1980 || parsedYear >= 2010) {
+        yearMultiplier = 1.2;
+      } else if (parsedYear > 1980 && parsedYear < 2000) {
+        yearMultiplier = 1;
+      } else if (parsedYear >= 2000 && parsedYear < 2010) {
+        yearMultiplier = 1.1;
+      } else {
+        yearMultiplier = 1;
+      }
+
+      let makeMultiplier;
+      switch (make) {
+        // case make.segment === 1:
+        //   makeMultiplier = 1.3;
+        //   break;
+        // case make.segment === 2:
+        //   makeMultiplier = 1.2;
+        //   break;
+        // case make.segment === 3:
+        //   makeMultiplier = 1.1;
+        //   break;
+        // case make.segment === 4:
+        //   makeMultiplier = 1;
+        //   break;
+        default:
+          makeMultiplier = 1;
+      }
+
+      let sizeMultiplier;
+      switch (carSize) {
+        case "Small":
+          sizeMultiplier = 1;
+          break;
+        case "Medium":
+          sizeMultiplier = 1.1;
+          break;
+        case "Big":
+          sizeMultiplier = 1.2;
+          break;
+        default:
+          sizeMultiplier = 1;
+      }
+
+      let repairPanelsMultiplier;
+      switch (panels) {
+        case "1":
+          repairPanelsMultiplier = 1;
+          break;
+        case "2":
+          repairPanelsMultiplier = 2;
+          break;
+        case "3":
+          repairPanelsMultiplier = 3;
+          break;
+        case "4":
+          repairPanelsMultiplier = 4;
+          break;
+        case "5":
+          repairPanelsMultiplier = 5;
+          break;
+        case "6":
+          repairPanelsMultiplier = 6;
+          break;
+        case "7":
+          repairPanelsMultiplier = 7;
+          break;
+        case "8":
+          repairPanelsMultiplier = 8;
+          break;
+        case "9":
+          repairPanelsMultiplier = 9;
+          break;
+        case "10":
+          repairPanelsMultiplier = 10;
+          break;
+        case "11":
+          repairPanelsMultiplier = 11;
+          break;
+        case "12":
+          repairPanelsMultiplier = 12;
+          break;
+        case "13":
+          repairPanelsMultiplier = 13;
+          break;
+        case "14":
+          repairPanelsMultiplier = 14;
+          break;
+        case "15":
+          repairPanelsMultiplier = 15;
+          break;
+        default:
+          repairPanelsMultiplier = 1;
+      }
+
+      let paintPanelsFactor;
+      switch (panels) {
+        case "1":
+          paintPanelsFactor = 1;
+          break;
+        case "2":
+          paintPanelsFactor = 2;
+          break;
+        case "3":
+          paintPanelsFactor = 3;
+          break;
+        case "4":
+          paintPanelsFactor = 4;
+          break;
+        case "5":
+          paintPanelsFactor = 5;
+          break;
+        case "6":
+          paintPanelsFactor = 6;
+          break;
+        case "7":
+          paintPanelsFactor = 7;
+          break;
+        case "8":
+          paintPanelsFactor = 8;
+          break;
+        case "9":
+          paintPanelsFactor = 9;
+          break;
+        case "10":
+          paintPanelsFactor = 10;
+          break;
+        case "11":
+          paintPanelsFactor = 11;
+          break;
+        case "12":
+          paintPanelsFactor = 12;
+          break;
+        case "13":
+          paintPanelsFactor = 13;
+          break;
+        case "14":
+          paintPanelsFactor = 14;
+          break;
+        case "15":
+          paintPanelsFactor = 15;
+          break;
+        case "full":
+          paintPanelsFactor = 16;
+          break;
+        case "color-change":
+          paintPanelsFactor = 27;
+          break;
+        default:
+          paintPanelsFactor = 1;
+      }
+
+      let correctionTypeFactor;
+      switch (paintCorrection) {
+        case "3in1":
+          correctionTypeFactor = 1;
+          break;
+        case "3in1-ceramic":
+          correctionTypeFactor = 1.6;
+          break;
+        case "3stage":
+          correctionTypeFactor = 2.4;
+          break;
+        case "3stage-ceramic":
+          correctionTypeFactor = 3;
+          break;
+        default:
+          correctionTypeFactor = 1;
+      }
+
+      let basePrice;
+      switch (serviceName) {
+        case "Naprawa":
+          basePrice = 500;
+          break;
+        case "Lakierowanie":
+          basePrice = 300;
+          break;
+        case "Detailing":
+          basePrice = 600;
+          break;
+        default:
+          basePrice = 500;
+      }
+
+      switch (serviceName) {
+        case "Naprawa":
+          setResult(
+            JSON.stringify(
+              basePrice *
+                yearMultiplier *
+                makeMultiplier *
+                sizeMultiplier *
+                repairPanelsMultiplier
+            )
+          );
+          break;
+        case "Lakierowanie":
+          setResult(
+            JSON.stringify(
+              basePrice *
+                yearMultiplier *
+                makeMultiplier *
+                sizeMultiplier *
+                paintPanelsFactor
+            )
+          );
+          break;
+        case "Detailing":
+          setResult(
+            JSON.stringify(
+              basePrice *
+                correctionTypeFactor *
+                yearMultiplier *
+                makeMultiplier *
+                sizeMultiplier
+            )
+          );
+          break;
+        default:
+          setResult("500");
+      }
+      return result;
     }
+
+    // console.log(calculate("Lakierowanie", 1990, "A", "Big", "2"));
 
     const paintCorrectionsData = [
       { id: 0, value: "", text: "Wybierz rodzaj korekty lakieru" },
@@ -84,13 +317,17 @@ const Calculator = React.forwardRef<HTMLInputElement, CalculatorProps>(
       { id: 4, value: "3stage+ceramic", text: "Korekta 3 etapowa + ceramika" },
     ];
 
-    const yearsData = [
-      { id: 0, value: "", text: "Wybierz rocznik auta" },
-      { id: 1, value: "1999", text: "1999" },
-      { id: 2, value: "2000", text: "2000" },
-      { id: 3, value: "2001", text: "2001" },
-      { id: 4, value: "2002", text: "2002" },
-    ];
+    function getYearData(scope: number) {
+      const currentYear = new Date().getFullYear();
+      const yearsData: [{ id: number; value: string | number; text: string }] =
+        [{ id: 0, value: "", text: "Wybierz rocznik auta" }];
+
+      for (let i = currentYear; i > currentYear - scope; i -= 1) {
+        yearsData.push({ id: i, value: i, text: String(i) });
+      }
+
+      return yearsData;
+    }
 
     const makesData = [
       { id: 0, value: "", text: "Wybierz markę auta" },
@@ -172,7 +409,7 @@ const Calculator = React.forwardRef<HTMLInputElement, CalculatorProps>(
             value={year}
             setState={setYear}
             required
-            optionsData={yearsData}
+            optionsData={getYearData(100)}
           />
           <Select
             labelText="MARKA*"

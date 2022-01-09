@@ -27,7 +27,7 @@ export function Footer(): JSX.Element {
       <div className="footer__item contact">
         <div className="contact__item mr-2">
           <Icon icon="footer-phone" color={iconColor} />
-          +48 240 420 210
+          +48 222 444 888
         </div>
         <div className="contact__item">
           <Icon
