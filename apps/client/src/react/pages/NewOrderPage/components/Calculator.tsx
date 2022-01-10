@@ -11,6 +11,8 @@ import {
 } from "../../../components/forms/components";
 import { Button } from "../../../../../../common/react/components";
 import { CalculatorCard } from "./CalculatorCard";
+import { getYearData } from "../utils";
+import type { MakesDataType } from "../utils";
 
 interface CalculatorProps {
   color: Color;
@@ -28,6 +30,7 @@ interface CalculatorProps {
   setPanels?: (arg: string) => void;
   setPaintCorrection?: (arg: string) => void;
   setResult: (arg: string) => void;
+  makesData: MakesDataType;
 }
 
 const Calculator = React.forwardRef<HTMLInputElement, CalculatorProps>(
@@ -48,6 +51,7 @@ const Calculator = React.forwardRef<HTMLInputElement, CalculatorProps>(
       setPanels,
       setPaintCorrection,
       setResult,
+      makesData,
     }: CalculatorProps,
     ref
   ) => {
@@ -315,26 +319,6 @@ const Calculator = React.forwardRef<HTMLInputElement, CalculatorProps>(
       { id: 2, value: "3in1ceramic", text: "Korekta 3w1 + ceramika" },
       { id: 3, value: "3stage", text: "Korekta 3 etapowa" },
       { id: 4, value: "3stage+ceramic", text: "Korekta 3 etapowa + ceramika" },
-    ];
-
-    function getYearData(scope: number) {
-      const currentYear = new Date().getFullYear();
-      const yearsData: [{ id: number; value: string | number; text: string }] =
-        [{ id: 0, value: "", text: "Wybierz rocznik auta" }];
-
-      for (let i = currentYear; i > currentYear - scope; i -= 1) {
-        yearsData.push({ id: i, value: i, text: String(i) });
-      }
-
-      return yearsData;
-    }
-
-    const makesData = [
-      { id: 0, value: "", text: "Wybierz markę auta" },
-      { id: 1, value: "audi", text: "Audi" },
-      { id: 2, value: "bmw", text: "BMW" },
-      { id: 3, value: "mercedes", text: "Mercedes" },
-      { id: 4, value: "volvo", text: "Volvo" },
     ];
 
     const panelsData = [

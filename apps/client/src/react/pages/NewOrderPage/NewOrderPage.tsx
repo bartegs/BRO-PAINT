@@ -3,6 +3,8 @@ import { Color } from "../../../../../common/utils/types";
 
 import { Calculator } from "./components/Calculator";
 import { Contact, ContactProps } from "./components/Contact";
+import { host } from "../../../../../common/utils/contants";
+import { MakesDataType } from "./utils";
 
 export function NewOrderPage(): JSX.Element {
   // common
@@ -24,6 +26,10 @@ export function NewOrderPage(): JSX.Element {
   const [comment, setComment] = React.useState("");
   const [privacy, setPrivacy] = React.useState(false);
   const [files, setFiles] = React.useState<Blob & { name: string }>();
+
+  const [makesData, setMakesData] = React.useState<MakesDataType>([
+    { id: 0, value: "", text: "Wybierz markę auta" },
+  ]);
 
   const calculatorState = {
     serviceName,
@@ -68,8 +74,26 @@ export function NewOrderPage(): JSX.Element {
     setPrivacy,
     setFiles,
   };
-
   const [color, setColor] = React.useState<Color>("green");
+
+  async function getMakesData() {
+    const data: { segment: string; name: string }[] = await fetch(
+      `${host}/car-makes/`
+    ).then((resp) => resp.json());
+
+    const processedData = data.map(({ name, segment }, index) => ({
+      id: index,
+      value: name,
+      text: name,
+      segment,
+    }));
+
+    setMakesData((prevState) => [...prevState, ...processedData]);
+  }
+
+  React.useEffect(() => {
+    getMakesData();
+  }, []);
 
   React.useEffect(() => {
     if (serviceName === "Naprawa") {
@@ -85,9 +109,19 @@ export function NewOrderPage(): JSX.Element {
 
   return (
     <div className="container new-order-page">
-      <Calculator ref={inputRef} {...calculatorState} color={color} />
+      <Calculator
+        makesData={makesData}
+        ref={inputRef}
+        {...calculatorState}
+        color={color}
+      />
       <div role="presentation" className="new-order-page__line" />
-      <Contact ref={inputRef} {...contactState} color={color} />
+      <Contact
+        makesData={makesData}
+        ref={inputRef}
+        {...contactState}
+        color={color}
+      />
     </div>
   );
 }
