@@ -158,7 +158,7 @@ describe("NewOrderPage", () => {
     fireEvent.click(detailing);
 
     const correctionTooltip = screen.getByText(
-      "Wybierz zakres korekty. Wykonujemy wyłącznie korekty 3-etapowe, ponieważ one przynoszą najlepszy efekt co jest naszym priorytetem. Dajemy jednak możliwość wyboru, czy zabezpieczać lakier powłoką ceramiczną."
+      "Wybierz zakres korekty. Zalecamy korekty 3 etapowe, ponieważ to właśnie one przynoszą najlepszy efekt, co jest naszym priorytetem. Oferujemy jednak także tańsze korekty 3w1, które choć nie usuwają tak wielu rys, znacznie odświeżają wygląd lakieru. Niezaleznie od wybranego zakresu korekty, dajemy możliwość wyboru, czy zabezpieczyć lakier powłoką ceramiczną. Podstawowe zabezpieczenie woskiem wykonujemy w cenie usługi."
     );
     expect(correctionTooltip).toBeInTheDocument();
   });

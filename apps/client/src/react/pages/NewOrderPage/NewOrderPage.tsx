@@ -15,7 +15,7 @@ export function NewOrderPage(): JSX.Element {
   const [carSize, setCarSize] = React.useState("Małe");
   const [panels, setPanels] = React.useState("");
   const [paintCorrection, setPaintCorrection] = React.useState("");
-  const [result, setResult] = React.useState("2137");
+  const [result, setResult] = React.useState(0);
   // contact
   const [names, setNames] = React.useState("");
   const [email, setEmail] = React.useState("");
@@ -73,11 +73,12 @@ export function NewOrderPage(): JSX.Element {
     setComment,
     setPrivacy,
     setFiles,
+    makesData,
   };
   const [color, setColor] = React.useState<Color>("green");
 
   async function getMakesData() {
-    const data: { segment: string; name: string }[] = await fetch(
+    const data: { segment: number; name: string }[] = await fetch(
       `${host}/car-makes/`
     ).then((resp) => resp.json());
 

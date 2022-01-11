@@ -3,7 +3,7 @@ import * as React from "react";
 import { CalculatorCard } from "./CalculatorCard";
 
 describe("CalculatorCard", () => {
-  const result = "2000";
+  const result = 2000;
   const color = "green";
 
   it(`should render correctly to the page`, () => {

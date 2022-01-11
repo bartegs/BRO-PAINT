@@ -3,7 +3,7 @@ import { Color } from "../../../../../../common/utils/types";
 import { Button } from "../../../../../../common/react/components";
 
 interface CalculatorCardProps {
-  result: string;
+  result: number;
   color: Color;
 }
 const CalculatorCard = React.forwardRef<HTMLInputElement, CalculatorCardProps>(
@@ -11,14 +11,17 @@ const CalculatorCard = React.forwardRef<HTMLInputElement, CalculatorCardProps>(
     { result, color }: CalculatorCardProps,
     ref: React.MutableRefObject<HTMLInputElement>
   ) => {
+    const convertedPrice = result.toFixed(2).replace(".", ",");
+
     function handleReference() {
       ref.current.focus();
     }
+
     return (
       <div className="calculator-card">
         <div className="calculator-card__price">
           <span>Szacunkowy koszt wynosi: </span>
-          <span>{`${result},00zł`}</span>
+          <span>{`${convertedPrice}zł`}</span>
         </div>
         <span className="calculator-card__instruction">
           Jeśli chcesz zlecić nam usługę, naciśnij przycisk poniżej.
