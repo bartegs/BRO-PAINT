@@ -3,6 +3,8 @@ import { Color } from "../../../../../common/utils/types";
 
 import { Calculator } from "./components/Calculator";
 import { Contact, ContactProps } from "./components/Contact";
+import { host } from "../../../../../common/utils/contants";
+import { MakesDataType } from "./utils";
 
 export function NewOrderPage(): JSX.Element {
   // common
@@ -13,7 +15,7 @@ export function NewOrderPage(): JSX.Element {
   const [carSize, setCarSize] = React.useState("Małe");
   const [panels, setPanels] = React.useState("");
   const [paintCorrection, setPaintCorrection] = React.useState("");
-  const [result, setResult] = React.useState("2137");
+  const [result, setResult] = React.useState(0);
   // contact
   const [names, setNames] = React.useState("");
   const [email, setEmail] = React.useState("");
@@ -24,6 +26,10 @@ export function NewOrderPage(): JSX.Element {
   const [comment, setComment] = React.useState("");
   const [privacy, setPrivacy] = React.useState(false);
   const [files, setFiles] = React.useState<Blob & { name: string }>();
+
+  const [makesData, setMakesData] = React.useState<MakesDataType>([
+    { id: -1, value: "", text: "Wybierz markę auta", segment: 0 },
+  ]);
 
   const calculatorState = {
     serviceName,
@@ -67,9 +73,28 @@ export function NewOrderPage(): JSX.Element {
     setComment,
     setPrivacy,
     setFiles,
+    makesData,
   };
-
   const [color, setColor] = React.useState<Color>("green");
+
+  async function getMakesData() {
+    const data: { segment: number; name: string }[] = await fetch(
+      `${host}/car-makes/`
+    ).then((resp) => resp.json());
+
+    const processedData = data.map(({ name, segment }, index) => ({
+      id: index,
+      value: name,
+      text: name,
+      segment,
+    }));
+
+    setMakesData((prevState) => [...prevState, ...processedData]);
+  }
+
+  React.useEffect(() => {
+    getMakesData();
+  }, []);
 
   React.useEffect(() => {
     if (serviceName === "Naprawa") {
@@ -85,9 +110,19 @@ export function NewOrderPage(): JSX.Element {
 
   return (
     <div className="container new-order-page">
-      <Calculator ref={inputRef} {...calculatorState} color={color} />
+      <Calculator
+        makesData={makesData}
+        ref={inputRef}
+        {...calculatorState}
+        color={color}
+      />
       <div role="presentation" className="new-order-page__line" />
-      <Contact ref={inputRef} {...contactState} color={color} />
+      <Contact
+        makesData={makesData}
+        ref={inputRef}
+        {...contactState}
+        color={color}
+      />
     </div>
   );
 }

@@ -9,16 +9,16 @@ export function ContactPage(): JSX.Element {
         <Card category="address" icon="location" color="green">
           <p className="mb-2">BRO PAINT siedziba w Gdańsku</p>
           <p className="mb-2">ul. Detailingowa 21</p>
-          <p>21-2137 Gdańsk</p>
+          <p>80-266 Gdańsk</p>
         </Card>
         <Card category="phone" icon="phone" color="blue">
           <p className="mb-2">
             <span className="mr-2">Obsługa klienta</span>
-            <span>+48 000 222 444</span>
+            <span>+48 222 444 888</span>
           </p>
           <p>
             <span className="mr-2">Współpraca</span>
-            <span>+48 000 333 666</span>
+            <span>+48 222 444 999</span>
           </p>
         </Card>
         <CardEmail />

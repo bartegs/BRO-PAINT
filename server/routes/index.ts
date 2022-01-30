@@ -6,10 +6,13 @@ import { router as servicesRouter } from "./services";
 import { router as awaitingOrdersRouter } from "./awaitingOrders";
 import { router as commonsRouter } from "./commons";
 import { router as emailsRouter } from "./emails";
+import { router as carMakesRouter } from "./carMakes";
 
 const router = Router();
 
 router.use("/emails", emailsRouter);
+
+router.use("/car-makes", carMakesRouter);
 
 router.use("/orders", ordersRouter);
 

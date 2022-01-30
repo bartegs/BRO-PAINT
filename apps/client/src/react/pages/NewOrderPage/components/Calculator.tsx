@@ -11,6 +11,8 @@ import {
 } from "../../../components/forms/components";
 import { Button } from "../../../../../../common/react/components";
 import { CalculatorCard } from "./CalculatorCard";
+import { getYearData } from "../utils";
+import type { MakesDataType } from "../utils";
 
 interface CalculatorProps {
   color: Color;
@@ -21,13 +23,14 @@ interface CalculatorProps {
   carSize: string;
   panels: string;
   paintCorrection: string;
-  result: string;
+  result: number;
   setYear: (arg: string) => void;
   setMake: (arg: string) => void;
   setCarSize: (arg: string) => void;
   setPanels?: (arg: string) => void;
   setPaintCorrection?: (arg: string) => void;
-  setResult: (arg: string) => void;
+  setResult: (arg: number) => void;
+  makesData: MakesDataType;
 }
 
 const Calculator = React.forwardRef<HTMLInputElement, CalculatorProps>(
@@ -48,12 +51,26 @@ const Calculator = React.forwardRef<HTMLInputElement, CalculatorProps>(
       setPanels,
       setPaintCorrection,
       setResult,
+      makesData,
     }: CalculatorProps,
     ref
   ) => {
     const { width } = useWindowWidth();
 
-    const [isCardVisible, setisCardVisible] = React.useState(false);
+    const [isCardVisible, setIsCardVisible] = React.useState(false);
+    const [makeSegment, setMakeSegment] = React.useState(4);
+
+    async function getMakeSegment() {
+      if (makesData.length > 1) {
+        const { segment } = makesData.find((current) => current.value === make);
+
+        setMakeSegment(segment);
+      }
+    }
+
+    React.useEffect(() => {
+      getMakeSegment();
+    }, [make]);
 
     function handleCalculatorReset() {
       setServiceName("Naprawa");
@@ -62,50 +79,217 @@ const Calculator = React.forwardRef<HTMLInputElement, CalculatorProps>(
       setCarSize("Małe");
       setPanels("");
       setPaintCorrection("");
-      setResult("");
-      setisCardVisible(false);
-    }
-
-    function showCalculatorCard() {
-      setisCardVisible((prevIsCardVisible) => !prevIsCardVisible);
+      setResult(0);
+      setIsCardVisible(false);
     }
 
     function calculate(e: React.FormEvent) {
       e.preventDefault();
-      showCalculatorCard();
-      setResult("2137");
+      setIsCardVisible(true);
+
+      let yearFactor;
+      const parsedYear = Number(year);
+
+      if (parsedYear <= 1980 || parsedYear >= 2010) {
+        yearFactor = 1.2;
+      } else if (parsedYear > 1980 && parsedYear < 2000) {
+        yearFactor = 1;
+      } else if (parsedYear >= 2000 && parsedYear < 2010) {
+        yearFactor = 1.1;
+      } else {
+        yearFactor = 1;
+      }
+
+      let makeFactor;
+      if (makeSegment === 1) {
+        makeFactor = 1.3;
+      } else if (makeSegment === 2) {
+        makeFactor = 1.2;
+      } else if (makeSegment === 3) {
+        makeFactor = 1.1;
+      } else makeFactor = 1;
+
+      let sizeFactor;
+      switch (carSize) {
+        case "Małe":
+          sizeFactor = 1;
+          break;
+        case "Średnie":
+          sizeFactor = 1.1;
+          break;
+        case "Duże":
+          sizeFactor = 1.2;
+          break;
+        default:
+          sizeFactor = 1;
+      }
+
+      let panelsFactor;
+      switch (panels) {
+        case "1":
+          panelsFactor = 1;
+          break;
+        case "2":
+          panelsFactor = 2;
+          break;
+        case "3":
+          panelsFactor = 3;
+          break;
+        case "4":
+          panelsFactor = 4;
+          break;
+        case "5":
+          panelsFactor = 5;
+          break;
+        case "6":
+          panelsFactor = 6;
+          break;
+        case "7":
+          panelsFactor = 7;
+          break;
+        case "8":
+          panelsFactor = 8;
+          break;
+        case "9":
+          panelsFactor = 9;
+          break;
+        case "10":
+          panelsFactor = 10;
+          break;
+        case "11":
+          panelsFactor = 11;
+          break;
+        case "12":
+          panelsFactor = 12;
+          break;
+        case "13":
+          panelsFactor = 13;
+          break;
+        case "14":
+          panelsFactor = 14;
+          break;
+        case "15":
+          panelsFactor = 15;
+          break;
+        case "full":
+          panelsFactor = 16;
+          break;
+        case "color-change":
+          panelsFactor = 27;
+          break;
+        default:
+          panelsFactor = 1;
+      }
+
+      let correctionTypeFactor;
+      switch (paintCorrection) {
+        case "3in1":
+          correctionTypeFactor = 1;
+          break;
+        case "3in1-ceramic":
+          correctionTypeFactor = 1.6;
+          break;
+        case "3stage":
+          correctionTypeFactor = 2.4;
+          break;
+        case "3stage-ceramic":
+          correctionTypeFactor = 3;
+          break;
+        default:
+          correctionTypeFactor = 1;
+      }
+
+      let basePrice;
+      switch (serviceName) {
+        case "Naprawa":
+          basePrice = 500;
+          break;
+        case "Lakierowanie":
+          basePrice = 300;
+          break;
+        case "Detailing":
+          basePrice = 600;
+          break;
+        default:
+          basePrice = 500;
+      }
+
+      switch (serviceName) {
+        case "Naprawa":
+          setResult(
+            basePrice * yearFactor * makeFactor * sizeFactor * panelsFactor
+          );
+          break;
+        case "Lakierowanie":
+          setResult(
+            basePrice * yearFactor * makeFactor * sizeFactor * panelsFactor
+          );
+          break;
+        case "Detailing":
+          setResult(
+            basePrice *
+              correctionTypeFactor *
+              yearFactor *
+              makeFactor *
+              sizeFactor
+          );
+          break;
+        default:
+          setResult(500);
+      }
+      return result;
     }
+
+    React.useEffect(() => {
+      setIsCardVisible(false);
+    }, [serviceName, year, make, carSize, panels, paintCorrection]);
 
     const paintCorrectionsData = [
       { id: 0, value: "", text: "Wybierz rodzaj korekty lakieru" },
       { id: 1, value: "3in1", text: "Korekta 3w1" },
-      { id: 2, value: "3in1ceramic", text: "Korekta 3w1 + ceramika" },
+      { id: 2, value: "3in1-ceramic", text: "Korekta 3w1 + ceramika" },
       { id: 3, value: "3stage", text: "Korekta 3 etapowa" },
-      { id: 4, value: "3stage+ceramic", text: "Korekta 3 etapowa + ceramika" },
+      { id: 4, value: "3stage-ceramic", text: "Korekta 3 etapowa + ceramika" },
     ];
 
-    const yearsData = [
-      { id: 0, value: "", text: "Wybierz rocznik auta" },
-      { id: 1, value: "1999", text: "1999" },
-      { id: 2, value: "2000", text: "2000" },
-      { id: 3, value: "2001", text: "2001" },
-      { id: 4, value: "2002", text: "2002" },
-    ];
-
-    const makesData = [
-      { id: 0, value: "", text: "Wybierz markę auta" },
-      { id: 1, value: "audi", text: "Audi" },
-      { id: 2, value: "bmw", text: "BMW" },
-      { id: 3, value: "mercedes", text: "Mercedes" },
-      { id: 4, value: "volvo", text: "Volvo" },
-    ];
-
-    const panelsData = [
+    const repairPanelsData = [
       { id: 0, value: "", text: "Wybierz liczbę elementów" },
-      { id: 1, value: 1, text: "1" },
-      { id: 2, value: 2, text: "2" },
-      { id: 3, value: 3, text: "3" },
-      { id: 4, value: 4, text: "4" },
+      { id: 1, value: "1", text: "1" },
+      { id: 2, value: "2", text: "2" },
+      { id: 3, value: "3", text: "3" },
+      { id: 4, value: "4", text: "4" },
+      { id: 5, value: "5", text: "5" },
+      { id: 6, value: "6", text: "6" },
+      { id: 7, value: "7", text: "7" },
+      { id: 8, value: "8", text: "8" },
+      { id: 9, value: "9", text: "9" },
+      { id: 10, value: "10", text: "10" },
+      { id: 11, value: "11", text: "11" },
+      { id: 12, value: "12", text: "12" },
+      { id: 13, value: "13", text: "13" },
+      { id: 14, value: "14", text: "14" },
+      { id: 15, value: "15", text: "15" },
+    ];
+
+    const paintPanelsData = [
+      { id: 0, value: "", text: "Wybierz liczbę elementów" },
+      { id: 1, value: "1", text: "1" },
+      { id: 2, value: "2", text: "2" },
+      { id: 3, value: "3", text: "3" },
+      { id: 4, value: "4", text: "4" },
+      { id: 5, value: "5", text: "5" },
+      { id: 6, value: "6", text: "6" },
+      { id: 7, value: "7", text: "7" },
+      { id: 8, value: "8", text: "8" },
+      { id: 9, value: "9", text: "9" },
+      { id: 10, value: "10", text: "10" },
+      { id: 11, value: "11", text: "11" },
+      { id: 12, value: "12", text: "12" },
+      { id: 13, value: "13", text: "13" },
+      { id: 14, value: "14", text: "14" },
+      { id: 15, value: "15", text: "15" },
+      { id: 16, value: "full", text: "Lakierowanie całego auta" },
+      { id: 17, value: "color-change", text: "Zmiana koloru auta" },
     ];
 
     const servicesData = [
@@ -151,9 +335,11 @@ const Calculator = React.forwardRef<HTMLInputElement, CalculatorProps>(
           {serviceName === "Detailing" && (
             <Select
               hasTooltip
-              tooltipText="Wybierz zakres korekty. Wykonujemy wyłącznie korekty 3-etapowe, 
-                ponieważ one przynoszą najlepszy efekt co jest naszym priorytetem. 
-                Dajemy jednak możliwość wyboru, czy zabezpieczać lakier powłoką ceramiczną."
+              tooltipText="Wybierz zakres korekty. Zalecamy korekty 3 etapowe, 
+                ponieważ to właśnie one przynoszą najlepszy efekt, co jest naszym priorytetem.
+                Oferujemy jednak także tańsze korekty 3w1, które choć nie usuwają tak wielu rys, znacznie odświeżają wygląd lakieru.
+                Niezaleznie od wybranego zakresu korekty, dajemy możliwość wyboru, czy zabezpieczyć lakier powłoką ceramiczną. 
+                Podstawowe zabezpieczenie woskiem wykonujemy w cenie usługi."
               labelText="ZAKRES KOREKTY*"
               color={color}
               selectName="paintCorrection"
@@ -172,7 +358,7 @@ const Calculator = React.forwardRef<HTMLInputElement, CalculatorProps>(
             value={year}
             setState={setYear}
             required
-            optionsData={yearsData}
+            optionsData={getYearData(100)}
           />
           <Select
             labelText="MARKA*"
@@ -202,7 +388,9 @@ const Calculator = React.forwardRef<HTMLInputElement, CalculatorProps>(
               value={panels}
               setState={setPanels}
               required
-              optionsData={panelsData}
+              optionsData={
+                serviceName === "Naprawa" ? repairPanelsData : paintPanelsData
+              }
               hasTooltip
               tooltipText={
                 serviceName === "Naprawa"

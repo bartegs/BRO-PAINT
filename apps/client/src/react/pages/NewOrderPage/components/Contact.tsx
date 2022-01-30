@@ -2,6 +2,7 @@ import * as React from "react";
 import classnames from "classnames";
 import { useHistory } from "react-router-dom";
 import useWindowWidth from "../../../hooks/useWindowWidth";
+import { host } from "../../../../../../common/utils/contants";
 
 import { InputOutlined } from "../../../../../../common/react/components/InputOutlined";
 import {
@@ -13,7 +14,8 @@ import {
 } from "../../../components/forms/components";
 import { Button } from "../../../../../../common/react/components";
 import type { Color } from "../../../../../../common/utils/types";
-import { host } from "../../../../../../common/utils/contants";
+import { getYearData } from "../utils";
+import type { MakesDataType } from "../utils";
 
 export interface ContactProps {
   names: string;
@@ -40,6 +42,7 @@ export interface ContactProps {
   setComment: React.Dispatch<React.SetStateAction<string>>;
   setPrivacy: React.Dispatch<React.SetStateAction<boolean>>;
   setFiles: React.Dispatch<React.SetStateAction<Blob>>;
+  makesData: MakesDataType;
 }
 
 type OwnProps = ContactProps & {
@@ -74,6 +77,7 @@ const Contact = React.forwardRef<HTMLInputElement, OwnProps>(
       setComment,
       setPrivacy,
       setFiles,
+      makesData,
     }: OwnProps,
     ref
   ) => {
@@ -94,31 +98,11 @@ const Contact = React.forwardRef<HTMLInputElement, OwnProps>(
       setPrivacy(false);
     }
 
-    const makesData = [
-      { id: 0, value: "", text: "Wybierz markę auta" },
-      { id: 1, value: "audi", text: "Audi" },
-      { id: 2, value: "bmw", text: "BMW" },
-      { id: 3, value: "mercedes", text: "Mercedes" },
-      { id: 4, value: "volvo", text: "Volvo" },
-    ];
-
     const servicesData = [
       { id: "Naprawa ", value: "Naprawa" },
       { id: "Lakierowanie ", value: "Lakierowanie", additionalClasses: "my-2" },
       { id: "Detailing ", value: "Detailing" },
     ];
-
-    function getYearData(scope: number) {
-      const currentYear = new Date().getFullYear();
-      const yearsData: [{ id: number; value: string | number; text: string }] =
-        [{ id: 0, value: "", text: "Wybierz rocznik auta" }];
-
-      for (let i = currentYear; i > currentYear - scope; i -= 1) {
-        yearsData.push({ id: i, value: i, text: String(i) });
-      }
-
-      return yearsData;
-    }
 
     function handleSubmit(event: React.FormEvent) {
       event.preventDefault();

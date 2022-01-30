@@ -32,7 +32,7 @@ describe("ContactPage", () => {
     const phoneLabel = screen.getByText("Obsługa klienta");
     expect(phoneLabel).toBeInTheDocument();
 
-    const phone = screen.getByText("+48 000 222 444");
+    const phone = screen.getByText("+48 222 444 888");
     expect(phone).toBeInTheDocument();
   });
 
