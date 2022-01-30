@@ -1,7 +1,7 @@
 import * as React from "react";
 import classnames from "classnames";
 import { Color } from "../../../../../../../common/utils/types";
-import { Tooltip } from "../Tooltip/Tooltip";
+import { Tooltip } from "../Tooltip";
 
 interface OptionData {
   id: number;
@@ -64,7 +64,7 @@ export function Select({
               <option
                 value={optionDataValue}
                 hidden={optionDataValue === ""}
-                key={optionDataId}
+                key={`${optionDataId * Math.random()} `}
               >
                 {optionDataText}
               </option>

@@ -1,7 +1,6 @@
 import * as React from "react";
 import useWindowWidth from "../../../hooks/useWindowWidth";
 
-import { host } from "../../../../../../common/utils/contants";
 import { Color } from "../../../../../../common/utils/types";
 import { CarSizeType, CarIconType } from "../../../components/icons/CarIcon";
 
@@ -62,11 +61,11 @@ const Calculator = React.forwardRef<HTMLInputElement, CalculatorProps>(
     const [makeSegment, setMakeSegment] = React.useState(4);
 
     async function getMakeSegment() {
-      const makeSegmentInfo = await fetch(`${host}/car-makes/${make}`).then(
-        (resp) => resp.json()
-      );
+      if (makesData.length > 1) {
+        const { segment } = makesData.find((current) => current.value === make);
 
-      setMakeSegment(makeSegmentInfo.segment);
+        setMakeSegment(segment);
+      }
     }
 
     React.useEffect(() => {

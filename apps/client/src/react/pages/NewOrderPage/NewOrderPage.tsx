@@ -28,7 +28,7 @@ export function NewOrderPage(): JSX.Element {
   const [files, setFiles] = React.useState<Blob & { name: string }>();
 
   const [makesData, setMakesData] = React.useState<MakesDataType>([
-    { id: 0, value: "", text: "Wybierz markę auta" },
+    { id: -1, value: "", text: "Wybierz markę auta", segment: 0 },
   ]);
 
   const calculatorState = {

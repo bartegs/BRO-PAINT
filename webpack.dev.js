@@ -8,7 +8,7 @@ module.exports = merge(common, {
   devtool: "source-map",
 
   devServer: {
-    contentBase: path.join(__dirname, "dist/apps/employee/"),
+    contentBase: path.join(__dirname, "dist/apps/client/"),
     historyApiFallback: true,
     writeToDisk: true,
     compress: true,

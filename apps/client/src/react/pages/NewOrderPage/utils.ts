@@ -11,4 +11,9 @@ export function getYearData(scope: number) {
   return yearsData;
 }
 
-export type MakesDataType = { id: number; value: string; text: string }[];
+export type MakesDataType = {
+  id: number;
+  value: string;
+  text: string;
+  segment: number;
+}[];
